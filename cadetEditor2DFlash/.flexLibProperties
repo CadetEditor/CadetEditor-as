@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadetEditor2DFlash.tools.GeometryPrimitiveTool"/>
+    <classEntry path="cadetEditor2DFlash.tools.PolygonTool"/>
+    <classEntry path="cadetEditor2DFlash.tools.BezierCurveTool"/>
+    <classEntry path="cadetEditor2DFlash.tools.CircleTool"/>
+    <classEntry path="cadetEditor2DFlash.tools.RectangleTool"/>
+    <classEntry path="cadetEditor2DFlash.tools.TriangleTool"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.SelectionOverlay"/>
+    <classEntry path="cadetEditor2DFlash.controllers.DragSelectController"/>
+    <classEntry path="cadetEditor2DFlash.managers.ComponentHighlightManager"/>
+    <classEntry path="cadetEditor2DFlash.managers.PickingManager2D"/>
+    <classEntry path="cadetEditor2DFlash.tools.TransformTool"/>
+    <classEntry path="cadetEditor2DFlash.ui.views.CadetEditorView2D"/>
+    <classEntry path="cadetEditor2DFlash.operations.ZoomExtentsOperation"/>
+    <classEntry path="cadetEditor2DFlash.contexts.CadetEditorContext2D"/>
+    <classEntry path="cadetEditor2DFlash.commandHandlers.ZoomExtentsCommandHandler"/>
+    <classEntry path="cadetEditor2DFlash.tools.SelectionTool"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

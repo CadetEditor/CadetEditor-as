@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadetEditor.contexts.AbstractCadetEditorContext"/>
+    <classEntry path="cadetEditor.contexts.AbstractTooledCadetEditorContext"/>
+    <classEntry path="cadetBuilder.tools.brushes.IPainter"/>
+    <classEntry path="cadetBuilder.tools.brushes.StandardPainter"/>
+    <classEntry path="cadetBuilder.tools.brushes.IBrush"/>
+    <classEntry path="cadetBuilder.tools.brushes.StandardBrush"/>
+    <classEntry path="cadetBuilder.operations.ChangePixelsOperation"/>
+    <classEntry path="cadetBuilder.tools.brushes.BrushUtil"/>
+    <classEntry path="cadetBuilder.tools.brushes.ErosionBrush"/>
+    <classEntry path="cadetBuilder.tools.brushes.AbstractBrush"/>
+    <classEntry path="cadetBuilder.tools.brushes.HeightMapUtil"/>
+    <classEntry path="cadetEditor.controllers.ICadetContextController"/>
+    <classEntry path="cadetEditor.operations.RemoveComponentsOperation"/>
+    <classEntry path="cadetEditor.operations.SerializeAndWriteCadetFileOperation"/>
+    <classEntry path="cadetEditor.operations.RemoveComponentOperation"/>
+    <classEntry path="cadetEditor.controllers.ICadetEditorContextController"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

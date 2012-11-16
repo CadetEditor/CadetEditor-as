@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadetEditor2D.commandHandlers.CenterOriginCentroidCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.CenterOriginCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.CollapseTransformCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.CombineCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.EditSnapSettingsCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.MakeConvexCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.NudgeCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.ZoomInCommandHandler"/>
+    <classEntry path="cadetEditor2D.commandHandlers.ZoomOutCommandHandler"/>
+    <classEntry path="cadetEditor2D.contexts.InfoPanelContext"/>
+    <classEntry path="cadetEditor2D.controllers.CadetEditorViewPanController"/>
+    <classEntry path="cadetEditor2D.controllers.DragItemsController"/>
+    <classEntry path="cadetEditor2D.managers.SnapInfo"/>
+    <classEntry path="cadetEditor2D.managers.SnapManager2D"/>
+    <classEntry path="cadetEditor2D.operations.CenterOriginsOperation"/>
+    <classEntry path="cadetEditor2D.operations.CollapseTransformOperation"/>
+    <classEntry path="cadetEditor2D.operations.CollapseTransformsOperation"/>
+    <classEntry path="cadetEditor2D.operations.MakeConvexOperation"/>
+    <classEntry path="cadetEditor2D.operations.PickComponentsOperation"/>
+    <classEntry path="cadetEditor2D.tools.CadetEditorTool2D"/>
+    <classEntry path="cadetEditor2D.ui.overlays.BezierCurveToolOverlay"/>
+    <classEntry path="cadetEditor2D.ui.overlays.Grid2D"/>
+    <classEntry path="cadetEditor2D.ui.overlays.PolygonToolOverlay"/>
+    <classEntry path="cadetEditor2D.ui.overlays.SnapOverlay"/>
+    <classEntry path="cadetEditor2D.ui.overlays.TransformOverlay"/>
+    <classEntry path="cadetEditor2D.util.BitmapHitTest"/>
+    <classEntry path="cadetEditor2D.ui.views.InfoPanelView"/>
+    <classEntry path="cadetEditor2D.ui.overlays.ICadetEditorOverlay2D"/>
+    <classEntry path="cadetEditor2D.events.PickingManagerEvent"/>
+    <classEntry path="cadetEditor2D.util.SelectionUtil"/>
+    <classEntry path="cadetEditor2D.tools.PanTool"/>
+    <classEntry path="cadetEditor2D.ui.controlBars.CadetEditorControlBar"/>
+    <classEntry path="cadetEditor2D.ui.controlBars.PinToolControlBar"/>
+    <classEntry path="cadetEditor2D.ui.controlBars.ConnectionToolControlBar"/>
+    <classEntry path="cadetEditor2D.contexts.ICadetEditorContext2D"/>
+    <classEntry path="cadetEditor2D.ui.views.ICadetEditorView2D"/>
+    <classEntry path="cadetEditor2D.controllers.DefaultControlBar2DController"/>
+    <classEntry path="cadetEditor2D.tools.ICadetEditorTool2D"/>
+    <classEntry path="cadetEditor2D.operations.ConvertToPolygonOperation"/>
+    <classEntry path="cadetEditor2D.operations.CenterOriginOperation"/>
+    <classEntry path="cadetEditor2D.managers.IComponentHighlightManager"/>
+    <classEntry path="cadetEditor2D.managers.IPickingManager2D"/>
+    <classEntry path="cadetEditor2D.util.FlashStarlingInteropUtil"/>
+    <classEntry path="cadetEditor2D.util.BitmapHitTestStarling"/>
+    <classEntry path="cadetEditor2D.util.DisplayListUtilStarling"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

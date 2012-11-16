@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadetEditor2DFlashBox2D.tools.PinTool"/>
+    <classEntry path="cadetEditor2DFlashBox2D.tools.TerrainTool"/>
+    <classEntry path="cadetEditor2DFlashBox2D.tools.GeometryPrimitiveToolBox2D"/>
+    <classEntry path="cadetEditor2DFlashBox2D.tools.ConnectionTool"/>
+    <classEntry path="cadetEditor2DFlashBox2D.controllers.PhysicsControlBarController"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadetEditor3D.contexts.CadetEditorContext3D"/>
+    <classEntry path="cadetEditor3D.ui.views.CadetEditorView3D"/>
+    <classEntry path="cadetEditor3D.tools.CameraPanTool"/>
+    <classEntry path="cadetEditor3D.events.RendererChangeEvent"/>
+    <classEntry path="cadetEditor3D.icons.CadetEditor3DIcons"/>
+    <classEntry path="cadetEditor3D.tools.gizmos.TranslateGizmo"/>
+    <classEntry path="cadetEditor3D.tools.AbstractTool"/>
+    <classEntry path="cadetEditor3D.tools.TranslateTool"/>
+    <classEntry path="cadetEditor3D.events.DetailedMouse3DEvent"/>
+    <classEntry path="cadetEditor3D.tools.SelectionTool"/>
+    <classEntry path="cadetEditor3D.tools.gizmos.SelectionOverlay"/>
+    <classEntry path="cadetEditor3D.tools.gizmos.RotateGizmo"/>
+    <classEntry path="cadetEditor3D.events.CadetEditorContext3DEvent"/>
+    <classEntry path="cadetEditor3D.entities.CadetBuilder3DCommands"/>
+    <classEntry path="cadetEditor3D.commandHandlers.ImportCommandHandler"/>
+    <classEntry path="cadetEditor3D.tools.gizmos.GizmoBase"/>
+    <classEntry path="cadetEditor3D.commandHandlers.ExportToAS3CommandHandler"/>
+    <classEntry path="cadetEditor3D.ui.panels.ExportToAS3Panel"/>
+    <classEntry path="cadetEditor3D.ui.panels.TextOutputPanel"/>
+    <classEntry path="cadetEditor3D.tools.AbstractPrimitveTool"/>
+    <classEntry path="cadetEditor3D.tools.CubePrimitiveTool"/>
+    <classEntry path="cadetEditor3D.resources.ExternalAway3DResourceParser"/>
+    <classEntry path="cadetEditor3D.ui.controlBars.PhysicsToolControlBar"/>
+    <classEntry path="cadetEditor3D.controllers.PhysicsControlBarController"/>
+    <classEntry path="cadetEditor3D.controllers.DefaultControlBar3DController"/>
+    <classEntry path="cadetEditor3D.ui.controlBars.CadetEditorControlBar"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
