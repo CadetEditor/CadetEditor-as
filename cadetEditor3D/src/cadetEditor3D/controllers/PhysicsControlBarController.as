@@ -3,7 +3,7 @@ package cadetEditor3D.controllers
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet3D.components.behaviours.RigidBodyBehaviour;
+	import cadet3DPhysics.components.behaviours.RigidBodyBehaviour;
 	import cadet3D.components.core.MeshComponent;
 	
 	import cadetEditor.contexts.ICadetEditorContext;

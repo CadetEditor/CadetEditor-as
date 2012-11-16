@@ -7,7 +7,6 @@ package
 	import cadet.core.ICadetScene;
 	import cadet.core.IComponentContainer;
 	
-	import cadet3D.components.behaviours.RigidBodyBehaviour;
 	import cadet3D.components.cameras.CameraComponent;
 	import cadet3D.components.core.MeshComponent;
 	import cadet3D.components.core.Renderer3D;
@@ -20,9 +19,11 @@ package
 	import cadet3D.components.lights.LightProbeComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
 	import cadet3D.components.materials.TextureMaterialComponent;
-	import cadet3D.components.processes.PhysicsProcess;
 	import cadet3D.components.textures.BitmapCubeTextureComponent;
 	import cadet3D.components.textures.BitmapTextureComponent;
+	
+	import cadet3DPhysics.components.behaviours.RigidBodyBehaviour;
+	import cadet3DPhysics.components.processes.PhysicsProcess;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.entities.CadetEditorCommands;

@@ -3,20 +3,21 @@
 
 package cadetEditor2DFlash.tools
 {
+	import cadet.components.geom.IGeometry;
 	import cadet.core.ComponentContainer;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.geom.IGeometry;
 	import cadet2D.components.geom.PolygonGeometry;
-	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
+	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
 	
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
+	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import flash.events.MouseEvent;
@@ -26,7 +27,6 @@ package cadetEditor2DFlash.tools
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	
 	public class GeometryPrimitiveTool extends CadetEditorTool2D implements ITool
 	{

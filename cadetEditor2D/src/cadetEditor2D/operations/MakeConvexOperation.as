@@ -3,10 +3,10 @@
 
 package cadetEditor2D.operations
 {
+	import cadet.components.geom.IGeometry;
 	import cadet.core.IComponentContainer;
 	
 	import cadet2D.components.geom.CompoundGeometry;
-	import cadet2D.components.geom.IGeometry;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.util.VertexUtil;
 	

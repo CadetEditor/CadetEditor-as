@@ -3,6 +3,7 @@
 
 package cadetEditor2D.managers
 {
+	import cadet.components.geom.IGeometry;
 	import cadet.core.ICadetScene;
 	import cadet.core.IComponent;
 	import cadet.events.ComponentEvent;
@@ -10,7 +11,6 @@ package cadetEditor2D.managers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.geom.CircleGeometry;
-	import cadet2D.components.geom.IGeometry;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;

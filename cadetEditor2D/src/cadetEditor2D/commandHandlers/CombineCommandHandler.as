@@ -3,12 +3,12 @@
 
 package cadetEditor2D.commandHandlers
 {
+	import cadet.components.geom.IGeometry;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.geom.CircleGeometry;
 	import cadet2D.components.geom.CompoundGeometry;
-	import cadet2D.components.geom.IGeometry;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.util.VertexUtil;
@@ -19,10 +19,6 @@ package cadetEditor2D.commandHandlers
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import flox.ui.components.Alert;
-	
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
 	import flox.app.core.commandHandlers.ICommandHandler;
 	import flox.app.core.serialization.Serializer;
 	import flox.app.operations.AddItemOperation;
@@ -31,6 +27,9 @@ package cadetEditor2D.commandHandlers
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.app.resources.CommandHandlerFactory;
 	import flox.app.validators.ContextSelectionValidator;
+	import flox.editor.FloxEditor;
+	import flox.editor.utils.FloxEditorUtil;
+	import flox.ui.components.Alert;
 
 	/**
 	 * Given a selection of ComponentContainer, this CommandHandler finds all the geometry associated with them and combines them into a single

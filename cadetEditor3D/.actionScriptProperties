@@ -16,6 +16,8 @@
       <libraryPathEntry kind="3" linkType="1" path="/FloxAppEx/bin/FloxAppEx.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="lib/Away3D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_3D/bin/CadetEngine_Extension_3D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_3DPhysics/bin/CadetEngine_Extension_3DPhysics.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
