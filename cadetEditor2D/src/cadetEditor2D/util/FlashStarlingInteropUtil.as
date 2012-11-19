@@ -44,7 +44,7 @@ package cadetEditor2D.util
 		
 		static public function getSkinDisplayObjectStarling( skin:ISkin2D ):starling.display.DisplayObject
 		{
-			return cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D(skin).displayObject;
+			return cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D(skin).displayObjectContainer;
 		}
 		
 		static public function getSkinDisplayObjectFlash( skin:ISkin2D ):flash.display.DisplayObject
