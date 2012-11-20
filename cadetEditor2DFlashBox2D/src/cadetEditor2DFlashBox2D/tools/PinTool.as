@@ -119,7 +119,7 @@ package cadetEditor2DFlashBox2D.tools
 				offset = viewportStarling.localToGlobal(offset);
 			}
 			
-			offset = AbstractSkin2D(skinA).displayObject.globalToLocal(offset);
+			offset = AbstractSkin2D(skinA).displayObjectContainer.globalToLocal(offset);
 			
 			createPin();
 		}

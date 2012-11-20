@@ -51,7 +51,7 @@ package cadetEditor2DFlash.managers
 			highlightedComponents.push(component);
 			highlightedSkins.push(skin);
 			
-			AbstractSkin2D(skin).displayObject.filters = [filter];
+			AbstractSkin2D(skin).displayObjectContainer.filters = [filter];
 		}
 		
 		public function unhighlightComponent( component:IComponentContainer ):void
@@ -59,7 +59,7 @@ package cadetEditor2DFlash.managers
 			var index:int = highlightedComponents.indexOf(component);
 			if ( index == -1 ) return;
 			var skin:ISkin2D = highlightedSkins[index];
-			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObject;
+			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
 			if ( !displayObject ) return;
 			displayObject.filters = [];

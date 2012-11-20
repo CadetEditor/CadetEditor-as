@@ -267,7 +267,7 @@ package cadetEditor2DFlash.tools
 		private function beginTransform():void
 		{
 			var skin:ISkin2D;
-			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObject;
+			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
 			startTransforms = [];
 			if ( skins.length == 1 )

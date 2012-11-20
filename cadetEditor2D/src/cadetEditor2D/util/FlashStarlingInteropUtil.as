@@ -49,7 +49,7 @@ package cadetEditor2D.util
 		
 		static public function getSkinDisplayObjectFlash( skin:ISkin2D ):flash.display.DisplayObject
 		{
-			return cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D(skin).displayObject;
+			return cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D(skin).displayObjectContainer;
 		}
 		
 		static public function getRendererViewportFlash( renderer:IRenderer ):flash.display.Sprite

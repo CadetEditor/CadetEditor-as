@@ -329,11 +329,11 @@ package cadetEditor2DFlash.managers
 		
 		private function skinFilterFunc( item:* ):Boolean
 		{
-			if ( item.displayObject == null ) return false;
+			if ( item.displayObjectContainer == null ) return false;
 			
-			if ( item.displayObject is InteractiveObject )
+			if ( item.displayObjectContainer is InteractiveObject )
 			{
-				if ( InteractiveObject(item.displayObject).mouseEnabled == false ) return false;
+				if ( InteractiveObject(item.displayObjectContainer).mouseEnabled == false ) return false;
 			}
 			return true;
 		}

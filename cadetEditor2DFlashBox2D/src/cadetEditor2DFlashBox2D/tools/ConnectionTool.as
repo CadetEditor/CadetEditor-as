@@ -156,7 +156,7 @@ package cadetEditor2DFlashBox2D.tools
 				}
 				
 				
-				pt = AbstractSkin2D(skin).displayObject.globalToLocal(pt);
+				pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 				offsetA = new Vertex( pt.x, pt.y );
 				
 				pickComponentOperation.filter = function notComponentA(element:*, index:int, arr:Array):Boolean
@@ -182,7 +182,7 @@ package cadetEditor2DFlashBox2D.tools
 			}
 			
 			
-			pt = AbstractSkin2D(skin).displayObject.globalToLocal(pt);
+			pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 			
 			offsetB = new Vertex( pt.x, pt.y );
 			
