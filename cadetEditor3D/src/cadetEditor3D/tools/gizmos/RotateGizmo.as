@@ -115,7 +115,6 @@ package cadetEditor3D.tools.gizmos
 			return interactiveMeshes.indexOf(item) != -1;
 		}
 		
-		//TODO: group select needs to be reintroduced
 		override public function getClosestActiveEntity( entities:Vector.<Entity> ):Entity
 		{
 			entities = entities.filter( filterFunc );

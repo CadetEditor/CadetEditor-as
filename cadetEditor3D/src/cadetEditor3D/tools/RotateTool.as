@@ -283,6 +283,7 @@ package cadetEditor3D.tools
 			dragPlaneNormal = null;
 			
 			var overEntity:Entity = gizmo.getClosestActiveEntity(event.entities);
+			if ( !overEntity ) return;
 			
 			//dragPlanePos = context.detailedMouse3DManager.getCollisionPoint(overEntity);
 			dragPlanePos = event.scenePosition;

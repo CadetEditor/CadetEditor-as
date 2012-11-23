@@ -155,11 +155,11 @@ package cadetEditor3D.input
 			if (!entities) entities = new Vector.<Entity>();
 			event.entities = entities;
 			
-			trace("EVENT "+event.type+" entities "+entities);
+			//trace("EVENT "+event.type+" entities "+entities);
 			
-			/*
-			collider ||= _collidingObject;
-
+			//collider ||= _collidingObject;
+			var collider:PickingCollisionVO = _collidingObject;
+			
 			// 3D properties.
 			if( collider ) {
 				// Object.
@@ -179,7 +179,7 @@ package cadetEditor3D.input
 				event.localPosition = _nullVector;
 				event.localNormal = _nullVector;
 			}
-			*/
+			
 			// Store event to be dispatched later.
 			_queuedEvents.push(event);
 		}
