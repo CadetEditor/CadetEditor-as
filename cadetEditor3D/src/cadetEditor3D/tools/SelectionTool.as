@@ -15,6 +15,7 @@ package cadetEditor3D.tools
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.events.DetailedMouse3DEvent;
+	import cadetEditor3D.events.MouseEvent3DEx;
 	
 	import flash.events.Event;
 	import flash.ui.Keyboard;
@@ -60,18 +61,18 @@ package cadetEditor3D.tools
 		
 		override protected function performEnable():void
 		{
-			context.detailedMouse3DManager.addEventListener(DetailedMouse3DEvent.MOUSE_DOWN, mouseDownHandler);
-			context.detailedMouse3DManager.addEventListener(DetailedMouse3DEvent.CLICK, clickHandler);
+			context.pickingManager.addEventListener(MouseEvent3DEx.MOUSE_DOWN, mouseDownHandler);
+			context.pickingManager.addEventListener(MouseEvent3DEx.CLICK, clickHandler);
 		}
 		
 		override protected function performDisable():void
 		{
-			context.detailedMouse3DManager.removeEventListener(DetailedMouse3DEvent.MOUSE_DOWN, mouseDownHandler);
-			context.detailedMouse3DManager.removeEventListener(DetailedMouse3DEvent.CLICK, clickHandler);
+			context.pickingManager.removeEventListener(MouseEvent3DEx.MOUSE_DOWN, mouseDownHandler);
+			context.pickingManager.removeEventListener(MouseEvent3DEx.CLICK, clickHandler);
 		}
 		
 		
-		private function mouseDownHandler(event:DetailedMouse3DEvent):void
+		private function mouseDownHandler(event:MouseEvent3DEx):void
 		{
 			if ( event.entities.length > 0 )
 			{
@@ -79,7 +80,7 @@ package cadetEditor3D.tools
 			}
 		}
 		
-		private function clickHandler( event:DetailedMouse3DEvent ):void
+		private function clickHandler( event:MouseEvent3DEx ):void
 		{
 			if ( event.entities.length == 0 )
 			{
@@ -94,8 +95,8 @@ package cadetEditor3D.tools
 		/**
 		 * Clicking on a clear area of the background is symbolic for clearing the selection. 
 		 * @param event
-		 */		
-		private function clickBackgroundHandler(event:DetailedMouse3DEvent):void
+		 */	
+		private function clickBackgroundHandler(event:MouseEvent3DEx):void
 		{
 			if (ignoreNextMouseUp) 
 			{
@@ -115,7 +116,7 @@ package cadetEditor3D.tools
 		 * @param item
 		 * @param event
 		 */		
-		private function mouseDownEntitiesHandler( event:DetailedMouse3DEvent ):void
+		private function mouseDownEntitiesHandler( event:MouseEvent3DEx ):void
 		{
 			shiftKeyDown = event.shiftKey;
 			
@@ -167,7 +168,7 @@ package cadetEditor3D.tools
 		 * @param event
 		 */
 		private var previouslyClickedComponent:Object3DComponent;
-		private function clickEntitiesHandler( event:DetailedMouse3DEvent ):void
+		private function clickEntitiesHandler( event:MouseEvent3DEx ):void
 		{	
 			if (ignoreNextMouseUp) 
 			{
@@ -176,6 +177,7 @@ package cadetEditor3D.tools
 			}
 			
 			var components:Vector.<Object3DComponent> = new Vector.<Object3DComponent>();
+			
 			for ( var i:int = 0; i < event.entities.length; i++ )
 			{
 				components.push( renderer.getComponentForObject3D(event.entities[i]) );

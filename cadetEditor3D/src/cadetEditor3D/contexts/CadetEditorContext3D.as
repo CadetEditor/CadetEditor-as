@@ -4,6 +4,7 @@
 package cadetEditor3D.contexts
 {
 	import away3d.Away3D;
+	import away3d.containers.View3D;
 	
 	import cadet.core.IComponent;
 	import cadet.core.IRenderer;
@@ -20,7 +21,7 @@ package cadetEditor3D.contexts
 	
 	import cadetEditor3D.events.CadetEditorContext3DEvent;
 	import cadetEditor3D.events.RendererChangeEvent;
-	import cadetEditor3D.input.DetailedMouse3DManager;
+	import cadetEditor3D.input.Mouse3DManagerEx;
 	import cadetEditor3D.ui.views.CadetEditorView3D;
 	
 	import flash.display.DisplayObject;
@@ -41,7 +42,7 @@ package cadetEditor3D.contexts
 		
 		private var _view				:CadetEditorView3D;
 		
-		private var _detailedMouse3DManager	:DetailedMouse3DManager;
+		protected var _pickingManager		:Mouse3DManagerEx;
 		private var _coordinateSpace		:String = COORDINATE_SPACE_WORLD;
 		
 		protected var _controllers			:Array;
@@ -51,7 +52,7 @@ package cadetEditor3D.contexts
 			_view = new CadetEditorView3D(this);
 			_view.addEventListener( Event.ADDED_TO_STAGE, addedToStageHandler);
 			
-			_detailedMouse3DManager = new DetailedMouse3DManager();
+			_pickingManager = new Mouse3DManagerEx();
 			
 			_controllers = [];
 			
@@ -115,8 +116,8 @@ package cadetEditor3D.contexts
 		{
 			super.enable();
 			_view.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
-			if ( renderer )
-			{
+			
+			if ( renderer ) {
 				FloxEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = true;
 			}
 		}
@@ -125,8 +126,8 @@ package cadetEditor3D.contexts
 		{
 			super.disable();
 			_view.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
-			if ( renderer )
-			{
+			
+			if ( renderer ) {
 				FloxEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = false;
 			}
 		}
@@ -139,11 +140,6 @@ package cadetEditor3D.contexts
 		public function get renderer():Renderer3D
 		{
 			return _view.renderer;
-		}
-		
-		public function get detailedMouse3DManager():DetailedMouse3DManager
-		{
-			return _detailedMouse3DManager;
 		}
 		
 		////////////////////////////////////////////
@@ -175,8 +171,18 @@ package cadetEditor3D.contexts
 		
 		private function preRenderHandler( event:Renderer3DEvent ):void
 		{
-			_detailedMouse3DManager.updateHitData();
-			_detailedMouse3DManager.fireMouseEvents();
+//			_detailedMouse3DManager.updateHitData();
+//			_detailedMouse3DManager.fireMouseEvents();
+			
+			// update picking
+			if (_view.renderer) {
+				_pickingManager.updateCollider(_view.renderer.view3D);
+			}
+		}
+		private function postRenderHandler( event:Renderer3DEvent ):void
+		{
+			// fire collected mouse events
+			_pickingManager.fireMouseEvents();			
 		}
 		
 		////////////////////////////////////////////
@@ -208,7 +214,10 @@ package cadetEditor3D.contexts
 			if ( oldRenderer )
 			{
 				oldRenderer.removeEventListener(Renderer3DEvent.PRE_RENDER, preRenderHandler);
-				_detailedMouse3DManager.setView(null);
+				newRenderer.removeEventListener(Renderer3DEvent.POST_RENDER, postRenderHandler);
+				
+				//_pickingManager.setView(null);
+				_pickingManager.disableMouseListeners(oldRenderer.view3D);
 				_view.renderer = null;
 			}
 			
@@ -218,11 +227,25 @@ package cadetEditor3D.contexts
 			{
 				newRenderer = Renderer3D(renderers[0]);
 				_view.renderer = newRenderer;
-				_detailedMouse3DManager.setView(newRenderer.view3D);
+				
+				_pickingManager.enableMouseListeners(newRenderer.view3D);
+				//_pickingManager.setView(newRenderer.view3D);
+				
 				newRenderer.addEventListener(Renderer3DEvent.PRE_RENDER, preRenderHandler);
+				newRenderer.addEventListener(Renderer3DEvent.POST_RENDER, postRenderHandler);
 			}
 			
 			dispatchEvent( new RendererChangeEvent( RendererChangeEvent.RENDERER_CHANGE, oldRenderer, newRenderer ) );
 		}
+		
+		// Getters for  managers
+		public function get pickingManager():Mouse3DManagerEx { return _pickingManager; }
 	}
 }
+
+
+
+
+
+
+

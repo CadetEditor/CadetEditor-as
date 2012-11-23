@@ -95,18 +95,5 @@ package cadetEditor3D.tools
 		protected function begin():void {}
 		protected function update():void {}
 		protected function end():void {}
-		
-		protected function getMousePositionOnPlane( planePos:Vector3D, planeNormal:Vector3D ):Vector3D
-		{
-			var rayPosition:Vector3D = renderer.view3D.camera.position;
-			var rayDirection:Vector3D = renderer.view3D.unproject( renderer.view3D.mouseX, renderer.view3D.mouseY );
-			rayDirection.normalize();
-			
-			var delta:Vector3D = planePos.subtract(rayPosition);
-			var d:Number = delta.dotProduct(planeNormal) / rayDirection.dotProduct(planeNormal);
-			rayDirection.scaleBy(d);
-			
-			return rayPosition.add( rayDirection );
-		}
 	}
 }

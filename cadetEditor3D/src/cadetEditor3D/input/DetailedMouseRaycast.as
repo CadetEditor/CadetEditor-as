@@ -6,37 +6,42 @@ package cadetEditor3D.input
 
 	import away3d.core.base.SubMesh;
 	import away3d.core.data.RenderableListItem;
-	import away3d.core.raycast.MouseHitMethod;
-	import away3d.core.raycast.colliders.*;
 	import away3d.entities.Entity;
 	
 	import flash.geom.Point;
 	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 
-	public class DetailedMouseRaycast extends ColliderBase
+	public class DetailedMouseRaycast //extends ColliderBase
 	{
-		private var _triangleCollider			:TriangleCollider;
+		private var _triangleCollider			:Object;//TriangleCollider;
 		private var _entityCollisions			:Vector.<Entity>;
 		private var _collisionVOForEntityTable	:Dictionary;
 
 		public function DetailedMouseRaycast() 
 		{
-			_triangleCollider = new TriangleCollider();
+			_triangleCollider = new Object();//TriangleCollider();
 			_entityCollisions = new Vector.<Entity>();
 			_collisionVOForEntityTable = new Dictionary();
 		}
 
-		override public function evaluate():Boolean 
+		//override 
+		public function evaluate():Boolean 
 		{
-			var item:RenderableListItem = _target as RenderableListItem;
+			//var item:RenderableListItem = _target as RenderableListItem;
+			//TODO: Rob added to avoid CTEs
+			var item:Object;
+			var _collisionExists:Boolean;
+			var _rayPosition:Object;
+			var _rayDirection:Object;
+			
 			_entityCollisions = new Vector.<Entity>();
 			
 			if( !item ) return _collisionExists = false;
 
 			// init
 			var t:Number;
-			var entity:Entity;
+			var entity:Object;//Entity;
 			var i:uint, j:uint;
 			var rp:Vector3D, rd:Vector3D;
 			var collisionVO:MouseCollisionVO;
@@ -58,6 +63,7 @@ package cadetEditor3D.input
 						rd = entity.inverseSceneTransform.deltaTransformVector( _rayDirection );
 						// check for ray-bounds collision
 						t = entity.bounds.intersectsRay( rp, rd );
+						
 						cameraIsInEntityBounds = false;
 						if( t == -1 ) 
 						{ // if there is no collision, check if the ray starts inside the bounding volume
@@ -70,7 +76,7 @@ package cadetEditor3D.input
 							collisionVO = new MouseCollisionVO();
 							collisionVO.boundsCollisionT = t;
 							collisionVO.boundsCollisionFarT = entity.bounds.rayFarT;
-							collisionVO.entity = entity;
+							collisionVO.entity = Entity(entity);
 							collisionVO.localRayPosition = rp;
 							collisionVO.localRayDirection = rd;
 							collisionVO.renderableItems.push( item );
@@ -112,7 +118,7 @@ package cadetEditor3D.input
 				for( j = 0; j < numItems; ++j ) 
 				{
 					item = collisionVO.renderableItems[ j ];
-					if ( item.renderable.mouseHitMethod == MouseHitMethod.BOUNDS_ONLY )
+					if ( item.renderable.mouseHitMethod == "BOUNDS_ONLY")//== MouseHitMethod.BOUNDS_ONLY )
 					{
 						collisionVO.isTriangleHit = false;
 						_entityCollisions.push( collisionVO.entity );
@@ -120,10 +126,10 @@ package cadetEditor3D.input
 					}
 					// need triangle collision test?
 					else if( collisionVO.cameraIsInEntityBounds
-							|| item.renderable.mouseHitMethod == MouseHitMethod.MESH_CLOSEST_HIT
-							|| item.renderable.mouseHitMethod == MouseHitMethod.MESH_ANY_HIT ) 
+							|| item.renderable.mouseHitMethod == "MESH_CLOSEST_HIT"//MouseHitMethod.MESH_CLOSEST_HIT
+							|| item.renderable.mouseHitMethod == "MESH_ANY_HIT")//MouseHitMethod.MESH_ANY_HIT ) 
 					{
-						_triangleCollider.breakOnFirstTriangleHit = item.renderable.mouseHitMethod == MouseHitMethod.MESH_ANY_HIT;
+						_triangleCollider.breakOnFirstTriangleHit = item.renderable.mouseHitMethod == "MESH_ANY_HIT";//MouseHitMethod.MESH_ANY_HIT;
 						_triangleCollider.updateTarget(item.renderable as SubMesh);
 						if( _triangleCollider.evaluate() ) 
 						{ // triangle collision exists?
@@ -167,7 +173,7 @@ package cadetEditor3D.input
 			point.z = collisionVO.localRayPosition.z + collisionVO.finalCollisionT * collisionVO.localRayDirection.z;
 			return point;
 		}
-		
+		/*
 		public function getCollisionUV( entity:Entity ):Point 
 		{
 			var collisionVO:MouseCollisionVO = _collisionVOForEntityTable[entity];
@@ -177,26 +183,7 @@ package cadetEditor3D.input
 			}
 			return collisionVO.collisionUV;
 		}
-		
-		/*
-		override public function get collisionPoint():Vector3D
-		{
-			if( !_collisionExists )
-				return null;
-			
-			var point:Vector3D = new Vector3D();
-			point.x = _nearestCollisionVO.localRayPosition.x + _nearestCollisionVO.finalCollisionT * _nearestCollisionVO.localRayDirection.x;
-			point.y = _nearestCollisionVO.localRayPosition.y + _nearestCollisionVO.finalCollisionT * _nearestCollisionVO.localRayDirection.y;
-			point.z = _nearestCollisionVO.localRayPosition.z + _nearestCollisionVO.finalCollisionT * _nearestCollisionVO.localRayDirection.z;
-			return point;
-		}
-		
-		public function get collisionUV():Point {
-			if( !_collisionExists || !_nearestCollisionVO.isTriangleHit ) return null;
-			return _nearestCollisionVO.collisionUV;
-		}
 		*/
-		
 		private function onSmallestT( a:MouseCollisionVO, b:MouseCollisionVO ):Number {
 			return a.boundsCollisionT < b.boundsCollisionT ? -1 : 1;
 		}

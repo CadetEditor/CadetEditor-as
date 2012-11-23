@@ -12,6 +12,7 @@ package cadetEditor3D.tools
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.icons.CadetEditor3DIcons;
 	import cadetEditor3D.tools.gizmos.ScaleGizmo;
+	import cadetEditor3D.utils.Vector3DUtil;
 	
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
@@ -99,7 +100,8 @@ package cadetEditor3D.tools
 		
 		override protected function updateDrag():void
 		{
-			var currentPosition:Vector3D = getMousePositionOnPlane( dragStartPoint, dragPlane );
+			//var currentPosition:Vector3D = getMousePositionOnPlane( dragStartPoint, dragPlane );
+			var currentPosition:Vector3D = Vector3DUtil.getMousePositionOnPlane( dragStartPoint, dragPlane, renderer.view3D );
 			var delta:Vector3D = currentPosition.subtract(dragStartPoint);
 			
 			var m:Matrix3D = gizmo.transform.clone();

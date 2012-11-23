@@ -4,8 +4,6 @@
 package cadetEditor3D.tools
 {
 	import away3d.entities.Entity;
-	import away3d.events.MouseEvent3D;
-	//import away3d.tools.utils.Ray;
 	
 	import cadet.events.InvalidationEvent;
 	
@@ -16,9 +14,11 @@ package cadetEditor3D.tools
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.events.DetailedMouse3DEvent;
+	import cadetEditor3D.events.MouseEvent3DEx;
 	import cadetEditor3D.icons.CadetEditor3DIcons;
 	import cadetEditor3D.tools.gizmos.GizmoBase;
 	import cadetEditor3D.tools.gizmos.ScaleGizmo;
+	import cadetEditor3D.utils.Vector3DUtil;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix3D;
@@ -26,12 +26,11 @@ package cadetEditor3D.tools
 	import flash.geom.Vector3D;
 	import flash.ui.Keyboard;
 	
-	import flox.core.events.ArrayCollectionEvent;
-	
-	import flox.editor.FloxEditor;
 	import flox.app.events.OperationManagerEvent;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
+	import flox.core.events.ArrayCollectionEvent;
+	import flox.editor.FloxEditor;
 
 	public class TransformToolBase extends SelectionTool
 	{
@@ -54,9 +53,10 @@ package cadetEditor3D.tools
 			super.performEnable();
 			
 			renderer.addEventListener(Renderer3DEvent.PRE_RENDER, preRenderHandler);
-			context.detailedMouse3DManager.addEventListener(DetailedMouse3DEvent.MOUSE_OVER, mouseOverHandler, false, 10);
-			context.detailedMouse3DManager.addEventListener(DetailedMouse3DEvent.MOUSE_OUT, mouseOutHandler, false, 10);
-			context.detailedMouse3DManager.addEventListener(DetailedMouse3DEvent.MOUSE_DOWN, mouseDownHandler, false, 10);
+			
+			context.pickingManager.addEventListener(MouseEvent3DEx.MOUSE_OVER, mouseOverHandler, false, 10);
+			context.pickingManager.addEventListener(MouseEvent3DEx.MOUSE_OUT, mouseOutHandler, false, 10);
+			context.pickingManager.addEventListener(MouseEvent3DEx.MOUSE_DOWN, mouseDownHandler, false, 10);
 			
 			context.selection.addEventListener(ArrayCollectionEvent.CHANGE, selectionChangeHandler);
 			context.operationManager.addEventListener(OperationManagerEvent.CHANGE, contextChangeHandler);
@@ -72,9 +72,10 @@ package cadetEditor3D.tools
 				renderer.view3D.scene.removeChild(gizmo);
 			}
 			renderer.removeEventListener(Renderer3DEvent.PRE_RENDER, preRenderHandler);
-			context.detailedMouse3DManager.removeEventListener(DetailedMouse3DEvent.MOUSE_OVER, mouseOverHandler);
-			context.detailedMouse3DManager.removeEventListener(DetailedMouse3DEvent.MOUSE_OUT, mouseOutHandler);
-			context.detailedMouse3DManager.removeEventListener(DetailedMouse3DEvent.MOUSE_DOWN, mouseDownHandler);
+
+			context.pickingManager.removeEventListener(MouseEvent3DEx.MOUSE_OVER, mouseOverHandler);
+			context.pickingManager.removeEventListener(MouseEvent3DEx.MOUSE_OUT, mouseOutHandler);
+			context.pickingManager.removeEventListener(MouseEvent3DEx.MOUSE_DOWN, mouseDownHandler);
 			
 			context.selection.removeEventListener(ArrayCollectionEvent.CHANGE, selectionChangeHandler);
 			context.operationManager.removeEventListener(OperationManagerEvent.CHANGE, contextChangeHandler);
@@ -151,23 +152,9 @@ package cadetEditor3D.tools
 			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveStageHandler);
 			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
 			
-			dragStartPoint = getMousePositionOnPlane(gizmo.position, dragPlane);
-		}
-		
-		protected function getMousePositionOnPlane( planePos:Vector3D, planeNormal:Vector3D ):Vector3D
-		{
-			var rayPosition:Vector3D = renderer.view3D.camera.position;
-			var rayDirection:Vector3D = renderer.view3D.unproject( renderer.view3D.mouseX, renderer.view3D.mouseY );
-			rayDirection.normalize();
-			
-			var delta:Vector3D = planePos.subtract(rayPosition);
-			var d:Number = delta.dotProduct(planeNormal) / rayDirection.dotProduct(planeNormal);
-			rayDirection.scaleBy(d);
-			
-			return rayPosition.add( rayDirection );
-		}
-		
-		
+			//dragStartPoint = getMousePositionOnPlane(gizmo.position, dragPlane);
+			dragStartPoint = Vector3DUtil.getMousePositionOnPlane( gizmo.position, dragPlane, renderer.view3D );
+		}		
 		
 		protected function updateDrag():void
 		{
@@ -197,16 +184,7 @@ package cadetEditor3D.tools
 			
 			context.operationManager.addOperation( operation );
 			
-			gizmo.updateRollOvers(context.detailedMouse3DManager.activeEntities);
-		}
-		
-		private function mouseDownHandler( event:DetailedMouse3DEvent ):void
-		{
-			if ( event.altKey || event.ctrlKey ) return;
-			
-			if ( handleMouseDown(event.entities) == false ) return;
-			event.stopImmediatePropagation();
-			beginDrag();
+			gizmo.updateRollOvers(context.pickingManager.activeEntities);
 		}
 		
 		protected function handleMouseDown( entities:Vector.<Entity> ):Boolean
@@ -230,16 +208,25 @@ package cadetEditor3D.tools
 			}
 		}
 		
-		private function mouseOverHandler( event:DetailedMouse3DEvent ):void
+		private function mouseDownHandler( event:MouseEvent3DEx ):void
 		{
-			if ( isDragging ) return;
-			gizmo.updateRollOvers( context.detailedMouse3DManager.activeEntities );
+			if ( event.altKey || event.ctrlKey ) return;
+			
+			if ( handleMouseDown(event.entities) == false ) return;
+			event.stopImmediatePropagation();
+			beginDrag();
 		}
 		
-		private function mouseOutHandler( event:DetailedMouse3DEvent ):void
+		private function mouseOverHandler( event:MouseEvent3DEx ):void
 		{
 			if ( isDragging ) return;
-			gizmo.updateRollOvers( context.detailedMouse3DManager.activeEntities );
+			gizmo.updateRollOvers(context.pickingManager.activeEntities);
+		}
+		
+		private function mouseOutHandler( event:MouseEvent3DEx ):void
+		{
+			if ( isDragging ) return;
+			gizmo.updateRollOvers(context.pickingManager.activeEntities);
 		}
 	}
 }

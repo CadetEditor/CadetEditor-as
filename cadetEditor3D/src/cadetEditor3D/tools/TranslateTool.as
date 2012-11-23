@@ -12,6 +12,7 @@ package cadetEditor3D.tools
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.icons.CadetEditor3DIcons;
 	import cadetEditor3D.tools.gizmos.TranslateGizmo;
+	import cadetEditor3D.utils.Vector3DUtil;
 	
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
@@ -42,8 +43,12 @@ package cadetEditor3D.tools
 		
 		override protected function updateDrag():void
 		{
-			var currentPosition:Vector3D = getMousePositionOnPlane( dragStartPoint, dragPlane );
+			//var currentPosition:Vector3D = getMousePositionOnPlane( dragStartPoint, dragPlane );
+			var currentPosition:Vector3D = Vector3DUtil.getMousePositionOnPlane( dragStartPoint, dragPlane, renderer.view3D );
 			var delta:Vector3D = currentPosition.subtract(dragStartPoint);
+			
+			trace("TT currentPosition x "+Math.round(currentPosition.x)+" y "+Math.round(currentPosition.y)+" z "+Math.round(currentPosition.z));
+			trace("TT delta x "+Math.round(delta.x)+" y "+Math.round(delta.y)+" z "+Math.round(delta.z));
 			
 			if ( lockToAxis )
 			{

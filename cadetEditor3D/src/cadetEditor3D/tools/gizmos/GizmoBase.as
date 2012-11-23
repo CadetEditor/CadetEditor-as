@@ -3,6 +3,7 @@
 
 package cadetEditor3D.tools.gizmos
 {
+	import away3d.core.base.Geometry;
 	import away3d.entities.Entity;
 	import away3d.entities.Mesh;
 	
@@ -10,7 +11,7 @@ package cadetEditor3D.tools.gizmos
 	{
 		public function GizmoBase()
 		{
-			
+			super(new Geometry());
 		}
 		
 		public function getClosestActiveEntity( entities:Vector.<Entity> ):Entity

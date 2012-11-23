@@ -5,14 +5,12 @@ package cadetEditor3D.tools.gizmos
 {
 	import away3d.core.base.Geometry;
 	import away3d.core.base.SubMesh;
-	import away3d.core.raycast.MouseHitMethod;
+	import away3d.core.pick.PickingColliderType;
 	import away3d.debug.Trident;
 	import away3d.debug.data.TridentLines;
 	import away3d.entities.Entity;
 	import away3d.entities.Mesh;
 	import away3d.entities.SegmentSet;
-	import away3d.events.MouseEvent3D;
-	import away3d.materials.BitmapMaterial;
 	import away3d.materials.ColorMaterial;
 	import away3d.materials.MaterialBase;
 	import away3d.materials.TextureMaterial;
@@ -92,7 +90,7 @@ package cadetEditor3D.tools.gizmos
 			armHeadMesh.y = armLineGeom.height;
 			
 			var merge:Merge = new Merge(false,true);
-			var armMesh:Mesh = merge.applyToMeshes( new Mesh(), Vector.<Mesh>( [armLineMesh, armHeadMesh] ) );
+			var armMesh:Mesh = merge.applyToMeshes( new Mesh(new Geometry()), Vector.<Mesh>( [armLineMesh, armHeadMesh] ) );
 			var armGeom:Geometry = armMesh.geometry;
 			
 			armX = new Mesh( armGeom, redMaterial );
@@ -136,11 +134,14 @@ package cadetEditor3D.tools.gizmos
 			for each ( var interactiveMesh:Mesh in interactiveMeshes )
 			{
 				interactiveMesh.mouseEnabled = true;
-				interactiveMesh.mouseHitMethod = MouseHitMethod.MESH_ANY_HIT;
+				//interactiveMesh.mouseHitMethod = MouseHitMethod.MESH_ANY_HIT;
+				interactiveMesh.pickingCollider = PickingColliderType.AUTO_BEST_HIT;
 			}
-			planeXY.mouseHitMethod = planeZY.mouseHitMethod = planeXZ.mouseHitMethod = MouseHitMethod.BOUNDS_ONLY;
+			//planeXY.mouseHitMethod = planeZY.mouseHitMethod = planeXZ.mouseHitMethod = MouseHitMethod.BOUNDS_ONLY;
+			planeXY.pickingCollider = planeZY.pickingCollider = planeXZ.pickingCollider =  PickingColliderType.BOUNDS_ONLY;
 			
-			armX.mouseHitMethod = armY.mouseHitMethod = armZ.mouseHitMethod = MouseHitMethod.BOUNDS_ONLY;
+			//armX.mouseHitMethod = armY.mouseHitMethod = armZ.mouseHitMethod = MouseHitMethod.BOUNDS_ONLY;
+			armX.pickingCollider = armY.pickingCollider = armZ.pickingCollider = PickingColliderType.BOUNDS_ONLY;
 			
 			for each ( var material:MaterialBase in materials )
 			{

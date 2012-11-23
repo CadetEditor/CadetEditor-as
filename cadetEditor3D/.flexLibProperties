@@ -27,6 +27,9 @@
     <classEntry path="cadetEditor3D.controllers.PhysicsControlBarController"/>
     <classEntry path="cadetEditor3D.controllers.DefaultControlBar3DController"/>
     <classEntry path="cadetEditor3D.ui.controlBars.CadetEditorControlBar"/>
+    <classEntry path="cadetEditor3D.input.MouseRaycast"/>
+    <classEntry path="cadetEditor3D.events.MouseEvent3DEx"/>
+    <classEntry path="cadetEditor3D.utils.Vector3DUtil"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

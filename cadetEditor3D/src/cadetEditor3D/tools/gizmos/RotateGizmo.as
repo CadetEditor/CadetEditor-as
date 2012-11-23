@@ -3,16 +3,16 @@
 
 package cadetEditor3D.tools.gizmos
 {
-	import away3d.core.raycast.MouseHitMethod;
+	import away3d.core.pick.PickingColliderType;
 	import away3d.entities.Entity;
 	import away3d.entities.Mesh;
 	import away3d.materials.ColorMaterial;
 	import away3d.materials.DefaultMaterialBase;
 	import away3d.materials.MaterialBase;
 	import away3d.materials.TextureMaterial;
+	import away3d.materials.methods.EffectMethodBase;
 	import away3d.materials.methods.EnvMapMethod;
 	import away3d.materials.methods.FresnelEnvMapMethod;
-	//import away3d.materials.methods.FresnelSpecularMethod;
 	import away3d.materials.methods.ShadingMethodBase;
 	import away3d.primitives.CylinderGeometry;
 	import away3d.primitives.SphereGeometry;
@@ -67,7 +67,7 @@ package cadetEditor3D.tools.gizmos
 			var whiteCubeMap:BitmapCubeTexture = new BitmapCubeTexture( whiteBMP, whiteBMP, whiteBMP, whiteBMP, whiteBMP, whiteBMP );
 			var envMapMethod:FresnelEnvMapMethod = new FresnelEnvMapMethod( whiteCubeMap );
 			envMapMethod.fresnelPower = 4;
-			globeMaterial.addMethod( envMapMethod )
+			globeMaterial.addMethod( EffectMethodBase(envMapMethod) );
 			globeMaterial.depthCompareMode = Context3DCompareMode.ALWAYS;
 			
 			var globeGeom:SphereGeometry = new SphereGeometry(80, 32, 28);
@@ -95,7 +95,8 @@ package cadetEditor3D.tools.gizmos
 			for each ( var interactiveMesh:Mesh in interactiveMeshes )
 			{
 				interactiveMesh.mouseEnabled = true;
-				interactiveMesh.mouseHitMethod = MouseHitMethod.MESH_CLOSEST_HIT;
+				//interactiveMesh.mouseHitMethod = MouseHitMethod.MESH_CLOSEST_HIT;
+				interactiveMesh.pickingCollider = PickingColliderType.AUTO_BEST_HIT;
 			}
 			
 			for each ( var material:MaterialBase in materials )
@@ -114,6 +115,7 @@ package cadetEditor3D.tools.gizmos
 			return interactiveMeshes.indexOf(item) != -1;
 		}
 		
+		//TODO: group select needs to be reintroduced
 		override public function getClosestActiveEntity( entities:Vector.<Entity> ):Entity
 		{
 			entities = entities.filter( filterFunc );
@@ -124,7 +126,6 @@ package cadetEditor3D.tools.gizmos
 			
 			var closestEntity:Entity = entities[0];
 			if ( entities.length == 1 ) return closestEntity;
-			
 			
 			if ( closestEntity == globe )
 			{

@@ -12,6 +12,7 @@ package cadetEditor3D.tools
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.icons.CadetEditor3DIcons;
+	import cadetEditor3D.utils.Vector3DUtil;
 	
 	import flash.geom.Vector3D;
 
@@ -40,7 +41,8 @@ package cadetEditor3D.tools
 			meshComponent.geometryComponent = geometryComponent;
 			meshComponent.children.addItem(geometryComponent);
 			
-			mousePressPoint = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
+			//mousePressPoint = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
+			mousePressPoint = Vector3DUtil.getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS, renderer.view3D );
 			meshComponent.x = mousePressPoint.x;
 			meshComponent.y = mousePressPoint.y;
 			meshComponent.z = mousePressPoint.z;
@@ -48,7 +50,8 @@ package cadetEditor3D.tools
 		
 		override protected function update():void
 		{
-			var mouseWorldPos:Vector3D = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
+			//var mouseWorldPos:Vector3D = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
+			var mouseWorldPos:Vector3D = Vector3DUtil.getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS, renderer.view3D );
 			var delta:Vector3D = mouseWorldPos.subtract(mousePressPoint);
 			geometryComponent.width = geometryComponent.height = geometryComponent.depth = delta.length * 0.5;
 			meshComponent.y = geometryComponent.height * 0.5;

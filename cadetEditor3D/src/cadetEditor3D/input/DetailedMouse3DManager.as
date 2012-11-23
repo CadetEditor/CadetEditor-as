@@ -40,8 +40,8 @@ package cadetEditor3D.input
 		private var _oldLocalX:Number;
 		private var _oldLocalY:Number;
 		private var _oldLocalZ:Number;
-		private var _opaqueCollider:DetailedMouseRaycast;
-		private var _blendedCollider:DetailedMouseRaycast;
+		private var _opaqueCollider:Object;//DetailedMouseRaycast;
+		private var _blendedCollider:Object;//DetailedMouseRaycast;
 		private var _previouslyActiveEntities:Vector.<Entity>;
 		private var _activeEntities:Vector.<Entity>;
 		private var _view:View3D;
@@ -58,8 +58,8 @@ package cadetEditor3D.input
 		public function DetailedMouse3DManager( view:View3D = null ) 
 		{
 			setView(view);
-			_opaqueCollider = new DetailedMouseRaycast();
-			_blendedCollider = new DetailedMouseRaycast();
+			_opaqueCollider = new Object();//DetailedMouseRaycast();
+			_blendedCollider = new Object();//DetailedMouseRaycast();
 			_activeEntities = new Vector.<Entity>();
 		}
 		
