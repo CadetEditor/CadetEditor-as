@@ -12,7 +12,7 @@ package cadetEditor2DStarling.tools
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
+	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	
 	import cadetEditor.tools.ITool;
 	

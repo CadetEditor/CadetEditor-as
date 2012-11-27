@@ -14,9 +14,9 @@ package
 	import cadet2D.components.renderers.*;
 	import cadet2D.components.skins.*;
 	import cadet2D.components.transforms.*;
-	import cadet2D.renderPipeline.flash.components.processes.TrackCamera2DProcess;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.*;
+//	import cadet2D.renderPipeline.starling.components.processes.TrackCamera2DProcess;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.skins.*;
 	
 	import cadet2DBox2D.components.behaviours.*;
 	import cadet2DBox2D.components.processes.*;
@@ -161,7 +161,7 @@ package
 			resourceManager.addResource( new ComponentFactory( WorldBounds2D, 				"World Bounds 2D", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( PhysicsProcess, 				"Physics", 						"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( FootprintManagerProcess, 	"Footprint Manager", 			"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( CollisionDetectionProcess, 	"Collision Detection", 			"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( Renderer2D, 					"2D Renderer", 					"Processes", 	CadetEditorIcons.Renderer, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			
@@ -170,14 +170,14 @@ package
 			
 			// Skins
 			resourceManager.addResource( new ComponentFactory( GeometrySkin, 				"Geometry Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( GeometryDebugSkin, 			"Geometry Debug Skin", 			"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( FractalPolygonSkin, 			"Fractal Polygon Skin", 		"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( GeometryDebugSkin, 			"Geometry Debug Skin", 			"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( FractalPolygonSkin, 			"Fractal Polygon Skin", 		"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( AssetSkin, 					"Asset Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( ConnectionSkin, 				"Connection Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( SpringSkin, 					"Spring Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( ScrollingBackgroundSkin, 	"Scrolling Background Skin", 	"Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( FootprintManagerDebugSkin, 	"Footprint Manager Debug Skin", "Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( WorldBoundsDebugSkin, 		"World Bounds Debug Skin", 		"Skins",		CadetEditorIcons.Skin,			null,			1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( ConnectionSkin, 				"Connection Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( SpringSkin, 					"Spring Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( ScrollingBackgroundSkin, 	"Scrolling Background Skin", 	"Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( FootprintManagerDebugSkin, 	"Footprint Manager Debug Skin", "Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
+//			resourceManager.addResource( new ComponentFactory( WorldBoundsDebugSkin, 		"World Bounds Debug Skin", 		"Skins",		CadetEditorIcons.Skin,			null,			1, null, CadetEditorContext2D ) );
 			
 			// Behaviours
 			resourceManager.addResource( new ComponentFactory( RigidBodyBehaviour, 			"Rigid Body", 					"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );

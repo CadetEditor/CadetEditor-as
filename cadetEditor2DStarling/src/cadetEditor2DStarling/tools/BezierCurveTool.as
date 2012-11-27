@@ -11,7 +11,7 @@ package cadetEditor2DStarling.tools
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.BezierCurve;
 	import cadet2D.geom.QuadraticBezier;
-	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
+	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.CubicBezier;
 	

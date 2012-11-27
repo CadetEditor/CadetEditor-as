@@ -21,7 +21,7 @@ package cadetEditor2DStarling.tools
 	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.overlays.PolygonToolOverlay;
 	
-	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
+	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	
 	import flash.geom.Matrix;
 	import flash.geom.Point;

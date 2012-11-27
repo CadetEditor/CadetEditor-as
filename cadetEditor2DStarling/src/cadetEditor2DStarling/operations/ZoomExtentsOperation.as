@@ -3,15 +3,17 @@
 
 package cadetEditor2DStarling.operations
 {
-	import flox.app.core.operations.IUndoableOperation;
-	
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	
 	import cadetEditor.controllers.ICadetEditorContextController;
+	
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.display.DisplayObject;
 	import flash.geom.Rectangle;
+	
+	import flox.app.core.operations.IUndoableOperation;
+	
+	import starling.display.DisplayObject;
 
 	public class ZoomExtentsOperation implements IUndoableOperation
 	{
@@ -42,7 +44,8 @@ package cadetEditor2DStarling.operations
 			
 			var worldContainer:DisplayObject = Renderer2D(_view.renderer).worldContainer;
 			
-			var bounds:Rectangle = worldContainer.getBounds(worldContainer);
+			var bounds:Rectangle = worldContainer.bounds;
+			//var bounds:Rectangle = worldContainer.getBounds(worldContainer);
 			bounds.inflate( 20 / _view.zoom, 20/ _view.zoom );
 			var ratioA:Number = _view.viewportWidth / bounds.width;
 			var ratioB:Number = _view.viewportHeight / bounds.height;

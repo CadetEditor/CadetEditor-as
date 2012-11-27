@@ -9,8 +9,8 @@ package cadetEditor2DStarling.tools
 	
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -26,7 +26,6 @@ package cadetEditor2DStarling.tools
 	import cadetEditor2DStarling.ui.overlays.SelectionOverlay;
 	import cadetEditor2DStarling.ui.views.CadetEditorView2D;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
@@ -40,6 +39,7 @@ package cadetEditor2DStarling.tools
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.ui.managers.CursorManager;
 	
+	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	
 	public class TransformTool extends SelectionTool //implements ITool
@@ -276,7 +276,8 @@ package cadetEditor2DStarling.tools
 				
 				if ( !skin.transform2D ) return;
 				
-				bounds = displayObject.getRect( displayObject );
+				bounds = displayObject.bounds;
+				//bounds = displayObject.getRect( displayObject );
 				
 				startTransform = skin.transform2D.matrix.clone();
 				currentTransform = startTransform.clone();
@@ -293,7 +294,8 @@ package cadetEditor2DStarling.tools
 					
 					if ( !skin.transform2D ) return;
 					
-					bounds = bounds.union( displayObject.getRect( Renderer2D(view.renderer).worldContainer ) );
+					bounds = bounds.union( displayObject.getBounds( Renderer2D(view.renderer).worldContainer ) );
+					//bounds = bounds.union( displayObject.getRect( Renderer2D(view.renderer).worldContainer ) );
 					startTransforms.push( skin.transform2D.matrix.clone() );
 				}
 				startTransform = new Matrix();

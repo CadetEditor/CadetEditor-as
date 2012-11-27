@@ -7,12 +7,13 @@ package cadetEditor2DStarling.managers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
+	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.managers.IComponentHighlightManager;
 	
-	import flash.display.DisplayObject;
 	import flash.filters.GlowFilter;
+	
+	import starling.display.DisplayObject;
 	
 	public class ComponentHighlightManager implements IComponentHighlightManager
 	{
@@ -50,8 +51,8 @@ package cadetEditor2DStarling.managers
 			
 			highlightedComponents.push(component);
 			highlightedSkins.push(skin);
-			
-			AbstractSkin2D(skin).displayObjectContainer.filters = [filter];
+				
+			//AbstractSkin2D(skin).displayObjectContainer.filters = [filter];
 		}
 		
 		public function unhighlightComponent( component:IComponentContainer ):void
@@ -62,7 +63,7 @@ package cadetEditor2DStarling.managers
 			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
 			if ( !displayObject ) return;
-			displayObject.filters = [];
+			//displayObject.filters = [];
 			highlightedComponents.splice(index, 1);
 			highlightedSkins.splice(index, 1);
 		}
