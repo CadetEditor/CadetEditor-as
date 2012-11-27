@@ -6,9 +6,11 @@ package cadetEditor2DStarling.contexts
 	import cadet.core.IComponent;
 	import cadet.core.IRenderer;
 	import cadet.events.ComponentEvent;
+	import cadet.events.RendererEvent;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.renderers.IRenderer2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	
 	import cadetEditor.contexts.AbstractCadetEditorContext;
 	import cadetEditor.contexts.AbstractTooledCadetEditorContext;
@@ -52,7 +54,7 @@ package cadetEditor2DStarling.contexts
 	public class CadetEditorContext2D extends AbstractTooledCadetEditorContext implements ICadetEditorContext2D
 	{
 		protected var _snapManager						:SnapManager2D;
-		protected var _pickingManager					:IPickingManager2D;
+		protected var _pickingManager					:PickingManager2D;
 		protected var _highlightManager					:IComponentHighlightManager;
 		
 		protected var _view								:ICadetEditorView2D;
@@ -69,7 +71,7 @@ package cadetEditor2DStarling.contexts
 			// Init Managers
 			_snapManager = new SnapManager2D();
 			_pickingManager = new PickingManager2D();
-			_pickingManager.setContainer(_view.container);
+//			_pickingManager.setContainer(_view.container);
 			_pickingManager.snapManager = _snapManager;
 			_highlightManager = new ComponentHighlightManager();
 			
@@ -275,17 +277,42 @@ package cadetEditor2DStarling.contexts
 		
 		private function updateCurrentRenderer():void
 		{
-			var renderers:Vector.<IComponent> = ComponentUtil.getChildrenOfType(scene, IRenderer2D, true);
-			if ( renderers.length == 0 )
+			var oldRenderer:Renderer2D = Renderer2D(_view.renderer);
+			
+			if ( oldRenderer )
 			{
+				_pickingManager.disableMouseListeners(oldRenderer.viewport);
 				_view.renderer = null;
 				_toolManager.disable();
 			}
-			else
+			
+			var newRenderer:Renderer2D;
+			var renderers:Vector.<IComponent> = ComponentUtil.getChildrenOfType(scene, Renderer2D, true);
+			if ( renderers.length > 0 )
 			{
-				_toolManager.enable();
-				_view.renderer = IRenderer2D(renderers[0]);
-			}			
+				newRenderer = Renderer2D(renderers[0]);
+				_view.renderer = newRenderer;
+				_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
+			}
+						
+			
+//			var renderers:Vector.<IComponent> = ComponentUtil.getChildrenOfType(scene, IRenderer2D, true);
+//			if ( renderers.length == 0 )
+//			{
+//				_view.renderer = null;
+//				_toolManager.disable();
+//			}
+//			else
+//			{
+//				_toolManager.enable();
+//				_view.renderer = IRenderer2D(renderers[0]);
+//			}			
+		}
+		
+		private function rendererInitialised( event:RendererEvent ):void
+		{
+			_view.renderer.removeEventListener( RendererEvent.INITIALISED, rendererInitialised );
+			_pickingManager.enableMouseListeners( Renderer2D(_view.renderer).viewport );
 		}
 		
 		private function bindingChangeHandler( event:PropertyChangeEvent ):void

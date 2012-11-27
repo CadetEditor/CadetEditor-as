@@ -267,12 +267,13 @@ package cadetEditor2DFlash.tools
 		private function beginTransform():void
 		{
 			var skin:ISkin2D;
-			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
+			var displayObject:DisplayObject;
 			
 			startTransforms = [];
 			if ( skins.length == 1 )
 			{
 				skin = ISkin2D( skins[0] );
+				displayObject = AbstractSkin2D(skin).displayObjectContainer; //TODO: Rob moved this
 				
 				if ( !skin.transform2D ) return;
 				
@@ -290,6 +291,7 @@ package cadetEditor2DFlash.tools
 				for ( var i:int = 0; i < skins.length; i++ )
 				{
 					skin = ISkin2D( skins[i] );
+					displayObject = AbstractSkin2D(skin).displayObjectContainer; //TODO: Rob moved this
 					
 					if ( !skin.transform2D ) return;
 					
@@ -338,6 +340,8 @@ package cadetEditor2DFlash.tools
 			var newTransform:Matrix = startTransform.clone();
 			newTransform.concat( transform );
 			currentTransform = newTransform.clone();
+			
+			if (!skins) return;
 			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{

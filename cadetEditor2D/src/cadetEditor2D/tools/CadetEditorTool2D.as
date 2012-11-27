@@ -45,20 +45,20 @@ package cadetEditor2D.tools
 		public function enable():void
 		{
 			_context.pickingManager.addEventListener(PickingManagerEvent.CLICK_BACKGROUND, onClickBackground);
-			_context.pickingManager.addEventListener(PickingManagerEvent.CLICK_CONTAINER, onClickContainer);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.CLICK_CONTAINER, onClickContainer);
 			_context.pickingManager.addEventListener(PickingManagerEvent.CLICK_SKINS, onClickSkins);
-			_context.pickingManager.addEventListener(PickingManagerEvent.DOUBLE_CLICK_CONTAINER, onDoubleClickContainer);
-			_context.pickingManager.addEventListener(PickingManagerEvent.DOUBLE_CLICK_SKINS, onDoubleClickSkins);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.DOUBLE_CLICK_CONTAINER, onDoubleClickContainer);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.DOUBLE_CLICK_SKINS, onDoubleClickSkins);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DOWN_BACKGROUND, onMouseDownBackground);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DOWN_CONTAINER, onMouseDownContainer);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DOWN_SKINS, onMouseDownSkins);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
-			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_BACKGROUND, onMouseUpBackground);
-			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_CONTAINER, onMouseUpContainer);
-			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_SKINS, onMouseUpSkins);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_BACKGROUND, onMouseUpBackground);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_CONTAINER, onMouseUpContainer);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_SKINS, onMouseUpSkins);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
-			_context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OUT_SKIN, onRollOutSkin);
-			_context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OVER_SKIN, onRollOverSkin);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OUT_SKIN, onRollOutSkin);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OVER_SKIN, onRollOverSkin);
 		}
 		
 		public function disable():void
@@ -68,37 +68,37 @@ package cadetEditor2D.tools
 			_context.snapManager.setVerticesToIgnore(null);
 			
 			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_BACKGROUND, onClickBackground);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_CONTAINER, onClickContainer);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_CONTAINER, onClickContainer);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_SKINS, onClickSkins);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.DOUBLE_CLICK_CONTAINER, onDoubleClickContainer);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.DOUBLE_CLICK_SKINS, onDoubleClickSkins);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.DOUBLE_CLICK_CONTAINER, onDoubleClickContainer);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.DOUBLE_CLICK_SKINS, onDoubleClickSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_BACKGROUND, onMouseDownBackground);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_CONTAINER, onMouseDownContainer);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_SKINS, onMouseDownSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_BACKGROUND, onMouseUpBackground);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_CONTAINER, onMouseUpContainer);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_SKINS, onMouseUpSkins);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_BACKGROUND, onMouseUpBackground);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_CONTAINER, onMouseUpContainer);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_SKINS, onMouseUpSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OUT_SKIN, onRollOutSkin);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OVER_SKIN, onRollOverSkin);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OUT_SKIN, onRollOutSkin);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OVER_SKIN, onRollOverSkin);
 		}
 		
 		protected function onClickBackground( event:PickingManagerEvent ):void {}
-		protected function onClickContainer( event:PickingManagerEvent ):void {}
+		//protected function onClickContainer( event:PickingManagerEvent ):void {}
 		protected function onClickSkins( event:PickingManagerEvent ):void {}
-		protected function onDoubleClickContainer( event:PickingManagerEvent ):void {}
-		protected function onDoubleClickSkins( event:PickingManagerEvent ):void {}
+		//protected function onDoubleClickContainer( event:PickingManagerEvent ):void {}
+		//protected function onDoubleClickSkins( event:PickingManagerEvent ):void {}
 		protected function onMouseDownBackground( event:PickingManagerEvent ):void {}
 		protected function onMouseDownContainer( event:PickingManagerEvent ):void {}
 		protected function onMouseDownSkins( event:PickingManagerEvent ):void {}
 		protected function onMouseMoveContainer( event:PickingManagerEvent ):void {}
-		protected function onMouseUpBackground( event:PickingManagerEvent ):void {}
-		protected function onMouseUpContainer( event:PickingManagerEvent ):void {}
-		protected function onMouseUpSkins( event:PickingManagerEvent ):void {}
+		//protected function onMouseUpBackground( event:PickingManagerEvent ):void {}
+		//protected function onMouseUpContainer( event:PickingManagerEvent ):void {}
+		//protected function onMouseUpSkins( event:PickingManagerEvent ):void {}
 		protected function onMouseUpStage( event:PickingManagerEvent ):void {}
-		protected function onRollOutSkin( event:PickingManagerEvent ):void {}
-		protected function onRollOverSkin( event:PickingManagerEvent ):void {}
+		//protected function onRollOutSkin( event:PickingManagerEvent ):void {}
+		//protected function onRollOverSkin( event:PickingManagerEvent ):void {}
 		
 		public function getSnappedWorldMouse():Point 
 		{ 

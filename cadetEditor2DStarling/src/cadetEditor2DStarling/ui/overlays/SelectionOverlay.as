@@ -13,7 +13,6 @@ package cadetEditor2DStarling.ui.overlays
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import flash.display.BlendMode;
-	import flash.display.DisplayObject;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -21,7 +20,6 @@ package cadetEditor2DStarling.ui.overlays
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.ui.components.UIComponent;
 	
-	import starling.display.DisplayObject;
 	import starling.display.DisplayObject;
 	
 	public class SelectionOverlay extends UIComponent implements ICadetEditorOverlay2D
@@ -88,34 +86,14 @@ package cadetEditor2DStarling.ui.overlays
 			
 			for each ( var skin:ISkin2D in selectedSkins )
 			{
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
-				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
-				
-				if ( isFlashOrStarling == 0 ) {
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-				} else if ( isFlashOrStarling == 1 ) {
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-				}
-				
-				var bounds:Rectangle;
-				if ( displayObjectFlash ) {
-					if ( isVisible( displayObjectFlash ) == false ) continue;
-				
-					bounds = displayObjectFlash.getBounds( this );
-				} else if ( displayObjectStarling ) {
-					if ( isVisibleStarling( displayObjectStarling ) == false ) continue;
+				var displayObject:DisplayObject = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
+	
+				if ( isVisibleStarling( displayObject ) == false ) continue;
 					
-					bounds = displayObjectStarling.bounds;
-				}
-				
+				var bounds:Rectangle = displayObject.bounds;				
 				
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);
-				
-				
 				
 				skin.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
 				
@@ -136,11 +114,7 @@ package cadetEditor2DStarling.ui.overlays
 				
 				//pt = displayObject.localToGlobal(pt);
 				
-				if ( displayObjectFlash ) {
-					pt = displayObjectFlash.localToGlobal(pt);
-				} else if ( displayObjectStarling ) {
-					pt = displayObjectStarling.localToGlobal(pt);
-				}
+				pt = displayObject.localToGlobal(pt);
 				
 				pt = globalToLocal(pt);
 				graphics.lineStyle(2, 0xFFFFFF);

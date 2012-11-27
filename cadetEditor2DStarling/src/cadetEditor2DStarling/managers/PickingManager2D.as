@@ -11,6 +11,8 @@ package cadetEditor2DStarling.managers
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.managers.IPickingManager2D;
@@ -20,9 +22,6 @@ package cadetEditor2DStarling.managers
 	import cadetEditor2D.util.BitmapHitTestStarling;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
-	import flash.display.DisplayObject;
-	import flash.display.InteractiveObject;
-	import flash.display.Sprite;
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
@@ -30,35 +29,34 @@ package cadetEditor2DStarling.managers
 	import flox.editor.FloxEditor;
 	
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
+	import starling.display.Sprite;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownBackground" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseUpBackground" )]
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickBackground" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="doubleClickBackground" )]
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownSkins" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseUpSkins" )]
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickSkins" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="doubleClickSkins" )]	
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="rollOverSkin" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="rollOutSkin" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseUpStage" )]
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseMoveContainer" )]
 	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownContainer" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseUpContainer" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickContainer" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="doubleClickContainer" )]
 	
 	public class PickingManager2D extends EventDispatcher implements IPickingManager2D
 	{
 		private var _snapManager	:SnapManager2D;
 		
-		private var container		:InteractiveObject;
 		private var scene			:ICadetScene;
 		private var skinsUnderMouse	:Array;
 		private var enabled			:Boolean = false;
 		
+		private var _view			:DisplayObjectContainer;
+		
 		private var allSkins		:Vector.<IComponent>;
-		private var renderer		:IRenderer2D;
+		private var renderer		:Renderer2D;
+		
+		private var _mouseX			:Number;
+		private var _mouseY			:Number;
 		
 		public function PickingManager2D()
 		{
@@ -83,43 +81,64 @@ package cadetEditor2DStarling.managers
 				scene.addEventListener(ComponentEvent.ADDED_TO_SCENE, componentAddedHandler);
 				scene.addEventListener(ComponentEvent.REMOVED_FROM_SCENE, componentRemovedHandler);
 				
-				renderer = ComponentUtil.getChildOfType(scene, IRenderer2D, true) as IRenderer2D;
+				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				
 				allSkins = ComponentUtil.getChildrenOfType(scene, ISkin2D, true);
 			}
 		}
 		
-		public function setContainer( value:InteractiveObject ):void
+		public function enableMouseListeners( view:DisplayObjectContainer ):void
 		{
-			var wasEnabled:Boolean = enabled;
-			if ( container )
-			{
-				disable();
-			}
+			_view = view;
+			_view.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
+		}
+		
+		public function disableMouseListeners( view:DisplayObjectContainer ):void
+		{
+			_view.stage.removeEventListener(TouchEvent.TOUCH, onTouchHandler);
+			_view = null;
+		}
+		
+		private function onTouchHandler( event:TouchEvent ):void
+		{
+			var dispObj:DisplayObject = DisplayObject(_view.stage);
+			var touches:Vector.<Touch> = event.getTouches(dispObj);
 			
-			container = value;
-			
-			if ( wasEnabled )
+			for each (var touch:Touch in touches)
 			{
-				enable();
+				var location:Point = touch.getLocation(dispObj);
+				if ( touch.phase == TouchPhase.BEGAN ) {
+					mouseDownHandler( event, touch );
+				} else if ( touch.phase == TouchPhase.ENDED ) {
+					clickHandler( event, touch );
+				} else if ( touch.phase == TouchPhase.HOVER ) {
+					mouseMoveHandler( event, touch );
+				} else if ( touch.phase == TouchPhase.MOVED ) {
+					
+				} else if ( touch.phase == TouchPhase.STATIONARY ) {
+					
+				}
+				
+				_mouseX = location.x //- _viewportX;
+				_mouseY = location.y //- _viewportY;
+				
+				var local:Point = _view.globalToLocal(location);
+				
+				trace("onTouch x "+_mouseX+" y "+_mouseY+" phase "+touch.phase);
+				//trace("local x "+local.x+" y "+local.y);
+				//trace("parent x "+_parent.x+" y "+_parent.y);
+				break;
 			}
 		}
-				
+		
 		public function enable():void
 		{
 			if ( enabled ) return;
 			enabled = true;
-			
-			if ( container )
-			{
-				container.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, true)
-				container.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true)
-				container.addEventListener(MouseEvent.CLICK, clickHandler, true)
-				container.addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler, true );
-				container.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+
+			if ( _view ) {
+				enableMouseListeners( _view );
 			}
-			
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
 		}
 		
 		public function disable():void
@@ -127,23 +146,15 @@ package cadetEditor2DStarling.managers
 			if ( !enabled ) return;
 			enabled = false;
 			
-			if ( container )
-			{
-				container.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, true)
-				container.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true)
-				container.removeEventListener(MouseEvent.CLICK, clickHandler, true)
-				container.removeEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler, true );
-				container.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+			if ( _view ) {
+				disableMouseListeners( _view );
 			}
-			
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
 		}
 		
 		public function dispose():void
 		{
 			disable();
 			setScene(null);
-			setContainer(null);
 		}
 		
 		public function getSkinsUnderLoc( x:Number, y:Number ):Array
@@ -152,26 +163,10 @@ package cadetEditor2DStarling.managers
 			
 			var skinsUnderLoc:Array = [];
 			var L:int = 0;
-			for each ( var skin:ISkin2D in allSkins)
+			for each ( var skin:AbstractSkin2D in allSkins)
 			{
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
-				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
-				
-				if ( isFlashOrStarling == 0 ) {
-					var viewport:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(renderer);
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-					if ( !BitmapHitTest.hitTestPoint( x, y, displayObjectFlash, viewport ) ) continue;
-				} else if ( isFlashOrStarling == 1 ) {
-					var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(renderer);
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-					var pt:Point = viewportStarling.localToGlobal(new Point(x,y));
-					if (!displayObjectStarling.bounds.containsPoint(pt)) continue;
-					//if ( !BitmapHitTestStarling.hitTestPoint( x, y, displayObjectStarling, viewportStarling ) ) continue;
-				}
-				
+				var pt:Point = renderer.viewport.localToGlobal(new Point(x,y));
+				if (!skin.displayObjectContainer.bounds.containsPoint(pt)) continue;
 				
 				skinsUnderLoc[L++] = skin;
 			}
@@ -202,7 +197,7 @@ package cadetEditor2DStarling.managers
 		{
 			if ( event.component is IRenderer )
 			{
-				renderer = IRenderer2D(event.component);
+				renderer = Renderer2D(event.component);
 				return;
 			}
 			if ( event.component is ISkin2D == false ) return;
@@ -215,7 +210,7 @@ package cadetEditor2DStarling.managers
 			if ( event.component == renderer )
 			{
 				renderer = null;
-				renderer = ComponentUtil.getChildOfType(scene, IRenderer2D, true) as IRenderer2D;
+				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				return;
 			}
 			if ( event.component is ISkin2D == false ) return;
@@ -223,79 +218,44 @@ package cadetEditor2DStarling.managers
 			allSkins.splice(allSkins.indexOf(event.component),1);
 		}
 		
-		private function sendEvent( type:String, skinsUnderMouse:Array, skin:ISkin2D, mouseEvent:MouseEvent ):void
+		private function sendEvent( type:String, skinsUnderMouse:Array, skin:ISkin2D, touchEvent:TouchEvent, touch:Touch ):void
 		{
-			dispatchEvent( new PickingManagerEvent( type, skinsUnderMouse, skin, mouseEvent.localX, mouseEvent.localY, mouseEvent.ctrlKey, mouseEvent.altKey, mouseEvent.shiftKey, mouseEvent.buttonDown ) );
+			var altKey:Boolean = false;
+			var buttonDown:Boolean = false;
+			
+			dispatchEvent( new PickingManagerEvent( type, skinsUnderMouse, skin, touch.globalX, touch.globalY, touchEvent.ctrlKey, altKey, touchEvent.shiftKey, buttonDown ) );
 		}
 		
-		private function mouseDownHandler(event:MouseEvent):void
+		private function mouseDownHandler(event:TouchEvent, touch:Touch):void
 		{
 			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
 			
 			if ( currentSkinsUnderMouse.length == 0 )
 			{
-				sendEvent( PickingManagerEvent.MOUSE_DOWN_BACKGROUND, currentSkinsUnderMouse, null, event );
+				sendEvent( PickingManagerEvent.MOUSE_DOWN_BACKGROUND, currentSkinsUnderMouse, null, event, touch );
 			}
 			else
 			{
-				sendEvent( PickingManagerEvent.MOUSE_DOWN_SKINS, currentSkinsUnderMouse, null, event );
+				sendEvent( PickingManagerEvent.MOUSE_DOWN_SKINS, currentSkinsUnderMouse, null, event, touch );
 			}
-			sendEvent( PickingManagerEvent.MOUSE_DOWN_CONTAINER, currentSkinsUnderMouse, null, event );
+			sendEvent( PickingManagerEvent.MOUSE_DOWN_CONTAINER, currentSkinsUnderMouse, null, event, touch );
 		}
 		
-		private function mouseUpHandler(event:MouseEvent):void
+		private function clickHandler(event:TouchEvent, touch:Touch):void
 		{
 			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
 			
 			if ( currentSkinsUnderMouse.length == 0 )
 			{
-				sendEvent( PickingManagerEvent.MOUSE_UP_BACKGROUND, currentSkinsUnderMouse, null, event );
+				sendEvent( PickingManagerEvent.CLICK_BACKGROUND, currentSkinsUnderMouse, null, event, touch );
 			}
 			else
 			{
-				sendEvent( PickingManagerEvent.MOUSE_UP_SKINS, currentSkinsUnderMouse, null, event );
+				sendEvent( PickingManagerEvent.CLICK_SKINS, currentSkinsUnderMouse, null, event, touch );
 			}
-			sendEvent( PickingManagerEvent.MOUSE_UP_CONTAINER, currentSkinsUnderMouse, null, event );
 		}
 		
-		private function clickHandler(event:MouseEvent):void
-		{
-			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
-			
-			if ( currentSkinsUnderMouse.length == 0 )
-			{
-				sendEvent( PickingManagerEvent.CLICK_BACKGROUND, currentSkinsUnderMouse, null, event );
-			}
-			else
-			{
-				sendEvent( PickingManagerEvent.CLICK_SKINS, currentSkinsUnderMouse, null, event );
-			}
-			sendEvent( PickingManagerEvent.CLICK_CONTAINER, currentSkinsUnderMouse, null, event );
-		}
-		
-		private function doubleClickHandler(event:MouseEvent):void
-		{
-			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
-			
-			if ( currentSkinsUnderMouse.length == 0 )
-			{
-				sendEvent( PickingManagerEvent.DOUBLE_CLICK_BACKGROUND, currentSkinsUnderMouse, null, event );
-			}
-			else
-			{
-				sendEvent( PickingManagerEvent.DOUBLE_CLICK_SKINS, currentSkinsUnderMouse, null, event );
-			}
-			sendEvent( PickingManagerEvent.DOUBLE_CLICK_CONTAINER, currentSkinsUnderMouse, null, event );
-		}
-		
-		private function mouseUpStageHandler( event:MouseEvent ):void
-		{			
-			sendEvent( PickingManagerEvent.MOUSE_UP_STAGE, getSkinsUnderMouse(), null, event );
-		}
-		
-		
-		
-		private function mouseMoveHandler( event:MouseEvent ):void
+		private function mouseMoveHandler( event:TouchEvent, touch:Touch ):void
 		{
 			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
 			if ( skinsUnderMouse == null )
@@ -303,38 +263,18 @@ package cadetEditor2DStarling.managers
 				skinsUnderMouse = [];
 			}
 			
-			// Compare this raycast to previous raycasts to simulate rollover's and rollout's
-			var skin:ISkin2D;
-			for each ( skin in currentSkinsUnderMouse )
-			{
-				if ( skinsUnderMouse.indexOf( skin ) == -1 )
-				{
-					sendEvent( PickingManagerEvent.ROLL_OVER_SKIN, currentSkinsUnderMouse, skin, event );
-				}
-			}
-			
-			for each ( skin in skinsUnderMouse )
-			{
-				if ( currentSkinsUnderMouse.indexOf( skin ) == -1 )
-				{
-					sendEvent( PickingManagerEvent.ROLL_OUT_SKIN, currentSkinsUnderMouse, skin, event );
-				}
-			}
-			
-			sendEvent( PickingManagerEvent.MOUSE_MOVE_CONTAINER, currentSkinsUnderMouse, null, event );
+			sendEvent( PickingManagerEvent.MOUSE_MOVE_CONTAINER, currentSkinsUnderMouse, null, event, touch );
 			skinsUnderMouse = currentSkinsUnderMouse;
 		}
-		
-		
 		
 		private function skinFilterFunc( item:* ):Boolean
 		{
 			if ( item.displayObjectContainer == null ) return false;
 			
-			if ( item.displayObjectContainer is InteractiveObject )
-			{
-				if ( InteractiveObject(item.displayObjectContainer).mouseEnabled == false ) return false;
-			}
+//			if ( item.displayObjectContainer is InteractiveObject )
+//			{
+//				if ( InteractiveObject(item.displayObjectContainer).mouseEnabled == false ) return false;
+//			}
 			return true;
 		}
 		

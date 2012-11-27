@@ -52,7 +52,7 @@ package cadetEditor2DFlash.contexts
 	public class CadetEditorContext2D extends AbstractTooledCadetEditorContext implements ICadetEditorContext2D
 	{
 		protected var _snapManager						:SnapManager2D;
-		protected var _pickingManager					:IPickingManager2D;
+		protected var _pickingManager					:PickingManager2D;
 		protected var _highlightManager					:IComponentHighlightManager;
 		
 		protected var _view								:ICadetEditorView2D;

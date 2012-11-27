@@ -8,7 +8,7 @@ package cadetEditor2D.managers
 	public interface IPickingManager2D extends IEventDispatcher
 	{
 		function setScene( value:ICadetScene ):void
-		function setContainer( value:InteractiveObject ):void
+		//function setContainer( value:InteractiveObject ):void
 		function set snapManager( value:SnapManager2D ):void
 			
 		function enable():void
