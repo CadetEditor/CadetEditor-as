@@ -12,6 +12,7 @@ package cadetEditor2DStarling.tools
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
+	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -19,20 +20,18 @@ package cadetEditor2DStarling.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.tools.CadetEditorTool2D;
-	import cadetEditor2D.ui.overlays.PolygonToolOverlay;
 	
-	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
+	import cadetEditor2DStarling.ui.overlays.PolygonToolOverlay;
 	
 	import flash.geom.Matrix;
 	import flash.geom.Point;
-	
-	import flox.core.events.ArrayCollectionEvent;
 	
 	import flox.app.core.contexts.IContext;
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.AddToArrayOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
+	import flox.core.events.ArrayCollectionEvent;
 	
 	public class PolygonTool extends CadetEditorTool2D
 	{

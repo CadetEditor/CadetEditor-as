@@ -27,12 +27,12 @@ package cadetEditor2DStarling.contexts
 	import cadetEditor2D.managers.IPickingManager2D;
 	import cadetEditor2D.managers.SnapManager2D;
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
-	import cadetEditor2D.ui.overlays.SnapOverlay;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import cadetEditor2DStarling.managers.ComponentHighlightManager;
 	import cadetEditor2DStarling.managers.PickingManager2D;
 	import cadetEditor2DStarling.ui.overlays.SelectionOverlay;
+	import cadetEditor2DStarling.ui.overlays.SnapOverlay;
 	import cadetEditor2DStarling.ui.views.CadetEditorView2D;
 	
 	import flash.display.DisplayObject;
@@ -62,6 +62,8 @@ package cadetEditor2DStarling.contexts
 		
 		protected var _controllers						:Array;
 		
+		private var selectionOverlay					:SelectionOverlay;
+		
 		public function CadetEditorContext2D()
 		{
 			_view = new CadetEditorView2D();
@@ -79,9 +81,9 @@ package cadetEditor2DStarling.contexts
 			panController = new CadetEditorViewPanController(this);
 			
 			// Init Selection Overlay
-			var selectionOverlay:SelectionOverlay = new SelectionOverlay();
+			selectionOverlay = new SelectionOverlay();
 			selectionOverlay.selection = _selection;
-			_view.addOverlay(selectionOverlay);
+			//_view.addOverlay(selectionOverlay);
 			
 			// Init Snap Overlap
 			var snapOverlay:SnapOverlay = new SnapOverlay(_snapManager);
@@ -282,6 +284,8 @@ package cadetEditor2DStarling.contexts
 			if ( oldRenderer )
 			{
 				_pickingManager.disableMouseListeners(oldRenderer.viewport);
+				//_view.addOverlay(selectionOverlay);
+				oldRenderer.removeOverlay(selectionOverlay);
 				_view.renderer = null;
 				_toolManager.disable();
 			}
@@ -291,8 +295,13 @@ package cadetEditor2DStarling.contexts
 			if ( renderers.length > 0 )
 			{
 				newRenderer = Renderer2D(renderers[0]);
+				newRenderer.addOverlay(selectionOverlay);
+				
 				_view.renderer = newRenderer;
 				_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
+				_toolManager.enable();
+			} else {
+				_toolManager.disable();
 			}
 						
 			
@@ -311,8 +320,10 @@ package cadetEditor2DStarling.contexts
 		
 		private function rendererInitialised( event:RendererEvent ):void
 		{
-			_view.renderer.removeEventListener( RendererEvent.INITIALISED, rendererInitialised );
-			_pickingManager.enableMouseListeners( Renderer2D(_view.renderer).viewport );
+			var renderer:Renderer2D = Renderer2D(_view.renderer);
+			renderer.removeEventListener( RendererEvent.INITIALISED, rendererInitialised );
+			_pickingManager.enableMouseListeners( renderer.viewport );
+			renderer.addOverlay(selectionOverlay);
 		}
 		
 		private function bindingChangeHandler( event:PropertyChangeEvent ):void

@@ -14,10 +14,11 @@ package cadetEditor2DFlash.ui.views
 	import cadetEditor.ui.views.ToolEditorView;
 	
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
-	import cadetEditor2D.ui.overlays.Grid2D;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
+	
+	import cadetEditor2DFlash.ui.overlays.Grid2D;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -63,7 +64,7 @@ package cadetEditor2DFlash.ui.views
 		// View State
 		private var overlays							:Array;
 		private var _renderer							:IRenderer2D;
-		private var _backgroundColor					:uint = 0xFF0000;//0x303030;
+		private var _backgroundColor					:uint = 0x303030;
 		private var _gridSize							:Number;
 		private var _showGrid							:Boolean = false;
 		private var _panX								:Number = 0;
@@ -164,7 +165,7 @@ package cadetEditor2DFlash.ui.views
 			}
 			
 			background.graphics.clear();
-			background.graphics.beginFill(_backgroundColor,0.2);//1);
+			background.graphics.beginFill(_backgroundColor, 1);
 			background.graphics.drawRect(0,0,layoutRect.width,layoutRect.height);
 			
 			for each ( var overlay:DisplayObject in overlays )

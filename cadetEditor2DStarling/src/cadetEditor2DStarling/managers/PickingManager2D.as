@@ -124,7 +124,7 @@ package cadetEditor2DStarling.managers
 				
 				var local:Point = _view.globalToLocal(location);
 				
-				trace("onTouch x "+_mouseX+" y "+_mouseY+" phase "+touch.phase);
+				//trace("onTouch x "+_mouseX+" y "+_mouseY+" phase "+touch.phase);
 				//trace("local x "+local.x+" y "+local.y);
 				//trace("parent x "+_parent.x+" y "+_parent.y);
 				break;
@@ -178,7 +178,7 @@ package cadetEditor2DStarling.managers
 			if ( renderer == null ) return [];
 			if ( _snapManager )
 			{
-				trace("PM2D getSkinsUnderMouse rX "+renderer.mouseX+" rY "+renderer.mouseY);
+				//trace("PM2D getSkinsUnderMouse rX "+renderer.mouseX+" rY "+renderer.mouseY);
 				var pt:Point = new Point( renderer.mouseX, renderer.mouseY );
 				pt = renderer.viewportToWorld(pt);
 				

@@ -1,7 +1,7 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
-package cadetEditor2D.ui.overlays
+package cadetEditor2DStarling.ui.overlays
 {
 	
 	import cadetEditor2D.managers.SnapInfo;

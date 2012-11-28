@@ -10,25 +10,24 @@ package cadetEditor2DStarling.tools
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.BezierCurve;
-	import cadet2D.geom.QuadraticBezier;
-	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.CubicBezier;
+	import cadet2D.geom.QuadraticBezier;
+	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
-
+	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.tools.CadetEditorTool2D;
-	import cadetEditor2D.ui.overlays.BezierCurveToolOverlay;
+	
+	import cadetEditor2DStarling.ui.overlays.BezierCurveToolOverlay;
 	import cadetEditor2DStarling.ui.views.CadetEditorView2D;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
-	
-	import flox.core.events.ArrayCollectionEvent;
 	
 	import flox.app.core.contexts.IContext;
 	import flox.app.events.OperationManagerEvent;
@@ -36,6 +35,7 @@ package cadetEditor2DStarling.tools
 	import flox.app.operations.AddToArrayOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
+	import flox.core.events.ArrayCollectionEvent;
 	
 	public class BezierCurveTool extends CadetEditorTool2D
 	{

@@ -25,12 +25,12 @@ package cadetEditor2DFlash.contexts
 	import cadetEditor2D.managers.IPickingManager2D;
 	import cadetEditor2D.managers.SnapManager2D;
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
-	import cadetEditor2D.ui.overlays.SnapOverlay;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import cadetEditor2DFlash.managers.ComponentHighlightManager;
 	import cadetEditor2DFlash.managers.PickingManager2D;
 	import cadetEditor2DFlash.ui.overlays.SelectionOverlay;
+	import cadetEditor2DFlash.ui.overlays.SnapOverlay;
 	import cadetEditor2DFlash.ui.views.CadetEditorView2D;
 	
 	import flash.display.DisplayObject;

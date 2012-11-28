@@ -18,12 +18,12 @@ package cadetEditor2DFlash.tools
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.ui.overlays.TransformOverlay;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DFlash.ui.overlays.SelectionOverlay;
+	import cadetEditor2DFlash.ui.overlays.TransformOverlay;
 	import cadetEditor2DFlash.ui.views.CadetEditorView2D;
 	
 	import flash.display.DisplayObject;

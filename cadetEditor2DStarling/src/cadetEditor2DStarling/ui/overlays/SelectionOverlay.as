@@ -1,28 +1,31 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
+// The little X that sits in the top left of your drag box
 package cadetEditor2DStarling.ui.overlays
 {
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
-	import flash.display.BlendMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import flox.core.data.ArrayCollection;
 	import flox.core.events.ArrayCollectionEvent;
-	import flox.ui.components.UIComponent;
 	
+	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
+	import starling.display.Shape;
 	
-	public class SelectionOverlay extends UIComponent implements ICadetEditorOverlay2D
+	public class SelectionOverlay extends Shape //implements ICadetEditorOverlay2D
 	{
 		private var _view					:ICadetEditorView2D;
 		private var selectedSkins			:Array
@@ -35,9 +38,11 @@ package cadetEditor2DStarling.ui.overlays
 		
 		public function SelectionOverlay()
 		{
-			blendMode = BlendMode.DIFFERENCE;
-			mouseEnabled = false;
-			mouseChildren = false;
+//			blendMode = BlendMode.DIFFERENCE;
+//			mouseEnabled = false;
+//			mouseChildren = false;
+			//blendMode = BlendMode.ERASE
+			touchable = false;
 		}
 		
 		public function set selection( value:ArrayCollection ):void
@@ -67,7 +72,12 @@ package cadetEditor2DStarling.ui.overlays
 			selectedSkins = [];
 		}
 		
-		override protected function validate():void
+		private function invalidate():void
+		{
+			validate();
+		}
+		
+		private function validate():void
 		{
 			clearSelection();
 			graphics.clear();
@@ -84,11 +94,11 @@ package cadetEditor2DStarling.ui.overlays
 				}
 			}
 			
-			for each ( var skin:ISkin2D in selectedSkins )
+			for each ( var skin:AbstractSkin2D in selectedSkins )
 			{
-				var displayObject:DisplayObject = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
+				var displayObject:DisplayObject = skin.displayObjectContainer;
 	
-				if ( isVisibleStarling( displayObject ) == false ) continue;
+				if ( isVisible( displayObject ) == false ) continue;
 					
 				var bounds:Rectangle = displayObject.bounds;				
 				
@@ -112,12 +122,10 @@ package cadetEditor2DStarling.ui.overlays
 				pt.x = 0;
 				pt.y = 0;
 				
-				//pt = displayObject.localToGlobal(pt);
-				
-				pt = displayObject.localToGlobal(pt);
-				
+				pt = displayObject.localToGlobal(pt);				
 				pt = globalToLocal(pt);
-				graphics.lineStyle(2, 0xFFFFFF);
+				
+				graphics.lineStyle(2, 0x00FF00);
 				graphics.moveTo( pt.x-CROSS_SIZE, pt.y-CROSS_SIZE );
 				graphics.lineTo( pt.x+CROSS_SIZE, pt.y+CROSS_SIZE );
 				graphics.moveTo( pt.x+CROSS_SIZE, pt.y-CROSS_SIZE );
@@ -134,30 +142,12 @@ package cadetEditor2DStarling.ui.overlays
 		{
 			invalidate();
 		}
-		
-		private static function isVisible( displayObject:flash.display.DisplayObject ):Boolean
+
+		private static function isVisible( displayObject:DisplayObject ):Boolean
 		{
 			if ( displayObject.visible == false ) return false;
 			if ( displayObject.parent == null ) return true;
 			return isVisible( displayObject.parent );
-		}
-
-		private static function isVisibleStarling( displayObject:starling.display.DisplayObject ):Boolean
-		{
-			if ( displayObject.visible == false ) return false;
-			if ( displayObject.parent == null ) return true;
-			return isVisibleStarling( displayObject.parent );
-		}
-		
-		public function get view():ICadetEditorView2D
-		{
-			return _view;
-		}
-
-		public function set view(value:ICadetEditorView2D):void
-		{
-			_view = value;
-			clearSelection();
 		}
 
 	}

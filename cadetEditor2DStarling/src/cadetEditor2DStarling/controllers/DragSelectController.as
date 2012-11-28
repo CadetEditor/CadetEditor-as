@@ -1,6 +1,7 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
+// The box that appears when dragging as square on the background with the selection tool
 package cadetEditor2DStarling.controllers
 {
 	
@@ -9,6 +10,7 @@ package cadetEditor2DStarling.controllers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	
@@ -93,25 +95,16 @@ package cadetEditor2DStarling.controllers
 			const L:int = skins.length;
 			for ( var i:int = 0; i < L; i++ )
 			{
-				var skin:ISkin2D = ISkin2D(skins[i]);
+				var skin:AbstractSkin2D = AbstractSkin2D(skins[i]);
 				
 				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
+				var displayObject:starling.display.DisplayObject = skin.displayObjectContainer;
 				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
 				var hitTestRect:Boolean = false;
-				
-				if ( isFlashOrStarling == 0 ) {
-					var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(view.renderer);
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-					hitTestRect = BitmapHitTest.hitTestRect( dragRect, displayObjectFlash, viewportFlash );
-				} else if ( isFlashOrStarling == 1 ) {
-					var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-					//TODO: Find Starling equivalent for hitTestRect()
-					hitTestRect = dragRect.containsRect(displayObjectStarling.bounds);
-				}				
+
+				var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
+				//TODO: Find Starling equivalent for hitTestRect()
+				hitTestRect = dragRect.containsRect(displayObject.bounds);			
 				
 				if ( hitTestRect )
 				{

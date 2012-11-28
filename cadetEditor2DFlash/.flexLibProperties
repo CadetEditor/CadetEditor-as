@@ -17,6 +17,11 @@
     <classEntry path="cadetEditor2DFlash.contexts.CadetEditorContext2D"/>
     <classEntry path="cadetEditor2DFlash.commandHandlers.ZoomExtentsCommandHandler"/>
     <classEntry path="cadetEditor2DFlash.tools.SelectionTool"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.Grid2D"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.SnapOverlay"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.BezierCurveToolOverlay"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.TransformOverlay"/>
+    <classEntry path="cadetEditor2DFlash.ui.overlays.PolygonToolOverlay"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

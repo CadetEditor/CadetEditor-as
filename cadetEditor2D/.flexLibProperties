@@ -21,11 +21,6 @@
     <classEntry path="cadetEditor2D.operations.MakeConvexOperation"/>
     <classEntry path="cadetEditor2D.operations.PickComponentsOperation"/>
     <classEntry path="cadetEditor2D.tools.CadetEditorTool2D"/>
-    <classEntry path="cadetEditor2D.ui.overlays.BezierCurveToolOverlay"/>
-    <classEntry path="cadetEditor2D.ui.overlays.Grid2D"/>
-    <classEntry path="cadetEditor2D.ui.overlays.PolygonToolOverlay"/>
-    <classEntry path="cadetEditor2D.ui.overlays.SnapOverlay"/>
-    <classEntry path="cadetEditor2D.ui.overlays.TransformOverlay"/>
     <classEntry path="cadetEditor2D.util.BitmapHitTest"/>
     <classEntry path="cadetEditor2D.ui.views.InfoPanelView"/>
     <classEntry path="cadetEditor2D.ui.overlays.ICadetEditorOverlay2D"/>
