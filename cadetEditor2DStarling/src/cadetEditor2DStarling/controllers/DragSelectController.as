@@ -20,7 +20,6 @@ package cadetEditor2DStarling.controllers
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.BitmapHitTest;
 	import cadetEditor2D.util.BitmapHitTestStarling;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Point;

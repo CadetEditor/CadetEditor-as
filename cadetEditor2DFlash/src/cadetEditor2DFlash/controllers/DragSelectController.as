@@ -9,6 +9,8 @@ package cadetEditor2DFlash.controllers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	
@@ -16,8 +18,6 @@ package cadetEditor2DFlash.controllers
 	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.BitmapHitTest;
-	import cadetEditor2D.util.BitmapHitTestStarling;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -93,25 +93,8 @@ package cadetEditor2DFlash.controllers
 			const L:int = skins.length;
 			for ( var i:int = 0; i < L; i++ )
 			{
-				var skin:ISkin2D = ISkin2D(skins[i]);
-				
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
-				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
-				var hitTestRect:Boolean = false;
-				
-				if ( isFlashOrStarling == 0 ) {
-					var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(view.renderer);
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-					hitTestRect = BitmapHitTest.hitTestRect( dragRect, displayObjectFlash, viewportFlash );
-				} else if ( isFlashOrStarling == 1 ) {
-					var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-					//TODO: Find Starling equivalent for hitTestRect()
-					hitTestRect = dragRect.containsRect(displayObjectStarling.bounds);
-				}				
+				var skin:AbstractSkin2D = AbstractSkin2D(skins[i]);
+				var hitTestRect:Boolean = BitmapHitTest.hitTestRect( dragRect, skin.displayObjectContainer, Renderer2D(view.renderer).viewport );		
 				
 				if ( hitTestRect )
 				{

@@ -20,7 +20,6 @@ package cadetEditor2DStarling.managers
 	import cadetEditor2D.managers.SnapManager2D;
 	import cadetEditor2D.util.BitmapHitTest;
 	import cadetEditor2D.util.BitmapHitTestStarling;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;

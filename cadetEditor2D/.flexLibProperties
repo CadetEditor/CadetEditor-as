@@ -37,7 +37,6 @@
     <classEntry path="cadetEditor2D.operations.CenterOriginOperation"/>
     <classEntry path="cadetEditor2D.managers.IComponentHighlightManager"/>
     <classEntry path="cadetEditor2D.managers.IPickingManager2D"/>
-    <classEntry path="cadetEditor2D.util.FlashStarlingInteropUtil"/>
     <classEntry path="cadetEditor2D.util.BitmapHitTestStarling"/>
     <classEntry path="cadetEditor2D.util.DisplayListUtilStarling"/>
   </includeClasses>

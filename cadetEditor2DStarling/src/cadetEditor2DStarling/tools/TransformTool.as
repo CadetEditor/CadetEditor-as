@@ -19,7 +19,6 @@ package cadetEditor2DStarling.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DStarling.ui.overlays.SelectionOverlay;

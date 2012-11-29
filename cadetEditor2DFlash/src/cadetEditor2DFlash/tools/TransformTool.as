@@ -19,7 +19,6 @@ package cadetEditor2DFlash.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DFlash.ui.overlays.SelectionOverlay;
@@ -181,17 +180,7 @@ package cadetEditor2DFlash.tools
 					var box:flash.display.Sprite = overlay.boxesArray[i];
 					var pt:Point = box.localToGlobal(ptA);
 					
-					//TODO: Deprecate Flash2D and tidy up
-					//pt = view.viewport.globalToLocal(pt);
-					var isFlashOrStarling:uint = FlashStarlingInteropUtil.isRendererFlashOrStarling(view.renderer);
-					
-					if ( isFlashOrStarling == 0 ) {
-						var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(view.renderer);
-						pt = viewportFlash.globalToLocal(pt);
-					} else if ( isFlashOrStarling == 1 ) {
-						var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
-						pt = viewportStarling.globalToLocal(pt);
-					}
+					pt = Renderer2D(view.renderer).viewport.globalToLocal(pt);
 					
 					pt = view.renderer.viewportToWorld(pt);
 					ptA.x = pt.x;

@@ -12,6 +12,7 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
+	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
 	import cadet2D.renderPipeline.flash.components.skins.ConnectionSkin;
 	import cadet2D.renderPipeline.flash.components.skins.SpringSkin;
@@ -26,7 +27,6 @@ package cadetEditor2DFlashBox2D.tools
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.operations.PickComponentsOperation;
 	import cadetEditor2D.ui.controlBars.ConnectionToolControlBar;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
@@ -129,16 +129,7 @@ package cadetEditor2DFlashBox2D.tools
 				enable();
 				return;
 			}
-			
-			//TODO: Deprecate Flash2D and tidy up
-			var isFlashOrStarling:uint = FlashStarlingInteropUtil.isRendererFlashOrStarling(view.renderer);
-			
-			if ( isFlashOrStarling == 0 ) {
-				var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(context.view2D.renderer);
-			} else if ( isFlashOrStarling == 1 ) {
-				var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(context.view2D.renderer);
-			}
-			
+
 			var skin:ISkin2D = ComponentUtil.getChildOfType(pickedComponent, ISkin2D);
 			var transform:Transform2D = ComponentUtil.getChildOfType(pickedComponent, Transform2D);
 			if ( !transformA )
@@ -149,13 +140,7 @@ package cadetEditor2DFlashBox2D.tools
 				// Convert the clicked location from world coordinates to coordinates local to the picked skin
 				pt = context.view2D.renderer.worldToViewport(pt);
 				
-				//pt = context.view2D.viewport.localToGlobal(pt);
-				if ( isFlashOrStarling == 0 ) {
-					pt = viewportFlash.localToGlobal(pt);
-				} else if ( isFlashOrStarling == 1 ) {
-					pt = viewportStarling.localToGlobal(pt);
-				}
-				
+				pt = Renderer2D(context.view2D.renderer).viewport.localToGlobal(pt);
 				
 				pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 				offsetA = new Vertex( pt.x, pt.y );
@@ -176,12 +161,7 @@ package cadetEditor2DFlashBox2D.tools
 			pt = context.view2D.renderer.worldToViewport(pt);
 			
 			//pt = context.view2D.viewport.localToGlobal(pt);
-			if ( isFlashOrStarling == 0 ) {
-				pt = viewportFlash.localToGlobal(pt);
-			} else if ( isFlashOrStarling == 1 ) {
-				pt = viewportStarling.localToGlobal(pt);
-			}
-			
+			pt = Renderer2D(context.view2D.renderer).viewport.localToGlobal(pt);
 			
 			pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 			

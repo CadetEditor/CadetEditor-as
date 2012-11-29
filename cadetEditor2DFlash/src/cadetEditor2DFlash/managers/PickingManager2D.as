@@ -11,6 +11,8 @@ package cadetEditor2DFlash.managers
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.managers.IPickingManager2D;
@@ -18,7 +20,6 @@ package cadetEditor2DFlash.managers
 	import cadetEditor2D.managers.SnapManager2D;
 	import cadetEditor2D.util.BitmapHitTest;
 	import cadetEditor2D.util.BitmapHitTestStarling;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
@@ -58,7 +59,7 @@ package cadetEditor2DFlash.managers
 		private var enabled			:Boolean = false;
 		
 		private var allSkins		:Vector.<IComponent>;
-		private var renderer		:IRenderer2D;
+		private var renderer		:Renderer2D;
 		
 		public function PickingManager2D()
 		{
@@ -83,7 +84,7 @@ package cadetEditor2DFlash.managers
 				scene.addEventListener(ComponentEvent.ADDED_TO_SCENE, componentAddedHandler);
 				scene.addEventListener(ComponentEvent.REMOVED_FROM_SCENE, componentRemovedHandler);
 				
-				renderer = ComponentUtil.getChildOfType(scene, IRenderer2D, true) as IRenderer2D;
+				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				
 				allSkins = ComponentUtil.getChildrenOfType(scene, ISkin2D, true);
 			}
@@ -152,25 +153,9 @@ package cadetEditor2DFlash.managers
 			
 			var skinsUnderLoc:Array = [];
 			var L:int = 0;
-			for each ( var skin:ISkin2D in allSkins)
+			for each ( var skin:AbstractSkin2D in allSkins)
 			{
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
-				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
-				
-				if ( isFlashOrStarling == 0 ) {
-					var viewport:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(renderer);
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-					if ( !BitmapHitTest.hitTestPoint( x, y, displayObjectFlash, viewport ) ) continue;
-				} else if ( isFlashOrStarling == 1 ) {
-					var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(renderer);
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-					var pt:Point = viewportStarling.localToGlobal(new Point(x,y));
-					if (!displayObjectStarling.bounds.containsPoint(pt)) continue;
-					//if ( !BitmapHitTestStarling.hitTestPoint( x, y, displayObjectStarling, viewportStarling ) ) continue;
-				}
+				if ( !BitmapHitTest.hitTestPoint( x, y, skin.displayObjectContainer, renderer.viewport ) ) continue;
 				
 				
 				skinsUnderLoc[L++] = skin;
@@ -200,9 +185,9 @@ package cadetEditor2DFlash.managers
 		
 		private function componentAddedHandler( event:ComponentEvent ):void
 		{
-			if ( event.component is IRenderer )
+			if ( event.component is Renderer2D )
 			{
-				renderer = IRenderer2D(event.component);
+				renderer = Renderer2D(event.component);
 				return;
 			}
 			if ( event.component is ISkin2D == false ) return;
@@ -215,7 +200,7 @@ package cadetEditor2DFlash.managers
 			if ( event.component == renderer )
 			{
 				renderer = null;
-				renderer = ComponentUtil.getChildOfType(scene, IRenderer2D, true) as IRenderer2D;
+				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				return;
 			}
 			if ( event.component is ISkin2D == false ) return;

@@ -16,7 +16,6 @@ package cadetEditor2DFlash.ui.views
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import cadetEditor2DFlash.ui.overlays.Grid2D;
 	
@@ -294,16 +293,6 @@ package cadetEditor2DFlash.ui.views
 				//addChildAt(_renderer.viewport,2);
 				_renderer.enable(container, 2);
 		
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isRendererFlashOrStarling(_renderer);
-				
-				if ( isFlashOrStarling == 1 ) {
-					
-//					var pt:Point = container.localToGlobal(new Point(0,0));
-//					//TODO: Should be viewRect?
-//					Renderer2D(_renderer).viewportX = pt.x;
-//					Renderer2D(_renderer).viewportY = pt.y;
-				}
-				
 				if ( _renderer is IRenderer2D )
 				{
 					addOverlay( new Grid2D(), BOTTOM );

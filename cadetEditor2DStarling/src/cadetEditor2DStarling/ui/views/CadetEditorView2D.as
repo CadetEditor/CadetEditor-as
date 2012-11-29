@@ -16,7 +16,6 @@ package cadetEditor2DStarling.ui.views
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import cadetEditor2DStarling.ui.overlays.Grid2D;
 	

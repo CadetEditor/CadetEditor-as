@@ -13,7 +13,6 @@ package cadetEditor2DStarling.ui.overlays
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import flash.geom.Point;

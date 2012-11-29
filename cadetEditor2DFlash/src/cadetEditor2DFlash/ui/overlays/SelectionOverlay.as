@@ -6,10 +6,10 @@ package cadetEditor2DFlash.ui.overlays
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import flash.display.BlendMode;
@@ -20,9 +20,6 @@ package cadetEditor2DFlash.ui.overlays
 	import flox.core.data.ArrayCollection;
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.ui.components.UIComponent;
-	
-	import starling.display.DisplayObject;
-	import starling.display.DisplayObject;
 	
 	public class SelectionOverlay extends UIComponent implements ICadetEditorOverlay2D
 	{
@@ -86,36 +83,14 @@ package cadetEditor2DFlash.ui.overlays
 				}
 			}
 			
-			for each ( var skin:ISkin2D in selectedSkins )
+			for each ( var skin:AbstractSkin2D in selectedSkins )
 			{
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObjectFlash:flash.display.DisplayObject;
-				var displayObjectStarling:starling.display.DisplayObject;
-				
-				var isFlashOrStarling:uint = FlashStarlingInteropUtil.isSkinFlashOrStarling( skin );
-				
-				if ( isFlashOrStarling == 0 ) {
-					displayObjectFlash = FlashStarlingInteropUtil.getSkinDisplayObjectFlash(skin);
-				} else if ( isFlashOrStarling == 1 ) {
-					displayObjectStarling = FlashStarlingInteropUtil.getSkinDisplayObjectStarling(skin);
-				}
-				
-				var bounds:Rectangle;
-				if ( displayObjectFlash ) {
-					if ( isVisible( displayObjectFlash ) == false ) continue;
-				
-					bounds = displayObjectFlash.getBounds( this );
-				} else if ( displayObjectStarling ) {
-					if ( isVisibleStarling( displayObjectStarling ) == false ) continue;
-					
-					bounds = displayObjectStarling.bounds;
-				}
-				
+				if ( isVisible( skin.displayObjectContainer ) == false ) continue;
+			
+				var bounds:Rectangle = skin.displayObjectContainer.getBounds( this );
 				
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);
-				
-				
 				
 				skin.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
 				
@@ -135,12 +110,7 @@ package cadetEditor2DFlash.ui.overlays
 				pt.y = 0;
 				
 				//pt = displayObject.localToGlobal(pt);
-				
-				if ( displayObjectFlash ) {
-					pt = displayObjectFlash.localToGlobal(pt);
-				} else if ( displayObjectStarling ) {
-					pt = displayObjectStarling.localToGlobal(pt);
-				}
+				pt = skin.displayObjectContainer.localToGlobal(pt);
 				
 				pt = globalToLocal(pt);
 				graphics.lineStyle(2, 0xFFFFFF);
@@ -161,18 +131,11 @@ package cadetEditor2DFlash.ui.overlays
 			invalidate();
 		}
 		
-		private static function isVisible( displayObject:flash.display.DisplayObject ):Boolean
+		private static function isVisible( displayObject:DisplayObject ):Boolean
 		{
 			if ( displayObject.visible == false ) return false;
 			if ( displayObject.parent == null ) return true;
 			return isVisible( displayObject.parent );
-		}
-
-		private static function isVisibleStarling( displayObject:starling.display.DisplayObject ):Boolean
-		{
-			if ( displayObject.visible == false ) return false;
-			if ( displayObject.parent == null ) return true;
-			return isVisibleStarling( displayObject.parent );
 		}
 		
 		public function get view():ICadetEditorView2D

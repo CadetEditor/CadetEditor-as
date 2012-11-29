@@ -12,6 +12,7 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
+	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
 	import cadet2D.renderPipeline.flash.components.skins.PinSkin;
 	
@@ -23,7 +24,6 @@ package cadetEditor2DFlashBox2D.tools
 	
 	import cadetEditor2D.operations.PickComponentsOperation;
 	import cadetEditor2D.ui.controlBars.PinToolControlBar;
-	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
 	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
@@ -37,8 +37,6 @@ package cadetEditor2DFlashBox2D.tools
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.ui.managers.CursorManager;
-	
-	import starling.display.Sprite;
 	
 	public class PinTool extends CadetEditorTool2D
 	{
@@ -102,23 +100,10 @@ package cadetEditor2DFlashBox2D.tools
 			transformA = skinA.transform2D;
 			transformB = skinB.transform2D;
 			
-			//TODO: Deprecate Flash2D and tidy up
-			var isFlashOrStarling:uint = FlashStarlingInteropUtil.isRendererFlashOrStarling(context.view2D.renderer);
-			
-			if ( isFlashOrStarling == 0 ) {
-				var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(context.view2D.renderer);
-			} else if ( isFlashOrStarling == 1 ) {
-				var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(context.view2D.renderer);
-			}
-			
 			offset = context.view2D.renderer.worldToViewport( pickComponentOperation.getClickLoc() );
 		
 			//offset = context.view2D.viewport.localToGlobal(offset);
-			if ( isFlashOrStarling == 0 ) {
-				offset = viewportFlash.localToGlobal(offset);
-			} else if ( isFlashOrStarling == 1 ) {
-				offset = viewportStarling.localToGlobal(offset);
-			}
+			offset = Renderer2D(context.view2D.renderer).viewport.localToGlobal(offset);
 			
 			offset = AbstractSkin2D(skinA).displayObjectContainer.globalToLocal(offset);
 			
