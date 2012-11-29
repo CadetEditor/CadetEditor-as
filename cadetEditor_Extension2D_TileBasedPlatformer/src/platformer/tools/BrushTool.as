@@ -14,8 +14,9 @@ package platformer.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.managers.SnapInfo;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
+	
+	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -41,7 +42,6 @@ package platformer.tools
 	
 	import platformer.components.behaviours.TileBehaviour;
 	import platformer.components.processes.GridProcess;
-	
 	import platformer.operations.AddTileOperation;
 	import platformer.ui.panels.BrushesPanel;
 	

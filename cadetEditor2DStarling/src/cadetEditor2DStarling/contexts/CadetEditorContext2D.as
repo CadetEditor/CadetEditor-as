@@ -63,6 +63,7 @@ package cadetEditor2DStarling.contexts
 		protected var _controllers						:Array;
 		
 		private var selectionOverlay					:SelectionOverlay;
+		private var snapOverlay							:SnapOverlay;
 		
 		public function CadetEditorContext2D()
 		{
@@ -86,8 +87,8 @@ package cadetEditor2DStarling.contexts
 			//_view.addOverlay(selectionOverlay);
 			
 			// Init Snap Overlap
-			var snapOverlay:SnapOverlay = new SnapOverlay(_snapManager);
-			_view.addOverlay( snapOverlay, CadetEditorView2D.TOP );
+			snapOverlay = new SnapOverlay(_snapManager);
+			//_view.addOverlay( snapOverlay, CadetEditorView2D.TOP );
 			
 			_controllers = [];
 			
@@ -286,6 +287,11 @@ package cadetEditor2DStarling.contexts
 				_pickingManager.disableMouseListeners(oldRenderer.viewport);
 				//_view.addOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(selectionOverlay);
+				oldRenderer.removeOverlay(snapOverlay);
+				
+				selectionOverlay.renderer = null;
+				snapOverlay.renderer = null;
+				
 				_view.renderer = null;
 				_toolManager.disable();
 			}
@@ -296,6 +302,10 @@ package cadetEditor2DStarling.contexts
 			{
 				newRenderer = Renderer2D(renderers[0]);
 				newRenderer.addOverlay(selectionOverlay);
+				newRenderer.addOverlay(snapOverlay);
+				
+				selectionOverlay.renderer = newRenderer;
+				snapOverlay.renderer = newRenderer;
 				
 				_view.renderer = newRenderer;
 				_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
@@ -323,7 +333,13 @@ package cadetEditor2DStarling.contexts
 			var renderer:Renderer2D = Renderer2D(_view.renderer);
 			renderer.removeEventListener( RendererEvent.INITIALISED, rendererInitialised );
 			_pickingManager.enableMouseListeners( renderer.viewport );
+			
 			renderer.addOverlay(selectionOverlay);
+			renderer.addOverlay(snapOverlay);
+			
+			selectionOverlay.renderer = renderer;
+			snapOverlay.renderer = renderer;
+			
 		}
 		
 		private function bindingChangeHandler( event:PropertyChangeEvent ):void

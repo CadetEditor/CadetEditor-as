@@ -114,7 +114,7 @@ package cadetEditor2DStarling.managers
 				} else if ( touch.phase == TouchPhase.HOVER ) {
 					mouseMoveHandler( event, touch );
 				} else if ( touch.phase == TouchPhase.MOVED ) {
-					
+					mouseDragHandler( event, touch );
 				} else if ( touch.phase == TouchPhase.STATIONARY ) {
 					
 				}
@@ -264,6 +264,18 @@ package cadetEditor2DStarling.managers
 			}
 			
 			sendEvent( PickingManagerEvent.MOUSE_MOVE_CONTAINER, currentSkinsUnderMouse, null, event, touch );
+			skinsUnderMouse = currentSkinsUnderMouse;
+		}
+		
+		private function mouseDragHandler( event:TouchEvent, touch:Touch ):void
+		{
+			var currentSkinsUnderMouse:Array = getSkinsUnderMouse();
+			if ( skinsUnderMouse == null )
+			{
+				skinsUnderMouse = [];
+			}
+			
+			sendEvent( PickingManagerEvent.MOUSE_DRAG_CONTAINER, currentSkinsUnderMouse, null, event, touch );
 			skinsUnderMouse = currentSkinsUnderMouse;
 		}
 		

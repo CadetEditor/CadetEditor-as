@@ -19,7 +19,6 @@ package cadetEditor2DFlash.tools
 	import cadetEditor.entities.ToolFactory;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	
 	import cadetEditor2DFlash.ui.overlays.PolygonToolOverlay;
 	

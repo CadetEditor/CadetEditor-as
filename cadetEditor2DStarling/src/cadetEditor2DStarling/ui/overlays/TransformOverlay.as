@@ -1,35 +1,38 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
+// The little boxes that appear in the corners and middle of the sides of a shape when using the transform tool
 package cadetEditor2DStarling.ui.overlays
 {
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.display.BlendMode;
-	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.ui.components.UIComponent;
+	import starling.display.BlendMode;
+	import starling.display.Shape;
+	import starling.display.Sprite;
 
-	public class TransformOverlay extends UIComponent implements ICadetEditorOverlay2D
+	public class TransformOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
 	{
 		private var _view			:ICadetEditorView2D;
 		
-		public var translateArea	:Sprite;
-		public var rotationArea		:Sprite;
+		public var translateArea	:Shape;
+		public var rotationArea		:Shape;
 			
-		public var boxes			:Sprite;
-			public var topLeftBox		:Sprite;
-			public var topBox			:Sprite;
-			public var topRightBox		:Sprite;
-			public var rightBox			:Sprite;
-			public var bottomRightBox	:Sprite;
-			public var bottomBox		:Sprite;
-			public var bottomLeftBox	:Sprite;
-			public var leftBox			:Sprite;
+		public var boxes			:Shape;
+			public var topLeftBox		:Shape;
+			public var topBox			:Shape;
+			public var topRightBox		:Shape;
+			public var rightBox			:Shape;
+			public var bottomRightBox	:Shape;
+			public var bottomBox		:Shape;
+			public var bottomLeftBox	:Shape;
+			public var leftBox			:Shape;
 		
 		public var boxesArray		:Array;
 		
@@ -40,27 +43,30 @@ package cadetEditor2DStarling.ui.overlays
 		private var boxPadding			:Number = 0;
 		
 		// Data
-		private var bounds				:Rectangle;
+		private var tBounds				:Rectangle;
 		private var matrix				:Matrix;
 		private var parentContainer		:Sprite;
 		
+		public var renderer				:Renderer2D;
+		
 		public function TransformOverlay()
 		{
-			
+			init();
 		}
 		
-		override protected function init():void
+		protected function init():void
 		{
 			boxesArray = [];
-			blendMode = BlendMode.INVERT;
+			//blendMode = BlendMode.INVERT;
+			//blendMode = BlendMode.ADD;
 			
-			rotationArea = new Sprite();
+			rotationArea = new Shape();
 			addChild( rotationArea );
 			
-			translateArea = new Sprite();
+			translateArea = new Shape();
 			addChild( translateArea );
 			
-			boxes = new Sprite();
+			boxes = new Shape();
 			addChild( boxes );
 			
 			topLeftBox 		= createBox();
@@ -84,7 +90,7 @@ package cadetEditor2DStarling.ui.overlays
 		
 		public function setData( bounds:Rectangle, matrix:Matrix ):void
 		{
-			this.bounds = bounds;
+			this.tBounds = bounds;
 			this.matrix = matrix.clone();
 			invalidate();
 			visible = true;
@@ -92,36 +98,44 @@ package cadetEditor2DStarling.ui.overlays
 		
 		public function clear():void
 		{
-			bounds = null;
+			tBounds = null;
 			matrix = null;
 			visible = false;
 		}
 		
-		
-		override protected function validate():void
+		private function invalidate():void
 		{
-			if ( !bounds ) return;
-			if ( !view ) return;
-			if ( !view.renderer ) return;
+			validate();
+		}
+		
+		public function validateNow():void
+		{
+			validate();
+		}
+		
+		protected function validate():void
+		{
+			if ( !tBounds ) return;
+			if ( !renderer ) return;
 			
-			var TL:Point = new Point(bounds.x, bounds.y);
+			var TL:Point = new Point(tBounds.x, tBounds.y);
 			TL = matrix.transformPoint(TL);
-			TL = view.renderer.worldToViewport(TL);
+			TL = renderer.worldToViewport(TL);
 				
-			var TR:Point = new Point(bounds.right, bounds.y);
+			var TR:Point = new Point(tBounds.right, tBounds.y);
 			TR = matrix.transformPoint(TR);
-			TR = view.renderer.worldToViewport(TR);
+			TR = renderer.worldToViewport(TR);
 			
-			var BR:Point = new Point(bounds.right, bounds.bottom);
+			var BR:Point = new Point(tBounds.right, tBounds.bottom);
 			BR = matrix.transformPoint(BR);
-			BR = view.renderer.worldToViewport(BR);
+			BR = renderer.worldToViewport(BR);
 			
-			var BL:Point = new Point(bounds.x, bounds.bottom);
+			var BL:Point = new Point(tBounds.x, tBounds.bottom);
 			BL = matrix.transformPoint(BL);
-			BL = view.renderer.worldToViewport(BL);
+			BL = renderer.worldToViewport(BL);
 						
 			rotationArea.graphics.clear();
-			rotationArea.graphics.lineStyle( 40, 0x00FF00, 0.0, false );
+			rotationArea.graphics.lineStyle( 40, 0x00FF00, 0.0 );//, false );
 			rotationArea.graphics.moveTo(TL.x, TL.y);
 			rotationArea.graphics.lineTo(TR.x, TR.y);
 			rotationArea.graphics.lineTo(BR.x, BR.y);
@@ -163,9 +177,9 @@ package cadetEditor2DStarling.ui.overlays
 		}
 		
 		
-		private function createBox():Sprite
+		private function createBox():Shape
 		{
-			var spr:Sprite = new Sprite();
+			var spr:Shape = new Shape();
 			spr.graphics.lineStyle(1, 0xFFFFFF);
 			spr.graphics.beginFill( 0xFFFFFF, 0.0 );
 			spr.graphics.drawRect( -boxSize*0.5, -boxSize*0.5, boxSize, boxSize );
@@ -173,6 +187,7 @@ package cadetEditor2DStarling.ui.overlays
 			return spr;
 		}
 
+/*
 		public function get view():ICadetEditorView2D
 		{
 			return _view;
@@ -182,6 +197,6 @@ package cadetEditor2DStarling.ui.overlays
 		{
 			_view = value;
 		}
-
+*/
 	}
 }

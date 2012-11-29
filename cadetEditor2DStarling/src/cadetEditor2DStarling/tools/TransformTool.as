@@ -40,6 +40,7 @@ package cadetEditor2DStarling.tools
 	import flox.ui.managers.CursorManager;
 	
 	import starling.display.DisplayObject;
+	import starling.display.Shape;
 	import starling.display.Sprite;
 	
 	public class TransformTool extends SelectionTool //implements ITool
@@ -109,7 +110,12 @@ package cadetEditor2DStarling.tools
 			}
 			catch (e:Error) {}
 			
-			view.addOverlay(overlay, CadetEditorView2D.TOP);
+			var renderer2D:Renderer2D = Renderer2D(view.renderer);
+			if (renderer2D)	{ 
+				renderer2D.addOverlay(overlay);
+				overlay.renderer = renderer2D;
+			}
+			//view.addOverlay(overlay, CadetEditorView2D.TOP);
 			
 			overlay.boxes.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownBoxHandler );
 			overlay.rotationArea.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownRotationAreaHandler );
@@ -131,7 +137,9 @@ package cadetEditor2DStarling.tools
 			}
 			catch (e:Error) {}
 			
-			view.removeOverlay(overlay);
+			var renderer2D:Renderer2D = Renderer2D(view.renderer);
+			if (renderer2D)	renderer2D.removeOverlay(overlay);	
+			//view.removeOverlay(overlay);
 			
 			if ( overlay.boxes )
 			{
@@ -178,20 +186,13 @@ package cadetEditor2DStarling.tools
 					var ptA:Point = additionalSnapPoints[i];
 					ptA.x = 0;
 					ptA.y = 0;
-					var box:flash.display.Sprite = overlay.boxesArray[i];
+					var box:Shape = overlay.boxesArray[i];
 					var pt:Point = box.localToGlobal(ptA);
 					
 					//TODO: Deprecate Flash2D and tidy up
 					//pt = view.viewport.globalToLocal(pt);
-					var isFlashOrStarling:uint = FlashStarlingInteropUtil.isRendererFlashOrStarling(view.renderer);
-					
-					if ( isFlashOrStarling == 0 ) {
-						var viewportFlash:flash.display.Sprite = FlashStarlingInteropUtil.getRendererViewportFlash(view.renderer);
-						pt = viewportFlash.globalToLocal(pt);
-					} else if ( isFlashOrStarling == 1 ) {
-						var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
-						pt = viewportStarling.globalToLocal(pt);
-					}
+
+					pt = Renderer2D(view.renderer).viewport.globalToLocal(pt);
 					
 					pt = view.renderer.viewportToWorld(pt);
 					ptA.x = pt.x;

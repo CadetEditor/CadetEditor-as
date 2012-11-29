@@ -5,7 +5,6 @@ package cadetEditor2DStarling.ui.overlays
 {
 	import cadetEditor.events.CadetEditorViewEvent;
 	
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	

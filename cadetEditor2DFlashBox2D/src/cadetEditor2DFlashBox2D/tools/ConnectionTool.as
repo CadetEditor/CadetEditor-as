@@ -25,9 +25,10 @@ package cadetEditor2DFlashBox2D.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.operations.PickComponentsOperation;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.controlBars.ConnectionToolControlBar;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
+	
+	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
 	import flash.display.BlendMode;
 	import flash.display.Sprite;

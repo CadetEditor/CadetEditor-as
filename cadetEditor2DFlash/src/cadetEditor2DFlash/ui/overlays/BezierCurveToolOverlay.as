@@ -9,9 +9,10 @@ package cadetEditor2DFlash.ui.overlays
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.QuadraticBezier;
 	
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
+	
+	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
 	import flash.geom.Point;
 	

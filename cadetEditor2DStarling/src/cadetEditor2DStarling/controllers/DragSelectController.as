@@ -1,7 +1,7 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
-// The box that appears when dragging as square on the background with the selection tool
+// The box that appears when dragging a rectangular selection area on the background with the selection tool
 package cadetEditor2DStarling.controllers
 {
 	
@@ -10,6 +10,7 @@ package cadetEditor2DStarling.controllers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -21,8 +22,6 @@ package cadetEditor2DStarling.controllers
 	import cadetEditor2D.util.BitmapHitTestStarling;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
 	
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -35,6 +34,10 @@ package cadetEditor2DStarling.controllers
 	import flox.editor.FloxEditor;
 	
 	import starling.display.DisplayObject;
+	import starling.display.Shape;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class DragSelectController implements IDragSelectionController
 	{
@@ -42,15 +45,16 @@ package cadetEditor2DStarling.controllers
 		protected var context				:ICadetEditorContext2D;
 		protected var view					:ICadetEditorView2D;
 		protected var dragStart				:Point;
-		protected var overlay				:Sprite;
+		protected var overlay				:Shape;
+		
+		private var _renderer				:Renderer2D;
 		
 		public function DragSelectController(context:ICadetEditorContext2D)
 		{
 			this.context = context;
 			
-			overlay = new Sprite();
+			overlay = new Shape();
 			view = context.view2D;
-			view.addOverlay(overlay);
 		}
 		
 		public function dispose():void
@@ -59,7 +63,10 @@ package cadetEditor2DStarling.controllers
 			{
 				endDrag(false);
 			}
-			view.removeOverlay(overlay);
+			
+			//view.removeOverlay(overlay);
+			if (_renderer)	_renderer.removeOverlay(overlay);
+			
 			overlay = null;
 			context = null;
 		}
@@ -73,8 +80,17 @@ package cadetEditor2DStarling.controllers
 			_dragging = true;
 			
 			dragStart = view.viewportMouse;
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			
+			//view.addOverlay(overlay);
+			_renderer = Renderer2D(context.view2D.renderer);
+			
+			if (_renderer) {
+				_renderer.addOverlay(overlay);
+				_renderer.viewport.stage.addEventListener( TouchEvent.TOUCH, touchEventHandler );
+			}
+			
+//			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+//			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		public function endDrag(appendToSelection:Boolean):void
@@ -102,7 +118,7 @@ package cadetEditor2DStarling.controllers
 				
 				var hitTestRect:Boolean = false;
 
-				var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
+				//var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
 				//TODO: Find Starling equivalent for hitTestRect()
 				hitTestRect = dragRect.containsRect(displayObject.bounds);			
 				
@@ -127,11 +143,38 @@ package cadetEditor2DStarling.controllers
 				context.operationManager.addOperation(changeSelectionOperation);
 			}
 			overlay.graphics.clear();
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			
+			_renderer.viewport.stage.removeEventListener( TouchEvent.TOUCH, touchEventHandler );
+//			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+//			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			
 		}
 		
+		private function touchEventHandler( event:TouchEvent ):void
+		{
+			var dispObj:DisplayObject = DisplayObject(_renderer.viewport.stage);
+			var touches:Vector.<Touch> = event.getTouches(dispObj);
+			
+			for each (var touch:Touch in touches)
+			{
+				if ( touch.phase == TouchPhase.MOVED ) {
+					updateDragPosition();
+					break;
+				} else if ( touch.phase == TouchPhase.ENDED ) {
+					endDrag(event.shiftKey);
+				}
+			}			
+		}
 		
+/*		private function mouseMoveHandler(event:MouseEvent):void
+		{
+			updateDragPosition();
+		}
+		
+		private function mouseUpHandler(event:MouseEvent):void
+		{
+			endDrag(event.shiftKey);
+		}*/
 		
 		protected function updateDragPosition():void
 		{
@@ -141,18 +184,6 @@ package cadetEditor2DStarling.controllers
 			overlay.graphics.clear();
 			overlay.graphics.lineStyle(1, 0xFFFFFF, 1);
 			overlay.graphics.drawRect(dragStart.x, dragStart.y, width, height);
-		}
-		
-		
-		
-		private function mouseMoveHandler(event:MouseEvent):void
-		{
-			updateDragPosition();
-		}
-		
-		private function mouseUpHandler(event:MouseEvent):void
-		{
-			endDrag(event.shiftKey);
 		}
 
 		public function get dragging():Boolean { return _dragging; }

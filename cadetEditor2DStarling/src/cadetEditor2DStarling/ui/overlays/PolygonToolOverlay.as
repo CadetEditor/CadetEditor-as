@@ -1,6 +1,8 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
+// Draws the draggable circles on over the points in a polygon
+// TODO: circle drawing currently looks like triangles.
 package cadetEditor2DStarling.ui.overlays
 {
 	import cadet.events.InvalidationEvent;
@@ -16,10 +18,12 @@ package cadetEditor2DStarling.ui.overlays
 	import flash.geom.Point;
 	
 	import flox.ui.components.UIComponent;
+	
+	import starling.display.Shape;
 
-	public class PolygonToolOverlay extends UIComponent implements ICadetEditorOverlay2D
+	public class PolygonToolOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
 	{
-		private var _view		:ICadetEditorView2D;
+		//private var _view		:ICadetEditorView2D;
 		private var tool		:ICadetEditorTool2D;
 		private var _polygon	:PolygonGeometry;
 		private var _transform	:Transform2D;
@@ -71,7 +75,12 @@ package cadetEditor2DStarling.ui.overlays
 			invalidate();
 		}
 		
-		override protected function validate():void
+		private function invalidate():void
+		{
+			validate();
+		}
+		
+		protected function validate():void
 		{
 			graphics.clear();
 			
@@ -93,7 +102,7 @@ package cadetEditor2DStarling.ui.overlays
 			}
 		}
 
-		public function get view():ICadetEditorView2D
+/*		public function get view():ICadetEditorView2D
 		{
 			return _view;
 		}
@@ -101,6 +110,6 @@ package cadetEditor2DStarling.ui.overlays
 		public function set view(value:ICadetEditorView2D):void
 		{
 			_view = value;
-		}
+		}*/
 	}
 }

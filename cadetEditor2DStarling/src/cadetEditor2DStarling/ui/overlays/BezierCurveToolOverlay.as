@@ -9,17 +9,20 @@ package cadetEditor2DStarling.ui.overlays
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.QuadraticBezier;
 	
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
+	
+	import cadetEditor2DStarling.tools.CadetEditorTool2D;
 	
 	import flash.geom.Point;
 	
 	import flox.ui.components.UIComponent;
+	
+	import starling.display.Shape;
 
-	public class BezierCurveToolOverlay extends UIComponent implements ICadetEditorOverlay2D
+	public class BezierCurveToolOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
 	{
-		private var _view		:ICadetEditorView2D;
+		//private var _view		:ICadetEditorView2D;
 		private var tool		:CadetEditorTool2D;
 		private var _curve		:BezierCurve;
 		private var _transform2D:Transform2D;
@@ -78,7 +81,12 @@ package cadetEditor2DStarling.ui.overlays
 			invalidate();
 		}
 		
-		override protected function validate():void
+		private function invalidate():void
+		{
+			validate();
+		}
+		
+		protected function validate():void
 		{
 			graphics.clear();
 			
@@ -143,7 +151,7 @@ package cadetEditor2DStarling.ui.overlays
 			graphics.endFill();
 		}
 
-		public function get view():ICadetEditorView2D
+/*		public function get view():ICadetEditorView2D
 		{
 			return _view;
 		}
@@ -151,7 +159,7 @@ package cadetEditor2DStarling.ui.overlays
 		public function set view(value:ICadetEditorView2D):void
 		{
 			_view = value;
-		}
+		}*/
 
 	}
 }

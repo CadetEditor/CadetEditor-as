@@ -13,6 +13,7 @@ package cadetEditor2DStarling.tools
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.CubicBezier;
 	import cadet2D.geom.QuadraticBezier;
+	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
@@ -20,7 +21,6 @@ package cadetEditor2DStarling.tools
 	import cadetEditor.entities.ToolFactory;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	
 	import cadetEditor2DStarling.ui.overlays.BezierCurveToolOverlay;
 	import cadetEditor2DStarling.ui.views.CadetEditorView2D;
@@ -86,7 +86,10 @@ package cadetEditor2DStarling.tools
 		{
 			super.enable();
 						
-			view.addOverlay(overlay);
+			//view.addOverlay(overlay);
+			var renderer2D:Renderer2D = Renderer2D(view.renderer);
+			if (renderer2D)	renderer2D.addOverlay(overlay);
+			
 			context.selection.addEventListener(ArrayCollectionEvent.CHANGE, selectionChangeHandler);
 			context.operationManager.addEventListener(OperationManagerEvent.CHANGE, operationManagerChangeHandler);
 			
@@ -107,7 +110,10 @@ package cadetEditor2DStarling.tools
 			
 			overlay.curve = null;
 			overlay.transform2D = null;
-			view.removeOverlay(overlay);
+			
+			//view.removeOverlay(overlay);
+			var renderer2D:Renderer2D = Renderer2D(view.renderer);
+			if (renderer2D)	renderer2D.removeOverlay(overlay);
 		}
 		
 		private function selectionChangeHandler( event:ArrayCollectionEvent ):void

@@ -22,9 +22,10 @@ package cadetEditor2DFlashBox2D.tools
 	import cadetEditor.entities.ToolFactory;
 	
 	import cadetEditor2D.operations.PickComponentsOperation;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.controlBars.PinToolControlBar;
 	import cadetEditor2D.util.FlashStarlingInteropUtil;
+	
+	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;

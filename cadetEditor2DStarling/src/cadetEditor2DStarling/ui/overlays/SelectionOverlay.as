@@ -5,6 +5,7 @@
 package cadetEditor2DStarling.ui.overlays
 {
 	import cadet.events.InvalidationEvent;
+	import cadet.events.RendererEvent;
 	
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
@@ -24,10 +25,13 @@ package cadetEditor2DStarling.ui.overlays
 	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
 	import starling.display.Shape;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class SelectionOverlay extends Shape //implements ICadetEditorOverlay2D
 	{
-		private var _view					:ICadetEditorView2D;
+//		private var _view					:ICadetEditorView2D;
 		private var selectedSkins			:Array
 		private var _selection				:ArrayCollection;
 		
@@ -35,6 +39,8 @@ package cadetEditor2DStarling.ui.overlays
 		
 		private static const CROSS_SIZE		:int = 2;
 		private static const BRACKET_SIZE	:int = 12;
+		
+		private var _renderer				:Renderer2D;
 		
 		public function SelectionOverlay()
 		{
@@ -148,6 +154,43 @@ package cadetEditor2DStarling.ui.overlays
 			if ( displayObject.visible == false ) return false;
 			if ( displayObject.parent == null ) return true;
 			return isVisible( displayObject.parent );
+		}
+		
+		public function get renderer():Renderer2D
+		{
+			return _renderer;
+		}
+		public function set renderer( value:Renderer2D ):void
+		{
+			if ( _renderer ) {
+				_renderer.viewport.stage.removeEventListener(TouchEvent.TOUCH, onTouchHandler);
+			}
+			_renderer = value;
+			
+			if ( _renderer && _renderer.viewport ) {
+				_renderer.viewport.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
+			} else {
+				_renderer.addEventListener(RendererEvent.INITIALISED, rendererInitialised);
+			}
+		}
+		
+		private function rendererInitialised( event:RendererEvent ):void
+		{
+			_renderer.viewport.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
+		}
+		
+		private function onTouchHandler( event:TouchEvent ):void
+		{
+			var dispObj:DisplayObject = DisplayObject(_renderer.viewport.stage);
+			var touches:Vector.<Touch> = event.getTouches(dispObj);
+			
+			for each (var touch:Touch in touches)
+			{
+				if ( touch.phase == TouchPhase.HOVER ) {
+					invalidate();
+					break;
+				}
+			}
 		}
 
 	}

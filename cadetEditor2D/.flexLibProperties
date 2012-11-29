@@ -20,7 +20,6 @@
     <classEntry path="cadetEditor2D.operations.CollapseTransformsOperation"/>
     <classEntry path="cadetEditor2D.operations.MakeConvexOperation"/>
     <classEntry path="cadetEditor2D.operations.PickComponentsOperation"/>
-    <classEntry path="cadetEditor2D.tools.CadetEditorTool2D"/>
     <classEntry path="cadetEditor2D.util.BitmapHitTest"/>
     <classEntry path="cadetEditor2D.ui.views.InfoPanelView"/>
     <classEntry path="cadetEditor2D.ui.overlays.ICadetEditorOverlay2D"/>

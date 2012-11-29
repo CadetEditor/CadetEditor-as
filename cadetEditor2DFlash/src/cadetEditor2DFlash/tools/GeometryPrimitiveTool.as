@@ -17,7 +17,6 @@ package cadetEditor2DFlash.tools
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import flash.events.MouseEvent;

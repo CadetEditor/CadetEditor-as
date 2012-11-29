@@ -17,7 +17,6 @@ package cadetEditor2DStarling.tools
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import flash.events.MouseEvent;
@@ -109,7 +108,8 @@ package cadetEditor2DStarling.tools
 			}
 		}
 		
-		override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		//override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		override protected function onMouseDragContainer(event:PickingManagerEvent):void
 		{
 			if ( !dragging ) return;
 			

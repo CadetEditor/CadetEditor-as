@@ -7,7 +7,7 @@ package cadetEditor2D.controllers
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	
-	import cadetEditor2D.tools.CadetEditorTool2D;
+	import cadetEditor2D.tools.ICadetEditorTool2D;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
@@ -21,14 +21,14 @@ package cadetEditor2D.controllers
 	public class DragItemsController
 	{
 		protected var context				:ICadetEditorContext;
-		protected var tool					:CadetEditorTool2D
+		protected var tool					:ICadetEditorTool2D;
 		protected var skins					:Array
 		protected var storedTransforms		:Array;
 		protected var mouseX				:Number;
 		protected var mouseY				:Number;
 		protected var _dragging				:Boolean = false;
 		
-		public function DragItemsController( context:ICadetEditorContext, tool:cadetEditor2D.tools.CadetEditorTool2D )
+		public function DragItemsController( context:ICadetEditorContext, tool:ICadetEditorTool2D )
 		{
 			this.context = context;
 			this.tool = tool;

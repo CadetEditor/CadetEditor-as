@@ -10,8 +10,8 @@ package cadetEditor2DFlashBox2D.tools
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.TerrainGeometry;
-	import cadet2D.renderPipeline.flash.components.skins.TerrainSkin;
 	import cadet2D.components.transforms.Transform2D;
+	import cadet2D.renderPipeline.flash.components.skins.TerrainSkin;
 	
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
 	
@@ -20,7 +20,8 @@ package cadetEditor2DFlashBox2D.tools
 	import cadetEditor.entities.ToolFactory;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
+	
+	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
 	import flash.geom.Matrix;
 	import flash.geom.Point;

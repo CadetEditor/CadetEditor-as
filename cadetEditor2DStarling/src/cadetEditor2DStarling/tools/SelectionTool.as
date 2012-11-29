@@ -3,13 +3,6 @@
 
 package cadetEditor2DStarling.tools
 {
-	import flox.app.core.contexts.IContext;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.util.ArrayUtil;
-	import flox.app.util.IntrospectionUtil;
-	
-	import flox.editor.FloxEditor;
-	
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
@@ -25,12 +18,17 @@ package cadetEditor2DStarling.tools
 	import cadetEditor2D.controllers.DragItemsController;
 	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.tools.CadetEditorTool2D;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DStarling.controllers.DragSelectController;
 	
 	import flash.events.Event;
+	
+	import flox.app.core.contexts.IContext;
+	import flox.app.operations.ChangePropertyOperation;
+	import flox.app.util.ArrayUtil;
+	import flox.app.util.IntrospectionUtil;
+	import flox.editor.FloxEditor;
 	
 	public class SelectionTool extends CadetEditorTool2D implements ITool
 	{
