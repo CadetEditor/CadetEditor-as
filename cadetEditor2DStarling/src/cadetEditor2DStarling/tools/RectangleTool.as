@@ -24,7 +24,7 @@ package cadetEditor2DStarling.tools
 			GeometryType = RectangleGeometry;
 		}
 		
-		override protected function updateShape( rect:flash.geom.Rectangle, normalizedRect:flash.geom.Rectangle, event:MouseEvent ):void
+		override protected function updateShape( rect:Rectangle, normalizedRect:Rectangle, event:MouseEvent ):void
 		{
 			transform.x = normalizedRect.x;
 			transform.y = normalizedRect.y;

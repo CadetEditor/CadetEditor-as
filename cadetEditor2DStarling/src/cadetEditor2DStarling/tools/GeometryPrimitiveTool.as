@@ -75,6 +75,10 @@ package cadetEditor2DStarling.tools
 			geometry = new GeometryType();
 			entity.children.addItem(geometry);
 			
+			var rect:Rectangle = new Rectangle( mouseDownPoint.x, mouseDownPoint.y, 0, 0 );
+			var normalizedRect:Rectangle = rect.clone();
+			updateShape( rect, normalizedRect, event )
+			
 			if ( geometry is PolygonGeometry )
 			{
 				context.snapManager.setVerticesToIgnore(PolygonGeometry(geometry).vertices);

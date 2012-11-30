@@ -1,7 +1,7 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
-// The little X that sits in the top left of your drag box
+// The curved selection box corners and the little X that sits in the top left of your drag box
 package cadetEditor2DStarling.ui.overlays
 {
 	import cadet.events.InvalidationEvent;
@@ -30,7 +30,6 @@ package cadetEditor2DStarling.ui.overlays
 	
 	public class SelectionOverlay extends Shape //implements ICadetEditorOverlay2D
 	{
-//		private var _view					:ICadetEditorView2D;
 		private var selectedSkins			:Array
 		private var _selection				:ArrayCollection;
 		
@@ -44,9 +43,6 @@ package cadetEditor2DStarling.ui.overlays
 		public function SelectionOverlay()
 		{
 //			blendMode = BlendMode.DIFFERENCE;
-//			mouseEnabled = false;
-//			mouseChildren = false;
-			//blendMode = BlendMode.ERASE
 			touchable = false;
 		}
 		
@@ -105,7 +101,17 @@ package cadetEditor2DStarling.ui.overlays
 	
 				if ( isVisible( displayObject ) == false ) continue;
 					
-				var bounds:Rectangle = displayObject.bounds;				
+				//var bounds:Rectangle = displayObject.bounds;				
+				var bounds:Rectangle = displayObject.getBounds(this);
+				
+//				pt.x = bounds.x;
+//				pt.y = bounds.y;
+//				
+//				pt = displayObject.localToGlobal(pt);				
+//				//pt = globalToLocal(pt);
+//				
+//				bounds.x = pt.x;
+//				bounds.y = pt.y;
 				
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);
@@ -130,7 +136,7 @@ package cadetEditor2DStarling.ui.overlays
 				pt = displayObject.localToGlobal(pt);				
 				pt = globalToLocal(pt);
 				
-				graphics.lineStyle(2, 0x00FF00);
+				graphics.lineStyle(2, 0xFFFFFF);
 				graphics.moveTo( pt.x-CROSS_SIZE, pt.y-CROSS_SIZE );
 				graphics.lineTo( pt.x+CROSS_SIZE, pt.y+CROSS_SIZE );
 				graphics.moveTo( pt.x+CROSS_SIZE, pt.y-CROSS_SIZE );

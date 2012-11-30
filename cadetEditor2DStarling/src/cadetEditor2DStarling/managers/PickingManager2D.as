@@ -62,6 +62,26 @@ package cadetEditor2DStarling.managers
 			allSkins = new Vector.<IComponent>();
 		}
 		
+		public function enable():void
+		{
+			if ( enabled ) return;
+			enabled = true;
+		}
+		
+		public function disable():void
+		{
+			if ( !enabled ) return;
+			enabled = false;
+			
+			setView(null);
+		}
+		
+		public function dispose():void
+		{
+			disable();
+			setScene(null);
+		}
+		
 		
 		public function setScene( value:ICadetScene ):void
 		{
@@ -86,16 +106,16 @@ package cadetEditor2DStarling.managers
 			}
 		}
 		
-		public function enableMouseListeners( view:DisplayObjectContainer ):void
+		public function setView( value:DisplayObjectContainer ):void
 		{
-			_view = view;
-			_view.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
-		}
-		
-		public function disableMouseListeners( view:DisplayObjectContainer ):void
-		{
-			_view.stage.removeEventListener(TouchEvent.TOUCH, onTouchHandler);
-			_view = null;
+			if ( _view ) {
+				_view.stage.removeEventListener(TouchEvent.TOUCH, onTouchHandler);
+			}
+			_view = value;
+			
+			if ( _view ) {
+				_view.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
+			}
 		}
 		
 		private function onTouchHandler( event:TouchEvent ):void
@@ -128,32 +148,6 @@ package cadetEditor2DStarling.managers
 				//trace("parent x "+_parent.x+" y "+_parent.y);
 				break;
 			}
-		}
-		
-		public function enable():void
-		{
-			if ( enabled ) return;
-			enabled = true;
-
-			if ( _view ) {
-				enableMouseListeners( _view );
-			}
-		}
-		
-		public function disable():void
-		{
-			if ( !enabled ) return;
-			enabled = false;
-			
-			if ( _view ) {
-				disableMouseListeners( _view );
-			}
-		}
-		
-		public function dispose():void
-		{
-			disable();
-			setScene(null);
 		}
 		
 		public function getSkinsUnderLoc( x:Number, y:Number ):Array

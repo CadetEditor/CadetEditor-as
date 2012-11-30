@@ -67,7 +67,7 @@ package cadetEditor2DStarling.tools
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_CONTAINER, onMouseDownContainer);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_SKINS, onMouseDownSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
-			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DRAG_CONTAINER, onMouseDragContainer);
+			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DRAG_CONTAINER, onMouseDragContainer);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
 		}
 		

@@ -154,7 +154,7 @@ package cadetEditor2DStarling.contexts
 			
 			enableRenderer();
 			
-			_pickingManager.enable();
+			//_pickingManager.enable();
 			_view.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
@@ -173,6 +173,7 @@ package cadetEditor2DStarling.contexts
 			if (!_view.renderer) return;
 			
 			_view.renderer.enable(DisplayObjectContainer(_view), 2);
+			_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
 		}
 		
 		private function disableRenderer():void
@@ -284,7 +285,7 @@ package cadetEditor2DStarling.contexts
 			
 			if ( oldRenderer )
 			{
-				_pickingManager.disableMouseListeners(oldRenderer.viewport);
+				//_pickingManager.disableMouseListeners(oldRenderer.viewport);
 				//_view.addOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(snapOverlay);
@@ -332,7 +333,9 @@ package cadetEditor2DStarling.contexts
 		{
 			var renderer:Renderer2D = Renderer2D(_view.renderer);
 			renderer.removeEventListener( RendererEvent.INITIALISED, rendererInitialised );
-			_pickingManager.enableMouseListeners( renderer.viewport );
+			
+			//_pickingManager.enableMouseListeners( renderer.viewport );
+			_pickingManager.setView(renderer.viewport);
 			
 			renderer.addOverlay(selectionOverlay);
 			renderer.addOverlay(snapOverlay);
