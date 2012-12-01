@@ -73,14 +73,14 @@ package cadetEditor.contexts
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.enable(DisplayObjectContainer(_view));
+			_view.renderer.enable(DisplayObjectContainer(_view.getContent()));
 		}
 		
 		private function disableRenderer():void
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.disable(DisplayObjectContainer(_view));
+			_view.renderer.disable(DisplayObjectContainer(_view.getContent()));
 		}
 		
 		private function changeControlBarHandler( event:Event ):void

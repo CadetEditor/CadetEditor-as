@@ -8,6 +8,7 @@ package cadetEditor2DStarling.ui.overlays
 	import cadet2D.components.geom.BezierCurve;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.QuadraticBezier;
+	import cadet2D.overlays.Overlay;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
@@ -16,13 +17,11 @@ package cadetEditor2DStarling.ui.overlays
 	
 	import flash.geom.Point;
 	
-	import flox.ui.components.UIComponent;
-	
+	import starling.core.RenderSupport;
 	import starling.display.Shape;
 
-	public class BezierCurveToolOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
+	public class BezierCurveToolOverlay extends Overlay
 	{
-		//private var _view		:ICadetEditorView2D;
 		private var tool		:CadetEditorTool2D;
 		private var _curve		:BezierCurve;
 		private var _transform2D:Transform2D;
@@ -52,7 +51,7 @@ package cadetEditor2DStarling.ui.overlays
 			{
 				_curve.addEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
 			}
-			invalidate();
+			invalidate("*");
 		}
 		public function get curve():BezierCurve { return _curve; }
 		
@@ -67,26 +66,28 @@ package cadetEditor2DStarling.ui.overlays
 			{
 				_transform2D.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
-			invalidate();
+			invalidate("*");
 		}
 		public function get transform2D():Transform2D { return _transform2D; }
 		
 		private function invalidatePathHandler( event:InvalidationEvent ):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 		
 		private function invalidateTransformHandler( event:InvalidationEvent ):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 		
-		private function invalidate():void
+		public override function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			validate();
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
 		}
 		
-		protected function validate():void
+		override protected function validate():void
 		{
 			graphics.clear();
 			
@@ -150,16 +151,5 @@ package cadetEditor2DStarling.ui.overlays
 			graphics.drawRect(pos.x-BOX_SIZE*0.5, pos.y-BOX_SIZE*0.5, BOX_SIZE, BOX_SIZE);
 			graphics.endFill();
 		}
-
-/*		public function get view():ICadetEditorView2D
-		{
-			return _view;
-		}
-
-		public function set view(value:ICadetEditorView2D):void
-		{
-			_view = value;
-		}*/
-
 	}
 }

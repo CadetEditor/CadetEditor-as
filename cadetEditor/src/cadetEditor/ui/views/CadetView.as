@@ -9,14 +9,14 @@ package cadetEditor.ui.views
 	import cadetEditor.assets.CadetEditorIcons;
 	
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
+	import flox.editor.core.IViewContainer;
 	import flox.ui.components.Button;
 	import flox.ui.components.RadioButtonGroup;
 	import flox.ui.components.UIComponent;
 	import flox.ui.layouts.HorizontalLayout;
-	
-	import flox.editor.core.IViewContainer;
 	
 	public class CadetView extends UIComponent
 	{
@@ -79,15 +79,13 @@ package cadetEditor.ui.views
 				if ( _renderer )
 				{
 					_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-					//container.removeChild(_renderer.viewport);
-					_renderer.disable(this);//container);
+					_renderer.disable(container);
 				}
 				_renderer = value;
 				if ( _renderer )
 				{
 					_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-					//container.addChild(_renderer.viewport);
-					_renderer.enable(this);//container);
+					_renderer.enable(container);
 				}
 			}
 			
@@ -109,5 +107,7 @@ package cadetEditor.ui.views
 		{
 			return _height;
 		}
+		
+		public function getContent():DisplayObjectContainer { return container; }
 	}
 }

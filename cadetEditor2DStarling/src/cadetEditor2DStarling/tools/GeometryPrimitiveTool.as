@@ -59,7 +59,9 @@ package cadetEditor2DStarling.tools
 		{
 			dragging = true;
 			
-			mouseDownPoint = context.snapManager.snapPoint(ICadetEditorView2D(view).worldMouse).snapPoint;
+			mouseDownPoint = context.snapManager.snapPoint(view.worldMouse).snapPoint;
+			
+			trace("GeomPrimitive mouse x "+mouseDownPoint.x+" y "+mouseDownPoint.y);
 			
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.label = getOperationDescription();
@@ -79,12 +81,9 @@ package cadetEditor2DStarling.tools
 			var normalizedRect:Rectangle = rect.clone();
 			updateShape( rect, normalizedRect, event )
 			
-			if ( geometry is PolygonGeometry )
-			{
+			if ( geometry is PolygonGeometry ) {
 				context.snapManager.setVerticesToIgnore(PolygonGeometry(geometry).vertices);
-			}
-			else
-			{
+			} else {
 				context.snapManager.setVerticesToIgnore(null);
 			}
 			

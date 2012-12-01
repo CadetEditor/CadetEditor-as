@@ -55,7 +55,7 @@ package cadetEditor2DFlash.contexts
 		protected var _pickingManager					:PickingManager2D;
 		protected var _highlightManager					:IComponentHighlightManager;
 		
-		protected var _view								:ICadetEditorView2D;
+		protected var _view								:CadetEditorView2D;
 		protected var panController						:CadetEditorViewPanController;
 		
 		protected var _controllers						:Array;

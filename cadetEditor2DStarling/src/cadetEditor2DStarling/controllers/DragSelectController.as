@@ -10,6 +10,7 @@ package cadetEditor2DStarling.controllers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.overlays.Overlay;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
@@ -44,7 +45,7 @@ package cadetEditor2DStarling.controllers
 		protected var context				:ICadetEditorContext2D;
 		protected var view					:ICadetEditorView2D;
 		protected var dragStart				:Point;
-		protected var overlay				:Shape;
+		protected var overlay				:Overlay;
 		
 		private var _renderer				:Renderer2D;
 		
@@ -52,7 +53,7 @@ package cadetEditor2DStarling.controllers
 		{
 			this.context = context;
 			
-			overlay = new Shape();
+			overlay = new Overlay();
 			view = context.view2D;
 		}
 		

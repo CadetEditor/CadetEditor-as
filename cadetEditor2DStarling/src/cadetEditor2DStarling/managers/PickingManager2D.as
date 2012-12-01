@@ -159,6 +159,7 @@ package cadetEditor2DStarling.managers
 			for each ( var skin:AbstractSkin2D in allSkins)
 			{
 				var pt:Point = renderer.viewport.localToGlobal(new Point(x,y));
+				//trace("PM2D getSkinsUnderLoc x "+pt.x+" y "+pt.y);
 				if (!skin.displayObjectContainer.bounds.containsPoint(pt)) continue;
 				
 				skinsUnderLoc[L++] = skin;
@@ -171,9 +172,9 @@ package cadetEditor2DStarling.managers
 			if ( renderer == null ) return [];
 			if ( _snapManager )
 			{
-				//trace("PM2D getSkinsUnderMouse rX "+renderer.mouseX+" rY "+renderer.mouseY);
 				var pt:Point = new Point( renderer.mouseX, renderer.mouseY );
 				pt = renderer.viewportToWorld(pt);
+				//trace("PM2D getSkinsUnderMouse rX "+pt.x+" rY "+pt.y);
 				
 				//TODO: maybe shouldn't cop out here due to Starling...
 				if (!pt) return [];

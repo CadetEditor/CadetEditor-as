@@ -10,6 +10,7 @@ package cadetEditor2DStarling.ui.overlays
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
+	import cadet2D.overlays.Overlay;
 	
 	import cadetEditor2D.tools.ICadetEditorTool2D;
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
@@ -17,13 +18,11 @@ package cadetEditor2DStarling.ui.overlays
 	
 	import flash.geom.Point;
 	
-	import flox.ui.components.UIComponent;
-	
+	import starling.core.RenderSupport;
 	import starling.display.Shape;
 
-	public class PolygonToolOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
+	public class PolygonToolOverlay extends Overlay
 	{
-		//private var _view		:ICadetEditorView2D;
 		private var tool		:ICadetEditorTool2D;
 		private var _polygon	:PolygonGeometry;
 		private var _transform	:Transform2D;
@@ -46,7 +45,7 @@ package cadetEditor2DStarling.ui.overlays
 			{
 				_polygon.addEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
 			}
-			invalidate();
+			invalidate("*");
 		}
 		public function get polygon():PolygonGeometry { return _polygon; }
 		
@@ -61,26 +60,28 @@ package cadetEditor2DStarling.ui.overlays
 			{
 				_transform.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
-			invalidate();
+			invalidate("*");
 		}
 		public function get transform2D():Transform2D { return _transform; }
 		
 		private function invalidateTransformHandler( event:InvalidationEvent ):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 		
 		private function invalidatePathHandler( event:InvalidationEvent ):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 		
-		private function invalidate():void
+		public override function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			validate();
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
 		}
 		
-		protected function validate():void
+		override protected function validate():void
 		{
 			graphics.clear();
 			

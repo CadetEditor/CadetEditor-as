@@ -4,9 +4,9 @@
 //Draws a little X over the snap point nearest the mouse.
 package cadetEditor2DStarling.ui.overlays
 {
-	
 	import cadet.events.RendererEvent;
 	
+	import cadet2D.overlays.Overlay;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	
 	import cadetEditor2D.managers.SnapInfo;
@@ -17,6 +17,7 @@ package cadetEditor2DStarling.ui.overlays
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import starling.core.RenderSupport;
 	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
 	import starling.display.Shape;
@@ -24,7 +25,7 @@ package cadetEditor2DStarling.ui.overlays
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	
-	public class SnapOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
+	public class SnapOverlay extends Overlay
 	{
 		private static const CROSS_SIZE		:int = 5;
 		
@@ -36,35 +37,45 @@ package cadetEditor2DStarling.ui.overlays
 		public function SnapOverlay( snapManager:SnapManager2D )
 		{
 			//blendMode = BlendMode.DIFFERENCE;
-			//blendMode = BlendMode.ADD;
 			this.snapManager = snapManager;
 		}
 		
-		private function invalidate():void
+		public override function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			validate();
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
 		}
 		
-		protected function validate():void
+		override protected function validate():void
 		{
 			graphics.clear();
 			
 			if ( !snapManager ) return;
 			if ( !_renderer ) return;
 			
-			//var worldMouse:Point = ICadetEditorView2D(view).worldMouse;
-			var worldMouse:Point = _renderer.viewportToWorld( new Point(  _renderer.mouseX, _renderer.mouseY ) );
+			var viewportMouse:Point = new Point(_renderer.mouseX, _renderer.mouseY);
+			//var worldMouse:Point = _renderer.viewportToWorld( new Point(  _renderer.mouseX, _renderer.mouseY ) );
+			
+			//trace("SnapOverlay renderer x "+_renderer.mouseX+" y "+_renderer.mouseY);
+			//trace("SnapOverlay viewportMouse x "+viewportMouse.x+" y "+viewportMouse.y);
 			
 			//TODO: Possibly shouldn't cop out here due to Starling...
-			if (!worldMouse) return;
+			if (!viewportMouse) return;
 			
-			var snapInfo:SnapInfo = snapManager.snapPoint(worldMouse);
+			var snapInfo:SnapInfo = snapManager.snapPoint(viewportMouse);
 			var pt:Point = snapInfo.snapPoint;
-			if ( pt.x == worldMouse.x && pt.y == worldMouse.y ) return;
 			
-			pt = _renderer.worldToViewport(pt);
+			//trace("SnapOverlay snapPoint x "+pt.x+" y "+pt.y+" OVERLAY x "+x+" y "+y);
 			
-			graphics.lineStyle(1, 0xFFFFFF);
+			if ( pt.x == viewportMouse.x && pt.y == viewportMouse.y ) return;
+			
+			//pt = _renderer.worldToViewport(pt);
+			
+			//pt = _renderer.viewport.localToGlobal(pt);
+			pt = globalToLocal(pt);
+			
+			graphics.lineStyle(1, 0xFF0000);
 			
 			//trace("SnapOverlay type "+snapInfo.snapPoint+" pt x "+pt.x+" y "+pt.y);
 			
@@ -130,7 +141,7 @@ package cadetEditor2DStarling.ui.overlays
 			for each (var touch:Touch in touches)
 			{
 				if ( touch.phase == TouchPhase.HOVER ) {
-					invalidate();
+					invalidate("*");
 					break;
 				}
 			}

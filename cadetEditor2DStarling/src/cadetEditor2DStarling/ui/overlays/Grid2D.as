@@ -3,55 +3,59 @@
 
 package cadetEditor2DStarling.ui.overlays
 {
+	import cadet2D.overlays.Overlay;
+	
 	import cadetEditor.events.CadetEditorViewEvent;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.display.BlendMode;
-	
-	import flox.ui.components.UIComponent;
+	import starling.core.RenderSupport;
+	import starling.display.Shape;
 
-	public class Grid2D extends UIComponent implements ICadetEditorOverlay2D
+	public class Grid2D extends Overlay
 	{	
 		private var _view	:ICadetEditorView2D;
 		
 		public function Grid2D()
 		{
-			mouseEnabled = false;
-			mouseChildren = false;
-			blendMode = BlendMode.DIFFERENCE;
+			//mouseEnabled = false;
+			//mouseChildren = false;
+			//blendMode = BlendMode.DIFFERENCE;
+			
+			touchable = false;
 		}
 		
-		override protected function init():void
+		public override function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			super.init();
-			percentWidth = percentHeight = 100;
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
 		}
 		
 		override protected function validate():void
 		{
 			if ( !_view ) return;
 			
-			var view2D:ICadetEditorView2D = ICadetEditorView2D(view);
-			
 			visible = view.showGrid;
 			
+			var _width:Number = view.viewportWidth;
+			var _height:Number = view.viewportHeight;
 			
 			graphics.clear();
 			
 			if ( visible )
 			{
-				var size:Number = view.gridSize * view2D.zoom;
+				var size:Number = view.gridSize * view.zoom;
 				size = size <= 0 ? 1 : size;
-				var left:Number = view2D.panX*view2D.zoom - _width*0.5;
-				var top:Number = view2D.panY*view2D.zoom - _height*0.5;
+				var left:Number = view.panX*view.zoom - _width*0.5;
+				var top:Number = view.panY*view.zoom - _height*0.5;
 				var x:Number = (size-(left % size)) - size;
 				var y:Number = (size-(top % size)) - size;
 				
 				while ( x < _width )
 				{
-					var worldX:int = - x - (view2D.panX*view2D.zoom) + _width*0.5;
+					var worldX:int = - x - (view.panX*view.zoom) + _width*0.5;
 					graphics.lineStyle(1, 0xFFFFFF, worldX == 0 ? 0.3 : 0.1);
 					graphics.moveTo(x,0);
 					graphics.lineTo(x,_height);
@@ -60,7 +64,7 @@ package cadetEditor2DStarling.ui.overlays
 				}
 				while ( y < _height )
 				{
-					var worldY:int = - y - (view2D.panY*view2D.zoom) + _height*0.5;
+					var worldY:int = - y - (view.panY*view.zoom) + _height*0.5;
 					graphics.lineStyle(1, 0xFFFFFF, worldY == 0 ? 0.3 : 0.1);
 					graphics.moveTo(0,y);
 					graphics.lineTo(_width,y);

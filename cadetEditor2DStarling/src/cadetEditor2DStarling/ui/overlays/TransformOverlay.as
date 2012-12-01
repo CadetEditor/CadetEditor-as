@@ -4,6 +4,7 @@
 // The little boxes that appear in the corners and middle of the sides of a shape when using the transform tool
 package cadetEditor2DStarling.ui.overlays
 {
+	import cadet2D.overlays.Overlay;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
@@ -13,11 +14,12 @@ package cadetEditor2DStarling.ui.overlays
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import starling.core.RenderSupport;
 	import starling.display.BlendMode;
 	import starling.display.Shape;
 	import starling.display.Sprite;
 
-	public class TransformOverlay extends Shape //UIComponent implements ICadetEditorOverlay2D
+	public class TransformOverlay extends Overlay
 	{
 		private var _view			:ICadetEditorView2D;
 		
@@ -58,7 +60,6 @@ package cadetEditor2DStarling.ui.overlays
 		{
 			boxesArray = [];
 			//blendMode = BlendMode.INVERT;
-			//blendMode = BlendMode.ADD;
 			
 			rotationArea = new Shape();
 			addChild( rotationArea );
@@ -92,7 +93,7 @@ package cadetEditor2DStarling.ui.overlays
 		{
 			this.tBounds = bounds;
 			this.matrix = matrix.clone();
-			invalidate();
+			invalidate("*");
 			visible = true;
 		}
 		
@@ -103,17 +104,14 @@ package cadetEditor2DStarling.ui.overlays
 			visible = false;
 		}
 		
-		private function invalidate():void
+		public override function render(support:RenderSupport, parentAlpha:Number):void
 		{
-			validate();
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
 		}
 		
-		public function validateNow():void
-		{
-			validate();
-		}
-		
-		protected function validate():void
+		override protected function validate():void
 		{
 			if ( !tBounds ) return;
 			if ( !renderer ) return;

@@ -73,7 +73,7 @@ package cadetEditor2DFlashBox2D.tools
 		
 		override public function enable():void
 		{
-			context.view2D.addOverlay(overlay);
+			_view.addOverlay(overlay);
 //			if ( !controlBar.parent )
 //			{
 //				context.view2D.controlBar.addChild(controlBar);
@@ -105,7 +105,7 @@ package cadetEditor2DFlashBox2D.tools
 			}
 			
 			
-			context.view2D.removeOverlay(overlay);
+			_view.removeOverlay(overlay);
 			overlay.graphics.clear();
 			
 			transformA = null;

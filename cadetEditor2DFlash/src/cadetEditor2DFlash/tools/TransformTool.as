@@ -104,11 +104,11 @@ package cadetEditor2DFlash.tools
 			
 			try
 			{
-				view.getOverlayOfType(SelectionOverlay).visible = false;
+				_view.getOverlayOfType(SelectionOverlay).visible = false;
 			}
 			catch (e:Error) {}
 			
-			view.addOverlay(overlay, CadetEditorView2D.TOP);
+			_view.addOverlay(overlay, CadetEditorView2D.TOP);
 			
 			overlay.boxes.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownBoxHandler );
 			overlay.rotationArea.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownRotationAreaHandler );
@@ -126,11 +126,11 @@ package cadetEditor2DFlash.tools
 			
 			try
 			{
-				view.getOverlayOfType(SelectionOverlay).visible = true;
+				_view.getOverlayOfType(SelectionOverlay).visible = true;
 			}
 			catch (e:Error) {}
 			
-			view.removeOverlay(overlay);
+			_view.removeOverlay(overlay);
 			
 			if ( overlay.boxes )
 			{

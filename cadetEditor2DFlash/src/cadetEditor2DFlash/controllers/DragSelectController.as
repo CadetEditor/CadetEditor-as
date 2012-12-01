@@ -19,6 +19,9 @@ package cadetEditor2DFlash.controllers
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.BitmapHitTest;
 	
+	import cadetEditor2DFlash.contexts.CadetEditorContext2D;
+	import cadetEditor2DFlash.ui.views.CadetEditorView2D;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -37,17 +40,17 @@ package cadetEditor2DFlash.controllers
 	public class DragSelectController implements IDragSelectionController
 	{
 		protected var _dragging				:Boolean = false;
-		protected var context				:ICadetEditorContext2D;
-		protected var view					:ICadetEditorView2D;
+		protected var context				:CadetEditorContext2D;
+		protected var view					:CadetEditorView2D;
 		protected var dragStart				:Point;
 		protected var overlay				:Sprite;
 		
 		public function DragSelectController(context:ICadetEditorContext2D)
 		{
-			this.context = context;
+			this.context = CadetEditorContext2D(context);
 			
 			overlay = new Sprite();
-			view = context.view2D;
+			view = CadetEditorView2D(context.view2D);
 			view.addOverlay(overlay);
 		}
 		

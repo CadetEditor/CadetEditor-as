@@ -31,12 +31,14 @@ package cadetEditor2DStarling.contexts
 	
 	import cadetEditor2DStarling.managers.ComponentHighlightManager;
 	import cadetEditor2DStarling.managers.PickingManager2D;
+	import cadetEditor2DStarling.ui.overlays.Grid2D;
 	import cadetEditor2DStarling.ui.overlays.SelectionOverlay;
 	import cadetEditor2DStarling.ui.overlays.SnapOverlay;
 	import cadetEditor2DStarling.ui.views.CadetEditorView2D;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import flox.app.FloxApp;
@@ -64,6 +66,7 @@ package cadetEditor2DStarling.contexts
 		
 		private var selectionOverlay					:SelectionOverlay;
 		private var snapOverlay							:SnapOverlay;
+		private var gridOverlay							:Grid2D;
 		
 		public function CadetEditorContext2D()
 		{
@@ -89,6 +92,9 @@ package cadetEditor2DStarling.contexts
 			// Init Snap Overlap
 			snapOverlay = new SnapOverlay(_snapManager);
 			//_view.addOverlay( snapOverlay, CadetEditorView2D.TOP );
+			
+			gridOverlay = new Grid2D();
+			gridOverlay.view = _view;
 			
 			_controllers = [];
 			
@@ -140,7 +146,6 @@ package cadetEditor2DStarling.contexts
 			
 			panController.disable();
 			
-			
 			_pickingManager.dispose();
 			_highlightManager.dispose();
 			_snapManager.dispose();
@@ -172,7 +177,7 @@ package cadetEditor2DStarling.contexts
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.enable(DisplayObjectContainer(_view), 2);
+			_view.renderer.enable(DisplayObjectContainer(_view.getContent()), 2);
 			_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
 		}
 		
@@ -180,7 +185,7 @@ package cadetEditor2DStarling.contexts
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.disable(DisplayObjectContainer(_view));
+			_view.renderer.disable(DisplayObjectContainer(_view.getContent()));
 		}
 		
 		override protected function disposeScene():void
@@ -289,6 +294,7 @@ package cadetEditor2DStarling.contexts
 				//_view.addOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(snapOverlay);
+				oldRenderer.removeOverlay(gridOverlay)
 				
 				selectionOverlay.renderer = null;
 				snapOverlay.renderer = null;
@@ -304,6 +310,7 @@ package cadetEditor2DStarling.contexts
 				newRenderer = Renderer2D(renderers[0]);
 				newRenderer.addOverlay(selectionOverlay);
 				newRenderer.addOverlay(snapOverlay);
+				newRenderer.addOverlay(gridOverlay);
 				
 				selectionOverlay.renderer = newRenderer;
 				snapOverlay.renderer = newRenderer;
@@ -339,10 +346,10 @@ package cadetEditor2DStarling.contexts
 			
 			renderer.addOverlay(selectionOverlay);
 			renderer.addOverlay(snapOverlay);
+			renderer.addOverlay(gridOverlay);//, BOTTOM );
 			
 			selectionOverlay.renderer = renderer;
 			snapOverlay.renderer = renderer;
-			
 		}
 		
 		private function bindingChangeHandler( event:PropertyChangeEvent ):void

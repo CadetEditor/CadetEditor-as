@@ -8,6 +8,7 @@ package cadetEditor2DStarling.ui.overlays
 	import cadet.events.RendererEvent;
 	
 	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.overlays.Overlay;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
 	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
 	
@@ -21,6 +22,7 @@ package cadetEditor2DStarling.ui.overlays
 	import flox.core.data.ArrayCollection;
 	import flox.core.events.ArrayCollectionEvent;
 	
+	import starling.core.RenderSupport;
 	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
 	import starling.display.Shape;
@@ -28,7 +30,7 @@ package cadetEditor2DStarling.ui.overlays
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	
-	public class SelectionOverlay extends Shape //implements ICadetEditorOverlay2D
+	public class SelectionOverlay extends Overlay
 	{
 		private var selectedSkins			:Array
 		private var _selection				:ArrayCollection;
@@ -58,11 +60,16 @@ package cadetEditor2DStarling.ui.overlays
 				_selection.addEventListener( ArrayCollectionEvent.CHANGE, selectionChangedHandler );
 			}
 			
-			invalidate();
+			invalidate("*");
 		}
 		public function get selection():ArrayCollection { return _selection; }
 		
-		
+		public override function render(support:RenderSupport, parentAlpha:Number):void
+		{
+			super.render(support, parentAlpha);
+			
+			if ( isInvalid("*") )	validateNow();
+		}
 		
 		private function clearSelection():void
 		{
@@ -73,12 +80,7 @@ package cadetEditor2DStarling.ui.overlays
 			selectedSkins = [];
 		}
 		
-		private function invalidate():void
-		{
-			validate();
-		}
-		
-		private function validate():void
+		override protected function validate():void
 		{
 			clearSelection();
 			graphics.clear();
@@ -146,12 +148,12 @@ package cadetEditor2DStarling.ui.overlays
 		
 		private function invalidateSkinHandler( event:InvalidationEvent ):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 		
 		private function selectionChangedHandler(event:ArrayCollectionEvent):void
 		{
-			invalidate();
+			invalidate("*");
 		}
 
 		private static function isVisible( displayObject:DisplayObject ):Boolean
@@ -192,7 +194,7 @@ package cadetEditor2DStarling.ui.overlays
 			for each (var touch:Touch in touches)
 			{
 				if ( touch.phase == TouchPhase.HOVER ) {
-					invalidate();
+					invalidate("*");
 					break;
 				}
 			}

@@ -10,14 +10,17 @@ package cadetEditor2DFlash.tools
 	import cadetEditor2D.tools.ICadetEditorTool2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
+	import cadetEditor2DFlash.contexts.CadetEditorContext2D;
+	import cadetEditor2DFlash.ui.views.CadetEditorView2D;
+	
 	import flash.geom.Point;
 	
 	import flox.app.core.contexts.IContext;
 	
 	public class CadetEditorTool2D implements ICadetEditorTool2D
 	{
-		protected var _context		:ICadetEditorContext2D;
-		protected var _view			:ICadetEditorView2D;
+		protected var _context		:CadetEditorContext2D;
+		protected var _view			:CadetEditorView2D;
 		
 		// Private storage vars for commonly used functions to avoid 'new Point()'.
 		private var snappedPos:Point;
@@ -33,8 +36,8 @@ package cadetEditor2DFlash.tools
 		
 		public function init( context:IContext ):void
 		{
-			_context = ICadetEditorContext2D( context );
-			_view = ICadetEditorContext2D( _context ).view2D;
+			_context = CadetEditorContext2D( context );
+			_view = CadetEditorView2D(_context.view2D);
 		}
 		
 		public function dispose():void
@@ -103,7 +106,7 @@ package cadetEditor2DFlash.tools
 		}
 		public function set context(value:ICadetEditorContext2D):void
 		{
-			_context = value;
+			_context = CadetEditorContext2D(value);
 		}
 		
 		public function get view():ICadetEditorView2D
@@ -112,7 +115,7 @@ package cadetEditor2DFlash.tools
 		}
 		public function set view(value:ICadetEditorView2D):void
 		{
-			_view = value;
+			_view = CadetEditorView2D(value);
 		}
 	}
 }

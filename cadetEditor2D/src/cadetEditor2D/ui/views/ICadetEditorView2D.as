@@ -35,7 +35,7 @@ package cadetEditor2D.ui.views
 		//function get controlBar():DisplayObjectContainer
 			
 		function getContent():Sprite
-		function getOverlayOfType( type:Class ):DisplayObject
+//		function getOverlayOfType( type:Class ):DisplayObject
 			
 		function get viewportWidth():Number
 		function get viewportHeight():Number
@@ -43,8 +43,8 @@ package cadetEditor2D.ui.views
 		function get viewportMouse():Point 
 		function get worldMouse():Point
 			
-		function addOverlay( overlay:DisplayObject, location:int = 0 ):void
-		function removeOverlay( overlay:DisplayObject ):void
+//		function addOverlay( overlay:DisplayObject, location:int = 0 ):void
+//		function removeOverlay( overlay:DisplayObject ):void
 			
 		function get parent():DisplayObjectContainer
 	}

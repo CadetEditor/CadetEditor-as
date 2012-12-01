@@ -8,6 +8,7 @@ package cadetEditor2DStarling.ui.views
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.renderPipeline.starling.components.renderers.RendererInvalidationTypes;
 	
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.events.CadetEditorViewEvent;
@@ -51,9 +52,6 @@ package cadetEditor2DStarling.ui.views
 		
 		// Display Hierachy
 		private var background						:flash.display.Sprite;
-		private var overlayContainerBottom			:Container;
-		private var overlayContainerAbove			:Container;
-		private var overlayContainerTop				:Container;
 		
 		private var _viewportWidth						:int;
 		private var _viewportHeight						:int;
@@ -61,8 +59,7 @@ package cadetEditor2DStarling.ui.views
 //		private var _controlBar							:CadetEditorControlBar;
 				
 		// View State
-		private var overlays							:Array;
-		private var _renderer							:IRenderer2D;
+		private var _renderer							:Renderer2D;
 		private var _backgroundColor					:uint = 0x303030;
 		private var _gridSize							:Number;
 		private var _showGrid							:Boolean = false;
@@ -77,12 +74,6 @@ package cadetEditor2DStarling.ui.views
 		
 		public function dispose():void
 		{
-			while (overlays.length > 0)
-			{
-				removeOverlay(overlays[0]);
-				overlays.splice(0,1);
-			}
-			
 //			BindingUtil.unbindTwoWay(this, "zoom", _controlBar.zoomControl, "value");
 //			BindingUtil.unbindTwoWay(this, "showGrid", _controlBar.gridToggle, "selected" );
 //			BindingUtil.unbindTwoWay(this, "gridSize", _controlBar.gridSizeControl, "value" );
@@ -92,12 +83,10 @@ package cadetEditor2DStarling.ui.views
 		{
 			super.init();
 			
-			overlays = [];
-			
 			background = new flash.display.Sprite();
 			addChild(background);
 			
-			overlayContainerBottom = new Container();
+/*			overlayContainerBottom = new Container();
 			overlayContainerBottom.percentWidth = overlayContainerBottom.percentHeight = 100;
 			addChild(overlayContainerBottom)
 			
@@ -107,7 +96,7 @@ package cadetEditor2DStarling.ui.views
 		
 			overlayContainerTop = new Container();
 			overlayContainerTop.percentWidth = overlayContainerTop.percentHeight = 100;
-			addChild( overlayContainerTop );
+			addChild( overlayContainerTop );*/
 			
 //			_controlBar = new CadetEditorControlBar();
 //			BindingUtil.bindTwoWay(this, "zoom", _controlBar.zoomControl, "value");
@@ -147,10 +136,17 @@ package cadetEditor2DStarling.ui.views
 			_viewportWidth = layoutRect.width;
 			_viewportHeight = layoutRect.height;
 			
+//			var cntnr:flash.display.Sprite = flash.display.Sprite(container);
+//			cntnr.graphics.clear();
+//			cntnr.graphics.lineStyle(1, 0xFF0000);
+//			cntnr.graphics.drawRect(1, 1, cntnr.width-2, cntnr.height-2);
+			
 			if ( _renderer )
 			{
 				_renderer.viewportWidth = _viewportWidth;
 				_renderer.viewportHeight = _viewportHeight;
+				
+				_renderer.invalidate(RendererInvalidationTypes.OVERLAYS);
 				
 				var m:Matrix = new Matrix();
 				m.scale(_zoom,_zoom);
@@ -159,7 +155,6 @@ package cadetEditor2DStarling.ui.views
 				m.translate(_viewportWidth*0.5,_viewportHeight*0.5);		
 				
 				_renderer.setWorldContainerTransform( m );
-				//Renderer2D(_renderer).worldContainer.transform.matrix = m;
 				_renderer.validateNow();
 			}
 			
@@ -167,14 +162,14 @@ package cadetEditor2DStarling.ui.views
 			background.graphics.beginFill(_backgroundColor, 0.2);
 			background.graphics.drawRect(0,0,layoutRect.width,layoutRect.height);
 			
-			for each ( var overlay:DisplayObject in overlays )
+/*			for each ( var overlay:DisplayObject in overlays )
 			{
 				if ( overlay is UIComponent )
 				{
 					UIComponent(overlay).invalidate();
 					UIComponent(overlay).validateNow();
 				}
-			}
+			}*/
 		}
 
 		public function set showGrid(value:Boolean):void
@@ -224,79 +219,29 @@ package cadetEditor2DStarling.ui.views
 		}
 		public function get panY():Number { return _panY; }
 		
-		public function addOverlay( overlay:DisplayObject, location:int = 0 ):void
-		{
-			var container:Container = location == TOP ? overlayContainerTop : overlayContainerBottom;
-			if ( overlay is IUIComponent )
-			{
-				IUIComponent(overlay).percentWidth = IUIComponent(overlay).percentHeight = 100;
-			}
-			container.addChild(overlay);
-			if ( overlay is ICadetEditorOverlay2D )
-			{
-				ICadetEditorOverlay2D(overlay).view = this;
-			}
-			
-			overlays.push(overlay);
-		}
-		
-		public function removeOverlay( overlay:DisplayObject ):void
-		{
-			if ( overlays.indexOf(overlay) == -1 ) return;
-			
-			if ( overlay is ICadetEditorOverlay2D )
-			{
-				ICadetEditorOverlay2D(overlay).view = null;
-			}
-			
-			try
-			{
-				overlays.splice(overlays.indexOf(overlay),1);
-				overlay.parent.parent.removeChild(overlay);
-			}
-			catch ( e:Error )
-			{
-				return;
-			}
-		}
-		
-		public function getOverlayOfType( type:Class ):DisplayObject
-		{
-			for each ( var overlay:DisplayObject in overlays )
-			{
-				if ( overlay is type )
-				{
-					return overlay;
-				}
-			}
-			return null;
-		}
-		
 		public function set renderer( value:IRenderer2D ):void
 		{
 			if ( _renderer )
 			{
 				_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-				//removeChild(_renderer.viewport);
-				_renderer.disable(this);
+				_renderer.disable(container);
 				
-				var existingGrid:Grid2D = Grid2D(getOverlayOfType(Grid2D));
+/*				var existingGrid:Grid2D = Grid2D(getOverlayOfType(Grid2D));
 				if ( existingGrid )
 				{
 					removeOverlay(existingGrid);
-				}
+				}*/
 			}
-			_renderer = value;
+			_renderer = Renderer2D(value);
 			if ( _renderer )
 			{
 				_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-				//addChildAt(_renderer.viewport,2);
 				_renderer.enable(container, 2);
 				
-				if ( _renderer is IRenderer2D )
+/*				if ( _renderer is IRenderer2D )
 				{
 					addOverlay( new Grid2D(), BOTTOM );
-				}
+				}*/
 			}
 			
 			// Enable/Disable Grid controls depending on the availibility of a Renderer2D
@@ -324,7 +269,7 @@ package cadetEditor2DStarling.ui.views
 		}
 		public function get viewportWidth():Number { return _viewportWidth; }
 		public function get viewportHeight():Number { return _viewportHeight; }
-		//public function get viewport():Sprite { return renderer.viewport; }
+		public function get viewport():starling.display.Sprite { return _renderer.viewport; }
 		public function get viewportMouse():Point 
 		{ 
 			if ( renderer )

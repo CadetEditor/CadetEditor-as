@@ -63,7 +63,7 @@ package cadetEditor2DFlash.tools
 		{
 			super.enable();
 			
-			view.addOverlay(overlay);			
+			_view.addOverlay(overlay);			
 			context.selection.addEventListener(ArrayCollectionEvent.CHANGE, selectionChangeHandler);
 			updateFromSelection();
 		}
@@ -79,7 +79,7 @@ package cadetEditor2DFlash.tools
 						
 			overlay.polygon = null;
 			overlay.transform2D = null;
-			view.removeOverlay(overlay);			
+			_view.removeOverlay(overlay);			
 		}
 		
 		private function selectionChangeHandler( event:ArrayCollectionEvent ):void

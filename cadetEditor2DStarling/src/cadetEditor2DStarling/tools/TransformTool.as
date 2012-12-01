@@ -103,14 +103,15 @@ package cadetEditor2DStarling.tools
 		{
 			super.enable();
 			
-			try
-			{
-				view.getOverlayOfType(SelectionOverlay).visible = false;
-			}
-			catch (e:Error) {}
-			
 			var renderer2D:Renderer2D = Renderer2D(view.renderer);
-			if (renderer2D)	{ 
+			
+			if (renderer2D)	
+			{
+				try {
+					renderer2D.getOverlayOfType(SelectionOverlay).visible = false;
+				}
+				catch (e:Error) {}
+			 
 				renderer2D.addOverlay(overlay);
 				overlay.renderer = renderer2D;
 			}
@@ -130,14 +131,17 @@ package cadetEditor2DStarling.tools
 		{
 			super.disable();
 			
-			try
-			{
-				view.getOverlayOfType(SelectionOverlay).visible = true;
-			}
-			catch (e:Error) {}
-			
 			var renderer2D:Renderer2D = Renderer2D(view.renderer);
-			if (renderer2D)	renderer2D.removeOverlay(overlay);	
+			
+			if (renderer2D)	
+			{
+				try	{
+					renderer2D.getOverlayOfType(SelectionOverlay).visible = true;
+				}
+				catch (e:Error) {}
+				
+				renderer2D.removeOverlay(overlay);
+			}
 			//view.removeOverlay(overlay);
 			
 			if ( overlay.boxes )
