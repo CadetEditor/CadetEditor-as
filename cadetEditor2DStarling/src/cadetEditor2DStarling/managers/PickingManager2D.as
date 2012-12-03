@@ -212,12 +212,21 @@ package cadetEditor2DStarling.managers
 			allSkins.splice(allSkins.indexOf(event.component),1);
 		}
 		
-		private function sendEvent( type:String, skinsUnderMouse:Array, skin:ISkin2D, touchEvent:TouchEvent, touch:Touch ):void
+		private function sendEvent( type:String, skinsUnderMouse:Array, skin:ISkin2D = null, touchEvent:TouchEvent = null, touch:Touch = null ):void
 		{
 			var altKey:Boolean = false;
 			var buttonDown:Boolean = false;
 			
-			dispatchEvent( new PickingManagerEvent( type, skinsUnderMouse, skin, touch.globalX, touch.globalY, touchEvent.ctrlKey, altKey, touchEvent.shiftKey, buttonDown ) );
+			if ( touchEvent ) {
+				var ctrlKey:Boolean = touchEvent.ctrlKey;
+				var shiftKey:Boolean = touchEvent.shiftKey;
+			}
+			if ( touch ) {
+				var globalX:Number = touch.globalX;
+				var globalY:Number = touch.globalY;
+			}
+			
+			dispatchEvent( new PickingManagerEvent( type, skinsUnderMouse, skin, globalX, globalY, ctrlKey, altKey, shiftKey, buttonDown ) );
 		}
 		
 		private function mouseDownHandler(event:TouchEvent, touch:Touch):void

@@ -23,7 +23,7 @@ package cadetEditor.contexts
 	public class CadetContext extends AbstractCadetEditorContext implements ICadetContext
 	{
 		private var _view		:CadetView;
-		private var firstEnable	:Boolean = true;
+		//private var firstEnable	:Boolean = true;
 		
 		public function CadetContext()
 		{
@@ -49,12 +49,12 @@ package cadetEditor.contexts
 		public function enable():void
 		{
 			// Automatically start playing the scene when this editor is first launched
-			if ( firstEnable)
-			{
-				firstEnable = false;
+//			if ( firstEnable)
+//			{
+//				firstEnable = false;
 				_view.toggleBtnBar.selectedIndex = 2;
 				play();
-			}
+//			}
 			_view.toggleBtnBar.addEventListener(Event.CHANGE, changeControlBarHandler);
 			
 			enableRenderer();

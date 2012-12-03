@@ -100,7 +100,8 @@ package cadetEditor2DStarling.tools
 			onMouseMoveContainer(null);
 		}
 		
-		override protected function onMouseUpStage(event:PickingManagerEvent):void
+		//override protected function onMouseUpStage(event:PickingManagerEvent):void
+		override protected function onClickBackground(event:PickingManagerEvent):void
 		{
 			if ( !dragging ) return;
 			dragging = false;

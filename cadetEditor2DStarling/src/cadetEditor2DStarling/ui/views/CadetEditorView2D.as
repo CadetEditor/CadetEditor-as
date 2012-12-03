@@ -60,7 +60,7 @@ package cadetEditor2DStarling.ui.views
 				
 		// View State
 		private var _renderer							:Renderer2D;
-		private var _backgroundColor					:uint = 0x303030;
+		private var _backgroundColor					:uint = 0xFF0000;//0x303030;
 		private var _gridSize							:Number;
 		private var _showGrid							:Boolean = false;
 		private var _panX								:Number = 0;
@@ -85,18 +85,6 @@ package cadetEditor2DStarling.ui.views
 			
 			background = new flash.display.Sprite();
 			addChild(background);
-			
-/*			overlayContainerBottom = new Container();
-			overlayContainerBottom.percentWidth = overlayContainerBottom.percentHeight = 100;
-			addChild(overlayContainerBottom)
-			
-			overlayContainerAbove = new Container();
-			overlayContainerAbove.percentWidth = overlayContainerAbove.percentHeight = 100;
-			addChild( overlayContainerAbove );
-		
-			overlayContainerTop = new Container();
-			overlayContainerTop.percentWidth = overlayContainerTop.percentHeight = 100;
-			addChild( overlayContainerTop );*/
 			
 //			_controlBar = new CadetEditorControlBar();
 //			BindingUtil.bindTwoWay(this, "zoom", _controlBar.zoomControl, "value");
@@ -154,22 +142,15 @@ package cadetEditor2DStarling.ui.views
 				
 				m.translate(_viewportWidth*0.5,_viewportHeight*0.5);		
 				
+				//_renderer.backgroundColor = _backgroundColor;
 				_renderer.setWorldContainerTransform( m );
 				_renderer.validateNow();
 			}
 			
+			// BG is actually an overlay which is used for Flash MouseEvents
 			background.graphics.clear();
-			background.graphics.beginFill(_backgroundColor, 0.2);
+			background.graphics.beginFill(_backgroundColor, 0);
 			background.graphics.drawRect(0,0,layoutRect.width,layoutRect.height);
-			
-/*			for each ( var overlay:DisplayObject in overlays )
-			{
-				if ( overlay is UIComponent )
-				{
-					UIComponent(overlay).invalidate();
-					UIComponent(overlay).validateNow();
-				}
-			}*/
 		}
 
 		public function set showGrid(value:Boolean):void
@@ -225,23 +206,12 @@ package cadetEditor2DStarling.ui.views
 			{
 				_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
 				_renderer.disable(container);
-				
-/*				var existingGrid:Grid2D = Grid2D(getOverlayOfType(Grid2D));
-				if ( existingGrid )
-				{
-					removeOverlay(existingGrid);
-				}*/
 			}
 			_renderer = Renderer2D(value);
 			if ( _renderer )
 			{
 				_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
 				_renderer.enable(container, 2);
-				
-/*				if ( _renderer is IRenderer2D )
-				{
-					addOverlay( new Grid2D(), BOTTOM );
-				}*/
 			}
 			
 			// Enable/Disable Grid controls depending on the availibility of a Renderer2D
