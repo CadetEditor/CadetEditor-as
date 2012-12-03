@@ -5,10 +5,9 @@ package
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.processes.WorldBounds2D;
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.components.skins.AssetSkin;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.renderPipeline.flash.components.processes.TrackCamera2DProcess;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.AssetSkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.entities.CadetEditorCommands;
@@ -46,10 +45,9 @@ package
 	import flox.editor.resources.ActionFactory;
 	import flox.editor.resources.EditorFactory;
 	
-	import platformer.components.entities.ProtagonistEntity;
 	import platformer.components.behaviours.TileBehaviour;
+	import platformer.components.entities.ProtagonistEntity;
 	import platformer.components.processes.GridProcess;
-	
 	import platformer.tools.BrushTool;
 	
 	public class CadetEditor_Extension2D_TileBasedPlatformer extends Sprite
@@ -108,7 +106,7 @@ package
 			
 			// Processes
 			resourceManager.addResource( new ComponentFactory( WorldBounds2D, 				"World Bounds 2D", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
+			//resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			//resourceManager.addResource( new ComponentFactory( CollisionDetectionProcess, 	"Collision Detection", 			"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( Renderer2D, 					"2D Renderer", 					"Processes", 	CadetEditorIcons.Renderer, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( GridProcess, 				"Grid Process", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );

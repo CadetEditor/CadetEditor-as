@@ -7,7 +7,7 @@ package cadetEditor2DStarling.managers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
+	import cadet2D.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.managers.IComponentHighlightManager;
 	

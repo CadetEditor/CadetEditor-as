@@ -9,8 +9,8 @@ package cadetEditor2DFlash.tools
 	
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
+	import cadet2DFlash.components.renderers.Renderer2D;
+	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;

@@ -12,9 +12,9 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.AbstractSkin2D;
-	import cadet2D.renderPipeline.flash.components.skins.PinSkin;
+	import cadet2DFlash.components.renderers.Renderer2D;
+	import cadet2DFlash.components.skins.AbstractSkin2D;
+	import cadet2DFlash.components.skins.PinSkin;
 	
 	import cadet2DBox2D.components.behaviours.RevoluteJointBehaviour;
 	

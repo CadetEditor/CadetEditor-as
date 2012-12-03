@@ -5,13 +5,13 @@ package cadetEditor2DFlashBox2D.controllers
 	
 	import cadet2D.components.connections.Connection;
 	import cadet2D.components.connections.Pin;
-	import cadet2D.renderPipeline.flash.components.skins.SpringSkin;
+	import cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour;
+	import cadet2DFlash.components.skins.SpringSkin;
 	
 	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;
 	import cadet2DBox2D.components.behaviours.PrismaticJointBehaviour;
 	import cadet2DBox2D.components.behaviours.RevoluteJointBehaviour;
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
-	import cadet2DBox2D.renderPipeline.flash.components.behaviours.RigidBodyMouseDragBehaviour;
 	import cadet2DBox2D.components.behaviours.SpringBehaviour;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -24,14 +24,13 @@ package cadetEditor2DFlashBox2D.controllers
 	
 	import flash.events.Event;
 	
-	import flox.core.data.ArrayCollection;
-	
-	import flox.editor.FloxEditor;
-	import flox.editor.core.IViewContainer;
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.RemoveItemOperation;
 	import flox.app.operations.UndoableCompoundOperation;
+	import flox.core.data.ArrayCollection;
+	import flox.editor.FloxEditor;
+	import flox.editor.core.IViewContainer;
 	
 	public class PhysicsControlBarController implements ICadetContextController
 	{

@@ -16,6 +16,7 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DBox2D/bin/CadetEngine_Extension_2DBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2D/bin/CadetEngine_Extension_2D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DFlash/bin/CadetEngine_Extension_2DFlash.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

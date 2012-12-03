@@ -11,7 +11,7 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.TerrainGeometry;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.renderPipeline.flash.components.skins.TerrainSkin;
+	import cadet2DFlash.components.skins.TerrainSkin;
 	
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
 	

@@ -10,7 +10,6 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2D.components.transforms.Transform2D;
 	
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
-	import cadet2DBox2D.renderPipeline.flash.components.behaviours.RigidBodyMouseDragBehaviour;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	

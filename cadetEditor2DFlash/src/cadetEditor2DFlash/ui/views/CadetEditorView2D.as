@@ -7,7 +7,7 @@ package cadetEditor2DFlash.ui.views
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2DFlash.components.renderers.Renderer2D;
 	
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.events.CadetEditorViewEvent;

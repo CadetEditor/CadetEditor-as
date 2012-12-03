@@ -5,7 +5,6 @@ package platformer.tools
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.renderPipeline.flash.components.skins.AssetSkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;

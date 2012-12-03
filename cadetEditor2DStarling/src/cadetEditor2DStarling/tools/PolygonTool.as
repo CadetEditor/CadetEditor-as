@@ -12,8 +12,8 @@ package cadetEditor2DStarling.tools
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.starling.components.skins.GeometrySkin;
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;

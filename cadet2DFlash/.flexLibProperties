@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cadet2DFlash.components.renderers.Renderer2D"/>
+    <classEntry path="cadet2DFlash.components.skins.AbstractSkin2D"/>
+    <classEntry path="cadet2DFlash.components.processes.TrackCamera2DProcess"/>
+    <classEntry path="cadet2DFlash.components.skins.GeometryDebugSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.FootprintManagerDebugSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.PinSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.SpringSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.ScrollingBackgroundSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.TerrainSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.FractalPolygonSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.GeometrySkin"/>
+    <classEntry path="cadet2DFlash.components.skins.AssetSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.ConnectionSkin"/>
+    <classEntry path="cadet2DFlash.components.skins.WorldBoundsDebugSkin"/>
+    <classEntry path="cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

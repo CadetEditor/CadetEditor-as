@@ -7,8 +7,8 @@ package cadetEditor2DStarling.ui.views
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.starling.components.renderers.RendererInvalidationTypes;
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.components.renderers.RendererInvalidationTypes;
 	
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.events.CadetEditorViewEvent;

@@ -7,7 +7,7 @@ package cadetEditor2DStarling.ui.overlays
 	import cadet.events.RendererEvent;
 	
 	import cadet2D.overlays.Overlay;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.components.renderers.Renderer2D;
 	
 	import cadetEditor2D.managers.SnapInfo;
 	import cadetEditor2D.managers.SnapManager2D;

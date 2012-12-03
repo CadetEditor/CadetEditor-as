@@ -5,7 +5,7 @@ package cadetEditor2DFlash.operations
 {
 	import flox.app.core.operations.IUndoableOperation;
 	
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
+	import cadet2DFlash.components.renderers.Renderer2D;
 	
 	import cadetEditor.controllers.ICadetEditorContextController;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;

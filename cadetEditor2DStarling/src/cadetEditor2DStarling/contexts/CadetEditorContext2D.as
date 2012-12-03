@@ -10,7 +10,7 @@ package cadetEditor2DStarling.contexts
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.components.renderers.Renderer2D;
 	
 	import cadetEditor.contexts.AbstractCadetEditorContext;
 	import cadetEditor.contexts.AbstractTooledCadetEditorContext;

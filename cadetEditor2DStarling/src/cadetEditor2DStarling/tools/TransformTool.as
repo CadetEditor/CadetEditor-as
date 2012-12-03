@@ -9,8 +9,8 @@ package cadetEditor2DStarling.tools
 	
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;

@@ -3,7 +3,7 @@
 
 package cadetEditor2DStarling.operations
 {
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
+	import cadet2D.components.renderers.Renderer2D;
 	
 	import cadetEditor.controllers.ICadetEditorContextController;
 	

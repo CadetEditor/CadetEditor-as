@@ -12,8 +12,8 @@ package cadetEditor2DStarling.controllers
 	
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.overlays.Overlay;
-	import cadet2D.renderPipeline.starling.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.starling.components.skins.AbstractSkin2D;
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.components.skins.AbstractSkin2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	

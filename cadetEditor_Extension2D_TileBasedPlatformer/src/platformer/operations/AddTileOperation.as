@@ -3,8 +3,8 @@ package platformer.operations
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.core.Entity;
+	import cadet2D.components.skins.AssetSkin;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.renderPipeline.starling.components.skins.AssetSkin;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.operations.RemoveComponentOperation;

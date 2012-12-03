@@ -12,7 +12,7 @@ package cadetEditor2DFlash.tools
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
-	import cadet2D.renderPipeline.flash.components.skins.GeometrySkin;
+	import cadet2DFlash.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;

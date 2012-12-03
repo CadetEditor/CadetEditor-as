@@ -3,24 +3,48 @@
 
 package 
 {
-	import cadet.components.behaviours.*;
-	import cadet.components.processes.*;
-	import cadet.core.*;
+	import cadet.components.behaviours.VehicleUserControlBehaviour;
+	import cadet.core.ICadetScene;
 	
-	import cadet2D.components.behaviours.*;
+	import cadet2D.components.behaviours.BezierCurveFootprintBehaviour;
+	import cadet2D.components.behaviours.GeometryFootprintBehaviour;
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.geom.*;
-	import cadet2D.components.processes.*;
-	import cadet2D.components.renderers.*;
-	import cadet2D.components.skins.*;
-	import cadet2D.components.transforms.*;
-	import cadet2D.renderPipeline.flash.components.processes.TrackCamera2DProcess;
-	import cadet2D.renderPipeline.flash.components.renderers.Renderer2D;
-	import cadet2D.renderPipeline.flash.components.skins.*;
+	import cadet2D.components.geom.BoundingSphere;
+	import cadet2D.components.geom.CircleGeometry;
+	import cadet2D.components.geom.CompoundGeometry;
+	import cadet2D.components.geom.PolygonGeometry;
+	import cadet2D.components.geom.RectangleGeometry;
+	import cadet2D.components.geom.TerrainGeometry;
+	import cadet2D.components.geom.TriangleGeometry;
+	import cadet2D.components.processes.CollisionDetectionProcess;
+	import cadet2D.components.processes.FootprintManagerProcess;
+	import cadet2D.components.processes.WorldBounds2D;
+	import cadet2D.components.transforms.Transform2D;
 	
-	import cadet2DBox2D.components.behaviours.*;
-	import cadet2DBox2D.components.processes.*;
-	import cadet2DBox2D.renderPipeline.flash.components.behaviours.RigidBodyMouseDragBehaviour;
+	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;
+	import cadet2DBox2D.components.behaviours.MotorbikeBehaviour;
+	import cadet2DBox2D.components.behaviours.PrismaticJointBehaviour;
+	import cadet2DBox2D.components.behaviours.RevoluteJointBehaviour;
+	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
+	import cadet2DBox2D.components.behaviours.RigidBodyCollisionDetectBehaviour;
+	import cadet2DBox2D.components.behaviours.SimpleFootprintBehaviour;
+	import cadet2DBox2D.components.behaviours.SimpleVehicleBehaviour;
+	import cadet2DBox2D.components.behaviours.SpringBehaviour;
+	import cadet2DBox2D.components.behaviours.VehicleBehaviour;
+	import cadet2DBox2D.components.processes.PhysicsProcess;
+	
+	import cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour;
+	import cadet2DFlash.components.processes.TrackCamera2DProcess;
+	import cadet2DFlash.components.renderers.Renderer2D;
+	import cadet2DFlash.components.skins.AssetSkin;
+	import cadet2DFlash.components.skins.ConnectionSkin;
+	import cadet2DFlash.components.skins.FootprintManagerDebugSkin;
+	import cadet2DFlash.components.skins.FractalPolygonSkin;
+	import cadet2DFlash.components.skins.GeometryDebugSkin;
+	import cadet2DFlash.components.skins.GeometrySkin;
+	import cadet2DFlash.components.skins.ScrollingBackgroundSkin;
+	import cadet2DFlash.components.skins.SpringSkin;
+	import cadet2DFlash.components.skins.WorldBoundsDebugSkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.commandHandlers.CompileAndRunCommandHandler;
@@ -32,7 +56,8 @@ package
 	import cadetEditor.commandHandlers.PasteComponentsCommandHandler;
 	import cadetEditor.contexts.CadetContext;
 	import cadetEditor.contexts.OutlinePanelContext;
-	import cadetEditor.entities.*;
+	import cadetEditor.entities.CadetEditorCommands;
+	import cadetEditor.entities.ComponentFactory;
 	
 	import cadetEditor2D.commandHandlers.CenterOriginCentroidCommandHandler;
 	import cadetEditor2D.commandHandlers.CenterOriginCommandHandler;
@@ -46,7 +71,7 @@ package
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.contexts.InfoPanelContext;
 	import cadetEditor2D.controllers.DefaultControlBar2DController;
-	import cadetEditor2D.tools.*;
+	import cadetEditor2D.tools.PanTool;
 	
 	import cadetEditor2DFlash.commandHandlers.ZoomExtentsCommandHandler;
 	import cadetEditor2DFlash.contexts.CadetEditorContext2D;
