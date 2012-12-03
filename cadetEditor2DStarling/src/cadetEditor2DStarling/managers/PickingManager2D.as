@@ -73,7 +73,7 @@ package cadetEditor2DStarling.managers
 			if ( !enabled ) return;
 			enabled = false;
 			
-			setView(null);
+			//setView(null);
 		}
 		
 		public function dispose():void
@@ -120,6 +120,8 @@ package cadetEditor2DStarling.managers
 		
 		private function onTouchHandler( event:TouchEvent ):void
 		{
+			if ( !enabled ) return;
+			
 			var dispObj:DisplayObject = DisplayObject(_view.stage);
 			var touches:Vector.<Touch> = event.getTouches(dispObj);
 			

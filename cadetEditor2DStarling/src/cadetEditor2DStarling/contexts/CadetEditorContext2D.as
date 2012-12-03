@@ -49,6 +49,7 @@ package cadetEditor2DStarling.contexts
 	import flox.app.util.IntrospectionUtil;
 	import flox.core.events.PropertyChangeEvent;
 	import flox.editor.FloxEditor;
+	import flox.ui.managers.PopUpManager;
 	import flox.ui.util.BindingUtil;
 	
 	[Event( type="flash.events.Event", name="change" )]
@@ -159,8 +160,10 @@ package cadetEditor2DStarling.contexts
 			
 			enableRenderer();
 			
-			//_pickingManager.enable();
+			_pickingManager.enable();
 			_view.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			
+			FloxEditor.viewManager.application.popUpManager.addEventListener(Event.CHANGE, popUpChangeHandler);
 		}
 		
 		override public function disable():void
@@ -171,6 +174,20 @@ package cadetEditor2DStarling.contexts
 			
 			_pickingManager.disable();
 			_view.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			
+			FloxEditor.viewManager.application.popUpManager.removeEventListener(Event.CHANGE, popUpChangeHandler);
+		}
+		
+		private function popUpChangeHandler( event:Event ):void
+		{
+			var popUpManager:PopUpManager = PopUpManager(event.target);
+			trace("POPUP IS MODAL "+popUpManager.modal);
+			
+			if ( popUpManager.modal ) {
+				_pickingManager.disable();
+			} else {
+				_pickingManager.enable();
+			}
 		}
 		
 		private function enableRenderer():void
