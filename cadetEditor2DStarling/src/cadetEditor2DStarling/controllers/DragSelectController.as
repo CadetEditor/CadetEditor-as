@@ -1,7 +1,8 @@
 // Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
 // All rights reserved. 
 
-// The box that appears when dragging a rectangular selection area on the background with the selection tool
+// The box that appears when dragging a rectangular selection area on the background 
+// with the selection tool
 package cadetEditor2DStarling.controllers
 {
 	
@@ -113,17 +114,14 @@ package cadetEditor2DStarling.controllers
 			{
 				var skin:AbstractSkin2D = AbstractSkin2D(skins[i]);
 				
-				//TODO: Deprecate Flash2D and tidy up
-				var displayObject:starling.display.DisplayObject = skin.displayObjectContainer;
-				
 				var hitTestRect:Boolean = false;
-
-				//var viewportStarling:starling.display.Sprite = FlashStarlingInteropUtil.getRendererViewportStarling(view.renderer);
-				//TODO: Find Starling equivalent for hitTestRect()
-				hitTestRect = dragRect.containsRect(displayObject.bounds);			
 				
-				if ( hitTestRect )
-				{
+				//TODO: Find Starling equivalent for hitTestRect()
+				var bounds:Rectangle = skin.displayObjectContainer.getBounds(Renderer2D(view.renderer).viewport);
+				//var bounds:Rectangle = skin.displayObjectContainer.bounds;
+				hitTestRect = dragRect.containsRect(bounds);			
+				
+				if ( hitTestRect ) {
 					containedSkins.push( skin );
 				}
 			}
@@ -133,7 +131,10 @@ package cadetEditor2DStarling.controllers
 		
 			if (appendToSelection) 
 			{
-				componentsToSelect = componentsToSelect.concat(selection.source);
+				var selectComponents:Vector.<IComponentContainer> = new Vector.<IComponentContainer>();
+				selectComponents = Vector.<IComponentContainer>(VectorUtil.arrayToVector(selection.source, selectComponents));
+				componentsToSelect = componentsToSelect.concat(selectComponents);
+				//componentsToSelect = componentsToSelect.concat(selection.source);
 			}
 			
 			if ( ArrayUtil.compare( VectorUtil.toArray(componentsToSelect), selection.source ) == false ) 

@@ -49,7 +49,7 @@ package cadetEditor2DStarling.tools
 		
 		// Controllers
 		private var dragItemsController				:DragItemsController;
-		private var dragSelectController			:IDragSelectionController;
+		private var dragSelectController			:DragSelectController;
 		
 		/**
 		 * Constructor 
