@@ -21,7 +21,9 @@ package
 	import cadet2D.components.processes.WorldBounds2D;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AssetSkin;
+	import cadet2D.components.skins.ConnectionSkin;
 	import cadet2D.components.skins.GeometrySkin;
+	import cadet2D.components.skins.SpringSkin;
 	import cadet2D.components.transforms.Transform2D;
 	
 	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;
@@ -64,15 +66,20 @@ package
 	import cadetEditor2D.controllers.DefaultControlBar2DController;
 	import cadetEditor2D.tools.PanTool;
 	
-	import cadetEditor2DStarling.commandHandlers.ZoomExtentsCommandHandler;
-	import cadetEditor2DStarling.contexts.CadetEditorContext2D;
-	import cadetEditor2DStarling.tools.BezierCurveTool;
-	import cadetEditor2DStarling.tools.CircleTool;
-	import cadetEditor2DStarling.tools.PolygonTool;
-	import cadetEditor2DStarling.tools.RectangleTool;
-	import cadetEditor2DStarling.tools.SelectionTool;
-	import cadetEditor2DStarling.tools.TransformTool;
-	import cadetEditor2DStarling.tools.TriangleTool;
+	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
+	import cadetEditor2DS.contexts.CadetEditorContext2D;
+	import cadetEditor2DS.tools.BezierCurveTool;
+	import cadetEditor2DS.tools.CircleTool;
+	import cadetEditor2DS.tools.PolygonTool;
+	import cadetEditor2DS.tools.RectangleTool;
+	import cadetEditor2DS.tools.SelectionTool;
+	import cadetEditor2DS.tools.TransformTool;
+	import cadetEditor2DS.tools.TriangleTool;
+	
+	import cadetEditor2DSBox2D.controllers.PhysicsControlBarController;
+	import cadetEditor2DSBox2D.tools.ConnectionTool;
+	import cadetEditor2DSBox2D.tools.PinTool;
+	import cadetEditor2DSBox2D.tools.TerrainTool;
 	
 	import flash.display.Sprite;
 	import flash.ui.Keyboard;
@@ -133,10 +140,13 @@ package
 			resourceManager.addResource( CircleTool.getFactory() );
 			resourceManager.addResource( PolygonTool.getFactory() );
 			resourceManager.addResource( BezierCurveTool.getFactory() );
+			resourceManager.addResource( ConnectionTool.getFactory() );
+			resourceManager.addResource( PinTool.getFactory() );
+			resourceManager.addResource( TerrainTool.getFactory() );
 			
 			// Controllers
 			resourceManager.addResource( new FactoryResource( DefaultControlBar2DController, "Default Control Bar" ) );
-//			resourceManager.addResource( new FactoryResource( PhysicsControlBarController, "Physics Control Bar" ) );
+			resourceManager.addResource( new FactoryResource( PhysicsControlBarController, "Physics Control Bar" ) );
 			
 			// Command handlers
 			resourceManager.addResource( ZoomInCommandHandler.getFactory() );
@@ -180,8 +190,8 @@ package
 //			resourceManager.addResource( new ComponentFactory( GeometryDebugSkin, 			"Geometry Debug Skin", 			"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( FractalPolygonSkin, 			"Fractal Polygon Skin", 		"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( AssetSkin, 					"Asset Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-//			resourceManager.addResource( new ComponentFactory( ConnectionSkin, 				"Connection Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
-//			resourceManager.addResource( new ComponentFactory( SpringSkin, 					"Spring Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( ConnectionSkin, 				"Connection Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( SpringSkin, 					"Spring Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( ScrollingBackgroundSkin, 	"Scrolling Background Skin", 	"Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( FootprintManagerDebugSkin, 	"Footprint Manager Debug Skin", "Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( WorldBoundsDebugSkin, 		"World Bounds Debug Skin", 		"Skins",		CadetEditorIcons.Skin,			null,			1, null, CadetEditorContext2D ) );
