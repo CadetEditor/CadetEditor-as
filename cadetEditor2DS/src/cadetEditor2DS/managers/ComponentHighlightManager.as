@@ -52,6 +52,7 @@ package cadetEditor2DS.managers
 			highlightedComponents.push(component);
 			highlightedSkins.push(skin);
 				
+			//TODO: This should appear when rolling over items in the Pin/Connection selector dialog.
 			//AbstractSkin2D(skin).displayObjectContainer.filters = [filter];
 		}
 		

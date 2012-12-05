@@ -38,7 +38,7 @@ package cadetEditor2D.operations
 		private var executing	:Boolean = false;
 		
 		private var result		:Array;
-		private var clickLoc	:Point;					// Stores the location of the click in world container co-ordinates.
+		private var clickLoc	:Point;		// Stores the location of the click in world container co-ordinates.
 				
 		public function PickComponentsOperation( context:ICadetEditorContext2D, numComponents:int = 1 )//, filter:Function = null)
 		{

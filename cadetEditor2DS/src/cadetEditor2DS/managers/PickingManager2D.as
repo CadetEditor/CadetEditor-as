@@ -270,6 +270,24 @@ package cadetEditor2DS.managers
 				skinsUnderMouse = [];
 			}
 			
+			// Compare this raycast to previous raycasts to simulate rollover's and rollout's
+			var skin:ISkin2D;
+			for each ( skin in currentSkinsUnderMouse )
+			{
+				if ( skinsUnderMouse.indexOf( skin ) == -1 )
+				{
+					sendEvent( PickingManagerEvent.ROLL_OVER_SKIN, currentSkinsUnderMouse, skin, event );
+				}
+			}
+			
+			for each ( skin in skinsUnderMouse )
+			{
+				if ( currentSkinsUnderMouse.indexOf( skin ) == -1 )
+				{
+					sendEvent( PickingManagerEvent.ROLL_OUT_SKIN, currentSkinsUnderMouse, skin, event );
+				}
+			}
+			
 			sendEvent( PickingManagerEvent.MOUSE_MOVE_CONTAINER, currentSkinsUnderMouse, null, event, touch );
 			skinsUnderMouse = currentSkinsUnderMouse;
 		}

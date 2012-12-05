@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="CadetEditorExtension2D.as" projectUUID="d01e227d-ec19-4d13-99d4-065c0fadf7a3" version="10">
+<actionScriptProperties analytics="false" mainApplicationPath="CadetEditorExtension2DF.as" projectUUID="d01e227d-ec19-4d13-99d4-065c0fadf7a3" version="10">
   <compiler additionalCompilerArguments="-keep-as3-metadata += Serializable,Inspectable" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderLocation="DOCUMENTS/Flox/floxEditor/deploy/extensions" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
@@ -40,10 +40,9 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="CadetEditorExtension2D.as"/>
+    <application path="CadetEditorExtension2DF.as"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-

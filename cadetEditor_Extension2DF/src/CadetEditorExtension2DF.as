@@ -109,9 +109,9 @@ package
 	import flox.editor.resources.ActionFactory;
 	import flox.editor.resources.EditorFactory;
 	
-	public class CadetEditorExtension2D extends Sprite
+	public class CadetEditorExtension2DF extends Sprite
 	{
-		public function CadetEditorExtension2D()
+		public function CadetEditorExtension2DF()
 		{
 			var resourceManager:ResourceManager = FloxApp.resourceManager;			
 			
