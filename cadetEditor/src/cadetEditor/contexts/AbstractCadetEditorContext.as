@@ -21,8 +21,6 @@ package cadetEditor.contexts
 	import flox.app.entities.URI;
 	import flox.app.events.OperationManagerEvent;
 	import flox.app.managers.OperationManager;
-	import flox.app.managers.fileSystemProviders.local.LocalFileSystemProvider;
-	import flox.app.managers.fileSystemProviders.memory.MemoryFileSystemProvider;
 	import flox.core.data.ArrayCollection;
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.editor.FloxEditor;

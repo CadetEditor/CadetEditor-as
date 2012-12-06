@@ -15,7 +15,7 @@ package platformer.tools
 	import cadetEditor2D.managers.SnapInfo;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import cadetEditor2DFlash.tools.CadetEditorTool2D;
+	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -179,7 +179,7 @@ package platformer.tools
 			dragging = false;
 		}
 		
-		override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		override protected function onMouseDragContainer(event:PickingManagerEvent):void
 		{
 			if ( !dragging ) return;
 			

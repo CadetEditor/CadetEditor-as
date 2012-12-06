@@ -30,7 +30,6 @@
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor/bin/CadetEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2D/bin/CadetEditor2D.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DFlash/bin/CadetEditor2DFlash.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxEditor/bin/FloxEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxUI/bin/FloxUI.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxApp/bin/FloxApp.swc" useDefaultLinkType="false"/>
@@ -38,6 +37,7 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2D/bin/CadetEngine_Extension_2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_TileBasedPlatformer/bin/CadetEngine_Extension_TileBasedPlatformer.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DS/bin/CadetEditor2DS.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

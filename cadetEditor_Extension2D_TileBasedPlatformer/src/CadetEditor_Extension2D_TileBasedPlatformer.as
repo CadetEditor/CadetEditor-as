@@ -22,9 +22,9 @@ package
 	import cadetEditor2D.controllers.DefaultControlBar2DController;
 	import cadetEditor2D.tools.PanTool;
 	
-	import cadetEditor2DFlash.commandHandlers.ZoomExtentsCommandHandler;
-	import cadetEditor2DFlash.contexts.CadetEditorContext2D;
-	import cadetEditor2DFlash.tools.SelectionTool;
+	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
+	import cadetEditor2DS.contexts.CadetEditorContext2D;
+	import cadetEditor2DS.tools.SelectionTool;
 	
 	import flash.display.Sprite;
 	import flash.ui.Keyboard;
