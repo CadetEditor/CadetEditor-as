@@ -181,12 +181,14 @@ package cadetEditor2DS.contexts
 		private function popUpChangeHandler( event:Event ):void
 		{
 			var popUpManager:PopUpManager = PopUpManager(event.target);
-			trace("POPUP IS MODAL "+popUpManager.modal);
+			//trace("POPUP IS MODAL "+popUpManager.modal);
 			
 			if ( popUpManager.modal ) {
 				_pickingManager.disable();
+				_toolManager.disable();
 			} else {
 				_pickingManager.enable();
+				_toolManager.enable();
 			}
 		}
 		

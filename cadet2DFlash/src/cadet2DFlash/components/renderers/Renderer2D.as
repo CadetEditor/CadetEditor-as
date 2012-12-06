@@ -15,9 +15,12 @@ package cadet2DFlash.components.renderers
 	import cadet.core.IRenderer;
 	import cadet.events.ComponentEvent;
 	import cadet.events.InvalidationEvent;
+	import cadet.events.RendererEvent;
 	import cadet.util.ComponentUtil;
 	
+	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.skins.ISkin2D;
+	
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
 	import flash.display.DisplayObject;
@@ -27,7 +30,6 @@ package cadet2DFlash.components.renderers
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.utils.Dictionary;
-	import cadet2D.components.renderers.IRenderer2D;
 
 	public class Renderer2D extends Component implements IRenderer2D
 	{
@@ -66,6 +68,8 @@ package cadet2DFlash.components.renderers
 		protected var layersTable			:Object;
 		
 		private var _enabled				:Boolean;
+		private var _initialised			:Boolean;
+		private var _parent					:DisplayObjectContainer;
 		
 		public function Renderer2D()
 		{
@@ -141,12 +145,17 @@ package cadet2DFlash.components.renderers
 		
 		public function enable(parent:DisplayObjectContainer, depth:int = -1):void
 		{
-			if (_enabled) return;
+			_parent = parent;
 			
-			_enabled = true;
+			if (_enabled) return;
 			
 			if ( depth > -1 )	parent.addChildAt(viewport, depth);
 			else				parent.addChild(viewport);
+			
+			_enabled = true;
+			_initialised = true;
+			
+			dispatchEvent(new RendererEvent(RendererEvent.INITIALISED));
 		}
 		public function disable(parent:DisplayObjectContainer):void
 		{
@@ -315,6 +324,16 @@ package cadet2DFlash.components.renderers
 		public function setWorldContainerTransform( m:Matrix ):void
 		{
 			_worldContainer.transform.matrix = m;
+		}
+		
+		public function getParent():DisplayObjectContainer
+		{
+			return _parent;
+		}
+		
+		public function get initialised():Boolean
+		{
+			return _initialised;
 		}
 		
 		//public function getWorldToViewportMatrix():Matrix { return identityMatrix.clone(); }

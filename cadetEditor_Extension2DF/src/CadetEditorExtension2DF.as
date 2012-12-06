@@ -33,7 +33,7 @@ package
 	import cadet2DBox2D.components.behaviours.VehicleBehaviour;
 	import cadet2DBox2D.components.processes.PhysicsProcess;
 	
-	import cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour;
+	import cadet2DBox2D.components.behaviours.RigidBodyMouseDragBehaviour;
 	import cadet2DFlash.components.processes.TrackCamera2DProcess;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AssetSkin;

@@ -5,7 +5,7 @@ package cadetEditor2DFlashBox2D.controllers
 	
 	import cadet2D.components.connections.Connection;
 	import cadet2D.components.connections.Pin;
-	import cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour;
+	import cadet2DBox2D.components.behaviours.RigidBodyMouseDragBehaviour;
 	import cadet2DFlash.components.skins.SpringSkin;
 	
 	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;

@@ -51,7 +51,7 @@ package cadetEditor2DS.tools
 		}
 		
 		override public function disable():void
-		{ 
+		{
 			super.disable();
 		}
 		
@@ -60,8 +60,6 @@ package cadetEditor2DS.tools
 			dragging = true;
 			
 			mouseDownPoint = context.snapManager.snapPoint(view.worldMouse).snapPoint;
-			
-			trace("GeomPrimitive mouse x "+mouseDownPoint.x+" y "+mouseDownPoint.y);
 			
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.label = getOperationDescription();

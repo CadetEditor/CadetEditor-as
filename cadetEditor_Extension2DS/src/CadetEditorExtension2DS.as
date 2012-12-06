@@ -18,6 +18,7 @@ package
 	import cadet2D.components.geom.TriangleGeometry;
 	import cadet2D.components.processes.CollisionDetectionProcess;
 	import cadet2D.components.processes.FootprintManagerProcess;
+	import cadet2D.components.processes.TrackCamera2DProcess;
 	import cadet2D.components.processes.WorldBounds2D;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AssetSkin;
@@ -178,7 +179,7 @@ package
 			resourceManager.addResource( new ComponentFactory( WorldBounds2D, 				"World Bounds 2D", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( PhysicsProcess, 				"Physics", 						"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( FootprintManagerProcess, 	"Footprint Manager", 			"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
-//			resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( TrackCamera2DProcess, 		"Track Camera", 				"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( CollisionDetectionProcess, 	"Collision Detection", 			"Processes", 	CadetEditorIcons.Process, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( Renderer2D, 					"2D Renderer", 					"Processes", 	CadetEditorIcons.Renderer, 		ICadetScene, 	1, null, CadetEditorContext2D ) );
 			

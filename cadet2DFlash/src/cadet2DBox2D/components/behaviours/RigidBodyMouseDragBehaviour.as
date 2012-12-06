@@ -8,7 +8,7 @@
 //
 // =================================================================================================
 
-package cadet2DFlash.components.behaviours
+package cadet2DBox2D.components.behaviours
 {
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.Joints.b2MouseJoint;
@@ -30,7 +30,6 @@ package cadet2DFlash.components.behaviours
 	import flash.display.Stage;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
 	
 	public class RigidBodyMouseDragBehaviour extends Component implements ISteppableComponent
 	{

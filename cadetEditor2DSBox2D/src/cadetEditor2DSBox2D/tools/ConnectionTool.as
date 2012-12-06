@@ -127,6 +127,7 @@ package cadetEditor2DSBox2D.tools
 		
 		private function pickCompleteHandler( event:Event ):void
 		{
+			var renderer:Renderer2D = Renderer2D(context.view2D.renderer);
 			var result:Array = pickComponentOperation.getResult();
 			if (result) {
 				var pickedComponent:IComponentContainer = result[0];
@@ -147,9 +148,9 @@ package cadetEditor2DSBox2D.tools
 				
 				var pt:Point = pickComponentOperation.getClickLoc();
 				// Convert the clicked location from world coordinates to coordinates local to the picked skin
-				pt = context.view2D.renderer.worldToViewport(pt);
+				pt = renderer.worldToViewport(pt);
 				
-				pt = Renderer2D(context.view2D.renderer).viewport.localToGlobal(pt);
+				pt = renderer.viewport.localToGlobal(pt);
 				
 				pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 				offsetA = new Vertex( pt.x, pt.y );
@@ -167,10 +168,10 @@ package cadetEditor2DSBox2D.tools
 			
 			transformB = transform;
 			pt = pickComponentOperation.getClickLoc();
-			pt = context.view2D.renderer.worldToViewport(pt);
+			pt = renderer.worldToViewport(pt);
 			
 			//pt = context.view2D.viewport.localToGlobal(pt);
-			pt = Renderer2D(context.view2D.renderer).viewport.localToGlobal(pt);
+			pt = renderer.viewport.localToGlobal(pt);
 			
 			pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
 			

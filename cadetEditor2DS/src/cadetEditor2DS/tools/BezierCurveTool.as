@@ -406,7 +406,7 @@ package cadetEditor2DS.tools
 			}
 		}
 		
-		override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		override protected function onMouseDragContainer(event:PickingManagerEvent):void
 		{
 			if ( mode == -1 ) return;
 			

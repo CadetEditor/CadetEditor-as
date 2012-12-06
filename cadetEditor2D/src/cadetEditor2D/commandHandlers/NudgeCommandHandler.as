@@ -13,13 +13,14 @@ package cadetEditor2D.commandHandlers
 	
 	import flash.ui.Keyboard;
 	
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
 	import flox.app.core.commandHandlers.ICommandHandler;
+	import flox.app.core.contexts.IContext;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.app.resources.CommandHandlerFactory;
 	import flox.app.validators.ContextSelectionValidator;
+	import flox.editor.FloxEditor;
+	import flox.editor.utils.FloxEditorUtil;
 	
 	public class NudgeCommandHandler implements ICommandHandler
 	{
@@ -34,7 +35,12 @@ package cadetEditor2D.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			//var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			var context:IContext = FloxEditor.contextManager.getCurrentContext();
+			if (context is ICadetEditorContext == false) return;
+			
+			var editorContext:ICadetEditorContext = ICadetEditorContext(context);
+			
 			var selectedComponents:Array = FloxEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
 			var selectedComponent:IComponentContainer = selectedComponents[0];
 			
@@ -84,7 +90,7 @@ package cadetEditor2D.commandHandlers
 				}
 			}
 			
-			context.operationManager.addOperation( compoundOperation );
+			editorContext.operationManager.addOperation( compoundOperation );
 		}
 	}
 }

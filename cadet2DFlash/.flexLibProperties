@@ -15,7 +15,7 @@
     <classEntry path="cadet2DFlash.components.skins.AssetSkin"/>
     <classEntry path="cadet2DFlash.components.skins.ConnectionSkin"/>
     <classEntry path="cadet2DFlash.components.skins.WorldBoundsDebugSkin"/>
-    <classEntry path="cadet2DFlash.components.behaviours.RigidBodyMouseDragBehaviour"/>
+    <classEntry path="cadet2DBox2D.components.behaviours.RigidBodyMouseDragBehaviour"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

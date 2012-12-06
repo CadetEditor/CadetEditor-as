@@ -153,7 +153,7 @@ package cadetEditor2DSBox2D.tools
 			context.operationManager.addOperation(operation);
 		}
 		
-		override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		override protected function onMouseDragContainer(event:PickingManagerEvent):void
 		{
 			if ( !mouseIsDown ) return;
 			
