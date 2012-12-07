@@ -25,6 +25,9 @@ package cadetEditor.operations
 	import flox.app.operations.SerializeAndWriteFileOperation;
 	import flox.app.operations.SerializeOperation;
 	import flox.app.util.IntrospectionUtil;
+	import flox.editor.FloxEditor;
+	import flox.editor.contexts.IEditorContext;
+	import flox.editor.operations.SaveFileAsOperation;
 
 	public class SerializeAndWriteCadetFileOperation extends EventDispatcher implements IAsynchronousOperation
 	{
@@ -97,11 +100,20 @@ package cadetEditor.operations
 			
 			var bytes:ByteArray = new ByteArray();
 			bytes.writeUTFBytes(xml.toXMLString());
-			var writeFileOperation:IWriteFileOperation = fileSystemProvider.writeFile(uri, bytes);
-			writeFileOperation.addEventListener( OperationProgressEvent.PROGRESS, writeFileProgressHandler);
-			writeFileOperation.addEventListener( Event.COMPLETE, writeFileCompleteHandler );
-			writeFileOperation.addEventListener( ErrorEvent.ERROR, passThroughHandler );
-			writeFileOperation.execute();
+			
+			//TODO: Rob added try catch for when file is at a url but needs to be saved to a sharedObject
+			try {
+				var writeFileOperation:IWriteFileOperation = fileSystemProvider.writeFile(uri, bytes);
+				writeFileOperation.addEventListener( OperationProgressEvent.PROGRESS, writeFileProgressHandler);
+				writeFileOperation.addEventListener( Event.COMPLETE, writeFileCompleteHandler );
+				writeFileOperation.addEventListener( ErrorEvent.ERROR, passThroughHandler );
+				writeFileOperation.execute();
+			} catch ( e:Error ) {
+				dispatchEvent( new Event( Event.COMPLETE ) );
+				var editorContext:IEditorContext = IEditorContext(FloxEditor.contextManager.getLatestContextOfType(IEditorContext));
+				var operation:SaveFileAsOperation = new SaveFileAsOperation( editorContext );
+				operation.execute();
+			}
 		}
 		
 		private function passThroughHandler( event:ErrorEvent ):void

@@ -75,7 +75,7 @@ package cadetEditor2DS.ui.overlays
 			//pt = _renderer.viewport.localToGlobal(pt);
 			pt = globalToLocal(pt);
 			
-			graphics.lineStyle(1, 0xFF0000);
+			graphics.lineStyle(1, 0xFFFFFF);
 			
 			//trace("SnapOverlay type "+snapInfo.snapPoint+" pt x "+pt.x+" y "+pt.y);
 			
