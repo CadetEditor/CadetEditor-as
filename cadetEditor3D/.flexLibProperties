@@ -22,7 +22,6 @@
     <classEntry path="cadetEditor3D.ui.panels.TextOutputPanel"/>
     <classEntry path="cadetEditor3D.tools.AbstractPrimitveTool"/>
     <classEntry path="cadetEditor3D.tools.CubePrimitiveTool"/>
-    <classEntry path="cadetEditor3D.resources.ExternalAway3DResourceParser"/>
     <classEntry path="cadetEditor3D.ui.controlBars.PhysicsToolControlBar"/>
     <classEntry path="cadetEditor3D.controllers.PhysicsControlBarController"/>
     <classEntry path="cadetEditor3D.controllers.DefaultControlBar3DController"/>

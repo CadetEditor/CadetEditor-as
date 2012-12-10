@@ -21,6 +21,7 @@ package
 	import cadet3D.components.materials.TextureMaterialComponent;
 	import cadet3D.components.textures.BitmapCubeTextureComponent;
 	import cadet3D.components.textures.BitmapTextureComponent;
+	import cadet3D.resources.ExternalAway3DResourceParser;
 	
 	import cadet3DPhysics.components.behaviours.RigidBodyBehaviour;
 	import cadet3DPhysics.components.processes.PhysicsProcess;
@@ -36,7 +37,6 @@ package
 	import cadetEditor3D.controllers.PhysicsControlBarController;
 	import cadetEditor3D.entities.CadetBuilder3DCommands;
 	import cadetEditor3D.icons.CadetEditor3DIcons;
-	import cadetEditor3D.resources.ExternalAway3DResourceParser;
 	import cadetEditor3D.tools.*;
 	
 	import flash.display.Sprite;
