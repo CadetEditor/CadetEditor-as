@@ -7,7 +7,7 @@ package cadetEditor3D.tools
 	
 	import cadet.events.InvalidationEvent;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	import cadet3D.events.Renderer3DEvent;
 	
 	import cadetEditor.entities.ToolFactory;
@@ -55,7 +55,7 @@ package cadetEditor3D.tools
 		
 		private var delta			:Vector3D;
 		
-		private var entitiesBeingTransformed:Vector.<Object3DComponent>;
+		private var entitiesBeingTransformed:Vector.<ObjectContainer3DComponent>;
 		private var storedEntityTransforms	:Vector.<Matrix3D>;
 		
 		public static function getFactory():ToolFactory
@@ -150,7 +150,7 @@ package cadetEditor3D.tools
 		
 		private function storeInitialValues( resetGizmo:Boolean = true ):void
 		{
-			entitiesBeingTransformed = new Vector.<Object3DComponent>();
+			entitiesBeingTransformed = new Vector.<ObjectContainer3DComponent>();
 			storedEntityTransforms = new Vector.<Matrix3D>();
 			
 			if ( resetGizmo )
@@ -161,7 +161,7 @@ package cadetEditor3D.tools
 			var averagePos:Vector3D = new Vector3D();
 			for each ( var item:* in context.selection )
 			{
-				var entity:Object3DComponent = item as Object3DComponent
+				var entity:ObjectContainer3DComponent = item as ObjectContainer3DComponent
 				if ( entity )
 				{
 					entitiesBeingTransformed.push(entity);
@@ -230,7 +230,7 @@ package cadetEditor3D.tools
 			
 			for ( var i:int = 0; i < entitiesBeingTransformed.length; i++ )
 			{
-				var entity:Object3DComponent = entitiesBeingTransformed[i];
+				var entity:ObjectContainer3DComponent = entitiesBeingTransformed[i];
 				var transform:Matrix3D = storedEntityTransforms[i].clone();
 				transform.append(rotationTransform);
 				entity.transform = transform;
@@ -254,7 +254,7 @@ package cadetEditor3D.tools
 			operation.label = "Rotate";
 			for ( var i:int = 0; i < entitiesBeingTransformed.length; i++ )
 			{
-				var entity:Object3DComponent = entitiesBeingTransformed[i];
+				var entity:ObjectContainer3DComponent = entitiesBeingTransformed[i];
 				var storedTransform:Matrix3D = storedEntityTransforms[i];
 				var newTransform:Matrix3D = entity.transform.clone();
 				

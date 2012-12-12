@@ -9,7 +9,9 @@ package
 	
 	import cadet3D.components.cameras.CameraComponent;
 	import cadet3D.components.core.MeshComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	import cadet3D.components.core.Renderer3D;
+	import cadet3D.components.core.Sprite3DComponent;
 	import cadet3D.components.debug.TridentComponent;
 	import cadet3D.components.geom.CubeGeometryComponent;
 	import cadet3D.components.geom.GeometryComponent;
@@ -17,8 +19,12 @@ package
 	import cadet3D.components.geom.SphereGeometryComponent;
 	import cadet3D.components.lights.DirectionalLightComponent;
 	import cadet3D.components.lights.LightProbeComponent;
+	import cadet3D.components.lights.PointLightComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
+	import cadet3D.components.materials.SkyBoxMaterialComponent;
 	import cadet3D.components.materials.TextureMaterialComponent;
+	import cadet3D.components.primitives.SkyBoxComponent;
+	import cadet3D.components.processes.HoverCamProcess;
 	import cadet3D.components.textures.BitmapCubeTextureComponent;
 	import cadet3D.components.textures.BitmapTextureComponent;
 	import cadet3D.resources.ExternalAway3DResourceParser;
@@ -122,42 +128,43 @@ package
 			// Cadet Component resources
 			///////////////////////////////
 			
-			// Entities
-			resourceManager.addResource( new ComponentFactory( MeshComponent, "Mesh", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
-			
+			// Entities =======================================
+			// Behaviours
+			resourceManager.addResource( new ComponentFactory( RigidBodyBehaviour, "Rigid Body", "Behaviours", CadetEditorIcons.Behaviour, MeshComponent, 1, null, CadetEditorContext3D ) );	
 			// Cameras
 			resourceManager.addResource( new ComponentFactory( CameraComponent, "Camera", "Entities", CadetEditor3DIcons.Camera, null, -1, null, CadetEditorContext3D ) );
-			
 			// Debug
 			resourceManager.addResource( new ComponentFactory( TridentComponent, "Trident", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
+			// Entities
+			resourceManager.addResource( new ComponentFactory( MeshComponent, "Mesh", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( ObjectContainer3DComponent, "ObjectContainer3D", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( SkyBoxComponent, "SkyBox", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( Sprite3DComponent, "Sprite3D", "Entities", CadetEditor3DIcons.Mesh, null, -1, null, CadetEditorContext3D ) );
 			
-			// Processes
-			resourceManager.addResource( new ComponentFactory( Renderer3D, "Away3D Renderer", "Processes", CadetEditor3DIcons.Renderer, ICadetScene, 1, null, CadetEditorContext3D ) );
-			resourceManager.addResource( new ComponentFactory( PhysicsProcess, "Physics Process", "Processes", CadetEditorIcons.Process, ICadetScene, 1, null, CadetEditorContext3D ) );
-			
-			// Behaviours
-			resourceManager.addResource( new ComponentFactory( RigidBodyBehaviour, "Rigid Body", "Behaviours", CadetEditorIcons.Behaviour, MeshComponent, 1, null, CadetEditorContext3D ) );
-			
-			// Materials
-			resourceManager.addResource( new ComponentFactory( ColorMaterialComponent, "Color Material", "Materials", CadetEditor3DIcons.Material, null, -1, null, CadetEditorContext3D ) );
-			resourceManager.addResource( new ComponentFactory( TextureMaterialComponent, "Texture Material", "Materials", CadetEditor3DIcons.Material, null, -1, null, CadetEditorContext3D ) );
-			
-			// Lights
-			resourceManager.addResource( new ComponentFactory( DirectionalLightComponent, "Directional Light", "Entities", CadetEditor3DIcons.DirectionalLight, null, -1, null, CadetEditorContext3D ) );
-			
-			// Geometry
-			resourceManager.addResource( new ComponentFactory( GeometryComponent, "Geometry", "Geometry", CadetEditor3DIcons.Geometry, null, -1, null, CadetEditorContext3D ) );
+			// Geometries =====================================
 //			resourceManager.addResource( new ComponentFactory( HeightmapGeometryComponent, "HeightmapGeometry", "Geometry", CadetBuilderAway3D4Icons.Geometry, null, -1, null, CadetEditorContextAway3D4 ) );
 			resourceManager.addResource( new ComponentFactory( PlaneGeometryComponent, "PlaneGeometry", "Geometry", CadetEditor3DIcons.Geometry, null, -1, null, CadetEditorContext3D, false ) );
 			resourceManager.addResource( new ComponentFactory( SphereGeometryComponent, "SphereGeometry", "Geometry", CadetEditor3DIcons.Geometry, null, -1, null, CadetEditorContext3D, false ) );
-			resourceManager.addResource( new ComponentFactory( CubeGeometryComponent, "CubeGeometry", "Geometry", CadetEditor3DIcons.Geometry, null, -1, null, CadetEditorContext3D, false ) );
+			resourceManager.addResource( new ComponentFactory( CubeGeometryComponent, "CubeGeometry", "Geometry", CadetEditor3DIcons.Geometry, null, -1, null, CadetEditorContext3D, false ) );			
 			
-			// Textures
+			// Lights =========================================
+			resourceManager.addResource( new ComponentFactory( DirectionalLightComponent, "Directional Light", "Entities", CadetEditor3DIcons.DirectionalLight, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( PointLightComponent, "Point Light", "Entities", CadetEditor3DIcons.PointLight, null, -1, null, CadetEditorContext3D ) );
+			
+			// Materials ======================================
+			resourceManager.addResource( new ComponentFactory( ColorMaterialComponent, "Color Material", "Materials", CadetEditor3DIcons.Material, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( SkyBoxMaterialComponent, "SkyBox Material", "Materials", CadetEditor3DIcons.Material, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( TextureMaterialComponent, "Texture Material", "Materials", CadetEditor3DIcons.Material, null, -1, null, CadetEditorContext3D ) );
+						
+			// Processes ======================================
+			resourceManager.addResource( new ComponentFactory( HoverCamProcess, "HoverCamProcess", "Processes", CadetEditorIcons.Process, ICadetScene, 1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( Renderer3D, "Away3D Renderer", "Processes", CadetEditor3DIcons.Renderer, ICadetScene, 1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( PhysicsProcess, "Physics Process", "Processes", CadetEditorIcons.Process, ICadetScene, 1, null, CadetEditorContext3D ) );	
+			
+			// Textures =======================================
 			resourceManager.addResource( new ComponentFactory( BitmapTextureComponent, "Bitmap Texture", "Textures", CadetEditor3DIcons.Texture, null, -1, null, CadetEditorContext3D ) );
 			resourceManager.addResource( new ComponentFactory( BitmapCubeTextureComponent, "Bitmap Cube Texture", "Textures", CadetEditor3DIcons.Texture, null, -1, null, CadetEditorContext3D ) );
 		
-			
-			
 			
 			// Default settings
 			FloxEditor.settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );

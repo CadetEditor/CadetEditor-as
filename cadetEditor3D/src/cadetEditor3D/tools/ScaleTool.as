@@ -5,7 +5,7 @@ package cadetEditor3D.tools
 {
 	import away3d.entities.Entity;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	
 	import cadetEditor.entities.ToolFactory;
 	
@@ -115,7 +115,7 @@ package cadetEditor3D.tools
 			
 			for ( var i:int = 0; i < entitiesBeingTransformed.length; i++ )
 			{
-				var entity:Object3DComponent = entitiesBeingTransformed[i];
+				var entity:ObjectContainer3DComponent = entitiesBeingTransformed[i];
 				var transform:Matrix3D = storedEntityTransforms[i].clone();
 				transform.prependScale( scaleAxis[0] == 1 ? scaleAmount : 1, scaleAxis[1] == 1 ? scaleAmount : 1, scaleAxis[2] == 1 ? scaleAmount : 1 );
 				entity.transform = transform;

@@ -16,7 +16,7 @@ package cadetEditor3D.commandHandlers
 	import cadet.core.IComponentContainer;
 	
 	import cadet3D.components.core.MeshComponent;
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	import cadet3D.components.geom.GeometryComponent;
 	import cadet3D.components.materials.AbstractMaterialComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
@@ -155,7 +155,7 @@ package cadetEditor3D.commandHandlers
 				case ObjectContainer3D :
 					
 					var objectContainer3D:ObjectContainer3D = ObjectContainer3D(asset);
-					var object3DComponent:Object3DComponent = new Object3DComponent();
+					var object3DComponent:ObjectContainer3DComponent = new ObjectContainer3DComponent();
 					object3DComponent.name = objectContainer3D.name == "null" ? resourceIDPrefix : objectContainer3D.name;
 					object3DComponent.transform = objectContainer3D.transform;
 					compoundOperation.addOperation( new AddItemOperation( object3DComponent, parent.children ) );

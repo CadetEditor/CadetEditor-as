@@ -7,7 +7,7 @@ package cadetEditor3D.tools
 	
 	import cadet.events.InvalidationEvent;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	import cadet3D.events.Renderer3DEvent;
 	
 	import cadetEditor.entities.ToolFactory;
@@ -40,7 +40,7 @@ package cadetEditor3D.tools
 		protected var operationName				:String = "Transform";
 		protected var gizmo						:GizmoBase;
 		
-		protected var entitiesBeingTransformed	:Vector.<Object3DComponent>;
+		protected var entitiesBeingTransformed	:Vector.<ObjectContainer3DComponent>;
 		protected var storedEntityTransforms	:Vector.<Matrix3D>;
 		
 		public function TransformToolBase()
@@ -101,13 +101,13 @@ package cadetEditor3D.tools
 		
 		protected function updateFromSelection():void
 		{
-			entitiesBeingTransformed = new Vector.<Object3DComponent>();
+			entitiesBeingTransformed = new Vector.<ObjectContainer3DComponent>();
 			storedEntityTransforms = new Vector.<Matrix3D>();
 			
 			var averagePos:Vector3D = new Vector3D();
 			for each ( var item:* in context.selection )
 			{
-				var entity:Object3DComponent = item as Object3DComponent
+				var entity:ObjectContainer3DComponent = item as ObjectContainer3DComponent
 				if ( entity )
 				{
 					entitiesBeingTransformed.push(entity);
@@ -143,7 +143,7 @@ package cadetEditor3D.tools
 		{
 			if ( isDragging )
 			{
-				throw( new Error( "Already dragging" ) );
+//				throw( new Error( "Already dragging" ) );
 				return;
 			}
 			
@@ -165,7 +165,7 @@ package cadetEditor3D.tools
 		{
 			if ( !isDragging )
 			{
-				throw( new Error( "Not dragging" ) );
+//				throw( new Error( "Not dragging" ) );
 				return;
 			}
 			
@@ -178,7 +178,7 @@ package cadetEditor3D.tools
 			operation.label = operationName;
 			for ( var i:int = 0; i < entitiesBeingTransformed.length; i++ )
 			{
-				var entity:Object3DComponent = entitiesBeingTransformed[i];
+				var entity:ObjectContainer3DComponent = entitiesBeingTransformed[i];
 				operation.addOperation( new ChangePropertyOperation( entity, "transform", entity.transform.clone(), storedEntityTransforms[i].clone() ) );
 			}
 			

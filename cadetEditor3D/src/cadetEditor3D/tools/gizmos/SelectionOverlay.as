@@ -5,7 +5,7 @@ package cadetEditor3D.tools.gizmos
 {
 	import away3d.entities.Entity;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	
@@ -15,12 +15,12 @@ package cadetEditor3D.tools.gizmos
 	{
 		private var context	:CadetEditorContext3D;
 		
-		private var selectedObject3DComponents	:Vector.<Object3DComponent>;
+		private var selectedObject3DComponents	:Vector.<ObjectContainer3DComponent>;
 		
 		public function SelectionOverlay( context:CadetEditorContext3D )
 		{
 			this.context = context;
-			selectedObject3DComponents = new Vector.<Object3DComponent>();
+			selectedObject3DComponents = new Vector.<ObjectContainer3DComponent>();
 			context.selection.addEventListener(ArrayCollectionEvent.CHANGE, selectionChangeHandler);
 		}
 		
@@ -32,7 +32,7 @@ package cadetEditor3D.tools.gizmos
 		
 		private function selectionChangeHandler( event:ArrayCollectionEvent ):void
 		{
-			for each ( var object3DComponent:Object3DComponent in selectedObject3DComponents )
+			for each ( var object3DComponent:ObjectContainer3DComponent in selectedObject3DComponents )
 			{
 				if ( context.selection.contains(object3DComponent) ) continue;
 				if ( object3DComponent.object3D is Entity == false ) continue;
@@ -47,7 +47,7 @@ package cadetEditor3D.tools.gizmos
 			
 			for ( var i:int = 0; i < context.selection.length; i++ )
 			{
-				object3DComponent = context.selection[i] as Object3DComponent;
+				object3DComponent = context.selection[i] as ObjectContainer3DComponent;
 				if ( object3DComponent == null ) continue;
 				if ( object3DComponent.object3D is Entity == false ) continue;
 				

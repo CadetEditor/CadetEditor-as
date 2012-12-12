@@ -5,7 +5,7 @@ package cadetEditor3D.tools
 {
 	import away3d.entities.Entity;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	
 	import cadetEditor.entities.ToolFactory;
 	
@@ -62,7 +62,7 @@ package cadetEditor3D.tools
 			gizmo.position = gizmoStartDragPosition.add(delta);
 			for ( var i:int = 0; i < entitiesBeingTransformed.length; i++ )
 			{
-				var entity:Object3DComponent = entitiesBeingTransformed[i];
+				var entity:ObjectContainer3DComponent = entitiesBeingTransformed[i];
 				var transform:Matrix3D = storedEntityTransforms[i].clone();
 				transform.appendTranslation( delta.x, delta.y, delta.z );
 				entity.transform = transform;

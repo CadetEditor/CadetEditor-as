@@ -7,7 +7,7 @@ package cadetEditor3D.tools
 	
 	import cadet.core.IComponentContainer;
 	
-	import cadet3D.components.core.Object3DComponent;
+	import cadet3D.components.core.ObjectContainer3DComponent;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.entities.ToolFactory;
@@ -141,7 +141,7 @@ package cadetEditor3D.tools
 		protected function dragDetectedHandler(event:Event):void
 		{
 			// Automatically select the dragged item
-			var pressedComponent:Object3DComponent = renderer.getComponentForObject3D(pressedEntity);
+			var pressedComponent:ObjectContainer3DComponent = renderer.getComponentForObject3D(pressedEntity);
 			
 			if ( !pressedComponent ) return;
 			if ( context.selection.contains( pressedComponent ) == false ) 
@@ -167,7 +167,7 @@ package cadetEditor3D.tools
 		 * @param item
 		 * @param event
 		 */
-		private var previouslyClickedComponent:Object3DComponent;
+		private var previouslyClickedComponent:ObjectContainer3DComponent;
 		private function clickEntitiesHandler( event:MouseEvent3DEx ):void
 		{	
 			if (ignoreNextMouseUp) 
@@ -176,7 +176,7 @@ package cadetEditor3D.tools
 				return;
 			}
 			
-			var components:Vector.<Object3DComponent> = new Vector.<Object3DComponent>();
+			var components:Vector.<ObjectContainer3DComponent> = new Vector.<ObjectContainer3DComponent>();
 			
 			for ( var i:int = 0; i < event.entities.length; i++ )
 			{
@@ -193,7 +193,7 @@ package cadetEditor3D.tools
 			var index:int = components.indexOf(previouslyClickedComponent);
 			index = index == components.length-1 ? 0 : index+1;
 			
-			var component:Object3DComponent = components[index];
+			var component:ObjectContainer3DComponent = components[index];
 			handleSelection(component, event.shiftKey)
 			
 			var alreadySelected:Boolean = context.selection.contains( previouslyClickedComponent );
@@ -210,7 +210,7 @@ package cadetEditor3D.tools
 		 * @param shiftSelect
 		 * @param allowDeselect
 		 */		
-		protected function handleSelection( component:Object3DComponent, shiftSelect:Boolean = false, allowDeselect:Boolean = true ):void
+		protected function handleSelection( component:ObjectContainer3DComponent, shiftSelect:Boolean = false, allowDeselect:Boolean = true ):void
 		{
 			var alreadySelected:Boolean = context.selection.source.indexOf( component ) != -1;
 			
