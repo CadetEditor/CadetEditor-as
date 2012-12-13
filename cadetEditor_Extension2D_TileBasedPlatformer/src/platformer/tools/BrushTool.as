@@ -37,6 +37,7 @@ package platformer.tools
 	import flox.app.resources.ExternalBitmapDataResource;
 	import flox.app.resources.IResource;
 	import flox.editor.FloxEditor;
+	import flox.editor.utils.FileSystemProviderUtil;
 	import flox.ui.components.Button;
 	
 	import platformer.components.behaviours.TileBehaviour;
@@ -96,7 +97,7 @@ package platformer.tools
 			if ( configURI ) return;
 			
 			if ( _context.uri ) {
-				configURI = new URI( FloxEditor.getProjectDirectoryURI(_context.uri).path + "editor/brushes.xml" );
+				configURI = new URI( FileSystemProviderUtil.getProjectDirectoryURI(_context.uri).path + "editor/brushes.xml" );
 				var operation:IReadFileOperation = FloxApp.fileSystemProvider.readFile( configURI );
 				operation.addEventListener(ErrorEvent.ERROR, readFileErrorHandler);
 				operation.addEventListener( Event.COMPLETE, loadConfigCompleteHandler );

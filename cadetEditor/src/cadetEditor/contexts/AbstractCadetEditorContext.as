@@ -27,6 +27,7 @@ package cadetEditor.contexts
 	import flox.editor.contexts.AbstractEditorContext;
 	import flox.editor.contexts.IEditorContext;
 	import flox.editor.core.FloxEditorEnvironment;
+	import flox.editor.utils.FileSystemProviderUtil;
 	
 	public class AbstractCadetEditorContext extends AbstractEditorContext implements IContext
 	{
@@ -121,7 +122,7 @@ package cadetEditor.contexts
 		private function initResourceController():void
 		{
 			//var assetsURI:URI = FloxEditor.getAssetsDirectoryURI();
-			var assetsURI:URI = new URI(FloxEditor.getProjectDirectoryURI().path+FloxApp.externalResourceFolderName);
+			var assetsURI:URI = new URI(FileSystemProviderUtil.getProjectDirectoryURI(FloxEditor.currentEditorContextURI).path+FloxApp.externalResourceFolderName);
 			
 			if (!FloxApp.externalResourceControllers[assetsURI.path]) {
 				FloxApp.externalResourceControllers[assetsURI.path] = new ExternalResourceController( FloxApp.resourceManager, assetsURI, FloxApp.fileSystemProvider );
