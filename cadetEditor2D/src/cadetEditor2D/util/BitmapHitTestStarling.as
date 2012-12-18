@@ -3,14 +3,9 @@
 
 package cadetEditor2D.util
 {
-	import flash.display.BitmapData;
 	import flash.filters.BlurFilter;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	
-	import flox.app.util.DisplayListUtil;
-	
+	import flash.geom.Point
+		
 	import starling.display.DisplayObject;
 	
 	public class BitmapHitTestStarling

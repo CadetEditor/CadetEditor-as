@@ -23,8 +23,6 @@ package cadetEditor3D.commandHandlers
 	import flash.events.MouseEvent;
 	import flash.system.System;
 	
-	import mx.events.FlexEvent;
-	
 	import flox.editor.FloxEditor;
 	import flox.app.core.commandHandlers.ICommandHandler;
 	import flox.app.operations.ChangePropertyOperation;
@@ -104,7 +102,7 @@ package cadetEditor3D.commandHandlers
 			if ( !outputPanel )
 			{
 				outputPanel = new TextOutputPanel();
-				outputPanel.addEventListener(FlexEvent.CREATION_COMPLETE, outputPanelCreatedHandler);
+				//outputPanel.addEventListener(FlexEvent.CREATION_COMPLETE, outputPanelCreatedHandler);
 			}
 			if ( outputPanel.stage ) return;
 			
@@ -123,13 +121,13 @@ package cadetEditor3D.commandHandlers
 		}
 		private function closeOutputPanel():void
 		{
-			outputPanel.removeEventListener(FlexEvent.CREATION_COMPLETE, outputPanelCreatedHandler);
+			//outputPanel.removeEventListener(FlexEvent.CREATION_COMPLETE, outputPanelCreatedHandler);
 			outputPanel.copyBtn.removeEventListener(MouseEvent.CLICK, clickCopyHandler);
 			outputPanel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCloseHandler);
 			FloxEditor.viewManager.removePopUp(outputPanel);
 		}
 		
-		private function outputPanelCreatedHandler( event:FlexEvent ):void
+		private function outputPanelCreatedHandler( event:Event ):void//event:FlexEvent ):void
 		{
 			outputPanel.textArea.text = classStr;
 		}

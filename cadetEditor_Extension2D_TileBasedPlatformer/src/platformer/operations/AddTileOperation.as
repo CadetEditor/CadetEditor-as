@@ -9,17 +9,12 @@ package platformer.operations
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.operations.RemoveComponentOperation;
 	
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
-	
 	import flox.app.FloxApp;
 	import flox.app.core.operations.IUndoableOperation;
 	import flox.app.managers.ResourceManager;
 	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.BindResourceOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
-	import flox.editor.FloxEditor;
 	
 	import platformer.components.behaviours.TileBehaviour;
 	import platformer.components.processes.GridProcess;

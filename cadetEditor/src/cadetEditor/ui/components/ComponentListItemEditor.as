@@ -107,6 +107,8 @@ package cadetEditor.ui.components
 			}
 			
 			dataProvider = new ArrayCollection(VectorUtil.toArray(dp));
+			//dataProvider.addItemAt(null, 0);
+			
 			selectedItem = component[_propertyName];
 		}
 		

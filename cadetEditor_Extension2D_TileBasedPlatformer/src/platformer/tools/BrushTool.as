@@ -1,12 +1,5 @@
 package platformer.tools
 {
-	import cadet.util.ComponentUtil;
-	
-	import cadet2D.components.core.Entity;
-	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.components.transforms.Transform2D;
-	
-	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
 	import cadetEditor.tools.ITool;
@@ -17,31 +10,17 @@ package platformer.tools
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.geom.Point;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	
 	import flox.app.FloxApp;
 	import flox.app.core.contexts.IContext;
 	import flox.app.core.managers.fileSystemProviders.operations.IReadFileOperation;
 	import flox.app.entities.URI;
-	import flox.app.managers.ResourceManager;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.BindResourceOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.ExternalBitmapDataResource;
-	import flox.app.resources.IResource;
 	import flox.editor.FloxEditor;
 	import flox.editor.utils.FileSystemProviderUtil;
-	import flox.ui.components.Button;
 	
-	import platformer.components.behaviours.TileBehaviour;
-	import platformer.components.processes.GridProcess;
 	import platformer.operations.AddTileOperation;
 	import platformer.ui.panels.BrushesPanel;
 	
@@ -51,7 +30,7 @@ package platformer.tools
 		protected var mouseDownPoint		:Point;
 		protected var currentMousePoint		:Point;
 		
-		[Embed( source = 'platformer/assets/brush.png' )] 	
+		[Embed( source = '/platformer/assets/brush.png' )] 	
 		static public var BrushToolImg:Class;
 
 		//private var tileLinkage:String = "tiles/asphalt0/";
