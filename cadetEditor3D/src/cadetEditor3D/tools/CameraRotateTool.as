@@ -4,8 +4,6 @@
 package cadetEditor3D.tools
 {
 	import away3d.cameras.Camera3D;
-	import away3d.cameras.lenses.PerspectiveLens;
-	import away3d.events.MouseEvent3D;
 	
 	import cadet3D.components.core.Renderer3D;
 	
@@ -19,9 +17,7 @@ package cadetEditor3D.tools
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix3D;
-	import flash.geom.Transform;
 	import flash.geom.Vector3D;
-	import flash.media.Camera;
 	import flash.ui.Keyboard;
 	
 	import flox.editor.FloxEditor;

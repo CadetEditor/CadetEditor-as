@@ -3,9 +3,13 @@
 
 package cadetEditor3D.tools
 {
+	import flash.events.MouseEvent;
+	import flash.geom.Vector3D;
+	import flash.ui.Keyboard;
+	
 	import away3d.cameras.Camera3D;
 	import away3d.cameras.lenses.PerspectiveLens;
-	import away3d.events.MouseEvent3D;
+	import away3d.core.base.Object3D;
 	
 	import cadet3D.components.core.Renderer3D;
 	
@@ -17,12 +21,8 @@ package cadetEditor3D.tools
 	import cadetEditor3D.icons.CadetEditor3DIcons;
 	import cadetEditor3D.ui.views.CadetEditorView3D;
 	
-	import flash.events.MouseEvent;
-	import flash.geom.Vector3D;
-	import flash.ui.Keyboard;
-	
-	import flox.editor.FloxEditor;
 	import flox.app.core.contexts.IContext;
+	import flox.editor.FloxEditor;
 	
 	public class CameraPanTool implements ITool
 	{
@@ -152,11 +152,25 @@ package cadetEditor3D.tools
 			}
 			var sensitivity:Number = 1.3;
 			
-			camera.position = storedCameraPos;
-			camera.moveRight( -dx * focalLength * sensitivity );
-			camera.moveDown( -dy * focalLength * sensitivity );
+			var moveRight:Number = -dx * focalLength * sensitivity;
+			var moveDown:Number = -dy * focalLength * sensitivity;
 			
-			var offset:Vector3D = camera.position.subtract(storedCameraPos);
+//			camera.position = storedCameraPos;
+			
+			var obj3D:Object3D = new Object3D();			
+			obj3D.position = storedCameraPos;
+			obj3D.rotationX = camera.rotationX;
+			obj3D.rotationY = camera.rotationY;
+			obj3D.rotationZ = camera.rotationZ;
+			//obj3D.pivotPoint = camera.pivotPoint.clone(); //TODO: issue with Pivot Point
+			obj3D.moveRight( moveRight );
+			obj3D.moveDown( moveDown );
+			
+			camera.position = obj3D.position.clone();
+			
+			//trace("position "+camera.position+" storedCamPos "+storedCameraPos+" moveRight "+moveRight+" moveDown "+moveDown);
+			
+			var offset:Vector3D = obj3D.position.subtract(storedCameraPos.clone());
 			camera.pivotPoint = storedCameraPivotPos.add(offset);
 		}
 		

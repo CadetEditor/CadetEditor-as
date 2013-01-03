@@ -3,9 +3,7 @@
 
 package
 {
-	import cadet.core.Component;
 	import cadet.core.ICadetScene;
-	import cadet.core.IComponentContainer;
 	
 	import cadet3D.components.cameras.CameraComponent;
 	import cadet3D.components.core.MeshComponent;
@@ -14,11 +12,9 @@ package
 	import cadet3D.components.core.Sprite3DComponent;
 	import cadet3D.components.debug.TridentComponent;
 	import cadet3D.components.geom.CubeGeometryComponent;
-	import cadet3D.components.geom.GeometryComponent;
 	import cadet3D.components.geom.PlaneGeometryComponent;
 	import cadet3D.components.geom.SphereGeometryComponent;
 	import cadet3D.components.lights.DirectionalLightComponent;
-	import cadet3D.components.lights.LightProbeComponent;
 	import cadet3D.components.lights.PointLightComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
 	import cadet3D.components.materials.SkyBoxMaterialComponent;
@@ -39,7 +35,6 @@ package
 	import cadetEditor3D.commandHandlers.ExportToAS3CommandHandler;
 	import cadetEditor3D.commandHandlers.ImportCommandHandler;
 	import cadetEditor3D.contexts.CadetEditorContext3D;
-	import cadetEditor3D.controllers.DefaultControlBar3DController;
 	import cadetEditor3D.controllers.PhysicsControlBarController;
 	import cadetEditor3D.entities.CadetBuilder3DCommands;
 	import cadetEditor3D.icons.CadetEditor3DIcons;

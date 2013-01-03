@@ -4,8 +4,6 @@
 package cadetEditor3D.tools
 {
 	import away3d.cameras.Camera3D;
-	import away3d.cameras.lenses.PerspectiveLens;
-	import away3d.events.MouseEvent3D;
 	
 	import cadet3D.components.core.Renderer3D;
 	
