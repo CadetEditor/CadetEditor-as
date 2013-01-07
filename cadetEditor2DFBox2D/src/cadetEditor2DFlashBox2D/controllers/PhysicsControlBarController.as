@@ -29,7 +29,6 @@ package cadetEditor2DFlashBox2D.controllers
 	import flox.app.operations.RemoveItemOperation;
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
 	import flox.editor.core.IViewContainer;
 	
 	public class PhysicsControlBarController implements ICadetContextController

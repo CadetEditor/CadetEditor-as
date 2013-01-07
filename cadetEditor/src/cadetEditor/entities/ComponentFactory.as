@@ -5,20 +5,13 @@ package cadetEditor.entities
 {
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
-	import cadet.core.IRenderer;
-	import cadet.util.ComponentUtil;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.validators.ComponentParentValidator;
 	import cadetEditor.validators.ComponentSiblingValidator;
 	import cadetEditor.validators.IComponentValidator;
 	
-	import mx.effects.effectClasses.IrisInstance;
-	
-	import flox.editor.FloxEditor;
-	import flox.app.core.contexts.IContext;
 	import flox.app.resources.FactoryResource;
-	import flox.app.util.IntrospectionUtil;
 	
 	public class ComponentFactory extends FactoryResource
 	{

@@ -29,7 +29,6 @@ package cadetEditor2DS.tools
 	import flox.app.core.contexts.IContext;
 	import flox.app.events.OperationManagerEvent;
 	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.AddToArrayOperation;
 	import flox.app.operations.AddToVectorOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;

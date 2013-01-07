@@ -223,8 +223,8 @@ package cadetEditor2D.managers
 						var geometry:IGeometry = geometries[i];
 						if ( geometry is PolygonGeometry == false ) continue;
 						
-						var untransformedVertices:Array = untransformedVertices[i];
-						var transformedVertices:Array = transformedVertices[i];
+						var untransformedVertices:Array = untransformedVertices != null ? untransformedVertices[i] : new Array();
+						var transformedVertices:Array = transformedVertices != null ? transformedVertices[i] : new Array();
 						
 						for ( var j:int = 0; j < transformedVertices.length; j++ )
 						{

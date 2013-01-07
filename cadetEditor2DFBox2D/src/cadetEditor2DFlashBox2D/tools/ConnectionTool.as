@@ -15,10 +15,6 @@ package cadetEditor2DFlashBox2D.tools
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	import cadet2DFlash.components.skins.ConnectionSkin;
-	import cadet2DFlash.components.skins.SpringSkin;
-	
-	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;
-	import cadet2DBox2D.components.behaviours.PrismaticJointBehaviour;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -26,7 +22,6 @@ package cadetEditor2DFlashBox2D.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.operations.PickComponentsOperation;
-	import cadetEditor2D.ui.controlBars.ConnectionToolControlBar;
 	
 	import cadetEditor2DFlash.tools.CadetEditorTool2D;
 	
@@ -39,8 +34,6 @@ package cadetEditor2DFlashBox2D.tools
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
-	
-	import starling.display.Sprite;
 	
 	public class ConnectionTool extends CadetEditorTool2D
 	{

@@ -3,6 +3,9 @@
 
 package 
 {
+	import flash.display.Sprite;
+	import flash.ui.Keyboard;
+	
 	import cadet.components.behaviours.VehicleUserControlBehaviour;
 	import cadet.core.ICadetScene;
 	
@@ -27,13 +30,13 @@ package
 	import cadet2DBox2D.components.behaviours.RevoluteJointBehaviour;
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
 	import cadet2DBox2D.components.behaviours.RigidBodyCollisionDetectBehaviour;
+	import cadet2DBox2D.components.behaviours.RigidBodyMouseDragBehaviour;
 	import cadet2DBox2D.components.behaviours.SimpleFootprintBehaviour;
 	import cadet2DBox2D.components.behaviours.SimpleVehicleBehaviour;
 	import cadet2DBox2D.components.behaviours.SpringBehaviour;
 	import cadet2DBox2D.components.behaviours.VehicleBehaviour;
 	import cadet2DBox2D.components.processes.PhysicsProcess;
 	
-	import cadet2DBox2D.components.behaviours.RigidBodyMouseDragBehaviour;
 	import cadet2DFlash.components.processes.TrackCamera2DProcess;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AssetSkin;
@@ -47,15 +50,6 @@ package
 	import cadet2DFlash.components.skins.WorldBoundsDebugSkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
-	import cadetEditor.commandHandlers.CompileAndRunCommandHandler;
-	import cadetEditor.commandHandlers.CompileCommandHandler;
-	import cadetEditor.commandHandlers.CopyComponentCommandHandler;
-	import cadetEditor.commandHandlers.DeleteComponentsCommandHandler;
-	import cadetEditor.commandHandlers.EditComponentPropertiesCommandHandler;
-	import cadetEditor.commandHandlers.ImportTemplateCommandHandler;
-	import cadetEditor.commandHandlers.PasteComponentsCommandHandler;
-	import cadetEditor.contexts.CadetContext;
-	import cadetEditor.contexts.OutlinePanelContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.entities.ComponentFactory;
 	
@@ -85,25 +79,17 @@ package
 	
 	import cadetEditor2DFlashBox2D.controllers.PhysicsControlBarController;
 	import cadetEditor2DFlashBox2D.tools.ConnectionTool;
-	import cadetEditor2DFlashBox2D.tools.GeometryPrimitiveToolBox2D;
 	import cadetEditor2DFlashBox2D.tools.PinTool;
 	import cadetEditor2DFlashBox2D.tools.TerrainTool;
 	
-	import flash.display.Sprite;
-	import flash.ui.Keyboard;
-	
 	import flox.app.FloxApp;
-	import flox.app.controllers.ExternalResourceController;
 	import flox.app.entities.KeyModifier;
-	import flox.app.entities.URI;
 	import flox.app.managers.ResourceManager;
 	import flox.app.managers.SettingsManager;
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.FileType;
 	import flox.app.resources.KeyBinding;
-	import flox.app.resources.PropertyInspectorItemEditorFactory;
 	import flox.editor.FloxEditor;
-	import flox.editor.core.FloxEditorEnvironment;
 	import flox.editor.core.IGlobalViewContainer;
 	import flox.editor.icons.FloxEditorIcons;
 	import flox.editor.resources.ActionFactory;

@@ -27,8 +27,6 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor/bin/CadetEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2D/bin/CadetEditor2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DBox2D/bin/CadetEditor2DBox2D.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DFlash/bin/CadetEditor2DFlash.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DFlashBox2D/bin/CadetEditor2DFlashBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxEditor/bin/FloxEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxApp/bin/FloxApp.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxAppEx/bin/FloxAppEx.swc" useDefaultLinkType="false"/>
@@ -37,6 +35,8 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DBox2D/bin/CadetEngine_Extension_2DBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DF/bin/CadetEngine_Extension_2DF.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="C:/Program Files/Adobe/Adobe Flash Builder 4.7 (64 Bit)/sdks/4.6.0/frameworks/libs/core.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DF/bin/CadetEditor2DF.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DFBox2D/bin/CadetEditor2DFBox2D.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

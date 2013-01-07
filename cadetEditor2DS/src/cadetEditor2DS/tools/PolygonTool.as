@@ -3,7 +3,6 @@
 
 package cadetEditor2DS.tools
 {
-	import cadet.core.ComponentContainer;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;

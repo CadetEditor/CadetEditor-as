@@ -3,7 +3,6 @@
 
 package cadetEditor2DSBox2D.tools
 {
-	import cadet.core.ComponentContainer;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
@@ -13,13 +12,9 @@ package cadetEditor2DSBox2D.tools
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.ConnectionSkin;
 	import cadet2D.components.skins.ISkin2D;
-	import cadet2D.components.skins.SpringSkin;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
 	import cadet2D.overlays.Overlay;
-	
-	import cadet2DBox2D.components.behaviours.DistanceJointBehaviour;
-	import cadet2DBox2D.components.behaviours.PrismaticJointBehaviour;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -27,7 +22,6 @@ package cadetEditor2DSBox2D.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.operations.PickComponentsOperation;
-	import cadetEditor2D.ui.controlBars.ConnectionToolControlBar;
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
@@ -38,9 +32,6 @@ package cadetEditor2DSBox2D.tools
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
-	
-	import starling.display.Shape;
-	import starling.display.Sprite;
 	
 	public class ConnectionTool extends CadetEditorTool2D
 	{
