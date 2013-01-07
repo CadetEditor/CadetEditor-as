@@ -41,15 +41,6 @@ package
 	import cadet2DBox2D.components.processes.PhysicsProcess;
 	
 	import cadetEditor.assets.CadetEditorIcons;
-	import cadetEditor.commandHandlers.CompileAndRunCommandHandler;
-	import cadetEditor.commandHandlers.CompileCommandHandler;
-	import cadetEditor.commandHandlers.CopyComponentCommandHandler;
-	import cadetEditor.commandHandlers.DeleteComponentsCommandHandler;
-	import cadetEditor.commandHandlers.EditComponentPropertiesCommandHandler;
-	import cadetEditor.commandHandlers.ImportTemplateCommandHandler;
-	import cadetEditor.commandHandlers.PasteComponentsCommandHandler;
-	import cadetEditor.contexts.CadetContext;
-	import cadetEditor.contexts.OutlinePanelContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.entities.ComponentFactory;
 	
@@ -86,17 +77,13 @@ package
 	import flash.ui.Keyboard;
 	
 	import flox.app.FloxApp;
-	import flox.app.controllers.ExternalResourceController;
 	import flox.app.entities.KeyModifier;
-	import flox.app.entities.URI;
 	import flox.app.managers.ResourceManager;
 	import flox.app.managers.SettingsManager;
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.FileType;
 	import flox.app.resources.KeyBinding;
-	import flox.app.resources.PropertyInspectorItemEditorFactory;
 	import flox.editor.FloxEditor;
-	import flox.editor.core.FloxEditorEnvironment;
 	import flox.editor.core.IGlobalViewContainer;
 	import flox.editor.icons.FloxEditorIcons;
 	import flox.editor.resources.ActionFactory;

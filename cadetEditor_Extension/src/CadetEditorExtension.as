@@ -13,7 +13,6 @@ package
 	import cadetEditor.contexts.OutlinePanelContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.entities.ComponentFactory;
-	import cadetEditor.entities.LibraryPanelResource;
 	import cadetEditor.entities.ToggleCadetEditorPropertyCommandHandlerFactory;
 	import cadetEditor.ui.components.ComponentListItemEditor;
 	
@@ -21,17 +20,11 @@ package
 	import flash.ui.Keyboard;
 	
 	import flox.app.FloxApp;
-	//import flox.apps.controllers.ExternalResourceController;
 	import flox.app.entities.KeyModifier;
-	import flox.app.entities.URI;
 	import flox.app.managers.ResourceManager;
-	import flox.app.operations.LoadSWFAssetResourcesOperation;
-	import flox.app.resources.ExternalBitmapDataResource;
 	import flox.app.resources.FactoryResource;
-	import flox.app.resources.FileType;
 	import flox.app.resources.KeyBinding;
 	import flox.app.resources.PropertyInspectorItemEditorFactory;
-	import flox.editor.FloxEditor;
 	import flox.editor.core.IGlobalViewContainer;
 	import flox.editor.entities.Commands;
 	import flox.editor.icons.FloxEditorIcons;
