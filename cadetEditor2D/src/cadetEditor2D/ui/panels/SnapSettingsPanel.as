@@ -2,21 +2,12 @@
 // All rights reserved. 
 
 package cadetEditor2D.ui.panels
-{
-	import flash.events.Event;
-	
+{	
 	import flox.ui.components.Button;
 	import flox.ui.components.CheckBox;
-	import flox.ui.components.List;
 	import flox.ui.components.NumericStepper;
-	import cadetEditor.ui.components.OutlineTree;
 	import flox.ui.components.Panel;
-	import flox.ui.components.RadioButtonGroup;
 	import flox.ui.util.FloxDeserializer;
-	
-	import flox.editor.FloxEditor;
-	import flox.app.util.StringUtil;
-	import flox.app.util.Validation;
 	
 	public class SnapSettingsPanel extends Panel
 	{

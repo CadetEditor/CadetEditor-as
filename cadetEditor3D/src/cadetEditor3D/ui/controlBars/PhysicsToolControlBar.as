@@ -3,9 +3,7 @@ package cadetEditor3D.ui.controlBars
 	import flash.events.Event;
 	
 	import flox.ui.components.CheckBox;
-	import flox.ui.components.DropDownMenu;
 	import flox.ui.components.HBox;
-	import flox.core.data.ArrayCollection;
 	import flox.ui.util.FloxDeserializer;
 	
 	public class PhysicsToolControlBar extends HBox

@@ -9,7 +9,6 @@ package cadetEditor3D.ui.panels
 	import flox.ui.components.RadioButton;
 	import flox.ui.components.RadioButtonGroup;
 	import flox.ui.components.TextArea;
-	import flox.ui.components.TextInput;
 	import flox.ui.util.FloxDeserializer;
 
 	public class ExportToAS3Panel extends Panel

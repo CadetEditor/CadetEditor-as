@@ -2,15 +2,9 @@
 // All rights reserved. 
 
 package cadetEditor2D.ui.controlBars
-{
-	import flash.display.Stage;
-	import flash.events.Event;
-	
+{	
 	import flox.ui.components.CheckBox;
-	import flox.ui.components.DropDownMenu;
 	import flox.ui.components.HBox;
-	import flox.ui.components.NumericStepper;
-	import flox.core.data.ArrayCollection;
 	import flox.ui.util.FloxDeserializer;
 	
 	public class PinToolControlBar extends HBox

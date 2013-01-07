@@ -3,13 +3,7 @@
 
 package cadetEditor3D.ui.controlBars
 {
-//	import cadetEditor.assets.CadetEditorIcons;
-	
-//	import flox.ui.components.Button;
 	import flox.ui.components.HBox;
-//	import flox.ui.components.HSlider;
-//	import flox.ui.components.Label;
-//	import flox.ui.components.NumericStepper;
 	import flox.ui.util.FloxDeserializer;
 	
 	public class CadetEditorControlBar extends HBox
