@@ -4,28 +4,19 @@
 package cadetEditor3D.tools.gizmos
 {
 	import away3d.core.base.Geometry;
-	import away3d.core.base.SubMesh;
 	import away3d.core.pick.PickingColliderType;
-	import away3d.debug.Trident;
-	import away3d.debug.data.TridentLines;
 	import away3d.entities.Entity;
 	import away3d.entities.Mesh;
-	import away3d.entities.SegmentSet;
 	import away3d.materials.ColorMaterial;
 	import away3d.materials.MaterialBase;
 	import away3d.materials.TextureMaterial;
 	import away3d.primitives.ConeGeometry;
 	import away3d.primitives.CylinderGeometry;
-	import away3d.primitives.LineSegment;
 	import away3d.primitives.PlaneGeometry;
-	import away3d.primitives.data.Segment;
 	import away3d.textures.BitmapTexture;
-	import away3d.textures.Texture2DBase;
 	import away3d.tools.commands.Merge;
 	
 	import flash.display3D.Context3DCompareMode;
-	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;
 	
 	public class TranslateGizmo extends GizmoBase
 	{
@@ -156,7 +147,7 @@ package cadetEditor3D.tools.gizmos
 		
 		private function filterFunc( item:Entity, index:int, array:Vector.<Entity> ):Boolean
 		{
-			return interactiveMeshes.indexOf(item) != -1;
+			return interactiveMeshes.indexOf(Mesh(item)) != -1;
 		}
 		
 		override public function getClosestActiveEntity( entities:Vector.<Entity> ):Entity

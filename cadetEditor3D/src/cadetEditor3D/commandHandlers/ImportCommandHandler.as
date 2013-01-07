@@ -20,7 +20,6 @@ package cadetEditor3D.commandHandlers
 	import cadet3D.components.geom.GeometryComponent;
 	import cadet3D.components.materials.AbstractMaterialComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
-	import cadet3D.resources.Away3DContainer3DResource;
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.entities.CadetBuilder3DCommands;
@@ -40,7 +39,6 @@ package cadetEditor3D.commandHandlers
 	import flox.editor.FloxEditor;
 	import flox.editor.operations.SelectResourceOperation;
 	import flox.editor.ui.panels.SelectResourcePanel;
-	import flox.ui.components.Alert;
 	
 	public class ImportCommandHandler implements ICommandHandler
 	{

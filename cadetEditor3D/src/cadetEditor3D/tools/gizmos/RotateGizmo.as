@@ -11,19 +11,14 @@ package cadetEditor3D.tools.gizmos
 	import away3d.materials.MaterialBase;
 	import away3d.materials.TextureMaterial;
 	import away3d.materials.methods.EffectMethodBase;
-	import away3d.materials.methods.EnvMapMethod;
 	import away3d.materials.methods.FresnelEnvMapMethod;
-	import away3d.materials.methods.ShadingMethodBase;
 	import away3d.primitives.CylinderGeometry;
 	import away3d.primitives.SphereGeometry;
 	import away3d.textures.BitmapCubeTexture;
 	import away3d.textures.BitmapTexture;
 	
 	import flash.display.BitmapData;
-	import flash.display.BlendMode;
 	import flash.display3D.Context3DCompareMode;
-	
-	import mx.effects.Rotate;
 	
 	public class RotateGizmo extends GizmoBase
 	{
@@ -112,7 +107,7 @@ package cadetEditor3D.tools.gizmos
 		
 		private function filterFunc( item:Entity, index:int, array:Vector.<Entity> ):Boolean
 		{
-			return interactiveMeshes.indexOf(item) != -1;
+			return interactiveMeshes.indexOf(Mesh(item)) != -1;
 		}
 		
 		override public function getClosestActiveEntity( entities:Vector.<Entity> ):Entity
