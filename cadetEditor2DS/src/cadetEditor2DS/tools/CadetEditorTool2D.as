@@ -2,9 +2,7 @@
 // All rights reserved. 
 
 package cadetEditor2DS.tools
-{
-	import cadetEditor.tools.ITool;
-	
+{	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.tools.ICadetEditorTool2D;

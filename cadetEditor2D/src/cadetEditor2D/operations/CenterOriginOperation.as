@@ -3,6 +3,10 @@
 
 package cadetEditor2D.operations
 {
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.components.geom.IGeometry;
 	import cadet.core.IComponent;
 	import cadet.util.ComponentUtil;
@@ -12,13 +16,10 @@ package cadetEditor2D.operations
 	import cadet2D.components.geom.CircleGeometry;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
+	import cadet2D.geom.QuadraticBezier;
 	import cadet2D.geom.Vertex;
 	import cadet2D.util.QuadraticBezierUtil;
 	import cadet2D.util.VertexUtil;
-	
-	import flash.geom.Matrix;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
@@ -115,7 +116,7 @@ package cadetEditor2D.operations
 			var centerX:Number = bounds.x + bounds.width*0.5;
 			var centerY:Number = bounds.y + bounds.height*0.5;
 			
-			var newSegments:Array = QuadraticBezierUtil.clone(bezierCurve.segments);
+			var newSegments:Vector.<QuadraticBezier> = QuadraticBezierUtil.clone(bezierCurve.segments);
 			var m:Matrix = new Matrix( 1, 0, 0, 1, -centerX, -centerY );
 			QuadraticBezierUtil.transform( newSegments, m );
 			transformConnections( m );

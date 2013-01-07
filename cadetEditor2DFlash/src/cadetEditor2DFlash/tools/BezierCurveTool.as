@@ -3,7 +3,9 @@
 
 package cadetEditor2DFlash.tools
 {
-	import cadet.core.ComponentContainer;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
@@ -13,6 +15,7 @@ package cadetEditor2DFlash.tools
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.CubicBezier;
 	import cadet2D.geom.QuadraticBezier;
+	
 	import cadet2DFlash.components.skins.GeometrySkin;
 	
 	import cadetEditor.assets.CadetEditorIcons;
@@ -22,16 +25,12 @@ package cadetEditor2DFlash.tools
 	import cadetEditor2D.events.PickingManagerEvent;
 	
 	import cadetEditor2DFlash.ui.overlays.BezierCurveToolOverlay;
-	import cadetEditor2DFlash.ui.views.CadetEditorView2D;
-	
-	import flash.events.MouseEvent;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
 	
 	import flox.app.core.contexts.IContext;
 	import flox.app.events.OperationManagerEvent;
 	import flox.app.operations.AddItemOperation;
 	import flox.app.operations.AddToArrayOperation;
+	import flox.app.operations.AddToVectorOperation;
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.core.events.ArrayCollectionEvent;
@@ -270,8 +269,10 @@ package cadetEditor2DFlash.tools
 			
 			
 			
-			operation.addOperation(new AddToArrayOperation(currentSegment.segmentA, curve.segments, -1, curve, "segments" ));
-			operation.addOperation(new AddToArrayOperation(currentSegment.segmentB, curve.segments, -1, curve, "segments" ));
+//			operation.addOperation(new AddToArrayOperation(currentSegment.segmentA, curve.segments, -1, curve, "segments" ));
+//			operation.addOperation(new AddToArrayOperation(currentSegment.segmentB, curve.segments, -1, curve, "segments" ));
+			operation.addOperation(new AddToVectorOperation(currentSegment.segmentA, curve.segments, -1, curve, "segments" ));
+			operation.addOperation(new AddToVectorOperation(currentSegment.segmentB, curve.segments, -1, curve, "segments" ));			
 			addChangeOperations(operation);
 			
 			supressOperationManagerChangeHandler = true;
