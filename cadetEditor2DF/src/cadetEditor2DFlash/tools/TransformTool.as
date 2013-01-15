@@ -15,10 +15,8 @@ package cadetEditor2DFlash.tools
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
-	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DFlash.ui.overlays.SelectionOverlay;
@@ -38,8 +36,6 @@ package cadetEditor2DFlash.tools
 	import flox.app.util.IntrospectionUtil;
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.ui.managers.CursorManager;
-	
-	import starling.display.Sprite;
 	
 	public class TransformTool extends SelectionTool //implements ITool
 	{

@@ -61,7 +61,7 @@ package cadetEditor2DS.managers
 			var index:int = highlightedComponents.indexOf(component);
 			if ( index == -1 ) return;
 			var skin:ISkin2D = highlightedSkins[index];
-			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
+			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObject;
 			
 			if ( !displayObject ) return;
 			//displayObject.filters = [];

@@ -15,15 +15,10 @@ package cadetEditor2DS.controllers
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	
-	import cadetEditor.contexts.ICadetEditorContext;
-	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	import cadetEditor2D.util.BitmapHitTest;
-	import cadetEditor2D.util.BitmapHitTestStarling;
 	
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -32,10 +27,8 @@ package cadetEditor2DS.controllers
 	import flox.app.util.ArrayUtil;
 	import flox.app.util.VectorUtil;
 	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
 	
 	import starling.display.DisplayObject;
-	import starling.display.Shape;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -117,7 +110,7 @@ package cadetEditor2DS.controllers
 				var hitTestRect:Boolean = false;
 				
 				//TODO: Find Starling equivalent for hitTestRect()
-				var bounds:Rectangle = skin.displayObjectContainer.getBounds(Renderer2D(view.renderer).viewport);
+				var bounds:Rectangle = skin.displayObject.getBounds(Renderer2D(view.renderer).viewport);
 				//var bounds:Rectangle = skin.displayObjectContainer.bounds;
 				hitTestRect = dragRect.containsRect(bounds);			
 				

@@ -3,7 +3,6 @@
 
 package cadetEditor2DSBox2D.tools
 {
-	import cadet.core.ComponentContainer;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
@@ -16,20 +15,15 @@ package cadetEditor2DSBox2D.tools
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.PinSkin;
 	
-	import cadet2DBox2D.components.behaviours.RevoluteJointBehaviour;
-	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
 	
 	import cadetEditor2D.operations.PickComponentsOperation;
-	import cadetEditor2D.ui.controlBars.PinToolControlBar;
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
-	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import flox.app.operations.AddDependencyOperation;
@@ -105,7 +99,7 @@ package cadetEditor2DSBox2D.tools
 			//offset = context.view2D.viewport.localToGlobal(offset);
 			offset = Renderer2D(context.view2D.renderer).viewport.localToGlobal(offset);
 			
-			offset = AbstractSkin2D(skinA).displayObjectContainer.globalToLocal(offset);
+			offset = AbstractSkin2D(skinA).displayObject.globalToLocal(offset);
 			
 			createPin();
 		}

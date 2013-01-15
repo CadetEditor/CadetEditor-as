@@ -15,17 +15,13 @@ package cadetEditor2DS.tools
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
-	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DS.ui.overlays.SelectionOverlay;
 	import cadetEditor2DS.ui.overlays.TransformOverlay;
-	import cadetEditor2DS.ui.views.CadetEditorView2D;
 	
-	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
@@ -40,7 +36,6 @@ package cadetEditor2DS.tools
 	
 	import starling.display.DisplayObject;
 	import starling.display.Shape;
-	import starling.display.Sprite;
 	
 	public class TransformTool extends SelectionTool //implements ITool
 	{
@@ -191,9 +186,6 @@ package cadetEditor2DS.tools
 					ptA.y = 0;
 					var box:Shape = overlay.boxesArray[i];
 					var pt:Point = box.localToGlobal(ptA);
-					
-					//TODO: Deprecate Flash2D and tidy up
-					//pt = view.viewport.globalToLocal(pt);
 
 					pt = Renderer2D(view.renderer).viewport.globalToLocal(pt);
 					
@@ -277,11 +269,11 @@ package cadetEditor2DS.tools
 			if ( skins.length == 1 )
 			{
 				skin = ISkin2D( skins[0] );
-				displayObject = AbstractSkin2D(skin).displayObjectContainer;
+				displayObject = AbstractSkin2D(skin).displayObject;
 				
 				if ( !skin.transform2D ) return;
 				
-				bounds = displayObject.bounds;
+				bounds = displayObject.getBounds(Renderer2D(view.renderer).worldContainer);
 				//bounds = displayObject.getRect( displayObject );
 				
 				startTransform = skin.transform2D.matrix.clone();
@@ -296,7 +288,7 @@ package cadetEditor2DS.tools
 				for ( var i:int = 0; i < skins.length; i++ )
 				{
 					skin = ISkin2D( skins[i] );
-					displayObject = AbstractSkin2D(skin).displayObjectContainer;
+					displayObject = AbstractSkin2D(skin).displayObject;
 					
 					if ( !skin.transform2D ) return;
 					

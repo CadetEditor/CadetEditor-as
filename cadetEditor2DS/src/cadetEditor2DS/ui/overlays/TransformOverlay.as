@@ -7,7 +7,6 @@ package cadetEditor2DS.ui.overlays
 	import cadet2D.overlays.Overlay;
 	import cadet2D.components.renderers.Renderer2D;
 	
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import flash.geom.Matrix;
@@ -15,7 +14,6 @@ package cadetEditor2DS.ui.overlays
 	import flash.geom.Rectangle;
 	
 	import starling.core.RenderSupport;
-	import starling.display.BlendMode;
 	import starling.display.Shape;
 	import starling.display.Sprite;
 

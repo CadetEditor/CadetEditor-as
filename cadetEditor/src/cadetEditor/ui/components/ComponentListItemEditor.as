@@ -6,7 +6,6 @@ package cadetEditor.ui.components
 	import cadet.core.IComponent;
 	import cadet.util.ComponentUtil;
 	
-	import flash.events.Event;
 	import flash.utils.*;
 	
 	import flox.core.data.ArrayCollection;

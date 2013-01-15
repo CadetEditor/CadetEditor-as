@@ -9,7 +9,6 @@ package cadetEditor2DS.managers
 	import cadet.events.ComponentEvent;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.skins.ISkin2D;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
@@ -18,18 +17,12 @@ package cadetEditor2DS.managers
 	import cadetEditor2D.managers.IPickingManager2D;
 	import cadetEditor2D.managers.SnapInfo;
 	import cadetEditor2D.managers.SnapManager2D;
-	import cadetEditor2D.util.BitmapHitTest;
-	import cadetEditor2D.util.BitmapHitTestStarling;
 	
 	import flash.events.EventDispatcher;
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	
-	import flox.editor.FloxEditor;
 	
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
-	import starling.display.Sprite;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -164,7 +157,7 @@ package cadetEditor2DS.managers
 				var pt:Point = new Point(x, y);
 				//pt = renderer.viewport.localToGlobal( pt );
 				pt = renderer.viewportToWorld(pt);
-				if (!skin.displayObjectContainer.bounds.containsPoint(pt)) continue;
+				if (!skin.displayObject.bounds.containsPoint(pt)) continue;
 				
 				skinsUnderLoc[L++] = skin;
 			}
@@ -306,11 +299,11 @@ package cadetEditor2DS.managers
 		
 		private function skinFilterFunc( item:* ):Boolean
 		{
-			if ( item.displayObjectContainer == null ) return false;
+			if ( item.displayObject == null ) return false;
 			
-//			if ( item.displayObjectContainer is InteractiveObject )
+//			if ( item.displayObject is InteractiveObject )
 //			{
-//				if ( InteractiveObject(item.displayObjectContainer).mouseEnabled == false ) return false;
+//				if ( InteractiveObject(item.displayObject).mouseEnabled == false ) return false;
 //			}
 			return true;
 		}

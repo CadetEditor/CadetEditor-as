@@ -12,8 +12,6 @@ package cadetEditor2DS.ui.overlays
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import flash.geom.Point;
@@ -23,9 +21,7 @@ package cadetEditor2DS.ui.overlays
 	import flox.core.events.ArrayCollectionEvent;
 	
 	import starling.core.RenderSupport;
-	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
-	import starling.display.Shape;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -99,21 +95,12 @@ package cadetEditor2DS.ui.overlays
 			
 			for each ( var skin:AbstractSkin2D in selectedSkins )
 			{
-				var displayObject:DisplayObject = skin.displayObjectContainer;
+				var displayObject:DisplayObject = skin.displayObject;
 	
 				if ( isVisible( displayObject ) == false ) continue;
 					
 				//var bounds:Rectangle = displayObject.bounds;				
 				var bounds:Rectangle = displayObject.getBounds(this);
-				
-//				pt.x = bounds.x;
-//				pt.y = bounds.y;
-//				
-//				pt = displayObject.localToGlobal(pt);				
-//				//pt = globalToLocal(pt);
-//				
-//				bounds.x = pt.x;
-//				bounds.y = pt.y;
 				
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);

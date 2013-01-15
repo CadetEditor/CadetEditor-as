@@ -1,12 +1,15 @@
 package
 {
+	import flash.display.Sprite;
+	import flash.ui.Keyboard;
+	
 	import cadet.components.behaviours.EntityUserControlBehaviour;
 	import cadet.core.ICadetScene;
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.processes.WorldBounds2D;
 	import cadet2D.components.renderers.Renderer2D;
-	import cadet2D.components.skins.AssetSkin;
+	import cadet2D.components.skins.ImageSkin;
 	import cadet2D.components.transforms.Transform2D;
 	
 	import cadetEditor.assets.CadetEditorIcons;
@@ -26,20 +29,14 @@ package
 	import cadetEditor2DS.contexts.CadetEditorContext2D;
 	import cadetEditor2DS.tools.SelectionTool;
 	
-	import flash.display.Sprite;
-	import flash.ui.Keyboard;
-	
 	import flox.app.FloxApp;
-	import flox.app.controllers.ExternalResourceController;
 	import flox.app.entities.KeyModifier;
-	import flox.app.entities.URI;
 	import flox.app.managers.ResourceManager;
 	import flox.app.managers.SettingsManager;
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.FileType;
 	import flox.app.resources.KeyBinding;
 	import flox.editor.FloxEditor;
-	import flox.editor.core.FloxEditorEnvironment;
 	import flox.editor.core.IGlobalViewContainer;
 	import flox.editor.icons.FloxEditorIcons;
 	import flox.editor.resources.ActionFactory;
@@ -115,11 +112,11 @@ package
 			resourceManager.addResource( new ComponentFactory( Transform2D, 				"2D Transform", 				null, 			CadetEditorIcons.Transform, 	null, 			1, null, CadetEditorContext2D ) );
 			
 			// Skins
-			resourceManager.addResource( new ComponentFactory( AssetSkin, 					"Asset Skin", 					"Skins", 		CadetEditorIcons.Skin, 			Entity, 		1, null, CadetEditorContext2D ) );
-			
+			resourceManager.addResource( new ComponentFactory( ImageSkin, 					"Image Skin", 					"Skins", 		CadetEditorIcons.Skin, 			Entity, 		1, null, CadetEditorContext2D ) );
+				
 			// Behaviours
 			resourceManager.addResource( new ComponentFactory( TileBehaviour, 				"Tile Behaviour", 				"Behaviours", 	CadetEditorIcons.Behaviour, 	Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( ProtagonistEntity, 		"Protagonist Entity", 				"Behaviours", 	CadetEditorIcons.Behaviour,		Entity, 		1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( ProtagonistEntity, 			"Protagonist Entity", 			"Behaviours", 	CadetEditorIcons.Behaviour,		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( EntityUserControlBehaviour, 	"Entity User Control", 			"Behaviours", 	CadetEditorIcons.Behaviour,		Entity, 		1, null, CadetEditorContext2D ) );
 			
 			// Geometry

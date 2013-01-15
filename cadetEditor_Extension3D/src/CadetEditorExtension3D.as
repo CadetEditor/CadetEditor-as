@@ -72,14 +72,14 @@ package
 			
 			// Bit of a hack, as we're hard-coding the path to the assets folder.
 			// This should be handled as part of loading a project
-			if ( FloxEditor.environment == FloxEditorEnvironment.AIR )
+/*			if ( FloxEditor.environment == FloxEditorEnvironment.AIR )
 			{
 				new ExternalResourceController( resourceManager, new URI(baseUrl+".local/assets/"), FloxApp.fileSystemProvider );
 			}
 			else if ( FloxEditor.environment == FloxEditorEnvironment.BROWSER )
 			{
 				new ExternalResourceController( resourceManager, new URI(baseUrl+".url/assets/"), FloxApp.fileSystemProvider );
-			}
+			}*/
 			
 			// CadetEditorView Actions
 			//resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );

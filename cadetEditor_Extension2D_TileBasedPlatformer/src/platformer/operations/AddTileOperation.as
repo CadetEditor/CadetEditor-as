@@ -3,7 +3,7 @@ package platformer.operations
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.skins.AssetSkin;
+	import cadet2D.components.skins.ImageSkin;
 	import cadet2D.components.transforms.Transform2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -22,7 +22,7 @@ package platformer.operations
 	public class AddTileOperation extends UndoableCompoundOperation implements IUndoableOperation
 	{
 		protected var entity				:Entity;
-		protected var skin					:AssetSkin;
+		protected var skin					:ImageSkin;
 		protected var transform				:Transform2D;
 		
 		public function AddTileOperation(context:ICadetEditorContext, x:int, y:int, brush:XML)
@@ -48,7 +48,7 @@ package platformer.operations
 			
 			var resourceManager:ResourceManager = FloxApp.resourceManager;
 			
-			skin = new AssetSkin();
+			skin = new ImageSkin();
 			entity.children.addItem( skin );
 			
 			var behaviour:TileBehaviour = new TileBehaviour();

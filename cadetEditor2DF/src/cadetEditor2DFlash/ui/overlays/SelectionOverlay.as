@@ -111,8 +111,8 @@ package cadetEditor2DFlash.ui.overlays
 				
 				//pt = displayObject.localToGlobal(pt);
 				pt = skin.displayObjectContainer.localToGlobal(pt);
-				
 				pt = globalToLocal(pt);
+				
 				graphics.lineStyle(2, 0xFFFFFF);
 				graphics.moveTo( pt.x-CROSS_SIZE, pt.y-CROSS_SIZE );
 				graphics.lineTo( pt.x+CROSS_SIZE, pt.y+CROSS_SIZE );

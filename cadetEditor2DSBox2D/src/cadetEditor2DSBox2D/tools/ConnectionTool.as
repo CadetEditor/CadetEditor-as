@@ -143,7 +143,7 @@ package cadetEditor2DSBox2D.tools
 				
 				pt = renderer.viewport.localToGlobal(pt);
 				
-				pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
+				pt = AbstractSkin2D(skin).displayObject.globalToLocal(pt);
 				offsetA = new Vertex( pt.x, pt.y );
 				
 				pickComponentOperation.filter = function notComponentA(element:*, index:int, arr:Array):Boolean
@@ -164,7 +164,7 @@ package cadetEditor2DSBox2D.tools
 			//pt = context.view2D.viewport.localToGlobal(pt);
 			pt = renderer.viewport.localToGlobal(pt);
 			
-			pt = AbstractSkin2D(skin).displayObjectContainer.globalToLocal(pt);
+			pt = AbstractSkin2D(skin).displayObject.globalToLocal(pt);
 			
 			offsetB = new Vertex( pt.x, pt.y );
 			

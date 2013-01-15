@@ -14,9 +14,7 @@ package cadetEditor2DS.tools
 	import cadetEditor.tools.ITool;
 	import cadetEditor.util.DragDetector;
 	
-	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.controllers.DragItemsController;
-	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.util.SelectionUtil;
 	
