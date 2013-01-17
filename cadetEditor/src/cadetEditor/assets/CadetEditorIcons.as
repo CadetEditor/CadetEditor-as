@@ -40,6 +40,7 @@ package cadetEditor.assets
 		[Embed( source = 'SelectionTool.png' )] 	static public var SelectionTool:Class;
 		[Embed( source = 'Skin.png' )] 				static public var Skin:Class;
 		[Embed( source = 'Terrain.png' )] 			static public var Terrain:Class;
+		[Embed( source = 'Texture.png' )] 			static public var Texture:Class;
 		[Embed( source = 'TrackTool.png' )] 		static public var TrackTool:Class;
 		[Embed( source = 'Transform.png' )] 		static public var Transform:Class;
 		[Embed( source = 'TransformTool.png' )] 	static public var TransformTool:Class;

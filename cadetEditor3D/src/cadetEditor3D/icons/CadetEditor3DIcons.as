@@ -20,7 +20,6 @@ package cadetEditor3D.icons
 		[Embed( source = 'Rotate.png' )] 			static public var Rotate:Class;
 		[Embed( source = 'Scale.png' )] 			static public var Scale:Class;
 		[Embed( source = 'Sphere.png' )] 			static public var Sphere:Class;
-		[Embed( source = 'Texture.png' )] 			static public var Texture:Class;
 		[Embed( source = 'Translate.png' )] 		static public var Translate:Class;
 	}
 }

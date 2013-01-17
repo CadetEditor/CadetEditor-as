@@ -157,8 +157,8 @@ package
 			resourceManager.addResource( new ComponentFactory( PhysicsProcess, "Physics Process", "Processes", CadetEditorIcons.Process, ICadetScene, 1, null, CadetEditorContext3D ) );	
 			
 			// Textures =======================================
-			resourceManager.addResource( new ComponentFactory( BitmapTextureComponent, "Bitmap Texture", "Textures", CadetEditor3DIcons.Texture, null, -1, null, CadetEditorContext3D ) );
-			resourceManager.addResource( new ComponentFactory( BitmapCubeTextureComponent, "Bitmap Cube Texture", "Textures", CadetEditor3DIcons.Texture, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( BitmapTextureComponent, "Bitmap Texture", "Textures", CadetEditorIcons.Texture, null, -1, null, CadetEditorContext3D ) );
+			resourceManager.addResource( new ComponentFactory( BitmapCubeTextureComponent, "Bitmap Cube Texture", "Textures", CadetEditorIcons.Texture, null, -1, null, CadetEditorContext3D ) );
 		
 			
 			// Default settings

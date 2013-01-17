@@ -27,6 +27,7 @@ package
 	import cadet2D.components.skins.ConnectionSkin;
 	import cadet2D.components.skins.GeometrySkin;
 	import cadet2D.components.skins.ImageSkin;
+	import cadet2D.components.skins.MovieClipSkin;
 	import cadet2D.components.skins.SpringSkin;
 	import cadet2D.components.textures.TextureAtlasComponent;
 	import cadet2D.components.textures.TextureComponent;
@@ -180,6 +181,7 @@ package
 //			resourceManager.addResource( new ComponentFactory( GeometryDebugSkin, 			"Geometry Debug Skin", 			"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( FractalPolygonSkin, 			"Fractal Polygon Skin", 		"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( ImageSkin, 					"Image Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( MovieClipSkin, 				"MovieClip Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( ConnectionSkin, 				"Connection Skin", 				"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( SpringSkin, 					"Spring Skin", 					"Skins", 		CadetEditorIcons.Skin, 		Entity, 		1, null, CadetEditorContext2D ) );
 //			resourceManager.addResource( new ComponentFactory( ScrollingBackgroundSkin, 	"Scrolling Background Skin", 	"Skins", 		CadetEditorIcons.Skin, 		null, 			1, null, CadetEditorContext2D ) );
@@ -187,8 +189,8 @@ package
 //			resourceManager.addResource( new ComponentFactory( WorldBoundsDebugSkin, 		"World Bounds Debug Skin", 		"Skins",		CadetEditorIcons.Skin,			null,			1, null, CadetEditorContext2D ) );
 			
 			// Textures
-			resourceManager.addResource( new ComponentFactory( TextureComponent,			"Texture",						"Textures",		CadetEditorIcons.Component ) );
-			resourceManager.addResource( new ComponentFactory( TextureAtlasComponent,		"TextureAtlas",					"Textures",		CadetEditorIcons.Component ) );
+			resourceManager.addResource( new ComponentFactory( TextureComponent,			"Texture",						"Textures",		CadetEditorIcons.Texture ) );
+			resourceManager.addResource( new ComponentFactory( TextureAtlasComponent,		"TextureAtlas",					"Textures",		CadetEditorIcons.Texture) );
 			
 			
 			// Behaviours
@@ -197,7 +199,7 @@ package
 			resourceManager.addResource( new ComponentFactory( RigidBodyCollisionDetectBehaviour, "RB Collision Detect", 	"Behaviours",	CadetEditorIcons.Behaviour,	Entity,			1, null, CadetEditorContext2D ) );
 			
 			resourceManager.addResource( new ComponentFactory( DistanceJointBehaviour, 		"Distance Joint", 				"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
-			resourceManager.addResource( new ComponentFactory( SpringBehaviour, 			"Spring Joint", 						"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
+			resourceManager.addResource( new ComponentFactory( SpringBehaviour, 			"Spring Joint", 				"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( RevoluteJointBehaviour, 		"Revolute Joint", 				"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( PrismaticJointBehaviour, 	"Prismatic Joint", 				"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
 			
