@@ -11,16 +11,12 @@ package cadetEditor2DS.ui.overlays
 	
 	import cadetEditor2D.managers.SnapInfo;
 	import cadetEditor2D.managers.SnapManager2D;
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import starling.core.RenderSupport;
-	import starling.display.BlendMode;
 	import starling.display.DisplayObject;
-	import starling.display.Shape;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -120,6 +116,8 @@ package cadetEditor2DS.ui.overlays
 				_renderer.viewport.stage.removeEventListener(TouchEvent.TOUCH, onTouchHandler);
 			}
 			_renderer = value;
+			
+			if (!value) return;
 			
 			if ( _renderer && _renderer.viewport ) {
 				_renderer.viewport.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);

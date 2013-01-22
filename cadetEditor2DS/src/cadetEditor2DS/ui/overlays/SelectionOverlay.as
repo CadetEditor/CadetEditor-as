@@ -161,6 +161,8 @@ package cadetEditor2DS.ui.overlays
 			}
 			_renderer = value;
 			
+			if (!value) return;
+			
 			if ( _renderer && _renderer.viewport ) {
 				_renderer.viewport.stage.addEventListener(TouchEvent.TOUCH, onTouchHandler);
 			} else {

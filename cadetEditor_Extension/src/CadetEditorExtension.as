@@ -3,8 +3,8 @@
 
 package 
 {
-	import cadet.components.processes.InputMapping;
-	import cadet.components.processes.InputProcess;
+	import cadet.components.processes.KeyboardInputMapping;
+	import cadet.components.processes.KeyboardInputProcess;
 	import cadet.core.ICadetScene;
 	
 	import cadetEditor.assets.CadetEditorIcons;
@@ -78,8 +78,8 @@ package
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.ADD_COMPONENT, Keyboard.F9 ) );
 			
 			// Processes
-			resourceManager.addResource( new ComponentFactory( InputProcess, "Input Process", "Processes", CadetEditorIcons.Process, ICadetScene, 1 ) );
-			resourceManager.addResource( new ComponentFactory( InputMapping, "Input Mapping", "Processes", CadetEditorIcons.Process, InputProcess ) );
+			resourceManager.addResource( new ComponentFactory( KeyboardInputProcess, "Keyboard Input Process", "Processes", CadetEditorIcons.Process, ICadetScene, 1 ) );
+			resourceManager.addResource( new ComponentFactory( KeyboardInputMapping, "Keyboard Input Mapping", "Processes", CadetEditorIcons.Process, KeyboardInputProcess ) );
 		}
 	}
 }

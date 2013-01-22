@@ -106,12 +106,12 @@ package cadetEditor.ui.components
 			}
 			
 			dataProvider = new ArrayCollection(VectorUtil.toArray(dp));
-			//dataProvider.addItemAt(null, 0);
+			dataProvider.addItemAt(null, 0);
 			
 			selectedItem = component[_propertyName];
 		}
 		
-		public static function labelFunction( item:*, host:Object, property:String ):String
+/*		public static function labelFunction( item:*, host:Object, property:String ):String
 		{
 			if ( item == null )
 			{
@@ -124,7 +124,7 @@ package cadetEditor.ui.components
 			}
 			
 			return IComponent(item).name;
-		}
+		}*/
 								
 	}
 }

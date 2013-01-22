@@ -11,6 +11,7 @@ package
 	
 	import cadet2D.components.behaviours.BezierCurveFootprintBehaviour;
 	import cadet2D.components.behaviours.GeometryFootprintBehaviour;
+	import cadet2D.components.behaviours.MouseFollowBehaviour;
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.BoundingSphere;
 	import cadet2D.components.geom.CircleGeometry;
@@ -192,8 +193,10 @@ package
 			resourceManager.addResource( new ComponentFactory( TextureComponent,			"Texture",						"Textures",		CadetEditorIcons.Texture ) );
 			resourceManager.addResource( new ComponentFactory( TextureAtlasComponent,		"TextureAtlas",					"Textures",		CadetEditorIcons.Texture) );
 			
+			// Behaviours - Core
+			resourceManager.addResource( new ComponentFactory( MouseFollowBehaviour,		"Mouse Follow",					"Behaviours",	CadetEditorIcons.Behaviour, Entity,			1 ) );
 			
-			// Behaviours
+			// Behaviours - Physics
 			resourceManager.addResource( new ComponentFactory( RigidBodyBehaviour, 			"Rigid Body", 					"Behaviours", 	CadetEditorIcons.Behaviour,	Entity, 		1, null, CadetEditorContext2D ) );
 			resourceManager.addResource( new ComponentFactory( RigidBodyMouseDragBehaviour, "Mouse Drag", 					"Behaviours",	CadetEditorIcons.Behaviour,	Entity,			1, null, CadetEditorContext2D ) );			
 			resourceManager.addResource( new ComponentFactory( RigidBodyCollisionDetectBehaviour, "RB Collision Detect", 	"Behaviours",	CadetEditorIcons.Behaviour,	Entity,			1, null, CadetEditorContext2D ) );
