@@ -10,7 +10,7 @@ package cadetEditor2DFlash.tools
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.PolygonGeometry;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2DFlash.components.skins.GeometrySkin;
 	
@@ -34,7 +34,7 @@ package cadetEditor2DFlash.tools
 		
 		protected var entity				:Entity;
 		protected var geometry				:IGeometry;
-		protected var skin					:ISkin2D;
+		protected var skin					:IRenderable;
 		protected var transform				:Transform2D;
 		
 		protected var SkinType				:Class;

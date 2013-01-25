@@ -6,7 +6,7 @@ package cadetEditor2DFlash.managers
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.managers.IComponentHighlightManager;
@@ -41,7 +41,7 @@ package cadetEditor2DFlash.managers
 		{
 			if ( highlightedComponents.indexOf(component) != -1 ) return;
 			
-			var skin:ISkin2D = ComponentUtil.getChildOfType(component, ISkin2D);
+			var skin:IRenderable = ComponentUtil.getChildOfType(component, IRenderable);
 			if ( !skin )
 			{
 				trace("ComponentHighlightManager.highlightComponent() : Unable to highlight component as it doesn't have a Skin2D");
@@ -58,7 +58,7 @@ package cadetEditor2DFlash.managers
 		{
 			var index:int = highlightedComponents.indexOf(component);
 			if ( index == -1 ) return;
-			var skin:ISkin2D = highlightedSkins[index];
+			var skin:IRenderable = highlightedSkins[index];
 			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
 			if ( !displayObject ) return;

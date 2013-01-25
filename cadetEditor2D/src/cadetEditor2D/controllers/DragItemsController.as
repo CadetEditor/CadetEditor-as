@@ -3,20 +3,20 @@
 
 package cadetEditor2D.controllers
 {
-	import cadet2D.components.skins.ISkin2D;
-	
-	import cadetEditor.contexts.ICadetEditorContext;
-	
-	import cadetEditor2D.tools.ICadetEditorTool2D;
-	
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.editor.FloxEditor;
+	import cadet2D.components.skins.IRenderable;
+	
+	import cadetEditor.contexts.ICadetEditorContext;
+	
+	import cadetEditor2D.tools.ICadetEditorTool2D;
+	
 	import flox.app.operations.ChangePropertyOperation;
 	import flox.app.operations.UndoableCompoundOperation;
+	import flox.editor.FloxEditor;
 	
 	public class DragItemsController
 	{
@@ -60,7 +60,7 @@ package cadetEditor2D.controllers
 			storedTransforms = [];
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:ISkin2D = skins[i];
+				var skin:IRenderable = skins[i];
 				//TODO: Assumption that every skin has an associated transform
 				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if (skin.transform2D) {
@@ -84,7 +84,7 @@ package cadetEditor2D.controllers
 			compoundOperation.label = "Transform Object(s)";
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:ISkin2D = skins[i];
+				var skin:IRenderable = skins[i];
 				var storedTransform:Matrix = storedTransforms[i];
 				//TODO: Assumption that every skin has an associated transform
 				//at the correct index in storedTransforms. Perhaps a table would be better?
@@ -103,7 +103,7 @@ package cadetEditor2D.controllers
 		
 		protected function updateDragPositions():void
 		{
-			var skin:ISkin2D;
+			var skin:IRenderable;
 			
 			var snappedPos:Point = tool.getSnappedWorldMouse();
 			var dx:Number = snappedPos.x - mouseX;

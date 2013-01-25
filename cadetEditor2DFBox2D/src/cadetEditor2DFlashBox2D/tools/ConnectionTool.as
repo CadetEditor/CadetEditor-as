@@ -9,7 +9,7 @@ package cadetEditor2DFlashBox2D.tools
 	
 	import cadet2D.components.connections.Connection;
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
 	import cadet2DFlash.components.renderers.Renderer2D;
@@ -123,7 +123,7 @@ package cadetEditor2DFlashBox2D.tools
 				return;
 			}
 
-			var skin:ISkin2D = ComponentUtil.getChildOfType(pickedComponent, ISkin2D);
+			var skin:IRenderable = ComponentUtil.getChildOfType(pickedComponent, IRenderable);
 			var transform:Transform2D = ComponentUtil.getChildOfType(pickedComponent, Transform2D);
 			if ( !transformA )
 			{

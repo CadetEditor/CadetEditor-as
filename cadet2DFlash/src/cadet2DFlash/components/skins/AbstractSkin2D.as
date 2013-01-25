@@ -10,16 +10,15 @@
 
 package cadet2DFlash.components.skins
 {
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet.core.Component;
 	import cadet.events.InvalidationEvent;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 
-	public class AbstractSkin2D extends Component implements ISkin2D
+	public class AbstractSkin2D extends Component implements IRenderable
 	{
 		protected static const DISPLAY	:String = "display";
 		protected static const LAYER	:String = "layer";
@@ -42,6 +41,11 @@ package cadet2DFlash.components.skins
 		}
 		
 		public function get displayObjectContainer():Sprite { return sprite; }
+		
+		public function get indexStr():String
+		{
+			return null;
+		}
 		
 		[Serializable]
 		public function set transform2D( value:Transform2D ):void

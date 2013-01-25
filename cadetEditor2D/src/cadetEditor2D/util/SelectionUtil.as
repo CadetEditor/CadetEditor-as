@@ -7,7 +7,7 @@ package cadetEditor2D.util
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import flash.utils.Dictionary;
 	
@@ -37,7 +37,7 @@ package cadetEditor2D.util
 				if ( visitedComponents[component] ) continue;
 				visitedComponents[component] = true;
 				
-				if ( component is ISkin2D )
+				if ( component is IRenderable )
 				{
 					skins.push(component);
 				}

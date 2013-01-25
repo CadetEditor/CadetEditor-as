@@ -3,18 +3,16 @@
 
 package cadetEditor.commandHandlers
 {
-	import cadet.core.CadetScene;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	
-	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.entities.ComponentFactory;
 	import cadetEditor.ui.panels.AddComponentPanel;
-	
-	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import flox.app.FloxApp;
 	import flox.app.core.commandHandlers.ICommandHandler;
@@ -22,17 +20,14 @@ package cadetEditor.commandHandlers
 	import flox.app.operations.UndoableCompoundOperation;
 	import flox.app.resources.CommandHandlerFactory;
 	import flox.app.resources.IResource;
-	import flox.app.util.ArrayUtil;
-	import flox.app.util.IntrospectionUtil;
-	import flox.app.util.StringUtil;
-	import flox.app.util.VectorUtil;
 	import flox.app.validators.ContextValidator;
 	import flox.core.data.ArrayCollection;
 	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
 	import flox.ui.components.Button;
 	
 	/**
+	 * All of the AddItemOperations created by this CommandHandler are stored in it's UndoableOperation.
+	 * This allows clickCancelHandler() to simply call gotoPreviousOperation() to remove all added items.
 	 * 
 	 * @author Jonathan
 	 * 
@@ -219,6 +214,9 @@ package cadetEditor.commandHandlers
 		{
 			var selectedItems:Array = panel.tree.selectedItems;
 			
+			// gotoPreviousOperation() undoes the CommandHandler's operation, removing any added items from the scene.
+			// addSelectedComponents() adds AddItemOperations to the CommandHandler's main UndoableOperation
+			// gotoNextOperation() executes the CommandHandler's operation again, re-adding all of the items.
 			cadetEditorContext.operationManager.gotoPreviousOperation();
 			addSelectedComponents();
 			cadetEditorContext.operationManager.gotoNextOperation();

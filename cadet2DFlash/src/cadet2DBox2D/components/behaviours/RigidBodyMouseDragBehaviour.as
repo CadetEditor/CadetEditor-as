@@ -20,7 +20,7 @@ package cadet2DBox2D.components.behaviours
 	import cadet.core.ISteppableComponent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
@@ -33,7 +33,7 @@ package cadet2DBox2D.components.behaviours
 	
 	public class RigidBodyMouseDragBehaviour extends Component implements ISteppableComponent
 	{
-		protected var _skin					:ISkin2D;
+		protected var _skin					:IRenderable;
 		protected var _rigidBodyBehaviour	:RigidBodyBehaviour;
 		protected var _physicsProcess		:PhysicsProcess;
 		public    var renderer				:IRenderer2D;
@@ -56,7 +56,7 @@ package cadet2DBox2D.components.behaviours
 		
 		override protected function addedToScene():void
 		{
-			addSiblingReference(ISkin2D, "skin");
+			addSiblingReference(IRenderable, "skin");
 			addSiblingReference(RigidBodyBehaviour, "rigidBodyBehaviour");
 			addSceneReference( PhysicsProcess, "physicsProcess" );
 			addSceneReference( IRenderer, "renderer" );
@@ -67,7 +67,7 @@ package cadet2DBox2D.components.behaviours
 			destroyJoint();
 		}
 		
-		public function set skin( value:ISkin2D ):void
+		public function set skin( value:IRenderable ):void
 		{
 			destroyJoint();
 			
@@ -82,7 +82,7 @@ package cadet2DBox2D.components.behaviours
 				AbstractSkin2D(_skin).displayObjectContainer.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownHandler );
 			}
 		}
-		public function get skin():ISkin2D { return _skin; }
+		public function get skin():IRenderable { return _skin; }
 		
 		public function set rigidBodyBehaviour( value:RigidBodyBehaviour ):void
 		{

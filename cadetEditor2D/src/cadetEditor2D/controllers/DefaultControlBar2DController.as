@@ -1,9 +1,7 @@
 package cadetEditor2D.controllers
 {
 	import cadetEditor.contexts.ICadetEditorContext;
-	import cadetEditor.controllers.ICadetContextController;
 	import cadetEditor.entities.CadetEditorCommands;
-	import cadetEditor.events.CadetEditorViewEvent;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;

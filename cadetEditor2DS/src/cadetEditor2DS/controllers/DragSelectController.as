@@ -10,7 +10,7 @@ package cadetEditor2DS.controllers
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.overlays.Overlay;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
@@ -101,7 +101,7 @@ package cadetEditor2DS.controllers
 			var dragRect:Rectangle = new Rectangle(left, top, right - left, bottom - top);
 			var containedSkins:Array = [];
 			
-			var skins:Vector.<IComponent> = ComponentUtil.getChildrenOfType( context.scene, ISkin2D, true );
+			var skins:Vector.<IComponent> = ComponentUtil.getChildrenOfType( context.scene, IRenderable, true );
 			const L:int = skins.length;
 			for ( var i:int = 0; i < L; i++ )
 			{

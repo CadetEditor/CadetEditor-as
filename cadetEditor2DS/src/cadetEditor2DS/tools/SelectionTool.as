@@ -6,7 +6,7 @@ package cadetEditor2DS.tools
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -43,7 +43,7 @@ package cadetEditor2DS.tools
 		protected var allowDragSelect				:Boolean = true;
 		
 		private var shiftKeyDown					:Boolean = false;
-		private var pressedSkin						:ISkin2D;
+		private var pressedSkin						:IRenderable;
 		
 		// Controllers
 		private var dragItemsController				:DragItemsController;
@@ -130,7 +130,11 @@ package cadetEditor2DS.tools
 			if ( !allowDrag ) return;
 			shiftKeyDown = event.shiftKey;
 			
-			var skin:ISkin2D = event.skinsUnderMouse[0];
+			// Depth sort skins
+			event.skinsUnderMouse.sortOn("indexStr");
+			event.skinsUnderMouse.reverse();
+			
+			var skin:IRenderable = event.skinsUnderMouse[0];
 			var dragDetector:DragDetector = new DragDetector( view.container );
 			pressedSkin = skin;
 			dragDetector.addEventListener( DragDetector.BEGIN_DRAG, dragDetectedHandler );
@@ -192,6 +196,10 @@ package cadetEditor2DS.tools
 				ignoreNextMouseUp = false;
 				return;
 			}
+			
+			// Depth sort skins
+			event.skinsUnderMouse.sortOn("indexStr");
+			event.skinsUnderMouse.reverse();
 			
 			var components:Vector.<IComponentContainer> = ComponentUtil.getComponentContainers( event.skinsUnderMouse );
 			

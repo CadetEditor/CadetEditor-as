@@ -8,7 +8,7 @@ package cadetEditor2DSBox2D.tools
 	
 	import cadet2D.components.connections.Pin;
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
 	import cadet2D.components.renderers.Renderer2D;
@@ -88,8 +88,8 @@ package cadetEditor2DSBox2D.tools
 			var componentA:IComponentContainer = pickedComponents[0];
 			var componentB:IComponentContainer = pickedComponents[1];
 			
-			var skinA:ISkin2D = ComponentUtil.getChildOfType(componentA, ISkin2D);
-			var skinB:ISkin2D = ComponentUtil.getChildOfType(componentB, ISkin2D);
+			var skinA:IRenderable = ComponentUtil.getChildOfType(componentA, IRenderable);
+			var skinB:IRenderable = ComponentUtil.getChildOfType(componentB, IRenderable);
 			
 			transformA = skinA.transform2D;
 			transformB = skinB.transform2D;
@@ -118,7 +118,7 @@ package cadetEditor2DSBox2D.tools
 			var transform:Transform2D = new Transform2D();
 			entity.children.addItem(transform);
 			
-			var skin:ISkin2D = new PinSkin();
+			var skin:IRenderable = new PinSkin();
 			entity.children.addItem(skin);
 			
 			

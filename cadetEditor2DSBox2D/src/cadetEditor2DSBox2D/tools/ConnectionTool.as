@@ -11,7 +11,7 @@ package cadetEditor2DSBox2D.tools
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.ConnectionSkin;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
 	import cadet2D.overlays.Overlay;
@@ -131,7 +131,7 @@ package cadetEditor2DSBox2D.tools
 				return;
 			}
 
-			var skin:ISkin2D = ComponentUtil.getChildOfType(pickedComponent, ISkin2D);
+			var skin:IRenderable = ComponentUtil.getChildOfType(pickedComponent, IRenderable);
 			var transform:Transform2D = ComponentUtil.getChildOfType(pickedComponent, Transform2D);
 			if ( !transformA )
 			{

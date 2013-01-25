@@ -19,7 +19,7 @@ package cadet2DFlash.components.renderers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
@@ -183,7 +183,7 @@ package cadet2DFlash.components.renderers
 			_mask.graphics.drawRect(0,0,_viewportWidth,_viewportHeight);
 		}
 		
-		public function getSkinForDisplayObject( displayObject:DisplayObject ):ISkin2D
+		public function getSkinForDisplayObject( displayObject:DisplayObject ):IRenderable
 		{
 			return displayObjectTable[displayObject];
 		}
@@ -193,8 +193,8 @@ package cadet2DFlash.components.renderers
 			scene.addEventListener(ComponentEvent.ADDED_TO_SCENE, componentAddedToSceneHandler);
 			scene.addEventListener(ComponentEvent.REMOVED_FROM_SCENE, componentRemovedFromSceneHandler);
 			
-			var allSkins:Vector.<IComponent> = ComponentUtil.getChildrenOfType( scene, ISkin2D, true );
-			for each ( var skin:ISkin2D in allSkins )
+			var allSkins:Vector.<IComponent> = ComponentUtil.getChildrenOfType( scene, IRenderable, true );
+			for each ( var skin:IRenderable in allSkins )
 			{
 				addSkin( skin );
 			}
@@ -202,17 +202,17 @@ package cadet2DFlash.components.renderers
 		
 		private function componentAddedToSceneHandler( event:ComponentEvent ):void
 		{
-			if ( event.component is ISkin2D == false ) return;
-			addSkin( ISkin2D( event.component ) );
+			if ( event.component is IRenderable == false ) return;
+			addSkin( IRenderable( event.component ) );
 		}
 		
 		private function componentRemovedFromSceneHandler( event:ComponentEvent ):void
 		{
-			if ( event.component is ISkin2D == false ) return;
-			removeSkin( ISkin2D( event.component ) );
+			if ( event.component is IRenderable == false ) return;
+			removeSkin( IRenderable( event.component ) );
 		}
 		
-		private function addSkin( skin:ISkin2D ):void
+		private function addSkin( skin:IRenderable ):void
 		{
 			// Could be a Starling Skin of type ISkin2D
 			if (!(skin is AbstractSkin2D)) return;
@@ -226,7 +226,7 @@ package cadet2DFlash.components.renderers
 			displayObjectTable[displayObject] = skin;
 		}
 		
-		private function removeSkin( skin:ISkin2D ):void
+		private function removeSkin( skin:IRenderable ):void
 		{
 			// Could be a Starling Skin of type ISkin2D
 			if (!(skin is AbstractSkin2D)) return;
@@ -241,7 +241,7 @@ package cadet2DFlash.components.renderers
 		
 		private function invalidateSkinHandler( event:InvalidationEvent ):void
 		{
-			var skin:ISkin2D = ISkin2D(event.target);
+			var skin:IRenderable = IRenderable(event.target);
 			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
 			if ( displayObject.parent == null )
@@ -257,7 +257,7 @@ package cadet2DFlash.components.renderers
 			}
 		}
 		
-		private function addSkinToDisplayList( skin:ISkin2D ):void
+		private function addSkinToDisplayList( skin:IRenderable ):void
 		{
 			var layers:Array = layersTable[skin.containerID];
 			if ( !layers ) return;
@@ -269,7 +269,7 @@ package cadet2DFlash.components.renderers
 			parent.addChild( displayObject );
 		}
 		
-		private function removeSkinFromDisplayList( skin:ISkin2D ):void
+		private function removeSkinFromDisplayList( skin:IRenderable ):void
 		{
 			var displayObject:DisplayObject = AbstractSkin2D(skin).displayObjectContainer;
 			
@@ -290,7 +290,7 @@ package cadet2DFlash.components.renderers
 				while ( layer.numChildren > 0 )
 				{
 					var displayObject:DisplayObject = layer.getChildAt(0);
-					var skin:ISkin2D = skinTable[displayObject];
+					var skin:IRenderable = skinTable[displayObject];
 					layer.removeChildAt(0);
 					delete skinTable[displayObject];
 				}

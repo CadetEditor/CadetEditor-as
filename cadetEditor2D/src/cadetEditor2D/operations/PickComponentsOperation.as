@@ -5,7 +5,7 @@ package cadetEditor2D.operations
 {
 	import cadet.core.IComponentContainer;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor.assets.CadetEditorCursors;
 	import cadetEditor.ui.panels.PickComponentPanel;
@@ -26,7 +26,6 @@ package cadetEditor2D.operations
 	
 	import flox.editor.FloxEditor;
 	import flox.app.core.operations.IAsynchronousOperation;
-	import flox.app.util.VectorUtil;
 
 	public class PickComponentsOperation extends EventDispatcher implements IAsynchronousOperation
 	{
@@ -154,7 +153,7 @@ package cadetEditor2D.operations
 			var validComponents:Array = [];
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:ISkin2D = skins[i];
+				var skin:IRenderable = skins[i];
 				validComponents.push( skin.parentComponent );
 			}
 			

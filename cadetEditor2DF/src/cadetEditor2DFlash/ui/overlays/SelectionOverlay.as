@@ -5,7 +5,7 @@ package cadetEditor2DFlash.ui.overlays
 {
 	import cadet.events.InvalidationEvent;
 	
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
@@ -59,7 +59,7 @@ package cadetEditor2DFlash.ui.overlays
 		
 		private function clearSelection():void
 		{
-			for each ( var skin:ISkin2D in selectedSkins )
+			for each ( var skin:IRenderable in selectedSkins )
 			{
 				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
 			}

@@ -8,7 +8,7 @@ package cadetEditor2DFlash.tools
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.geom.PolygonGeometry;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
@@ -138,7 +138,7 @@ package cadetEditor2DFlash.tools
 			context.selection.removeEventListener( ArrayCollectionEvent.CHANGE, selectionChangedHandler );
 			context.operationManager.removeEventListener(OperationManagerEvent.CHANGE, operationManagerChangeHandler);
 			
-			for each ( var skin:ISkin2D in skins )
+			for each ( var skin:IRenderable in skins )
 			{
 				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
 			}
@@ -189,7 +189,7 @@ package cadetEditor2DFlash.tools
 		
 		private function updateFromSelection():void
 		{
-			var skin:ISkin2D;
+			var skin:IRenderable;
 			for each ( skin in skins )
 			{
 				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
@@ -251,13 +251,13 @@ package cadetEditor2DFlash.tools
 		
 		private function beginTransform():void
 		{
-			var skin:ISkin2D;
+			var skin:IRenderable;
 			var displayObject:DisplayObject;
 			
 			startTransforms = [];
 			if ( skins.length == 1 )
 			{
-				skin = ISkin2D( skins[0] );
+				skin = IRenderable( skins[0] );
 				displayObject = AbstractSkin2D(skin).displayObjectContainer; //TODO: Rob moved this
 				
 				if ( !skin.transform2D ) return;
@@ -275,7 +275,7 @@ package cadetEditor2DFlash.tools
 				// TODO: Calculate bounds with respect to World matrix. Currently selecting multiple object in ISO calculats bounds incorrectly
 				for ( var i:int = 0; i < skins.length; i++ )
 				{
-					skin = ISkin2D( skins[i] );
+					skin = IRenderable( skins[i] );
 					displayObject = AbstractSkin2D(skin).displayObjectContainer; //TODO: Rob moved this
 					
 					if ( !skin.transform2D ) return;
@@ -292,7 +292,7 @@ package cadetEditor2DFlash.tools
 				
 				for ( i = 0; i < skins.length; i++ )
 				{
-					skin = ISkin2D( skins[i] );
+					skin = IRenderable( skins[i] );
 					startTransforms[i].translate(-startTransform.tx, -startTransform.ty);
 				}
 			}
@@ -308,7 +308,7 @@ package cadetEditor2DFlash.tools
 			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:ISkin2D = skins[i];
+				var skin:IRenderable = skins[i];
 				newTransform = startTransforms[i].clone();
 				newTransform.concat( currentTransform );
 				
@@ -330,7 +330,7 @@ package cadetEditor2DFlash.tools
 			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:ISkin2D = skins[i];
+				var skin:IRenderable = skins[i];
 				newTransform = startTransforms[i].clone();
 				newTransform.concat( currentTransform );
 				
@@ -344,7 +344,7 @@ package cadetEditor2DFlash.tools
 		
 		private function commitTransform():void
 		{
-			var skin:ISkin2D;
+			var skin:IRenderable;
 			var i:int;
 			
 			var newTransforms:Array = [];

@@ -18,7 +18,7 @@ package cadet2DFlash.components.processes
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
@@ -93,7 +93,7 @@ package cadet2DFlash.components.processes
 			if ( !_renderer ) return;
 			if ( !_target ) return;
 			
-			var skin:ISkin2D = ComponentUtil.getChildOfType(_target, ISkin2D, false);
+			var skin:IRenderable = ComponentUtil.getChildOfType(_target, IRenderable, false);
 			
 			if ( !skin ) return;
 			

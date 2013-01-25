@@ -24,9 +24,9 @@ package cadet2DFlash.components.skins
 	import flash.display.Graphics;
 	import flash.display.LineScaleMode;
 	import flash.geom.Matrix;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
-	public class GeometrySkin extends AbstractSkin2D implements ISkin2D
+	public class GeometrySkin extends AbstractSkin2D implements IRenderable
 	{
 		private var _lineThickness	:Number;
 		private var _lineColor		:uint;

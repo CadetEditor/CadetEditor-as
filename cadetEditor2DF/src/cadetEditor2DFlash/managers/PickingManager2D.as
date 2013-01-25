@@ -10,7 +10,7 @@ package cadetEditor2DFlash.managers
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.renderers.IRenderer2D;
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet2DFlash.components.skins.AbstractSkin2D;
 	
@@ -86,7 +86,7 @@ package cadetEditor2DFlash.managers
 				
 				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				
-				allSkins = ComponentUtil.getChildrenOfType(scene, ISkin2D, true);
+				allSkins = ComponentUtil.getChildrenOfType(scene, IRenderable, true);
 			}
 		}
 		
@@ -190,7 +190,7 @@ package cadetEditor2DFlash.managers
 				renderer = Renderer2D(event.component);
 				return;
 			}
-			if ( event.component is ISkin2D == false ) return;
+			if ( event.component is IRenderable == false ) return;
 			if ( skinFilterFunc(event.component) == false ) return;
 			allSkins.push(event.component);
 		}
@@ -203,12 +203,12 @@ package cadetEditor2DFlash.managers
 				renderer = ComponentUtil.getChildOfType(scene, Renderer2D, true) as Renderer2D;
 				return;
 			}
-			if ( event.component is ISkin2D == false ) return;
+			if ( event.component is IRenderable == false ) return;
 			if ( skinFilterFunc(event.component) == false ) return;
 			allSkins.splice(allSkins.indexOf(event.component),1);
 		}
 		
-		private function sendEvent( type:String, skinsUnderMouse:Array, skin:ISkin2D, mouseEvent:MouseEvent ):void
+		private function sendEvent( type:String, skinsUnderMouse:Array, skin:IRenderable, mouseEvent:MouseEvent ):void
 		{
 			dispatchEvent( new PickingManagerEvent( type, skinsUnderMouse, skin, mouseEvent.localX, mouseEvent.localY, mouseEvent.ctrlKey, mouseEvent.altKey, mouseEvent.shiftKey, mouseEvent.buttonDown ) );
 		}
@@ -289,7 +289,7 @@ package cadetEditor2DFlash.managers
 			}
 			
 			// Compare this raycast to previous raycasts to simulate rollover's and rollout's
-			var skin:ISkin2D;
+			var skin:IRenderable;
 			for each ( skin in currentSkinsUnderMouse )
 			{
 				if ( skinsUnderMouse.indexOf( skin ) == -1 )

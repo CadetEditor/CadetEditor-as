@@ -3,7 +3,7 @@
 
 package cadetEditor2D.events
 {
-	import cadet2D.components.skins.ISkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import flash.events.MouseEvent;
 	
@@ -32,16 +32,16 @@ package cadetEditor2D.events
 		
 		
 		private var _skinsUnderMouse	:Array;
-		private var _skin				:ISkin2D;
+		private var _skin				:IRenderable;
 		
-		public function PickingManagerEvent(type:String, skinsUnderMouse:Array = null, skin:ISkin2D = null, localX:Number = 0, localY:Number = 0, ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false, buttonDown:Boolean = false )
+		public function PickingManagerEvent(type:String, skinsUnderMouse:Array = null, skin:IRenderable = null, localX:Number = 0, localY:Number = 0, ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false, buttonDown:Boolean = false )
 		{
 			super(type, false, false, localX, localY, null, ctrlKey, altKey, shiftKey, buttonDown );
 			_skinsUnderMouse = skinsUnderMouse;
 			_skin = skin;
 		}
 		
-		public function get skin():ISkin2D { return _skin; }
+		public function get skin():IRenderable { return _skin; }
 		public function get skinsUnderMouse():Array { return _skinsUnderMouse; }
 	}
 }
