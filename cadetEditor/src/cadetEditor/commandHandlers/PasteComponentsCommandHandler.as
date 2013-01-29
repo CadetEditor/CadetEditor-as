@@ -7,7 +7,7 @@ package cadetEditor.commandHandlers
 	import cadet.core.IComponentContainer;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
-	import cadetEditor.entities.ComponentFactory;
+	import cadet.entities.ComponentFactory;
 	
 	import flash.events.Event;
 	

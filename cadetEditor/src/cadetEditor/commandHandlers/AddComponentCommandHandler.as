@@ -11,7 +11,7 @@ package cadetEditor.commandHandlers
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.CadetEditorCommands;
-	import cadetEditor.entities.ComponentFactory;
+	import cadet.entities.ComponentFactory;
 	import cadetEditor.ui.panels.AddComponentPanel;
 	
 	import flox.app.FloxApp;

@@ -3,20 +3,16 @@
 
 package cadetEditor.ui.data
 {
-	import cadet.core.ComponentContainer;
-	import cadet.core.IComponent;
-	import cadet.core.IComponentContainer;
-	
-	import cadetEditor.assets.CadetEditorIcons;
-	import cadetEditor.entities.ComponentFactory;
-	
 	import flash.utils.Dictionary;
+	
+	import cadet.assets.CadetEngineIcons;
+	import cadet.core.IComponentContainer;
+	import cadet.entities.ComponentFactory;
 	
 	import flox.app.FloxApp;
 	import flox.app.resources.IResource;
 	import flox.app.util.IntrospectionUtil;
 	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
 	import flox.ui.data.IDataDescriptor;
 	
 	public class OutlineTreeDataDescriptor implements IDataDescriptor
@@ -57,7 +53,7 @@ package cadetEditor.ui.data
 					return factory.icon;
 				}
 			}
-			return CadetEditorIcons.Component;
+			return CadetEngineIcons.Component;
 		}
 		
 		public function hasChildren(data:Object):Boolean 
