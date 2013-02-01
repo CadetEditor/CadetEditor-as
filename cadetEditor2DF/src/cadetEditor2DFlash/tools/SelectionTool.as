@@ -169,7 +169,7 @@ package cadetEditor2DFlash.tools
 			skins = skins.filter( 
 			function( item:*, index:int, array:Array ):Boolean 
 			{ 
-				var value:String = IntrospectionUtil.getMetadataByNameAndKey(item, "CadetBuilder", "transformable");
+				var value:String = IntrospectionUtil.getMetadataByNameAndKey(item, "CadetEditor", "transformable");
 				if ( value == "false" ) return false;
 				return true;
 			} );

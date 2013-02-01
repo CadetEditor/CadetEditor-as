@@ -8,9 +8,7 @@ package cadetEditor3D.commandHandlers
 	import away3d.entities.Mesh;
 	import away3d.library.assets.NamedAssetBase;
 	import away3d.materials.ColorMaterial;
-	import away3d.materials.MaterialBase;
 	
-	import cadet.core.ComponentContainer;
 	import cadet.core.ICadetScene;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
@@ -22,7 +20,7 @@ package cadetEditor3D.commandHandlers
 	import cadet3D.components.materials.ColorMaterialComponent;
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
-	import cadetEditor3D.entities.CadetBuilder3DCommands;
+	import cadetEditor3D.entities.CadetEditor3DCommands;
 	
 	import flash.events.Event;
 	import flash.utils.Dictionary;
@@ -44,7 +42,7 @@ package cadetEditor3D.commandHandlers
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
-			return new CommandHandlerFactory( CadetBuilder3DCommands.IMPORT, ImportCommandHandler, [new ContextValidator(FloxEditor.contextManager, CadetEditorContext3D)] );
+			return new CommandHandlerFactory( CadetEditor3DCommands.IMPORT, ImportCommandHandler, [new ContextValidator(FloxEditor.contextManager, CadetEditorContext3D)] );
 		}
 		
 		private var context		:CadetEditorContext3D;

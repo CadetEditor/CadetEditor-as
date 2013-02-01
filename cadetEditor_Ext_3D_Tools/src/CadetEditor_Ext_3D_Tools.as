@@ -21,7 +21,7 @@ package
 	import cadetEditor3D.commandHandlers.ImportCommandHandler;
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.controllers.PhysicsControlBarController;
-	import cadetEditor3D.entities.CadetBuilder3DCommands;
+	import cadetEditor3D.entities.CadetEditor3DCommands;
 	import cadetEditor3D.tools.CameraPanTool;
 	import cadetEditor3D.tools.CameraRotateTool;
 	import cadetEditor3D.tools.CameraZoomTool;
@@ -97,7 +97,7 @@ package
 			resourceManager.addResource( ExportToAS3CommandHandler.getFactory() );
 			
 			// Actions
-			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, CadetBuilder3DCommands.IMPORT, "Import 3D Resource...", "", "File/import" ) );
+			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, CadetEditor3DCommands.IMPORT, "Import 3D Resource...", "", "File/import" ) );
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, CadetEditorCommands.EXPORT, "Export...", "", "File/export" ) );
 			
 			// Default settings

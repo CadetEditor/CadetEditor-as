@@ -82,7 +82,7 @@ package
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.ZOOM_OUT, 189, KeyModifier.CTRL ) );		// CTRL + -
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.ZOOM_EXTENTS, 90 ) );		// Z
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.TOGGLE_GRID, 71 ) );		// G
-//			resourceManager.addResource( new KeyBinding( CadetBuilderCommands.TOGGLE_SNAP, 83 ) );		// S
+//			resourceManager.addResource( new KeyBinding( CadetEditorCommands.TOGGLE_SNAP, 83 ) );		// S
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.ADD_COMPONENT, Keyboard.F9 ) );
 			
 			// Processes

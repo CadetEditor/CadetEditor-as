@@ -129,7 +129,7 @@ package cadetEditor2DFlash.ui.views
 		
 //		private function rightClickSnapToggleHandler( event:MouseEvent ):void
 //		{
-//			BonesEditor.commandManager.executeCommand( CadetBuilderCommands.EDIT_SNAP_SETTINGS );
+//			BonesEditor.commandManager.executeCommand( CadetEditorCommands.EDIT_SNAP_SETTINGS );
 //		}
 		
 		public function set backgroundColor( value:uint ):void

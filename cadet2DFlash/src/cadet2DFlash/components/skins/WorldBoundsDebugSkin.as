@@ -13,7 +13,7 @@ package cadet2DFlash.components.skins
 	import cadet2D.components.processes.WorldBounds2D;
 	import cadet.events.InvalidationEvent;
 	
-	[CadetBuilder( transformable="false" )]
+	[CadetEditor( transformable="false" )]
 	public class WorldBoundsDebugSkin extends AbstractSkin2D
 	{
 		private var _worldBounds		:WorldBounds2D;

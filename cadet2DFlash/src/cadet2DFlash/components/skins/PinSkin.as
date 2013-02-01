@@ -19,7 +19,7 @@ package cadet2DFlash.components.skins
 	import flash.display.Graphics;
 	import flash.geom.Point;
 	
-	[CadetBuilder( transformable="false" )]
+	[CadetEditor( transformable="false" )]
 	public class PinSkin extends AbstractSkin2D
 	{
 		private static const DISPLAY		:String = "display";

@@ -17,7 +17,7 @@ package cadet2DFlash.components.skins
 	import cadet2DFlash.components.renderers.Renderer2D;
 	import cadet.events.InvalidationEvent;
 
-	[CadetBuilder( transformable="false" )]
+	[CadetEditor( transformable="false" )]
 	public class ConnectionSkin extends AbstractSkin2D
 	{
 		private static const DISPLAY		:String = "display";

@@ -15,9 +15,8 @@ package cadet2DFlash.components.skins
 	import cadet2D.components.behaviours.IFootprint;
 	import cadet2D.components.processes.FootprintManagerProcess;
 	import cadet2D.events.FootprintManagerEvent;
-	import cadet.util.ComponentReferenceUtil;
 	
-	[CadetBuilder( transformable="false" )]
+	[CadetEditor( transformable="false" )]
 	public class FootprintManagerDebugSkin extends AbstractSkin2D
 	{
 		private var _footprintManager		:FootprintManagerProcess;
