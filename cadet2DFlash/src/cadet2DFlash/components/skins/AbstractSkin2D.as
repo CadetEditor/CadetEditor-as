@@ -11,12 +11,15 @@
 package cadet2DFlash.components.skins
 {
 	import flash.display.Sprite;
+	import flash.geom.Matrix;
 	
-	import cadet2DFlash.components.renderers.Renderer2D;
-	import cadet2D.components.transforms.Transform2D;
 	import cadet.core.Component;
 	import cadet.events.InvalidationEvent;
+	
 	import cadet2D.components.skins.IRenderable;
+	import cadet2D.components.transforms.Transform2D;
+	
+	import cadet2DFlash.components.renderers.Renderer2D;
 
 	public class AbstractSkin2D extends Component implements IRenderable
 	{
@@ -41,6 +44,15 @@ package cadet2DFlash.components.skins
 		}
 		
 		public function get displayObjectContainer():Sprite { return sprite; }
+		
+		public function get matrix():Matrix
+		{
+			return sprite.transform.matrix;
+		}
+		public function set matrix( value:Matrix ):void
+		{
+			sprite.transform.matrix = value;
+		}
 		
 		public function get indexStr():String
 		{

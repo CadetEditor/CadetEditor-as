@@ -65,6 +65,8 @@ package cadetEditor2D.controllers
 				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if (skin.transform2D) {
 					storedTransforms[i] = skin.transform2D.matrix.clone();
+				} else {
+					storedTransforms[i] = skin.matrix.clone();
 				}
 			}
 			
@@ -92,6 +94,10 @@ package cadetEditor2D.controllers
 					var newTransform:Matrix = skin.transform2D.matrix.clone();
 					skin.transform2D.matrix = storedTransform;
 					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newTransform ) );
+				} else {
+					newTransform = skin.matrix.clone();
+					skin.matrix = storedTransform;
+					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newTransform ) );
 				}
 			}
 			context.operationManager.addOperation( compoundOperation );
@@ -117,9 +123,15 @@ package cadetEditor2D.controllers
 				//TODO: Assumption that every skin has an associated transform
 				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if (storedTransforms[i]) {
-					var newMatrix:Matrix = storedTransforms[i].clone();
-					newMatrix.translate(dx,dy);
-					skin.transform2D.matrix = newMatrix;
+					if (skin.transform2D) {
+						var newMatrix:Matrix = storedTransforms[i].clone();
+						newMatrix.translate(dx,dy);
+						skin.transform2D.matrix = newMatrix;						
+					} else {
+						newMatrix = storedTransforms[i].clone();
+						newMatrix.translate(dx,dy);
+						skin.matrix = newMatrix;						
+					}
 				}
 			}
 		}

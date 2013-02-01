@@ -3,7 +3,6 @@
 
 package cadetEditor2D.util
 {
-	import cadet.core.Component;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	

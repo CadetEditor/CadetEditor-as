@@ -3,9 +3,12 @@
 
 package cadetEditor2DS.tools
 {
-	import cadet.core.IComponentContainer;
-	import cadet.util.ComponentUtil;
+	import flash.events.Event;
 	
+	import cadet.core.IComponent;
+	import cadet.core.IComponentContainer;
+	
+	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor.assets.CadetEditorIcons;
@@ -19,8 +22,6 @@ package cadetEditor2DS.tools
 	import cadetEditor2D.util.SelectionUtil;
 	
 	import cadetEditor2DS.controllers.DragSelectController;
-	
-	import flash.events.Event;
 	
 	import flox.app.core.contexts.IContext;
 	import flox.app.operations.ChangePropertyOperation;
@@ -154,7 +155,12 @@ package cadetEditor2DS.tools
 		protected function dragDetectedHandler(event:Event):void
 		{
 			// Automatically select the dragged item
-			var pressedComponent:IComponentContainer = pressedSkin.parentComponent;
+			var pressedComponent:IComponent = pressedSkin.parentComponent;
+			// If the skin doesn't have a transform2D sibling, don't think of it in terms of a nested skin & transform
+			// inside a parent component. Instead, move the skin on it's own using its x and y properties.
+			if (!pressedSkin.transform2D) {
+				pressedComponent = pressedSkin;
+			}
 			
 			if ( !pressedComponent ) return;
 			if ( context.selection.contains( pressedComponent ) == false ) 
@@ -188,7 +194,7 @@ package cadetEditor2DS.tools
 		 * @param item
 		 * @param event
 		 */
-		private var previouslyClickedComponent:IComponentContainer;
+		private var previouslyClickedComponent:IComponent;//Container;
 		override protected function onClickSkins( event:PickingManagerEvent ):void
 		{	
 			if (ignoreNextMouseUp) 
@@ -201,7 +207,8 @@ package cadetEditor2DS.tools
 			event.skinsUnderMouse.sortOn("indexStr");
 			event.skinsUnderMouse.reverse();
 			
-			var components:Vector.<IComponentContainer> = ComponentUtil.getComponentContainers( event.skinsUnderMouse );
+		//	var components:Vector.<IComponentContainer> = ComponentUtil.getComponentContainers( event.skinsUnderMouse );
+			var components:Vector.<IComponent> = getSelectedComponents( event.skinsUnderMouse );
 			
 			if ( previouslyClickedComponent == null || components.indexOf(previouslyClickedComponent) == -1 || components.length == 1)
 			{
@@ -222,8 +229,26 @@ package cadetEditor2DS.tools
 				handleSelection( previouslyClickedComponent, true );
 			}
 			
-			
 			previouslyClickedComponent = component;
+		}
+		
+		static public function getSelectedComponents( components:Array ):Vector.<IComponent>
+		{
+			var selected:Vector.<IComponent> = new Vector.<IComponent>();
+			for ( var i:int = 0; i < components.length; i++ )
+			{
+				var component:IComponent = IComponent( components[i] );
+				
+				if ( component is AbstractSkin2D ) {
+					var skin:AbstractSkin2D = AbstractSkin2D(component);
+					if ( skin.transform2D ) {
+						selected.push( component.parentComponent );
+					} else {
+						selected.push(component);
+					}
+				}
+			}
+			return selected;
 		}
 		
 		/**
@@ -232,7 +257,7 @@ package cadetEditor2DS.tools
 		 * @param shiftSelect
 		 * @param allowDeselect
 		 */		
-		protected function handleSelection( component:IComponentContainer, shiftSelect:Boolean = false, allowDeselect:Boolean = true ):void
+		protected function handleSelection( component:IComponent, shiftSelect:Boolean = false, allowDeselect:Boolean = true ):void
 		{
 			var alreadySelected:Boolean = SelectionUtil.doesArrayContainComponentAnscestor( context.selection.source, component );
 			var newSelection:Array = context.selection.source;
