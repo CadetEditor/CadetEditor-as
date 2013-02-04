@@ -10,7 +10,6 @@ package cadetEditor.contexts
 	import flox.app.FloxApp;
 	import flox.app.resources.IResource;
 	import flox.app.util.IntrospectionUtil;
-	import flox.editor.FloxEditor;
 
 	public class AbstractTooledCadetEditorContext extends AbstractCadetEditorContext
 	{

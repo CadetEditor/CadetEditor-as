@@ -8,21 +8,17 @@ package cadetEditor.contexts
 	import cadet.core.IComponentContainer;
 	
 	import flash.display.DisplayObject;
-	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import cadetEditor.ui.components.OutlineTree;
 	import flox.core.data.ArrayCollection;
-	import cadetEditor.ui.data.OutlineTreeDataDescriptor;
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.ui.events.DragAndDropEvent;
 	
 	import flox.editor.FloxEditor;
 	import flox.app.core.contexts.IInspectableContext;
 	import flox.app.core.contexts.IOperationManagerContext;
-	import flox.app.core.contexts.ISelectionContext;
 	import flox.app.core.contexts.IVisualContext;
-	import flox.app.core.serialization.Serializer;
 	import flox.app.events.ContextValidatorEvent;
 	import flox.app.managers.OperationManager;
 	import flox.app.operations.AddItemOperation;

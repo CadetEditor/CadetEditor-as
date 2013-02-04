@@ -5,7 +5,6 @@ package cadetEditor.contexts
 {
 	import cadet.core.CadetScene;
 	import cadet.core.ICadetScene;
-	import cadet.core.IRenderer;
 	import cadet.operations.ReadCadetFileAndDeserializeOperation;
 	
 	import cadetEditor.operations.SerializeAndWriteCadetFileOperation;
@@ -17,7 +16,6 @@ package cadetEditor.contexts
 	import flox.app.FloxApp;
 	import flox.app.controllers.ExternalResourceController;
 	import flox.app.core.contexts.IContext;
-	import flox.app.core.managers.fileSystemProviders.IFileSystemProvider;
 	import flox.app.entities.URI;
 	import flox.app.events.OperationManagerEvent;
 	import flox.app.managers.OperationManager;
@@ -25,8 +23,6 @@ package cadetEditor.contexts
 	import flox.core.events.ArrayCollectionEvent;
 	import flox.editor.FloxEditor;
 	import flox.editor.contexts.AbstractEditorContext;
-	import flox.editor.contexts.IEditorContext;
-	import flox.editor.core.FloxEditorEnvironment;
 	import flox.editor.utils.FileSystemProviderUtil;
 	
 	public class AbstractCadetEditorContext extends AbstractEditorContext implements IContext

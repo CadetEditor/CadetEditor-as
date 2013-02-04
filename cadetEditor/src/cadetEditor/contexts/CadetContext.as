@@ -4,7 +4,6 @@
 package cadetEditor.contexts
 {
 	import cadet.core.IRenderer;
-	import cadet.operations.ReadCadetFileAndDeserializeOperation;
 	import cadet.util.ComponentUtil;
 	
 	import cadetEditor.ui.views.CadetView;
@@ -13,14 +12,9 @@ package cadetEditor.contexts
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
-	import flox.app.dataStructures.ObjectPool;
 	import flox.app.events.OperationManagerEvent;
-	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
-	import flox.editor.contexts.AbstractEditorContext;
-	import flox.editor.contexts.IEditorContext;
 	
-	public class CadetContext extends AbstractCadetEditorContext implements ICadetContext
+	public class CadetContext extends AbstractCadetEditorContext implements ICadetEditorContext//ICadetContext
 	{
 		private var _view		:CadetView;
 		//private var firstEnable	:Boolean = true;

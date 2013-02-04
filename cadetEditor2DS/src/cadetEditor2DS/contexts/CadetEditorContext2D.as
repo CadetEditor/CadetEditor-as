@@ -12,13 +12,10 @@ package cadetEditor2DS.contexts
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.renderers.Renderer2D;
 	
-	import cadetEditor.contexts.AbstractCadetEditorContext;
 	import cadetEditor.contexts.AbstractTooledCadetEditorContext;
 	import cadetEditor.controllers.ICadetContextController;
 	import cadetEditor.controllers.ICadetEditorContextController;
-	import cadetEditor.entities.ToolFactory;
 	import cadetEditor.events.CadetEditorViewEvent;
-	import cadetEditor.managers.ToolManager;
 	import cadetEditor.ui.views.IToolEditorView;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
@@ -38,19 +35,14 @@ package cadetEditor2DS.contexts
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import flox.app.FloxApp;
-	import flox.app.events.OperationManagerEvent;
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.IFactoryResource;
-	import flox.app.resources.IResource;
-	import flox.app.util.IntrospectionUtil;
 	import flox.core.events.PropertyChangeEvent;
 	import flox.editor.FloxEditor;
 	import flox.ui.managers.PopUpManager;
-	import flox.ui.util.BindingUtil;
 	
 	[Event( type="flash.events.Event", name="change" )]
 	
