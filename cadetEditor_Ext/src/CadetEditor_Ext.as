@@ -1,7 +1,16 @@
-package
+// Copyright (c) 2012, Unwrong Ltd. http://www.unwrong.com
+// All rights reserved. 
+
+package 
 {
 	import flash.display.Sprite;
 	import flash.ui.Keyboard;
+	
+	import cadet.assets.CadetEngineIcons;
+	import cadet.components.processes.KeyboardInputMapping;
+	import cadet.components.processes.KeyboardInputProcess;
+	import cadet.core.ICadetScene;
+	import cadet.entities.ComponentFactory;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.commandHandlers.AddComponentCommandHandler;
@@ -30,9 +39,9 @@ package
 	import flox.editor.resources.ActionFactory;
 	import flox.editor.resources.EditorFactory;
 	
-	public class CadetEditor_Ext_Tools extends Sprite
+	public class CadetEditor_Ext extends Sprite
 	{
-		public function CadetEditor_Ext_Tools()
+		public function CadetEditor_Ext()
 		{
 			var resourceManager:ResourceManager = FloxApp.resourceManager;
 			
@@ -75,6 +84,10 @@ package
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.TOGGLE_GRID, 71 ) );		// G
 //			resourceManager.addResource( new KeyBinding( CadetEditorCommands.TOGGLE_SNAP, 83 ) );		// S
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.ADD_COMPONENT, Keyboard.F9 ) );
+			
+			// Processes
+			resourceManager.addResource( new ComponentFactory( KeyboardInputProcess, "Keyboard Input Process", "Processes", CadetEngineIcons.Process, ICadetScene, 1 ) );
+			resourceManager.addResource( new ComponentFactory( KeyboardInputMapping, "Keyboard Input Mapping", "Processes", CadetEngineIcons.Process, KeyboardInputProcess ) );
 		}
 	}
 }
