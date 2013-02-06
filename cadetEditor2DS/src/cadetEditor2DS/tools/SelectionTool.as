@@ -6,10 +6,10 @@ package cadetEditor2DS.tools
 	import flash.events.Event;
 	
 	import cadet.core.IComponent;
-	import cadet.core.IComponentContainer;
 	
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
+	import cadet2D.util.SkinsUtil;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -132,7 +132,7 @@ package cadetEditor2DS.tools
 			shiftKeyDown = event.shiftKey;
 			
 			// Depth sort skins
-			event.skinsUnderMouse.sortOn("indexStr");
+			event.skinsUnderMouse.sort(SkinsUtil.sortSkinsById);
 			event.skinsUnderMouse.reverse();
 			
 			var skin:IRenderable = event.skinsUnderMouse[0];
@@ -204,7 +204,7 @@ package cadetEditor2DS.tools
 			}
 			
 			// Depth sort skins
-			event.skinsUnderMouse.sortOn("indexStr");
+			event.skinsUnderMouse.sort(SkinsUtil.sortSkinsById);
 			event.skinsUnderMouse.reverse();
 			
 		//	var components:Vector.<IComponentContainer> = ComponentUtil.getComponentContainers( event.skinsUnderMouse );
@@ -220,7 +220,7 @@ package cadetEditor2DS.tools
 			var index:int = components.indexOf(previouslyClickedComponent);
 			index = index == components.length-1 ? 0 : index+1;
 			
-			var component:IComponentContainer = components[index];
+			var component:IComponent = components[index];
 			handleSelection(component, event.shiftKey)
 			
 			var alreadySelected:Boolean = context.selection.contains( previouslyClickedComponent );

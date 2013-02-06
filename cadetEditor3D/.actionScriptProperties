@@ -35,12 +35,12 @@
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor/bin/CadetEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_3D/bin/CadetEngine_Extension_3D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxEditor/bin/FloxEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxUI/bin/FloxUI.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_3DPhysics/bin/CadetEngine_Extension_3DPhysics.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxAppEx/bin/FloxAppEx.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Away3D/bin/Away3D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_3D/bin/CadetEngine_Ext_3D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_3DPhysics/bin/CadetEngine_Ext_3DPhysics.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

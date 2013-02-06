@@ -26,7 +26,6 @@ package cadet2DBox2D.components.behaviours
 	
 	import cadet2DBox2D.components.processes.PhysicsProcess;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Stage;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;

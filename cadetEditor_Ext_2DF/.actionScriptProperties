@@ -33,10 +33,10 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DFBox2D/bin/CadetEditor2DFBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DBox2D/bin/CadetEditor2DBox2D.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DF/bin/CadetEngine_Extension_2DF.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2DBox2D/bin/CadetEngine_Extension_2DBox2D.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Extension_2D/bin/CadetEngine_Extension_2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/FloxEditor/bin/FloxEditor.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_2D/bin/CadetEngine_Ext_2D.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_2DF/bin/CadetEngine_Ext_2DF.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_2DBox2D/bin/CadetEngine_Ext_2DBox2D.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
@@ -48,4 +48,3 @@
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-
