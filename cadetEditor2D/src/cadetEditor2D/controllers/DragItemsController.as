@@ -92,12 +92,12 @@ package cadetEditor2D.controllers
 				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if (skin.transform2D) {
 					var newTransform:Matrix = skin.transform2D.matrix.clone();
-					skin.transform2D.matrix = storedTransform;
-					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newTransform ) );
+					skin.transform2D.matrix = storedTransform.clone();
+					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newTransform.clone(), storedTransform.clone() ) );
 				} else {
 					newTransform = skin.matrix.clone();
-					skin.matrix = storedTransform;
-					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newTransform ) );
+					skin.matrix = storedTransform.clone();
+					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newTransform.clone(), storedTransform.clone() ) );
 				}
 			}
 			context.operationManager.addOperation( compoundOperation );
