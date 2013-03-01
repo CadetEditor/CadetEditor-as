@@ -8,7 +8,6 @@ package cadetEditor.ui.views
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
@@ -16,7 +15,6 @@ package cadetEditor.ui.views
 	import flox.ui.components.Button;
 	import flox.ui.components.RadioButtonGroup;
 	import flox.ui.components.UIComponent;
-	import flox.ui.layouts.HorizontalLayout;
 	
 	public class CadetView extends UIComponent
 	{

@@ -14,7 +14,6 @@ package cadetEditor.commandHandlers
 	import flox.app.core.commandHandlers.ICommandHandler;
 	import flox.app.entities.URI;
 	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.util.AsynchronousUtil;
 	import flox.app.validators.ContextValidator;
 	import flox.editor.FloxEditor;
 	import flox.editor.operations.OpenFileOperation;

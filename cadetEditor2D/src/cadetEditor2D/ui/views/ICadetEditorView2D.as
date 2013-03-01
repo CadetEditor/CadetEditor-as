@@ -2,7 +2,6 @@ package cadetEditor2D.ui.views
 {
 	import cadet2D.components.renderers.IRenderer2D;
 	
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.IEventDispatcher;

@@ -3,18 +3,13 @@
 
 package cadetEditor3D.contexts
 {
-	import away3d.Away3D;
-	import away3d.containers.View3D;
-	
 	import cadet.core.IComponent;
-	import cadet.core.IRenderer;
 	import cadet.events.ComponentEvent;
 	import cadet.util.ComponentUtil;
 	
 	import cadet3D.components.core.Renderer3D;
 	import cadet3D.events.Renderer3DEvent;
 	
-	import cadetEditor.contexts.AbstractCadetEditorContext;
 	import cadetEditor.contexts.AbstractTooledCadetEditorContext;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.controllers.ICadetContextController;
@@ -31,7 +26,6 @@ package cadetEditor3D.contexts
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.IFactoryResource;
 	import flox.editor.FloxEditor;
-	import flox.editor.contexts.AbstractEditorContext;
 	
 	[Event(name="rendererChange", type="cadetEditor3D.events.RendererChangeEvent")]
 	public class CadetEditorContext3D extends AbstractTooledCadetEditorContext implements ICadetEditorContext

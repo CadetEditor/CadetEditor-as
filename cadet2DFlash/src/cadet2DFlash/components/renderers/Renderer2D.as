@@ -326,9 +326,9 @@ package cadet2DFlash.components.renderers
 			_worldContainer.transform.matrix = m;
 		}
 		
-		public function getParent():DisplayObjectContainer
+		public function getNativeStage():flash.display.Stage
 		{
-			return _parent;
+			return _parent.stage;
 		}
 		
 		public function get initialised():Boolean

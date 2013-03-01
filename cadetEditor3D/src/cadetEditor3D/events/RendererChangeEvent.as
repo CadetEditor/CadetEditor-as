@@ -6,8 +6,6 @@ package cadetEditor3D.events
 	import cadet.core.IRenderer;
 	
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	
 	public class RendererChangeEvent extends Event
 	{

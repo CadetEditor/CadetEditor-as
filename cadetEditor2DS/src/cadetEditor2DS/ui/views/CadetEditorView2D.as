@@ -3,39 +3,25 @@
 
 package cadetEditor2DS.ui.views
 {
-	import cadet.core.IRenderer;
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.renderers.RendererInvalidationTypes;
 	
-	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.events.CadetEditorViewEvent;
 	import cadetEditor.ui.views.ToolEditorView;
 	
-	import cadetEditor2D.ui.controlBars.CadetEditorControlBar;
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import cadetEditor2DS.ui.overlays.Grid2D;
-	
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import flox.core.events.PropertyChangeEvent;
-	import flox.editor.FloxEditor;
-	import flox.editor.core.IViewContainer;
-	import flox.ui.components.Container;
-	import flox.ui.components.IUIComponent;
-	import flox.ui.components.UIComponent;
-	import flox.ui.util.BindingUtil;
 	
 	import starling.display.Sprite;
 

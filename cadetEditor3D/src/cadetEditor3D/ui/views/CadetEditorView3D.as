@@ -10,7 +10,6 @@ package cadetEditor3D.ui.views
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.tools.gizmos.SelectionOverlay;
 	
-	import flash.display.DisplayObject;
 	import flash.geom.Rectangle;
 
 	public class CadetEditorView3D extends ToolEditorView
