@@ -191,13 +191,13 @@ package cadetEditor2DS.ui.views
 			if ( _renderer )
 			{
 				_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-				_renderer.disable(container);
+				_renderer.disable();
 			}
 			_renderer = Renderer2D(value);
 			if ( _renderer )
 			{
 				_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
-				_renderer.enable(container, 2);
+				_renderer.enable(container);//, 2);
 			}
 			
 			// Enable/Disable Grid controls depending on the availibility of a Renderer2D

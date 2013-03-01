@@ -31,7 +31,6 @@ package
 	import flox.editor.entities.Commands;
 	import flox.editor.icons.FloxEditorIcons;
 	import flox.editor.resources.ActionFactory;
-	import flox.editor.resources.EditorFactory;
 	
 	public class CadetEditor_Ext_Core extends Sprite
 	{
@@ -47,7 +46,7 @@ package
 			resourceManager.addResource( new ActionFactory( OutlinePanelContext, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
 			resourceManager.addResource( new ActionFactory( OutlinePanelContext, Commands.DELETE, "Delete Component...", "modify", "", FloxEditorIcons.Bin ) );
 			
-			resourceManager.addResource( new EditorFactory( CadetContext, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
+		//	resourceManager.addResource( new EditorFactory( CadetContext, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
 			
 			
 			// Visual Contexts

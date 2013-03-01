@@ -24,6 +24,7 @@ package
 	import cadetEditor2D.tools.PanTool;
 	
 	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
+	import cadetEditor2DS.contexts.CadetContext2D;
 	import cadetEditor2DS.contexts.CadetEditorContext2D;
 	import cadetEditor2DS.tools.BezierCurveTool;
 	import cadetEditor2DS.tools.CircleTool;
@@ -55,6 +56,9 @@ package
 		public function CadetEditor_Ext_2DS_Core()
 		{
 			var resourceManager:ResourceManager = FloxApp.resourceManager;			
+			
+			// Cadet Viewer
+			resourceManager.addResource( new EditorFactory( CadetContext2D, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
 			
 			// Global actions
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.COMBINE, "Combine", "", "Modify/geometry" ) );

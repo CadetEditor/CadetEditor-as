@@ -19,6 +19,7 @@ package
 	
 	import cadetEditor3D.commandHandlers.ExportToAS3CommandHandler;
 	import cadetEditor3D.commandHandlers.ImportCommandHandler;
+	import cadetEditor3D.contexts.CadetContext3D;
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	import cadetEditor3D.controllers.PhysicsControlBarController;
 	import cadetEditor3D.entities.CadetEditor3DCommands;
@@ -48,6 +49,10 @@ package
 		public function CadetEditor_Ext_3D_Core()
 		{	
 			var resourceManager:ResourceManager = FloxApp.resourceManager;
+			
+			// Cadet Viewer
+			resourceManager.addResource( new EditorFactory( CadetContext3D, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
+			
 			
 			resourceManager.addResource( new ExternalResourceParserFactory( ExternalAway3DResourceParser, "External Away3D Resource Parser", ["obj", "3ds"] ) );
 			

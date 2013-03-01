@@ -5,7 +5,7 @@ package cadetEditor3D.tools
 {
 	import away3d.cameras.Camera3D;
 	
-	import cadet3D.components.core.Renderer3D;
+	import cadet3D.components.renderers.Renderer3D;
 	
 	import cadetEditor.entities.ToolFactory;
 	import cadetEditor.tools.ITool;

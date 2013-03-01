@@ -7,7 +7,7 @@ package cadetEditor3D.contexts
 	import cadet.events.ComponentEvent;
 	import cadet.util.ComponentUtil;
 	
-	import cadet3D.components.core.Renderer3D;
+	import cadet3D.components.renderers.Renderer3D;
 	import cadet3D.events.Renderer3DEvent;
 	
 	import cadetEditor.contexts.AbstractTooledCadetEditorContext;

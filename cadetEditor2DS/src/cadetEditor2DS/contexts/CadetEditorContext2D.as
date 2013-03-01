@@ -188,7 +188,7 @@ package cadetEditor2DS.contexts
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.enable(DisplayObjectContainer(_view.getContent()), 2);
+			_view.renderer.enable(_view.getContent());//DisplayObjectContainer(_view.getContent()), 2);
 			_view.renderer.addEventListener( RendererEvent.INITIALISED, rendererInitialised );
 		}
 		
@@ -196,7 +196,7 @@ package cadetEditor2DS.contexts
 		{
 			if (!_view.renderer) return;
 			
-			_view.renderer.disable(DisplayObjectContainer(_view.getContent()));
+			_view.renderer.disable();//DisplayObjectContainer(_view.getContent()));
 		}
 		
 		override protected function disposeScene():void

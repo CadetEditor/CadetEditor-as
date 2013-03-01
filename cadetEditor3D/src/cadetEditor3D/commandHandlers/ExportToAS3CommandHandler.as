@@ -9,7 +9,7 @@ package cadetEditor3D.commandHandlers
 	
 	import cadet.util.ComponentUtil;
 	
-	import cadet3D.components.core.Renderer3D;
+	import cadet3D.components.renderers.Renderer3D;
 	import cadet3D.serialize.*;
 	
 	import cadetEditor.contexts.ICadetEditorContext;

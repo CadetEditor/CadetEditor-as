@@ -3,7 +3,7 @@
 
 package cadetEditor3D.ui.views
 {
-	import cadet3D.components.core.Renderer3D;
+	import cadet3D.components.renderers.Renderer3D;
 	
 	import cadetEditor.ui.views.ToolEditorView;
 	
