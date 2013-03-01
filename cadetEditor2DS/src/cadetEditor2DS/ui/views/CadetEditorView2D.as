@@ -3,6 +3,13 @@
 
 package cadetEditor2DS.ui.views
 {
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.events.InvalidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
@@ -14,16 +21,9 @@ package cadetEditor2DS.ui.views
 	
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	
 	import flox.core.events.PropertyChangeEvent;
 	
-	import starling.display.Sprite;
+	import starling.display.DisplayObjectContainer;
 
 	[Event(type="cadetEditor.events.CadetEditorViewEvent", name="viewportChanged")]
 	
@@ -225,7 +225,7 @@ package cadetEditor2DS.ui.views
 		}
 		public function get viewportWidth():Number { return _viewportWidth; }
 		public function get viewportHeight():Number { return _viewportHeight; }
-		public function get viewport():starling.display.Sprite { return _renderer.viewport; }
+		public function get viewport():starling.display.DisplayObjectContainer { return _renderer.viewport; }
 		public function get viewportMouse():Point 
 		{ 
 			if ( renderer )
@@ -242,6 +242,6 @@ package cadetEditor2DS.ui.views
 			}
 			return new Point();
 		}
-		public function get container():DisplayObjectContainer { return content; }
+		public function get container():flash.display.DisplayObjectContainer { return content; }
 	}
 }
