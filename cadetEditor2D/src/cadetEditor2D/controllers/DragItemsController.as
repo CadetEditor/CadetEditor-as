@@ -7,6 +7,7 @@ package cadetEditor2D.controllers
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.utils.Dictionary;
 	
 	import cadet2D.components.skins.IRenderable;
 	
@@ -23,7 +24,8 @@ package cadetEditor2D.controllers
 		protected var context				:ICadetEditorContext;
 		protected var tool					:ICadetEditorTool2D;
 		protected var skins					:Array
-		protected var storedTransforms		:Array;
+		protected var storedMatrices		:Dictionary;
+		protected var matricesTable			:Dictionary;
 		protected var mouseX				:Number;
 		protected var mouseY				:Number;
 		protected var _dragging				:Boolean = false;
@@ -42,7 +44,8 @@ package cadetEditor2D.controllers
 			}
 			context = null;
 			tool = null;
-			storedTransforms = null;
+			storedMatrices = null;
+			matricesTable = null;
 			skins = null;
 		}
 		
@@ -57,16 +60,23 @@ package cadetEditor2D.controllers
 			this.skins = skins;
 			if ( skins.length == 0 ) return;
 			
-			storedTransforms = [];
+			storedMatrices = new Dictionary();
+			matricesTable = new Dictionary();
+			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
 				var skin:IRenderable = skins[i];
 				//TODO: Assumption that every skin has an associated transform
 				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if (skin.transform2D) {
-					storedTransforms[i] = skin.transform2D.matrix.clone();
+					if (!matricesTable[skin.transform2D]) {
+						storedMatrices[skin] = skin.transform2D.matrix.clone();
+						matricesTable[skin.transform2D] = storedMatrices[skin];
+					} else {
+						storedMatrices[skin] = matricesTable[skin.transform2D];
+					}
 				} else {
-					storedTransforms[i] = skin.matrix.clone();
+					storedMatrices[skin] = skin.matrix.clone();
 				}
 			}
 			
@@ -84,20 +94,29 @@ package cadetEditor2D.controllers
 			
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.label = "Transform Object(s)";
+			
+			// Store copies of the new matrices before doing the ChangePropertyOperations, as this resets the matrices first,
+			// which causes problems if multiple skins are using the same Transform2D.
+			var newMatrices:Vector.<Matrix> = new Vector.<Matrix>();
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
 				var skin:IRenderable = skins[i];
-				var storedTransform:Matrix = storedTransforms[i];
-				//TODO: Assumption that every skin has an associated transform
-				//at the correct index in storedTransforms. Perhaps a table would be better?
+				var newMatrix:Matrix = skin.transform2D.matrix.clone();
+				newMatrices.push(newMatrix);
+			}
+			
+			for ( i = 0; i < skins.length; i++ )
+			{
+				skin = skins[i];
+				var storedMatrix:Matrix = storedMatrices[skin];//i];
 				if (skin.transform2D) {
-					var newTransform:Matrix = skin.transform2D.matrix.clone();
-					skin.transform2D.matrix = storedTransform.clone();
-					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newTransform.clone(), storedTransform.clone() ) );
+					newMatrix = newMatrices[i];//skin.transform2D.matrix.clone();
+					skin.transform2D.matrix = storedMatrix.clone();
+					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), newMatrix.clone() ) );
 				} else {
-					newTransform = skin.matrix.clone();
-					skin.matrix = storedTransform.clone();
-					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newTransform.clone(), storedTransform.clone() ) );
+					newMatrix = skin.matrix.clone();
+					skin.matrix = storedMatrix.clone();
+					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newMatrix.clone(), newMatrix.clone() ) );
 				}
 			}
 			context.operationManager.addOperation( compoundOperation );
@@ -120,15 +139,14 @@ package cadetEditor2D.controllers
 			for ( i = 0; i < skins.length; i++ )
 			{
 				skin = skins[i];
-				//TODO: Assumption that every skin has an associated transform
-				//at the correct index in storedTransforms. Perhaps a table would be better?
-				if (storedTransforms[i]) {
+				var storedMatrix:Matrix = storedMatrices[skin]; 
+				if (storedMatrix) {
 					if (skin.transform2D) {
-						var newMatrix:Matrix = storedTransforms[i].clone();
+						var newMatrix:Matrix = storedMatrix.clone();
 						newMatrix.translate(dx,dy);
 						skin.transform2D.matrix = newMatrix;						
 					} else {
-						newMatrix = storedTransforms[i].clone();
+						newMatrix = storedMatrix.clone();
 						newMatrix.translate(dx,dy);
 						skin.matrix = newMatrix;						
 					}
