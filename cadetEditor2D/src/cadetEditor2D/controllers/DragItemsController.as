@@ -101,16 +101,21 @@ package cadetEditor2D.controllers
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
 				var skin:IRenderable = skins[i];
-				var newMatrix:Matrix = skin.transform2D.matrix.clone();
+				var newMatrix:Matrix;
+				if (skin.transform2D) {
+					newMatrix = skin.transform2D.matrix.clone();
+				} else {
+					newMatrix = skin.matrix.clone();
+				}
 				newMatrices.push(newMatrix);
 			}
 			
 			for ( i = 0; i < skins.length; i++ )
 			{
 				skin = skins[i];
-				var storedMatrix:Matrix = storedMatrices[skin];//i];
+				var storedMatrix:Matrix = storedMatrices[skin];
 				if (skin.transform2D) {
-					newMatrix = newMatrices[i];//skin.transform2D.matrix.clone();
+					newMatrix = newMatrices[i];
 					skin.transform2D.matrix = storedMatrix.clone();
 					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), newMatrix.clone() ) );
 				} else {
