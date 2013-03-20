@@ -1,7 +1,6 @@
 package cadetEditor2DS.contexts
 {
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
 	import cadet.util.ComponentUtil;

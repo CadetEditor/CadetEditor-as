@@ -111,7 +111,8 @@ package cadetEditor2DS.tools
 				overlay.renderer = renderer2D;
 			}
 			//view.addOverlay(overlay, CadetEditorView2D.TOP);
-			
+		
+			overlay.enable();
 			overlay.boxes.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownBoxHandler );
 			overlay.rotationArea.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownRotationAreaHandler );
 			overlay.translateArea.addEventListener( MouseEvent.MOUSE_DOWN, mouseDownTranslateAreaHandler );

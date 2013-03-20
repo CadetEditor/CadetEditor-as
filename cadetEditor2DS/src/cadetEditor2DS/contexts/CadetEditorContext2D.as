@@ -34,7 +34,6 @@ package cadetEditor2DS.contexts
 	import cadetEditor2DS.ui.views.CadetEditorView2D;
 	
 	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
 	import flox.app.FloxApp;
@@ -45,7 +44,6 @@ package cadetEditor2DS.contexts
 	import flox.ui.managers.PopUpManager;
 	
 	[Event( type="flash.events.Event", name="change" )]
-	
 	public class CadetEditorContext2D extends AbstractTooledCadetEditorContext implements ICadetEditorContext2D
 	{
 		protected var _snapManager						:SnapManager2D;

@@ -4,14 +4,14 @@
 // The little boxes that appear in the corners and middle of the sides of a shape when using the transform tool
 package cadetEditor2DS.ui.overlays
 {
-	import cadet2D.overlays.Overlay;
-	import cadet2D.components.renderers.Renderer2D;
-	
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	
+	import cadet2D.components.renderers.Renderer2D;
+	import cadet2D.overlays.Overlay;
+	
+	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import starling.core.RenderSupport;
 	import starling.display.Shape;
@@ -49,13 +49,22 @@ package cadetEditor2DS.ui.overlays
 		
 		public var renderer				:Renderer2D;
 		
+		private var _initialised		:Boolean;
+		
 		public function TransformOverlay()
 		{
-			init();
+		//	init();
+		}
+		
+		public function enable():void
+		{
+			if ( !_initialised )	init();
 		}
 		
 		protected function init():void
 		{
+			_initialised = true;
+			
 			boxesArray = [];
 			//blendMode = BlendMode.INVERT;
 			
@@ -113,6 +122,7 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( !tBounds ) return;
 			if ( !renderer ) return;
+
 			
 			var TL:Point = new Point(tBounds.x, tBounds.y);
 			TL = matrix.transformPoint(TL);
