@@ -32,9 +32,9 @@ package
 	import core.editor.icons.CoreEditorIcons;
 	import core.editor.resources.ActionFactory;
 	
-	public class CadetEditor_Ext_Core extends Sprite
+	public class CadetEditor_Ext_Main extends Sprite
 	{
-		public function CadetEditor_Ext_Core()
+		public function CadetEditor_Ext_Main()
 		{
 			var resourceManager:ResourceManager = CoreApp.resourceManager;
 			

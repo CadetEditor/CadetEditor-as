@@ -8,9 +8,9 @@ package
 	import core.app.managers.ResourceManager;
 	import core.app.resources.FactoryResource;
 	
-	public class CadetEditor_Ext_2DSBox2D_Core extends Sprite
+	public class CadetEditor_Ext_2DSBox2D_Main extends Sprite
 	{
-		public function CadetEditor_Ext_2DSBox2D_Core()
+		public function CadetEditor_Ext_2DSBox2D_Main()
 		{
 			var resourceManager:ResourceManager = CoreApp.resourceManager;
 			

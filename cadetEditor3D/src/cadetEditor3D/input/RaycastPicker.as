@@ -26,7 +26,8 @@ package cadetEditor3D.input
 		// TODO: add option of finding best hit?
 
 		private var _findClosestCollision:Boolean;
-
+		private var _onlyMouseEnabled:Boolean = true;
+		
 		protected var _entities:Vector.<Entity>;
 		protected var _numEntities:uint;
 		protected var _hasCollisions:Boolean;
@@ -155,6 +156,15 @@ package cadetEditor3D.input
 			collisionPos.x = rayPos.x + t*rayDir.x;
 			collisionPos.y = rayPos.y + t*rayDir.y;
 			collisionPos.z = rayPos.z + t*rayDir.z;
+		}
+		
+		public function get onlyMouseEnabled():Boolean
+		{
+			return _onlyMouseEnabled;
+		}
+		public function set onlyMouseEnabled(value:Boolean):void
+		{
+			_onlyMouseEnabled = value;
 		}
 
 		/**

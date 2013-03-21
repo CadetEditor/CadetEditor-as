@@ -51,9 +51,9 @@ package
 	import core.editor.resources.ActionFactory;
 	import core.editor.resources.EditorFactory;
 	
-	public class CadetEditor_Ext_2DS_Core extends Sprite
+	public class CadetEditor_Ext_2DS_Main extends Sprite
 	{
-		public function CadetEditor_Ext_2DS_Core()
+		public function CadetEditor_Ext_2DS_Main()
 		{
 			var resourceManager:ResourceManager = CoreApp.resourceManager;			
 			
