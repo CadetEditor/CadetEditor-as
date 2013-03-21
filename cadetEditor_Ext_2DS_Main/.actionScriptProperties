@@ -17,13 +17,13 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/sparkskins.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/rpc.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp_air.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/videoPlayer.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp_air.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flash-integration.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
@@ -31,9 +31,7 @@
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine/bin/CadetEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor/bin/CadetEditor.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2D/bin/CadetEditor2D.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DBox2D/bin/CadetEditor2DBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DS/bin/CadetEditor2DS.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/CadetEditor2DSBox2D/bin/CadetEditor2DSBox2D.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CoreApp/bin/CoreApp.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CadetEngine_Ext_2D/bin/CadetEngine_Ext_2D.swc" useDefaultLinkType="false"/>
     </libraryPath>

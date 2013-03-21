@@ -26,17 +26,7 @@ package
 	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
 	import cadetEditor2DS.contexts.CadetContext2D;
 	import cadetEditor2DS.contexts.CadetEditorContext2D;
-	import cadetEditor2DS.tools.BezierCurveTool;
-	import cadetEditor2DS.tools.CircleTool;
-	import cadetEditor2DS.tools.PolygonTool;
-	import cadetEditor2DS.tools.RectangleTool;
 	import cadetEditor2DS.tools.SelectionTool;
-	import cadetEditor2DS.tools.TransformTool;
-	import cadetEditor2DS.tools.TriangleTool;
-	
-	import cadetEditor2DSBox2D.tools.ConnectionTool;
-	import cadetEditor2DSBox2D.tools.PinTool;
-	import cadetEditor2DSBox2D.tools.TerrainTool;
 	
 	import core.app.CoreApp;
 	import core.app.entities.KeyModifier;
@@ -87,15 +77,7 @@ package
 			// Tools
 			resourceManager.addResource( SelectionTool.getFactory() );
 			resourceManager.addResource( PanTool.getFactory() );
-			resourceManager.addResource( TransformTool.getFactory() );
-			resourceManager.addResource( RectangleTool.getFactory() );
-			resourceManager.addResource( TriangleTool.getFactory() );
-			resourceManager.addResource( CircleTool.getFactory() );
-			resourceManager.addResource( PolygonTool.getFactory() );
-			resourceManager.addResource( BezierCurveTool.getFactory() );
-			resourceManager.addResource( ConnectionTool.getFactory() );
-			resourceManager.addResource( PinTool.getFactory() );
-			resourceManager.addResource( TerrainTool.getFactory() );
+			//resourceManager.addResource( TransformTool.getFactory() );
 			
 			// Controllers
 			resourceManager.addResource( new FactoryResource( DefaultControlBar2DController, "Default Control Bar" ) );
