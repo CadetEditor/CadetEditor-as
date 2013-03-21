@@ -36,12 +36,12 @@ package cadetEditor2DS.contexts
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.IFactoryResource;
-	import flox.core.events.PropertyChangeEvent;
-	import flox.editor.FloxEditor;
-	import flox.ui.managers.PopUpManager;
+	import core.app.CoreApp;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.IFactoryResource;
+	import core.events.PropertyChangeEvent;
+	import core.editor.CoreEditor;
+	import core.ui.managers.PopUpManager;
 	
 	[Event( type="flash.events.Event", name="change" )]
 	public class CadetEditorContext2D extends AbstractTooledCadetEditorContext implements ICadetEditorContext2D
@@ -118,7 +118,7 @@ package cadetEditor2DS.contexts
 		protected function initControllers():void
 		{
 			// Find and add any Controller resources
-			var resources:Vector.<IFactoryResource> = FloxApp.resourceManager.getFactoriesForType(ICadetContextController);
+			var resources:Vector.<IFactoryResource> = CoreApp.resourceManager.getFactoriesForType(ICadetContextController);
 			for ( var i:int = 0; i < resources.length; i++ )
 			{
 				var factory:FactoryResource = FactoryResource(resources[i]);
@@ -153,7 +153,7 @@ package cadetEditor2DS.contexts
 			_pickingManager.enable();
 			_view.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 			
-			FloxEditor.viewManager.application.popUpManager.addEventListener(Event.CHANGE, popUpChangeHandler);
+			CoreEditor.viewManager.application.popUpManager.addEventListener(Event.CHANGE, popUpChangeHandler);
 		}
 		
 		override public function disable():void
@@ -165,7 +165,7 @@ package cadetEditor2DS.contexts
 			_pickingManager.disable();
 			_view.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 			
-			FloxEditor.viewManager.application.popUpManager.removeEventListener(Event.CHANGE, popUpChangeHandler);
+			CoreEditor.viewManager.application.popUpManager.removeEventListener(Event.CHANGE, popUpChangeHandler);
 		}
 		
 		private function popUpChangeHandler( event:Event ):void

@@ -6,11 +6,11 @@ package cadetEditor.operations
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	
-	import flox.app.managers.DependencyManager;
-	import flox.app.operations.RemoveDependencyOperation;
-	import flox.app.operations.RemoveItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.util.ArrayUtil;
+	import core.app.managers.DependencyManager;
+	import core.app.operations.RemoveDependencyOperation;
+	import core.app.operations.RemoveItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.util.ArrayUtil;
 
 	/**
 	 * There are two ways you can remove a Component from the scene. The first way is by simply removing the component from it's

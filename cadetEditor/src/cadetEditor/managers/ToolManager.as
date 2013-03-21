@@ -12,11 +12,11 @@ package cadetEditor.managers
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 	
-	import flox.ui.components.Button;
+	import core.ui.components.Button;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.contexts.IContext;
-	import flox.app.util.IntrospectionUtil;
+	import core.editor.CoreEditor;
+	import core.app.core.contexts.IContext;
+	import core.app.util.IntrospectionUtil;
 
 	public class ToolManager
 	{
@@ -50,8 +50,8 @@ package cadetEditor.managers
 				_selectedTool.enable();
 			}
 			
-			FloxEditor.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
-			FloxEditor.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
+			CoreEditor.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
+			CoreEditor.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
 		}
 		
 		public function disable():void
@@ -62,8 +62,8 @@ package cadetEditor.managers
 				_selectedTool.disable();
 			}
 			
-			FloxEditor.stage.removeEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
-			FloxEditor.stage.removeEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
+			CoreEditor.stage.removeEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
+			CoreEditor.stage.removeEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
 		}
 		
 		public function dispose():void
@@ -143,7 +143,7 @@ package cadetEditor.managers
 		
 		private function keyDownHandler( event:KeyboardEvent ):void
 		{
-			if ( FloxEditor.contextManager.getCurrentContext() is IntrospectionUtil.getType(context) == false ) return;
+			if ( CoreEditor.contextManager.getCurrentContext() is IntrospectionUtil.getType(context) == false ) return;
 			
 			if ( keysDown[event.keyCode] ) return;
 			keysDown[event.keyCode] = true;

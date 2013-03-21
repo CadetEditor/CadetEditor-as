@@ -25,12 +25,12 @@ package cadetEditor2DS.tools
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import flox.app.core.contexts.IContext;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.AddToArrayOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.core.events.ArrayCollectionEvent;
+	import core.app.core.contexts.IContext;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.AddToArrayOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.events.ArrayCollectionEvent;
 	
 	public class PolygonTool extends CadetEditorTool2D
 	{

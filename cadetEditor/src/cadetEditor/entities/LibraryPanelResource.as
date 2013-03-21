@@ -3,7 +3,7 @@
 
 package cadetEditor.entities
 {
-	import flox.app.entities.URI;
+	import core.app.entities.URI;
 
 	public class LibraryPanelResource
 	{

@@ -10,7 +10,7 @@ package cadetEditor2D.util
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.app.util.DisplayListUtil;
+	import core.app.util.DisplayListUtil;
 
 	public class BitmapHitTest
 	{

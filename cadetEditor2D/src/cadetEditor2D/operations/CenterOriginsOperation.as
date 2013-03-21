@@ -10,7 +10,7 @@ package cadetEditor2D.operations
 	
 	import cadet2D.components.transforms.Transform2D;
 	
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.operations.UndoableCompoundOperation;
 
 	public class CenterOriginsOperation extends UndoableCompoundOperation
 	{

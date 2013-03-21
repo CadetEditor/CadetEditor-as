@@ -3,11 +3,11 @@
 
 package cadetEditor2DS.commandHandlers
 {
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextValidator;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextValidator;
 	
-	import flox.editor.FloxEditor;
+	import core.editor.CoreEditor;
 	
 	import cadetEditor.entities.CadetEditorCommands;
 	
@@ -21,7 +21,7 @@ package cadetEditor2DS.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.ZOOM_EXTENTS, ZoomExtentsCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext2D ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext2D ) );
 			return factory;
 		}
 		
@@ -29,7 +29,7 @@ package cadetEditor2DS.commandHandlers
 
 		public function execute(parameters:Object):void
 		{
-			var context:ICadetEditorContext2D = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext2D);
+			var context:ICadetEditorContext2D = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext2D);
 			var operation:ZoomExtentsOperation = new ZoomExtentsOperation( context.view2D );
 			operation.execute();
 		}

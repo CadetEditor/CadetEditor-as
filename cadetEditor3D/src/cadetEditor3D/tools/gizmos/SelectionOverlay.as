@@ -9,7 +9,7 @@ package cadetEditor3D.tools.gizmos
 	
 	import cadetEditor3D.contexts.CadetEditorContext3D;
 	
-	import flox.core.events.ArrayCollectionEvent;
+	import core.events.ArrayCollectionEvent;
 
 	public class SelectionOverlay
 	{

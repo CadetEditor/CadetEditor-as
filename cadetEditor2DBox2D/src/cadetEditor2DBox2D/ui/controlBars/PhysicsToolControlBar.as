@@ -2,11 +2,11 @@ package cadetEditor2DBox2D.ui.controlBars
 {
 	import flash.events.Event;
 	
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.DropDownMenu;
-	import flox.ui.components.HBox;
-	import flox.core.data.ArrayCollection;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.CheckBox;
+	import core.ui.components.DropDownMenu;
+	import core.ui.components.HBox;
+	import core.data.ArrayCollection;
+	import core.ui.util.FloxDeserializer;
 	
 	public class PhysicsToolControlBar extends HBox
 	{

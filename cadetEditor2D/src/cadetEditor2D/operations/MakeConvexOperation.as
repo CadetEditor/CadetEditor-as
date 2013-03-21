@@ -10,7 +10,7 @@ package cadetEditor2D.operations
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.util.VertexUtil;
 	
-	import flox.app.core.operations.IUndoableOperation;
+	import core.app.core.operations.IUndoableOperation;
 
 	public class MakeConvexOperation implements IUndoableOperation
 	{

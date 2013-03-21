@@ -12,10 +12,10 @@ package cadetEditor3D.tools
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.editor.CoreEditor;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
 
 	public class AbstractPrimitveTool extends AbstractTool
 	{
@@ -47,8 +47,8 @@ package cadetEditor3D.tools
 			
 			if ( active )
 			{
-				FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-				FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+				CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 				end();
 			}
 			
@@ -76,8 +76,8 @@ package cadetEditor3D.tools
 			
 			begin();
 			update();
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		private function mouseMoveHandler( event:MouseEvent ):void
@@ -87,8 +87,8 @@ package cadetEditor3D.tools
 		
 		private function mouseUpHandler( event:MouseEvent ):void
 		{
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			end();
 		}
 		

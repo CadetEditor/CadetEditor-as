@@ -25,24 +25,24 @@ package cadetEditor3D.commandHandlers
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.resources.IFactoryResource;
-	import flox.app.resources.IResource;
-	import flox.app.util.IntrospectionUtil;
-	import flox.app.validators.ContextValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.operations.SelectResourceOperation;
-	import flox.editor.ui.panels.SelectResourcePanel;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.resources.IFactoryResource;
+	import core.app.resources.IResource;
+	import core.app.util.IntrospectionUtil;
+	import core.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.editor.operations.SelectResourceOperation;
+	import core.editor.ui.panels.SelectResourcePanel;
 	
 	public class ImportCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
-			return new CommandHandlerFactory( CadetEditor3DCommands.IMPORT, ImportCommandHandler, [new ContextValidator(FloxEditor.contextManager, CadetEditorContext3D)] );
+			return new CommandHandlerFactory( CadetEditor3DCommands.IMPORT, ImportCommandHandler, [new ContextValidator(CoreEditor.contextManager, CadetEditorContext3D)] );
 		}
 		
 		private var context		:CadetEditorContext3D;
@@ -60,11 +60,11 @@ package cadetEditor3D.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			context = FloxEditor.contextManager.getLatestContextOfType(CadetEditorContext3D);
+			context = CoreEditor.contextManager.getLatestContextOfType(CadetEditorContext3D);
 			
 			var allowedTypes:Array = [ObjectContainer3D];
 			var dissallowedTypes:Array = [Mesh];
-			var operation:SelectResourceOperation = new SelectResourceOperation(FloxApp.resourceManager.getAllResources(), null, allowedTypes, dissallowedTypes);
+			var operation:SelectResourceOperation = new SelectResourceOperation(CoreApp.resourceManager.getAllResources(), null, allowedTypes, dissallowedTypes);
 			operation.addEventListener(Event.COMPLETE, selectResourceCompleteHandler);
 			operation.execute();
 		}
@@ -174,7 +174,7 @@ package cadetEditor3D.commandHandlers
 					// add it to the scene, and return it.
 					geometryComponent = new GeometryComponent();
 					geometryComponent.name = geometry.name;
-					FloxApp.resourceManager.bindResource( resourceIDPrefix + "." + asset.name, geometryComponent, "geometry" );
+					CoreApp.resourceManager.bindResource( resourceIDPrefix + "." + asset.name, geometryComponent, "geometry" );
 					componentDictionary[geometry] = geometryComponent;
 					compoundOperation.addOperation( new AddItemOperation( geometryComponent, parent.children ) );
 					return geometryComponent;

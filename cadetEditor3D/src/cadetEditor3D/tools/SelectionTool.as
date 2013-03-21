@@ -20,9 +20,9 @@ package cadetEditor3D.tools
 	import flash.events.Event;
 	import flash.ui.Keyboard;
 	
-	import flox.app.core.contexts.IContext;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.util.ArrayUtil;
+	import core.app.core.contexts.IContext;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.util.ArrayUtil;
 	
 	public class SelectionTool extends AbstractTool
 	{

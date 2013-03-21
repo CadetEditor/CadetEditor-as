@@ -14,10 +14,10 @@ package
 	import flash.events.InvokeEvent;
 	import flash.geom.Rectangle;
 	
-	import flox.app.FloxApp;
-	import flox.app.util.AsynchronousUtil;
-	import flox.editor.operations.InitializeFloxOperationAIR;
-	import flox.editor.ui.components.SplashScreen;
+	import core.app.CoreApp;
+	import core.app.util.AsynchronousUtil;
+	import core.editor.operations.InitializeFloxOperationAIR;
+	import core.editor.ui.components.SplashScreen;
 	
 	[SWF(backgroundColor="#15181A", frameRate="60")]
 	public class Cadet3D extends Sprite
@@ -60,7 +60,7 @@ package
 		
 		private function initFlox():void
 		{
-			FloxApp.init();
+			CoreApp.init();
 			
 			var initOperation:InitializeFloxOperationAIR = new InitializeFloxOperationAIR( stage, configURL );
 			initOperation.addEventListener(Event.COMPLETE, initCompleteHandler);

@@ -22,10 +22,10 @@ package cadetEditor3D.contexts
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.IFactoryResource;
-	import flox.editor.FloxEditor;
+	import core.app.CoreApp;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.IFactoryResource;
+	import core.editor.CoreEditor;
 	
 	[Event(name="rendererChange", type="cadetEditor3D.events.RendererChangeEvent")]
 	public class CadetEditorContext3D extends AbstractTooledCadetEditorContext implements ICadetEditorContext
@@ -63,7 +63,7 @@ package cadetEditor3D.contexts
 		protected function initControllers():void
 		{
 			// Find and add any Controller resources
-			var resources:Vector.<IFactoryResource> = FloxApp.resourceManager.getFactoriesForType(ICadetContextController);
+			var resources:Vector.<IFactoryResource> = CoreApp.resourceManager.getFactoriesForType(ICadetContextController);
 			for ( var i:int = 0; i < resources.length; i++ )
 			{
 				var factory:FactoryResource = FactoryResource(resources[i]);
@@ -112,7 +112,7 @@ package cadetEditor3D.contexts
 			_view.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 			
 			if ( renderer ) {
-				FloxEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = true;
+				CoreEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = true;
 			}
 		}
 		
@@ -122,7 +122,7 @@ package cadetEditor3D.contexts
 			_view.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 			
 			if ( renderer ) {
-				FloxEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = false;
+				CoreEditor.stage.stage3Ds[renderer.view3D.stage3DProxy.stage3DIndex].visible = false;
 			}
 		}
 		

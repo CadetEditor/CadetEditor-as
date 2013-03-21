@@ -5,10 +5,10 @@ package cadetEditor.entities
 {
 	import cadetEditor.commandHandlers.ToggleCadetEditorPropertyCommandHandler;
 	import cadetEditor.contexts.ICadetEditorContext;
-	import flox.editor.FloxEditor;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextValidator;
 	
 	/**
 	 * A specialised CommandHandlerFactory for creating instances of ToggleCadetEditorPropertyCommandHandler.
@@ -22,7 +22,7 @@ package cadetEditor.entities
 		public function ToggleCadetEditorPropertyCommandHandlerFactory( command:String, property:String )
 		{
 			super(command, ToggleCadetEditorPropertyCommandHandler, validators);
-			validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
+			validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
 			
 			this.property = property;
 		}

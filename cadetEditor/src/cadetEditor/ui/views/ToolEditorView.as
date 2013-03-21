@@ -5,11 +5,11 @@ package cadetEditor.ui.views
 {
 	import flash.geom.Rectangle;
 	
-	import flox.ui.components.Button;
-	import flox.ui.components.Container;
-	import flox.ui.components.RadioButtonGroup;
-	import flox.ui.components.VBox;
-	import flox.ui.layouts.VerticalLayout;
+	import core.ui.components.Button;
+	import core.ui.components.Container;
+	import core.ui.components.RadioButtonGroup;
+	import core.ui.components.VBox;
+	import core.ui.layouts.VerticalLayout;
 
 	public class ToolEditorView extends Container implements IToolEditorView
 	{

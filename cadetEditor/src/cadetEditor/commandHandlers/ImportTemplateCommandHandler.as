@@ -11,18 +11,18 @@ package cadetEditor.commandHandlers
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.operations.SelectTemplateOperation;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.operations.AddItemOperation;
+	import core.app.validators.ContextValidator;
 
 	public class ImportTemplateCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.IMPORT_TEMPLATE, ImportTemplateCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
 			return factory;
 		}
 		
@@ -48,7 +48,7 @@ package cadetEditor.commandHandlers
 			if ( operation.selectedTemplate == null ) return;
 			
 			var template:IComponent = operation.selectedTemplate;
-			var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			var context:ICadetEditorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
 			
 			template.templateID = operation.selectedTemplateID;
 			template.exportTemplateID = null;

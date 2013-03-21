@@ -13,21 +13,21 @@ package cadetEditor2D.commandHandlers
 	
 	import flash.ui.Keyboard;
 	
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.core.contexts.IContext;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextSelectionValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.core.contexts.IContext;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.utils.CoreEditorUtil;
 	
 	public class NudgeCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.NUDGE, NudgeCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, ICadetEditorContext, true, IComponentContainer ) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, ICadetEditorContext, true, IComponentContainer ) );
 			return factory;
 		}
 		
@@ -35,13 +35,13 @@ package cadetEditor2D.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			//var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			var context:IContext = FloxEditor.contextManager.getCurrentContext();
+			//var context:ICadetEditorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			var context:IContext = CoreEditor.contextManager.getCurrentContext();
 			if (context is ICadetEditorContext == false) return;
 			
 			var editorContext:ICadetEditorContext = ICadetEditorContext(context);
 			
-			var selectedComponents:Array = FloxEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
+			var selectedComponents:Array = CoreEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
 			var selectedComponent:IComponentContainer = selectedComponents[0];
 			
 			var transform:Transform2D = ComponentUtil.getChildOfType( selectedComponent, Transform2D, false );
@@ -50,7 +50,7 @@ package cadetEditor2D.commandHandlers
 			
 			var dx:Number = 0;
 			var dy:Number = 0;
-			var keyCode:uint = FloxEditor.keyBindingManager.getLastKeyPressed();
+			var keyCode:uint = CoreEditor.keyBindingManager.getLastKeyPressed();
 			
 			switch ( keyCode )
 			{
@@ -68,7 +68,7 @@ package cadetEditor2D.commandHandlers
 					break;
 			}
 			
-			if ( FloxEditor.keyBindingManager.isKeyDown(Keyboard.SHIFT) )
+			if ( CoreEditor.keyBindingManager.isKeyDown(Keyboard.SHIFT) )
 			{
 				dx *= 10;
 				dy *= 10;

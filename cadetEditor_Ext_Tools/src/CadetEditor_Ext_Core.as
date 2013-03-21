@@ -21,22 +21,22 @@ package
 	import cadetEditor.entities.ToggleCadetEditorPropertyCommandHandlerFactory;
 	import cadetEditor.ui.components.ComponentListItemEditor;
 	
-	import flox.app.FloxApp;
-	import flox.app.entities.KeyModifier;
-	import flox.app.managers.ResourceManager;
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.KeyBinding;
-	import flox.app.resources.PropertyInspectorItemEditorFactory;
-	import flox.editor.core.IGlobalViewContainer;
-	import flox.editor.entities.Commands;
-	import flox.editor.icons.FloxEditorIcons;
-	import flox.editor.resources.ActionFactory;
+	import core.app.CoreApp;
+	import core.app.entities.KeyModifier;
+	import core.app.managers.ResourceManager;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.KeyBinding;
+	import core.app.resources.PropertyInspectorItemEditorFactory;
+	import core.editor.core.IGlobalViewContainer;
+	import core.editor.entities.Commands;
+	import core.editor.icons.CoreEditorIcons;
+	import core.editor.resources.ActionFactory;
 	
 	public class CadetEditor_Ext_Core extends Sprite
 	{
 		public function CadetEditor_Ext_Core()
 		{
-			var resourceManager:ResourceManager = FloxApp.resourceManager;
+			var resourceManager:ResourceManager = CoreApp.resourceManager;
 			
 			// Global actions
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.BUILD, "Build", "", "Project/build" ) );
@@ -44,7 +44,7 @@ package
 			
 			// Outline Context Actions
 			resourceManager.addResource( new ActionFactory( OutlinePanelContext, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
-			resourceManager.addResource( new ActionFactory( OutlinePanelContext, Commands.DELETE, "Delete Component...", "modify", "", FloxEditorIcons.Bin ) );
+			resourceManager.addResource( new ActionFactory( OutlinePanelContext, Commands.DELETE, "Delete Component...", "modify", "", CoreEditorIcons.Bin ) );
 			
 		//	resourceManager.addResource( new EditorFactory( CadetContext, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
 			

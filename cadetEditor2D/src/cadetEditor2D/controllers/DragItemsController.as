@@ -15,9 +15,9 @@ package cadetEditor2D.controllers
 	
 	import cadetEditor2D.tools.ICadetEditorTool2D;
 	
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.editor.FloxEditor;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.editor.CoreEditor;
 	
 	public class DragItemsController
 	{
@@ -84,8 +84,8 @@ package cadetEditor2D.controllers
 			mouseX = snappedPos.x;
 			mouseY = snappedPos.y;
 			
-			FloxEditor.stage.addEventListener( MouseEvent.MOUSE_MOVE, mouseMoveHandler );
-			FloxEditor.stage.addEventListener( MouseEvent.MOUSE_UP, mouseUpHandler );
+			CoreEditor.stage.addEventListener( MouseEvent.MOUSE_MOVE, mouseMoveHandler );
+			CoreEditor.stage.addEventListener( MouseEvent.MOUSE_UP, mouseUpHandler );
 		}
 		
 		public function endDrag():void
@@ -127,8 +127,8 @@ package cadetEditor2D.controllers
 			context.operationManager.addOperation( compoundOperation );
 			_dragging = false;
 			
-			FloxEditor.stage.removeEventListener( MouseEvent.MOUSE_MOVE, mouseMoveHandler );
-			FloxEditor.stage.removeEventListener( MouseEvent.MOUSE_UP, mouseMoveHandler );
+			CoreEditor.stage.removeEventListener( MouseEvent.MOUSE_MOVE, mouseMoveHandler );
+			CoreEditor.stage.removeEventListener( MouseEvent.MOUSE_UP, mouseMoveHandler );
 		}
 		
 		protected function updateDragPositions():void

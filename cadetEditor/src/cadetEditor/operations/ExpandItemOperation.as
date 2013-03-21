@@ -5,9 +5,9 @@ package cadetEditor.operations
 {
 	import flash.events.EventDispatcher;
 	
-	import flox.ui.components.Tree;
+	import core.ui.components.Tree;
 	
-	import flox.app.core.operations.IUndoableOperation;
+	import core.app.core.operations.IUndoableOperation;
 
 	public class ExpandItemOperation extends EventDispatcher implements IUndoableOperation
 	{

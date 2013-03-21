@@ -27,12 +27,12 @@ package cadetEditor2DS.tools
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.app.events.OperationManagerEvent;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.util.IntrospectionUtil;
-	import flox.core.events.ArrayCollectionEvent;
-	import flox.ui.managers.CursorManager;
+	import core.app.events.OperationManagerEvent;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.util.IntrospectionUtil;
+	import core.events.ArrayCollectionEvent;
+	import core.ui.managers.CursorManager;
 	
 	import starling.display.DisplayObject;
 	import starling.display.Shape;

@@ -21,7 +21,7 @@ package cadetEditor2DS.ui.views
 	
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flox.core.events.PropertyChangeEvent;
+	import core.events.PropertyChangeEvent;
 	
 	import starling.display.DisplayObjectContainer;
 

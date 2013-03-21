@@ -10,7 +10,7 @@ package cadetEditor.util
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
-	import flox.editor.FloxEditor;
+	import core.editor.CoreEditor;
 	
 	[Event(type="cadetEditor.util.DragDetector", name="beginDrag")]
 	public class DragDetector extends EventDispatcher
@@ -27,13 +27,13 @@ package cadetEditor.util
 			this.tolerance = tolerance;
 			
 			displayObject.addEventListener( MouseEvent.MOUSE_MOVE, mouseMoveHandler );
-			FloxEditor.stage.addEventListener( MouseEvent.MOUSE_UP, mouseUpStageHandler );
+			CoreEditor.stage.addEventListener( MouseEvent.MOUSE_UP, mouseUpStageHandler );
 			pressPoint = new Point( displayObject.mouseX,displayObject.mouseY );
 		}
 		
 		public function destroy():void
 		{
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler)
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler)
 			displayObject.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler)
 			displayObject = null
 			pressPoint = null

@@ -23,11 +23,11 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.controllers.DragSelectController;
 	
-	import flox.app.core.contexts.IContext;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.util.ArrayUtil;
-	import flox.app.util.IntrospectionUtil;
-	import flox.editor.FloxEditor;
+	import core.app.core.contexts.IContext;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.util.ArrayUtil;
+	import core.app.util.IntrospectionUtil;
+	import core.editor.CoreEditor;
 	
 	public class SelectionTool extends CadetEditorTool2D implements ITool
 	{
@@ -86,7 +86,7 @@ package cadetEditor2DS.tools
 		override protected function onMouseDownBackground(event:PickingManagerEvent):void
 		{
 			if ( allowDragSelect == false ) return;
-			var dragDetector:DragDetector = new DragDetector(FloxEditor.stage)
+			var dragDetector:DragDetector = new DragDetector(CoreEditor.stage)
 			dragDetector.addEventListener(DragDetector.BEGIN_DRAG, dragSelectDetectedHandler)
 			shiftKeyDown = event.shiftKey
 		}

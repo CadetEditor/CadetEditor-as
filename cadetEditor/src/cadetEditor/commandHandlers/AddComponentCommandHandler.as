@@ -14,16 +14,16 @@ package cadetEditor.commandHandlers
 	import cadet.entities.ComponentFactory;
 	import cadetEditor.ui.panels.AddComponentPanel;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.resources.IResource;
-	import flox.app.validators.ContextValidator;
-	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
-	import flox.ui.components.Button;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.resources.IResource;
+	import core.app.validators.ContextValidator;
+	import core.data.ArrayCollection;
+	import core.editor.CoreEditor;
+	import core.ui.components.Button;
 	
 	/**
 	 * All of the AddItemOperations created by this CommandHandler are stored in it's UndoableOperation.
@@ -37,7 +37,7 @@ package cadetEditor.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory =  new CommandHandlerFactory( CadetEditorCommands.ADD_COMPONENT, AddComponentCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext, false ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext, false ) );
 			return factory;
 		}
 		
@@ -52,8 +52,8 @@ package cadetEditor.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			cadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			componentFactories = FloxApp.resourceManager.getResourcesOfType( ComponentFactory );
+			cadetEditorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			componentFactories = CoreApp.resourceManager.getResourcesOfType( ComponentFactory );
 			
 			operation = new UndoableCompoundOperation();
 			operation.label = "Add Component(s)";
@@ -62,7 +62,7 @@ package cadetEditor.commandHandlers
 			
 			// Create the panel and add it as a pop-up
 			panel = new AddComponentPanel();
-			FloxEditor.viewManager.addPopUp(panel);
+			CoreEditor.viewManager.addPopUp(panel);
 			panel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.addEventListener(MouseEvent.CLICK, clickCancelHandler);
 			panel.tree.dataProvider = cadetEditorContext.scene;
@@ -242,7 +242,7 @@ package cadetEditor.commandHandlers
 			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
 			panel.addBtn.removeEventListener(MouseEvent.CLICK, onClickAdd);
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 			panel = null;
 		}
 		

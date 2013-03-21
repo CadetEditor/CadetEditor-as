@@ -10,12 +10,12 @@ package cadetEditor2D.controllers
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	
-	import flox.ui.components.HBox;
-	import flox.core.events.PropertyChangeEvent;
-	import flox.ui.util.BindingUtil;
+	import core.ui.components.HBox;
+	import core.events.PropertyChangeEvent;
+	import core.ui.util.BindingUtil;
 	
-	import flox.editor.FloxEditor;
-	import flox.editor.core.IViewContainer;
+	import core.editor.CoreEditor;
+	import core.editor.core.IViewContainer;
 	import cadetEditor.controllers.ICadetEditorContextController;
 	
 	public class DefaultControlBar2DController extends EventDispatcher implements ICadetEditorContextController
@@ -91,7 +91,7 @@ package cadetEditor2D.controllers
 		
 		private function rightClickSnapToggleHandler( event:MouseEvent ):void
 		{
-			FloxEditor.commandManager.executeCommand( CadetEditorCommands.EDIT_SNAP_SETTINGS );
+			CoreEditor.commandManager.executeCommand( CadetEditorCommands.EDIT_SNAP_SETTINGS );
 		}
 		
 

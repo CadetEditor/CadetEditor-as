@@ -26,9 +26,9 @@ package cadetEditor2DSBox2D.tools
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
 	
 	public class TerrainTool extends CadetEditorTool2D
 	{

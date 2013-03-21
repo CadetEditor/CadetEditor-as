@@ -17,8 +17,8 @@ package cadetEditor2DS.ui.overlays
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.core.data.ArrayCollection;
-	import flox.core.events.ArrayCollectionEvent;
+	import core.data.ArrayCollection;
+	import core.events.ArrayCollectionEvent;
 	
 	import starling.core.RenderSupport;
 	import starling.display.DisplayObject;

@@ -9,25 +9,25 @@ package cadetEditor.commandHandlers
 	
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.core.serialization.ISerializationPlugin;
-	import flox.app.core.serialization.ResourceSerializerPlugin;
-	import flox.app.core.serialization.Serializer;
-	import flox.app.operations.CloneOperation;
-	import flox.app.operations.CompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextSelectionValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.entities.Commands;
-	import flox.editor.utils.FloxEditorUtil;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.core.serialization.ISerializationPlugin;
+	import core.app.core.serialization.ResourceSerializerPlugin;
+	import core.app.core.serialization.Serializer;
+	import core.app.operations.CloneOperation;
+	import core.app.operations.CompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.entities.Commands;
+	import core.editor.utils.CoreEditorUtil;
 
 	public class CopyComponentCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( Commands.COPY, CopyComponentCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, null, true, IComponent ) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, null, true, IComponent ) );
 			return factory;
 		}
 		
@@ -35,7 +35,7 @@ package cadetEditor.commandHandlers
 
 		public function execute(parameters:Object):void
 		{
-			var selection:Array = FloxEditorUtil.getCurrentSelection(null, IComponent );
+			var selection:Array = CoreEditorUtil.getCurrentSelection(null, IComponent );
 			
 			var clonedSelection:Array = [];
 			
@@ -55,7 +55,7 @@ package cadetEditor.commandHandlers
 			// Now clone each remaining entity
 			var cloneOperations:CompoundOperation = new CompoundOperation();
 			var plugins:Vector.<ISerializationPlugin> = new Vector.<ISerializationPlugin>();
-			plugins.push(new ResourceSerializerPlugin( FloxApp.resourceManager ));
+			plugins.push(new ResourceSerializerPlugin( CoreApp.resourceManager ));
 			for ( i = 0; i < selection.length; i++ )
 			{
 				component = selection[i];
@@ -63,7 +63,7 @@ package cadetEditor.commandHandlers
 				cloneOperations.addOperation(cloneOperation);
 			}
 			cloneOperations.addEventListener(Event.COMPLETE, cloneCompleteHandler);
-			FloxEditor.operationManager.addOperation(cloneOperations);	
+			CoreEditor.operationManager.addOperation(cloneOperations);	
 		}
 		
 		private function cloneCompleteHandler( event:Event ):void
@@ -81,7 +81,7 @@ package cadetEditor.commandHandlers
 				clonedComponents.push( clonedComponent );	
 			}
 			
-			FloxEditor.copyClipboard.source = clonedComponents;
+			CoreEditor.copyClipboard.source = clonedComponents;
 		}
 		
 		private function isComponentChildOf( child:IComponent, components:Array ):Boolean

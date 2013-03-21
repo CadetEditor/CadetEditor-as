@@ -34,21 +34,21 @@ package
 	import cadetEditor3D.tools.SpherePrimitiveTool;
 	import cadetEditor3D.tools.TranslateTool;
 	
-	import flox.app.FloxApp;
-	import flox.app.managers.ResourceManager;
-	import flox.app.resources.ExternalResourceParserFactory;
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.FileType;
-	import flox.editor.FloxEditor;
-	import flox.editor.core.IGlobalViewContainer;
-	import flox.editor.resources.ActionFactory;
-	import flox.editor.resources.EditorFactory;
+	import core.app.CoreApp;
+	import core.app.managers.ResourceManager;
+	import core.app.resources.ExternalResourceParserFactory;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.FileType;
+	import core.editor.CoreEditor;
+	import core.editor.core.IGlobalViewContainer;
+	import core.editor.resources.ActionFactory;
+	import core.editor.resources.EditorFactory;
 	
 	public class CadetEditor_Ext_3D_Core extends Sprite
 	{
 		public function CadetEditor_Ext_3D_Core()
 		{	
-			var resourceManager:ResourceManager = FloxApp.resourceManager;
+			var resourceManager:ResourceManager = CoreApp.resourceManager;
 			
 			// Cadet Viewer
 			resourceManager.addResource( new EditorFactory( CadetContext3D, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
@@ -60,13 +60,13 @@ package
 			
 			// Bit of a hack, as we're hard-coding the path to the assets folder.
 			// This should be handled as part of loading a project
-/*			if ( FloxEditor.environment == FloxEditorEnvironment.AIR )
+/*			if ( CoreEditor.environment == CoreEditorEnvironment.AIR )
 			{
-				new ExternalResourceController( resourceManager, new URI(baseUrl+".local/assets/"), FloxApp.fileSystemProvider );
+				new ExternalResourceController( resourceManager, new URI(baseUrl+".local/assets/"), CoreApp.fileSystemProvider );
 			}
-			else if ( FloxEditor.environment == FloxEditorEnvironment.BROWSER )
+			else if ( CoreEditor.environment == CoreEditorEnvironment.BROWSER )
 			{
-				new ExternalResourceController( resourceManager, new URI(baseUrl+".url/assets/"), FloxApp.fileSystemProvider );
+				new ExternalResourceController( resourceManager, new URI(baseUrl+".url/assets/"), CoreApp.fileSystemProvider );
 			}*/
 			
 			// CadetEditorView Actions
@@ -106,8 +106,8 @@ package
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, CadetEditorCommands.EXPORT, "Export...", "", "File/export" ) );
 			
 			// Default settings
-			FloxEditor.settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
-			FloxEditor.settingsManager.setBoolean( "flox.editor.contexts.PropertiesPanelContext.visible", true, true );
+			CoreEditor.settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
+			CoreEditor.settingsManager.setBoolean( "core.editor.contexts.PropertiesPanelContext.visible", true, true );
 		}
 	}
 }

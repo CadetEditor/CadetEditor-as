@@ -7,10 +7,10 @@ package cadetEditor2D.commandHandlers
 	import flash.events.MouseEvent;
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.CadetEditorCommands;
-	import flox.editor.FloxEditor;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextValidator;
 	
 	/**
 	 * ...
@@ -23,7 +23,7 @@ package cadetEditor2D.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.EDIT_SNAP_SETTINGS, EditSnapSettingsCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
 			return factory;
 		}
 		
@@ -37,7 +37,7 @@ package cadetEditor2D.commandHandlers
 		
 		public function execute( parameters:Object ):void
 		{
-			context = ICadetEditorContext(FloxEditor.contextManager.getLatestContextOfType( ICadetEditorContext ));
+			context = ICadetEditorContext(CoreEditor.contextManager.getLatestContextOfType( ICadetEditorContext ));
 			openPanel();
 		}
 		
@@ -61,7 +61,7 @@ package cadetEditor2D.commandHandlers
 			if ( panel ) return;
 			
 			panel = new SnapSettingsPanel();
-			FloxEditor.viewManager.addPopUp( panel );
+			CoreEditor.viewManager.addPopUp( panel );
 			
 			panel.okBtn.addEventListener( MouseEvent.CLICK, clickOkHandler );
 			panel.cancelBtn.addEventListener( MouseEvent.CLICK, clickCancelHandler );
@@ -79,7 +79,7 @@ package cadetEditor2D.commandHandlers
 			panel.okBtn.removeEventListener( MouseEvent.CLICK, clickOkHandler );
 			panel.cancelBtn.removeEventListener( MouseEvent.CLICK, clickCancelHandler );
 			
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 			panel = null;
 		}
 	}

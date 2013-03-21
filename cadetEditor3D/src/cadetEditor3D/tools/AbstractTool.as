@@ -13,7 +13,7 @@ package cadetEditor3D.tools
 	import cadetEditor3D.events.RendererChangeEvent;
 	import cadetEditor3D.ui.views.CadetEditorView3D;
 	
-	import flox.app.core.contexts.IContext;
+	import core.app.core.contexts.IContext;
 
 	public class AbstractTool implements ITool
 	{

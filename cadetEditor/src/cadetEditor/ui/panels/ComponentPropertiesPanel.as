@@ -5,20 +5,20 @@ package cadetEditor.ui.panels
 {
 	import flash.events.Event;
 	
-	import flox.ui.components.Button;
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.Label;
-	import flox.ui.components.List;
+	import core.ui.components.Button;
+	import core.ui.components.CheckBox;
+	import core.ui.components.Label;
+	import core.ui.components.List;
 	import cadetEditor.ui.components.OutlineTree;
-	import flox.ui.components.Panel;
-	import flox.ui.components.RadioButtonGroup;
-	import flox.ui.components.TextArea;
-	import flox.ui.components.TextInput;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Panel;
+	import core.ui.components.RadioButtonGroup;
+	import core.ui.components.TextArea;
+	import core.ui.components.TextInput;
+	import core.ui.util.FloxDeserializer;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.util.StringUtil;
-	import flox.app.util.Validation;
+	import core.editor.CoreEditor;
+	import core.app.util.StringUtil;
+	import core.app.util.Validation;
 	
 	public class ComponentPropertiesPanel extends Panel
 	{

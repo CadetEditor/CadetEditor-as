@@ -5,12 +5,12 @@ package cadetEditor2D.ui.controlBars
 {
 	import cadetEditor.assets.CadetEditorIcons;
 	
-	import flox.ui.components.Button;
-	import flox.ui.components.HBox;
-	import flox.ui.components.HSlider;
-	import flox.ui.components.Label;
-	import flox.ui.components.NumericStepper;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.ui.components.HBox;
+	import core.ui.components.HSlider;
+	import core.ui.components.Label;
+	import core.ui.components.NumericStepper;
+	import core.ui.util.FloxDeserializer;
 	
 	public class CadetEditorControlBar extends HBox
 	{

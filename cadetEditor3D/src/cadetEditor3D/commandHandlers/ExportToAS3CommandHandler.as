@@ -23,18 +23,18 @@ package cadetEditor3D.commandHandlers
 	import flash.events.MouseEvent;
 	import flash.system.System;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.util.StringUtil;
-	import flox.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.util.StringUtil;
+	import core.app.validators.ContextValidator;
 	
 	public class ExportToAS3CommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
-			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.EXPORT, ExportToAS3CommandHandler, [new ContextValidator(FloxEditor.contextManager, CadetEditorContext3D)] );
+			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.EXPORT, ExportToAS3CommandHandler, [new ContextValidator(CoreEditor.contextManager, CadetEditorContext3D)] );
 			//factory.validators.push( new ContextValidator( BonesEditor.contextManager, ICadetEditorContext ) );
 			return factory;
 		}
@@ -51,7 +51,7 @@ package cadetEditor3D.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{			
-			context = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			context = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
 			
 			var renderer3D	:Renderer3D	= Renderer3D(ComponentUtil.getChildOfType(context.scene, Renderer3D ));
 			view3D						= renderer3D.view3D;
@@ -76,7 +76,7 @@ package cadetEditor3D.commandHandlers
 			}
 			if ( optionsPanel.stage ) return;
 			
-			FloxEditor.viewManager.addPopUp(optionsPanel);
+			CoreEditor.viewManager.addPopUp(optionsPanel);
 			optionsPanel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
 			optionsPanel.cancelBtn.addEventListener(MouseEvent.CLICK, clickCancelHandler);
 			optionsPanel.textArea.text = "Please Note: Exporters are currently experimental and haven't been extensively tested.";
@@ -89,7 +89,7 @@ package cadetEditor3D.commandHandlers
 			optionsPanel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			optionsPanel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
 			//optionsPanel.buttonGroup.removeEventListener(Event.CHANGE, radioButtonChangeHandler);
-			FloxEditor.viewManager.removePopUp(optionsPanel);
+			CoreEditor.viewManager.removePopUp(optionsPanel);
 		}
 		
 //		private function radioButtonChangeHandler( event:Event ):void
@@ -114,7 +114,7 @@ package cadetEditor3D.commandHandlers
 			else if ( optionsPanel.buttonGroup.selectedIndex == 1 )
 				outputPanel.label = "Exported HTML & JS";
 			
-			FloxEditor.viewManager.addPopUp(outputPanel);
+			CoreEditor.viewManager.addPopUp(outputPanel);
 			
 			outputPanel.copyBtn.addEventListener(MouseEvent.CLICK, clickCopyHandler);
 			outputPanel.cancelBtn.addEventListener(MouseEvent.CLICK, clickCloseHandler);
@@ -124,7 +124,7 @@ package cadetEditor3D.commandHandlers
 			//outputPanel.removeEventListener(FlexEvent.CREATION_COMPLETE, outputPanelCreatedHandler);
 			outputPanel.copyBtn.removeEventListener(MouseEvent.CLICK, clickCopyHandler);
 			outputPanel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCloseHandler);
-			FloxEditor.viewManager.removePopUp(outputPanel);
+			CoreEditor.viewManager.removePopUp(outputPanel);
 		}
 		
 		private function outputPanelCreatedHandler( event:Event ):void//event:FlexEvent ):void

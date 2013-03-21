@@ -3,9 +3,9 @@
 
 package cadetEditor2D.ui.views
 {
-	import flox.ui.components.Container;
-	import flox.ui.components.Label;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Container;
+	import core.ui.components.Label;
+	import core.ui.util.FloxDeserializer;
 	
 	public class InfoPanelView extends Container
 	{

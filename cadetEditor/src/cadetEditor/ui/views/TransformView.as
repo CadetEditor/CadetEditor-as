@@ -3,10 +3,10 @@
 
 package cadetEditor.ui.views
 {
-	import flox.ui.components.Button;
-	import flox.ui.components.Container;
-	import flox.ui.components.NumberInput;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.ui.components.Container;
+	import core.ui.components.NumberInput;
+	import core.ui.util.FloxDeserializer;
 	
 	public class TransformView extends Container
 	{

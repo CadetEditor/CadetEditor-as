@@ -19,8 +19,8 @@ package cadetEditor3D.tools
 	import flash.geom.Vector3D;
 	import flash.ui.Keyboard;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.contexts.IContext;
+	import core.editor.CoreEditor;
+	import core.app.core.contexts.IContext;
 	
 	public class CameraZoomTool implements ITool
 	{
@@ -126,8 +126,8 @@ package cadetEditor3D.tools
 			storedCameraPos = context.renderer.view3D.camera.position.clone();
 			storedCameraPivotPos = context.renderer.view3D.camera.pivotPoint.clone();
 				
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler );
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler );
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		private function updateDrag( x:Number, y:Number ):void
@@ -156,8 +156,8 @@ package cadetEditor3D.tools
 			
 			isDragging = false;
 			
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler );
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler );
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 	}
 }

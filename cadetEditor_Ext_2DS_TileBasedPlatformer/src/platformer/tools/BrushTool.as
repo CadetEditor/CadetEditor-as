@@ -18,7 +18,7 @@ package platformer.tools
 	import flox.app.core.contexts.IContext;
 	import flox.app.core.managers.fileSystemProviders.operations.IReadFileOperation;
 	import flox.app.entities.URI;
-	import flox.editor.FloxEditor;
+	import flox.editor.CoreEditor;
 	import flox.editor.utils.FileSystemProviderUtil;
 	
 	import platformer.operations.AddTileOperation;
@@ -108,7 +108,7 @@ package platformer.tools
 		{
 			if (panel) return;
 			
-//			var assetsURI:URI = new URI(FloxEditor.getProjectDirectoryURI().path+FloxApp.externalResourceFolderName);
+//			var assetsURI:URI = new URI(CoreEditor.getProjectDirectoryURI().path+FloxApp.externalResourceFolderName);
 			panel = new BrushesPanel(brushesList);
 			panel.addEventListener( Event.CHANGE, brushChangeHandler );
 			panel.label = "Brushes";
@@ -116,7 +116,7 @@ package platformer.tools
 			panel.x = 31;
 			panel.y = 114;
 			
-			FloxEditor.viewManager.addPopUp(panel, false, false);
+			CoreEditor.viewManager.addPopUp(panel, false, false);
 //			panel.list.addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
 //			panel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
 //			panel.cancelBtn.addEventListener(MouseEvent.CLICK, clickCancelHandler);
@@ -131,7 +131,7 @@ package platformer.tools
 //			panel.list.removeEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
 //			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 //			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 			panel = null;
 		}
 		

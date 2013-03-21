@@ -27,11 +27,11 @@ package cadetEditor3D.tools
 	import flash.geom.Vector3D;
 	import flash.ui.Keyboard;
 	
-	import flox.app.events.OperationManagerEvent;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.core.events.ArrayCollectionEvent;
-	import flox.editor.FloxEditor;
+	import core.app.events.OperationManagerEvent;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.events.ArrayCollectionEvent;
+	import core.editor.CoreEditor;
 
 	public class RotateTool extends SelectionTool
 	{
@@ -140,8 +140,8 @@ package cadetEditor3D.tools
 			
 			ignoreNextMouseUp = true;
 			isDragging = true;
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveStageHandler);
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveStageHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
 			
 			//dragStartPoint = getMousePositionOnPlane( dragPlanePos, dragPlaneNormal );
 			dragStartPoint = Vector3DUtil.getMousePositionOnPlane( dragPlanePos, dragPlaneNormal, renderer.view3D );
@@ -246,8 +246,8 @@ package cadetEditor3D.tools
 			}
 			
 			isDragging = false;
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveStageHandler);
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveStageHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
 			
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();

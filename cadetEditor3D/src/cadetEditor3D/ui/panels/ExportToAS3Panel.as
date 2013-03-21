@@ -3,13 +3,13 @@
 
 package cadetEditor3D.ui.panels
 {
-	import flox.ui.components.Button;
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.Panel;
-	import flox.ui.components.RadioButton;
-	import flox.ui.components.RadioButtonGroup;
-	import flox.ui.components.TextArea;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.ui.components.CheckBox;
+	import core.ui.components.Panel;
+	import core.ui.components.RadioButton;
+	import core.ui.components.RadioButtonGroup;
+	import core.ui.components.TextArea;
+	import core.ui.util.FloxDeserializer;
 
 	public class ExportToAS3Panel extends Panel
 	{

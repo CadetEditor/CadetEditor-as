@@ -26,11 +26,11 @@ package cadetEditor2DSBox2D.tools
 	import flash.events.Event;
 	import flash.geom.Point;
 	
-	import flox.app.operations.AddDependencyOperation;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.ui.managers.CursorManager;
+	import core.app.operations.AddDependencyOperation;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.ui.managers.CursorManager;
 	
 	public class PinTool extends CadetEditorTool2D
 	{

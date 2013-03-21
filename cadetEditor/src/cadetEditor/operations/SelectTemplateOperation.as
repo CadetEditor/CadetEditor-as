@@ -14,17 +14,17 @@ package cadetEditor.operations
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.operations.IAsynchronousOperation;
-	import flox.app.core.serialization.ISerializationPlugin;
-	import flox.app.core.serialization.ResourceSerializerPlugin;
-	import flox.app.entities.FileSystemNode;
-	import flox.app.entities.URI;
-	import flox.app.managers.ResourceManager;
-	import flox.app.operations.ReadFileAndDeserializeOperation;
-	import flox.app.util.VectorUtil;
-	import flox.core.data.ArrayCollection;
-	import flox.editor.FloxEditor;
+	import core.app.CoreApp;
+	import core.app.core.operations.IAsynchronousOperation;
+	import core.app.core.serialization.ISerializationPlugin;
+	import core.app.core.serialization.ResourceSerializerPlugin;
+	import core.app.entities.FileSystemNode;
+	import core.app.entities.URI;
+	import core.app.managers.ResourceManager;
+	import core.app.operations.ReadFileAndDeserializeOperation;
+	import core.app.util.VectorUtil;
+	import core.data.ArrayCollection;
+	import core.editor.CoreEditor;
 
 	[Event(type="org.boneframework.events.OperationProgressEvent", name="progress")]
 	[Event(type="flash.events.Event", name="complete")]
@@ -53,12 +53,12 @@ package cadetEditor.operations
 		{
 			openPanel();
 			
-			panel.fileSystemTree.fileSystemProvider = FloxApp.fileSystemProvider;
-			panel.fileSystemTree.dataProvider = FloxApp.fileSystemProvider.fileSystem;
+			panel.fileSystemTree.fileSystemProvider = CoreApp.fileSystemProvider;
+			panel.fileSystemTree.dataProvider = CoreApp.fileSystemProvider.fileSystem;
 			
 			if ( uri )
 			{
-				var node:FileSystemNode = FloxApp.fileSystemProvider.fileSystem.getChildWithPath(uri.path,true);
+				var node:FileSystemNode = CoreApp.fileSystemProvider.fileSystem.getChildWithPath(uri.path,true);
 				panel.fileSystemTree.openToItem(node);
 				panel.fileSystemTree.selectedFile = uri;
 				panel.fileSystemTree.dispatchEvent( new Event( Event.CHANGE ) );
@@ -105,10 +105,10 @@ package cadetEditor.operations
 			var plugins:Vector.<ISerializationPlugin> = new Vector.<ISerializationPlugin>();
 			plugins.push( new ResourceSerializerPlugin( resourceManager ) );
 			
-			var operation:ReadFileAndDeserializeOperation = new ReadFileAndDeserializeOperation(selectedFile, FloxApp.fileSystemProvider, plugins);
+			var operation:ReadFileAndDeserializeOperation = new ReadFileAndDeserializeOperation(selectedFile, CoreApp.fileSystemProvider, plugins);
 			operation.addEventListener(Event.COMPLETE, readFileCompleteHandler);
 			operation.addEventListener(ErrorEvent.ERROR, readFileErrorHandler);
-			FloxEditor.operationManager.addOperation(operation);
+			CoreEditor.operationManager.addOperation(operation);
 		}
 		
 		private function readFileCompleteHandler( event:Event ):void
@@ -142,7 +142,7 @@ package cadetEditor.operations
 			}
 			if ( panel.stage ) return;
 			
-			FloxEditor.viewManager.addPopUp(panel);
+			CoreEditor.viewManager.addPopUp(panel);
 			
 			panel.fileSystemTree.addEventListener(Event.CHANGE, changeFileSystemTreeHandler);
 			panel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
@@ -158,7 +158,7 @@ package cadetEditor.operations
 			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
 			
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 		}
 	}
 }

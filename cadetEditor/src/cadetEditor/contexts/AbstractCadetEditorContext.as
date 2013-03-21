@@ -13,17 +13,17 @@ package cadetEditor.contexts
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.controllers.ExternalResourceController;
-	import flox.app.core.contexts.IContext;
-	import flox.app.entities.URI;
-	import flox.app.events.OperationManagerEvent;
-	import flox.app.managers.OperationManager;
-	import flox.core.data.ArrayCollection;
-	import flox.core.events.ArrayCollectionEvent;
-	import flox.editor.FloxEditor;
-	import flox.editor.contexts.AbstractEditorContext;
-	import flox.editor.utils.FileSystemProviderUtil;
+	import core.app.CoreApp;
+	import core.app.controllers.ExternalResourceController;
+	import core.app.core.contexts.IContext;
+	import core.app.entities.URI;
+	import core.app.events.OperationManagerEvent;
+	import core.app.managers.OperationManager;
+	import core.data.ArrayCollection;
+	import core.events.ArrayCollectionEvent;
+	import core.editor.CoreEditor;
+	import core.editor.contexts.AbstractEditorContext;
+	import core.editor.utils.FileSystemProviderUtil;
 	
 	public class AbstractCadetEditorContext extends AbstractEditorContext implements IContext
 	{
@@ -75,10 +75,10 @@ package cadetEditor.contexts
 				_scene.dispose();
 			}
 			
-			var operation:ReadCadetFileAndDeserializeOperation = new ReadCadetFileAndDeserializeOperation( _uri, FloxApp.fileSystemProvider, FloxApp.resourceManager );
+			var operation:ReadCadetFileAndDeserializeOperation = new ReadCadetFileAndDeserializeOperation( _uri, CoreApp.fileSystemProvider, CoreApp.resourceManager );
 			operation.addEventListener(Event.COMPLETE, loadCompleteHandler);
 			operation.addEventListener(ErrorEvent.ERROR, loadErrorHandler);
-			FloxEditor.operationManager.addOperation(operation);
+			CoreEditor.operationManager.addOperation(operation);
 		}
 		
 		private function loadErrorHandler( event:ErrorEvent ):void
@@ -110,18 +110,18 @@ package cadetEditor.contexts
 		
 		public function save():void
 		{
-			var operation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( _scene, uri, FloxApp.fileSystemProvider, FloxApp.resourceManager );
+			var operation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( _scene, uri, CoreApp.fileSystemProvider, CoreApp.resourceManager );
 			operation.addEventListener(Event.COMPLETE, saveCompleteHandler);
-			FloxEditor.operationManager.addOperation(operation);
+			CoreEditor.operationManager.addOperation(operation);
 		}
 		
 		private function initResourceController():void
 		{
-			//var assetsURI:URI = FloxEditor.getAssetsDirectoryURI();
-			var assetsURI:URI = new URI(FileSystemProviderUtil.getProjectDirectoryURI(FloxEditor.currentEditorContextURI).path+FloxApp.externalResourceFolderName);
+			//var assetsURI:URI = CoreEditor.getAssetsDirectoryURI();
+			var assetsURI:URI = new URI(FileSystemProviderUtil.getProjectDirectoryURI(CoreEditor.currentEditorContextURI).path+CoreApp.externalResourceFolderName);
 			
-			if (!FloxApp.externalResourceControllers[assetsURI.path]) {
-				FloxApp.externalResourceControllers[assetsURI.path] = new ExternalResourceController( FloxApp.resourceManager, assetsURI, FloxApp.fileSystemProvider );
+			if (!CoreApp.externalResourceControllers[assetsURI.path]) {
+				CoreApp.externalResourceControllers[assetsURI.path] = new ExternalResourceController( CoreApp.resourceManager, assetsURI, CoreApp.fileSystemProvider );
 			}
 		}
 		

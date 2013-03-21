@@ -21,8 +21,8 @@ package cadetEditor2D.operations
 	import cadet2D.util.QuadraticBezierUtil;
 	import cadet2D.util.VertexUtil;
 	
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
 	
 
 	public class CenterOriginOperation extends UndoableCompoundOperation

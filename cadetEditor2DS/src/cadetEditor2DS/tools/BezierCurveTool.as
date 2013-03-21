@@ -26,13 +26,13 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.ui.overlays.BezierCurveToolOverlay;
 	
-	import flox.app.core.contexts.IContext;
-	import flox.app.events.OperationManagerEvent;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.AddToVectorOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.core.events.ArrayCollectionEvent;
+	import core.app.core.contexts.IContext;
+	import core.app.events.OperationManagerEvent;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.AddToVectorOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.events.ArrayCollectionEvent;
 	
 	public class BezierCurveTool extends CadetEditorTool2D
 	{

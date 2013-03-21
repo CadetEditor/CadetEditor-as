@@ -5,13 +5,13 @@ package cadetEditor.ui.panels
 {
 	import flash.events.Event;
 	
-	import flox.ui.components.Button;
-	import flox.ui.components.List;
+	import core.ui.components.Button;
+	import core.ui.components.List;
 	import cadetEditor.ui.components.OutlineTree;
-	import flox.ui.components.Panel;
+	import core.ui.components.Panel;
 	import cadetEditor.ui.data.OutlineTreeDataDescriptor;
-	import flox.ui.layouts.HorizontalLayout;
-	import flox.ui.layouts.LayoutAlign;
+	import core.ui.layouts.HorizontalLayout;
+	import core.ui.layouts.LayoutAlign;
 	
 	public class PickComponentPanel extends Panel
 	{

@@ -5,7 +5,7 @@ package cadetEditor.entities
 {
 	import cadetEditor.assets.CadetEditorIcons;
 	
-	import flox.app.entities.URI;
+	import core.app.entities.URI;
 
 	public class CadetFileTemplate
 	{

@@ -7,9 +7,9 @@ package cadetEditor.contexts
 	import cadetEditor.managers.ToolManager;
 	import cadetEditor.ui.views.IToolEditorView;
 	
-	import flox.app.FloxApp;
-	import flox.app.resources.IResource;
-	import flox.app.util.IntrospectionUtil;
+	import core.app.CoreApp;
+	import core.app.resources.IResource;
+	import core.app.util.IntrospectionUtil;
 
 	public class AbstractTooledCadetEditorContext extends AbstractCadetEditorContext
 	{
@@ -25,7 +25,7 @@ package cadetEditor.contexts
 		{
 			_toolManager = new ToolManager( this, view );
 			// Find and add any Tool resources
-			var resources:Vector.<IResource> = FloxApp.resourceManager.getResourcesOfType( ToolFactory );
+			var resources:Vector.<IResource> = CoreApp.resourceManager.getResourcesOfType( ToolFactory );
 			for ( var i:int = 0; i < resources.length; i++ )
 			{
 				var toolFactory:ToolFactory = ToolFactory(resources[i]);

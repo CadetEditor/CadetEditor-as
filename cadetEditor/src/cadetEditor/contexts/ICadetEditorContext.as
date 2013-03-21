@@ -3,9 +3,9 @@
 
 package cadetEditor.contexts
 {
-	import flox.editor.contexts.IEditorContext;
-	import flox.app.core.contexts.IInspectableContext;
-	import flox.app.core.contexts.IOperationManagerContext;
+	import core.editor.contexts.IEditorContext;
+	import core.app.core.contexts.IInspectableContext;
+	import core.app.core.contexts.IOperationManagerContext;
 	
 	public interface ICadetEditorContext extends IEditorContext,
 											IInspectableContext, 

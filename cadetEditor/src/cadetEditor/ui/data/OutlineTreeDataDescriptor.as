@@ -9,11 +9,11 @@ package cadetEditor.ui.data
 	import cadet.core.IComponentContainer;
 	import cadet.entities.ComponentFactory;
 	
-	import flox.app.FloxApp;
-	import flox.app.resources.IResource;
-	import flox.app.util.IntrospectionUtil;
-	import flox.core.data.ArrayCollection;
-	import flox.ui.data.IDataDescriptor;
+	import core.app.CoreApp;
+	import core.app.resources.IResource;
+	import core.app.util.IntrospectionUtil;
+	import core.data.ArrayCollection;
+	import core.ui.data.IDataDescriptor;
 	
 	public class OutlineTreeDataDescriptor implements IDataDescriptor
 	{
@@ -35,7 +35,7 @@ package cadetEditor.ui.data
 			// This is an expensive call, so the result is cached in a static variable.
 			if ( !factories )
 			{
-				factories = FloxApp.resourceManager.getResourcesOfType(ComponentFactory);
+				factories = CoreApp.resourceManager.getResourcesOfType(ComponentFactory);
 				iconTable = new Dictionary();
 			}
 			

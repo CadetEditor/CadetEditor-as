@@ -19,10 +19,10 @@ package cadetEditor2D.controllers
 	import flash.system.Capabilities;
 	import flash.ui.Keyboard;
 	
-	import flox.ui.managers.CursorManager;
+	import core.ui.managers.CursorManager;
 	
-	import flox.editor.FloxEditor;
-	import flox.editor.core.FloxEditorEnvironment;
+	import core.editor.CoreEditor;
+	import core.editor.core.CoreEditorEnvironment;
 	
 	/**
 	 * This controller is created within the CadetEditorContext. It's purpose is to augment the context with panning behaviour without
@@ -45,7 +45,7 @@ package cadetEditor2D.controllers
 		
 		public function enable() : void
 		{
-			if ( FloxEditor.environment == FloxEditorEnvironment.AIR )
+			if ( CoreEditor.environment == CoreEditorEnvironment.AIR )
 			{
 				view.container.addEventListener("rightMouseDown", rightMouseDownHandler);
 			}
@@ -76,7 +76,7 @@ package cadetEditor2D.controllers
 					PanTool(tool).beginDrag();
 				}
 			}
-			FloxEditor.stage.addEventListener("rightMouseUp", rightMouseUpHandler);
+			CoreEditor.stage.addEventListener("rightMouseUp", rightMouseUpHandler);
 		}
 		
 		private function rightMouseUpHandler( event:MouseEvent ):void
@@ -85,7 +85,7 @@ package cadetEditor2D.controllers
 			{
 				PanTool(context.toolManager.selectedTool).endDrag();
 			}
-			FloxEditor.stage.removeEventListener("rightMouseUp", rightMouseUpHandler);
+			CoreEditor.stage.removeEventListener("rightMouseUp", rightMouseUpHandler);
 			context.toolManager.selectedTool = prevTool;
 		}
 		

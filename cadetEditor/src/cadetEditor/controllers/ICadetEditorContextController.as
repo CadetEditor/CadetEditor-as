@@ -1,7 +1,7 @@
 package cadetEditor.controllers
 {
 	
-	import flox.ui.components.HBox;
+	import core.ui.components.HBox;
 	
 	public interface ICadetEditorContextController extends ICadetContextController
 	{

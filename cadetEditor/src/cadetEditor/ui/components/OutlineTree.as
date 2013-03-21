@@ -6,7 +6,7 @@ package cadetEditor.ui.components
 	import cadet.core.IComponent;
 	
 	import cadetEditor.ui.data.OutlineTreeDataDescriptor;
-	import flox.ui.components.Tree;
+	import core.ui.components.Tree;
 	
 
 	public class OutlineTree extends Tree

@@ -36,9 +36,9 @@ package
 	import flox.app.resources.FactoryResource;
 	import flox.app.resources.FileType;
 	import flox.app.resources.KeyBinding;
-	import flox.editor.FloxEditor;
+	import flox.editor.CoreEditor;
 	import flox.editor.core.IGlobalViewContainer;
-	import flox.editor.icons.FloxEditorIcons;
+	import flox.editor.icons.CoreEditorIcons;
 	import flox.editor.resources.ActionFactory;
 	import flox.editor.resources.EditorFactory;
 	
@@ -59,7 +59,7 @@ package
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.IMPORT_TEMPLATE, "Import Template", "", "File/template" ) );
 			
 			// CadetEditorView Actions
-			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ZOOM_EXTENTS, "Zoom extents", "view", "", FloxEditorIcons.Zoom ) );
+			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ZOOM_EXTENTS, "Zoom extents", "view", "", CoreEditorIcons.Zoom ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.BUILD_AND_RUN, "Test Scene", "build", "", CadetEditorIcons.Run ) );
 			
@@ -123,7 +123,7 @@ package
 			// Geometry
 			
 			// Settings
-			var settingsManager:SettingsManager = FloxEditor.settingsManager;
+			var settingsManager:SettingsManager = CoreEditor.settingsManager;
 			settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
 			settingsManager.setBoolean( "flox.editor.contexts.PropertiesPanelContext.visible", true, true );			
 		}

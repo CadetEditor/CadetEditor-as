@@ -11,29 +11,29 @@ package cadetEditor.commandHandlers
 	
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.core.serialization.ISerializationPlugin;
-	import flox.app.core.serialization.ResourceSerializerPlugin;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.CloneOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.util.IntrospectionUtil;
-	import flox.app.validators.CollectionValidator;
-	import flox.app.validators.ContextValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.entities.Commands;
-	import flox.editor.utils.FloxEditorUtil;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.core.serialization.ISerializationPlugin;
+	import core.app.core.serialization.ResourceSerializerPlugin;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.CloneOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.util.IntrospectionUtil;
+	import core.app.validators.CollectionValidator;
+	import core.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.editor.entities.Commands;
+	import core.editor.utils.CoreEditorUtil;
 
 	public class PasteComponentsCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( Commands.PASTE, PasteComponentsCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
-			factory.validators.push( new CollectionValidator( FloxEditor.copyClipboard, IComponent ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
+			factory.validators.push( new CollectionValidator( CoreEditor.copyClipboard, IComponent ) );
 			return factory;
 		}
 		
@@ -45,13 +45,13 @@ package cadetEditor.commandHandlers
 		public function execute(parameters:Object):void
 		{
 			// Grab the list of entities from the clipboard
-			var components:Array = FloxEditor.copyClipboard.source;
+			var components:Array = CoreEditor.copyClipboard.source;
 			
 			// Now find an IEntityContainer to paste them in. We do this by checking to see if an IEntitiyContainer is currently selected
 			// in any context (such as the library or outliner). If we can't find one we simply drop it into the root of the current
 			// cadetEditorContext
-			cadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			var selectedComponents:Array = FloxEditorUtil.getCurrentSelection( null, IComponent );
+			cadetEditorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			var selectedComponents:Array = CoreEditorUtil.getCurrentSelection( null, IComponent );
 			if ( selectedComponents.length > 0 )
 			{
 				container = selectedComponents[0].parentComponent;
@@ -67,7 +67,7 @@ package cadetEditor.commandHandlers
 			for each ( var component:IComponent in components )
 			{
 				var type:Class = IntrospectionUtil.getType( component );
-				var componentFactory:ComponentFactory = ComponentFactory(FloxApp.resourceManager.getFactoriesForType( type )[0]);
+				var componentFactory:ComponentFactory = ComponentFactory(CoreApp.resourceManager.getFactoriesForType( type )[0]);
 				
 				if ( componentFactory.validate(container) == false )
 				{
@@ -78,10 +78,10 @@ package cadetEditor.commandHandlers
 			
 			// First we need to clone these entities so further paste operations are possible
 			var plugins:Vector.<ISerializationPlugin> = new Vector.<ISerializationPlugin>();
-			plugins.push(new ResourceSerializerPlugin( FloxApp.resourceManager ));
+			plugins.push(new ResourceSerializerPlugin( CoreApp.resourceManager ));
 			var cloneOperation:CloneOperation = new CloneOperation( components, plugins );
 			cloneOperation.addEventListener(Event.COMPLETE, cloneCompleteHandler);
-			FloxEditor.operationManager.addOperation(cloneOperation);
+			CoreEditor.operationManager.addOperation(cloneOperation);
 		}
 		
 		private function cloneCompleteHandler( event:Event ):void

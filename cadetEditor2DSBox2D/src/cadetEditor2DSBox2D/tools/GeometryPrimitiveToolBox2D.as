@@ -13,9 +13,9 @@ package cadetEditor2DSBox2D.tools
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
 	import cadetEditor2DS.tools.GeometryPrimitiveTool;
 
 	public class GeometryPrimitiveToolBox2D extends GeometryPrimitiveTool

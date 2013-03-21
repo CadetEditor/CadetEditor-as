@@ -7,14 +7,14 @@ package cadetEditor.ui.panels
 	
 	import flash.events.Event;
 	
-	import flox.ui.components.Button;
-	import flox.editor.ui.components.FileSystemTree;
-	import flox.ui.components.List;
-	import flox.ui.components.Panel;
-	import flox.ui.data.DefaultDataDescriptor;
-	import flox.ui.layouts.HorizontalLayout;
-	import flox.ui.layouts.LayoutAlign;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.editor.ui.components.FileSystemTree;
+	import core.ui.components.List;
+	import core.ui.components.Panel;
+	import core.ui.data.DefaultDataDescriptor;
+	import core.ui.layouts.HorizontalLayout;
+	import core.ui.layouts.LayoutAlign;
+	import core.ui.util.FloxDeserializer;
 	
 	public class SelectTemplatePanel extends Panel
 	{

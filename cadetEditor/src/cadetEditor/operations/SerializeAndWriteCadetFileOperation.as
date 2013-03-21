@@ -12,22 +12,22 @@ package cadetEditor.operations
 	import flash.utils.ByteArray;
 	import flash.utils.getDefinitionByName;
 	
-	import flox.app.core.managers.fileSystemProviders.IFileSystemProvider;
-	import flox.app.core.managers.fileSystemProviders.operations.IWriteFileOperation;
-	import flox.app.core.operations.IAsynchronousOperation;
-	import flox.app.core.serialization.ISerializationPlugin;
-	import flox.app.core.serialization.ResourceSerializerPlugin;
-	import flox.app.core.serialization.Serializer;
-	import flox.app.entities.URI;
-	import flox.app.events.OperationProgressEvent;
-	import flox.app.managers.ResourceManager;
-	import flox.app.operations.CloneOperation;
-	import flox.app.operations.SerializeAndWriteFileOperation;
-	import flox.app.operations.SerializeOperation;
-	import flox.app.util.IntrospectionUtil;
-	import flox.editor.FloxEditor;
-	import flox.editor.contexts.IEditorContext;
-	import flox.editor.operations.SaveFileAsOperation;
+	import core.app.core.managers.fileSystemProviders.IFileSystemProvider;
+	import core.app.core.managers.fileSystemProviders.operations.IWriteFileOperation;
+	import core.app.core.operations.IAsynchronousOperation;
+	import core.app.core.serialization.ISerializationPlugin;
+	import core.app.core.serialization.ResourceSerializerPlugin;
+	import core.app.core.serialization.Serializer;
+	import core.app.entities.URI;
+	import core.app.events.OperationProgressEvent;
+	import core.app.managers.ResourceManager;
+	import core.app.operations.CloneOperation;
+	import core.app.operations.SerializeAndWriteFileOperation;
+	import core.app.operations.SerializeOperation;
+	import core.app.util.IntrospectionUtil;
+	import core.editor.CoreEditor;
+	import core.editor.contexts.IEditorContext;
+	import core.editor.operations.SaveFileAsOperation;
 
 	public class SerializeAndWriteCadetFileOperation extends EventDispatcher implements IAsynchronousOperation
 	{
@@ -110,7 +110,7 @@ package cadetEditor.operations
 				writeFileOperation.execute();
 			} catch ( e:Error ) {
 				dispatchEvent( new Event( Event.COMPLETE ) );
-				var editorContext:IEditorContext = IEditorContext(FloxEditor.contextManager.getLatestContextOfType(IEditorContext));
+				var editorContext:IEditorContext = IEditorContext(CoreEditor.contextManager.getLatestContextOfType(IEditorContext));
 				var operation:SaveFileAsOperation = new SaveFileAsOperation( editorContext );
 				operation.execute();
 			}

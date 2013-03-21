@@ -8,8 +8,8 @@ package cadetEditor.operations
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
-	import flox.app.core.operations.IAsynchronousOperation;
-	import flox.app.util.AsynchronousUtil;
+	import core.app.core.operations.IAsynchronousOperation;
+	import core.app.util.AsynchronousUtil;
 
 	public class CompileOperation extends EventDispatcher implements IAsynchronousOperation
 	{

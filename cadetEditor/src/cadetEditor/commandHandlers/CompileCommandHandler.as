@@ -10,20 +10,20 @@ package cadetEditor.commandHandlers
 	
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.entities.URI;
-	import flox.app.operations.SerializeAndWriteFileOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextValidator;
-	import flox.editor.FloxEditor;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.entities.URI;
+	import core.app.operations.SerializeAndWriteFileOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
 	
 	public class CompileCommandHandler implements ICommandHandler
 	{
 		static public function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.BUILD, CompileCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
 			return factory;
 		}
 		
@@ -38,11 +38,11 @@ package cadetEditor.commandHandlers
 
 		public function execute( parameters:Object ):void
 		{
-			editorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			editorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
 			
 			var compileOperation:CompileOperation = new CompileOperation(  editorContext.scene );
 			compileOperation.addEventListener( Event.COMPLETE, compileCompleteHandler );
-			FloxEditor.operationManager.addOperation( compileOperation );
+			CoreEditor.operationManager.addOperation( compileOperation );
 		}
 		
 		private function compileCompleteHandler( event:Event ):void
@@ -55,9 +55,9 @@ package cadetEditor.commandHandlers
 			{
 				uri = new URI( "memory/" + uri.path );
 			}
-			var serializeAndWriteFileOperation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( compileOperation.getResult(), uri, FloxApp.fileSystemProvider, FloxApp.resourceManager );
+			var serializeAndWriteFileOperation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( compileOperation.getResult(), uri, CoreApp.fileSystemProvider, CoreApp.resourceManager );
 			serializeAndWriteFileOperation.addEventListener( Event.COMPLETE, completeHandler );
-			FloxEditor.operationManager.addOperation( serializeAndWriteFileOperation );
+			CoreEditor.operationManager.addOperation( serializeAndWriteFileOperation );
 		}
 		
 		protected function completeHandler( event:Event ):void {}

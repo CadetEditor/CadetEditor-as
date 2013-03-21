@@ -2,9 +2,9 @@ package cadetEditor3D.ui.controlBars
 {
 	import flash.events.Event;
 	
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.HBox;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.CheckBox;
+	import core.ui.components.HBox;
+	import core.ui.util.FloxDeserializer;
 	
 	public class PhysicsToolControlBar extends HBox
 	{

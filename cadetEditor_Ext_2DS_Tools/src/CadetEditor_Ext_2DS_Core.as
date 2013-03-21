@@ -38,24 +38,24 @@ package
 	import cadetEditor2DSBox2D.tools.PinTool;
 	import cadetEditor2DSBox2D.tools.TerrainTool;
 	
-	import flox.app.FloxApp;
-	import flox.app.entities.KeyModifier;
-	import flox.app.managers.ResourceManager;
-	import flox.app.managers.SettingsManager;
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.FileType;
-	import flox.app.resources.KeyBinding;
-	import flox.editor.FloxEditor;
-	import flox.editor.core.IGlobalViewContainer;
-	import flox.editor.icons.FloxEditorIcons;
-	import flox.editor.resources.ActionFactory;
-	import flox.editor.resources.EditorFactory;
+	import core.app.CoreApp;
+	import core.app.entities.KeyModifier;
+	import core.app.managers.ResourceManager;
+	import core.app.managers.SettingsManager;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.FileType;
+	import core.app.resources.KeyBinding;
+	import core.editor.CoreEditor;
+	import core.editor.core.IGlobalViewContainer;
+	import core.editor.icons.CoreEditorIcons;
+	import core.editor.resources.ActionFactory;
+	import core.editor.resources.EditorFactory;
 	
 	public class CadetEditor_Ext_2DS_Core extends Sprite
 	{
 		public function CadetEditor_Ext_2DS_Core()
 		{
-			var resourceManager:ResourceManager = FloxApp.resourceManager;			
+			var resourceManager:ResourceManager = CoreApp.resourceManager;			
 			
 			// Cadet Viewer
 			resourceManager.addResource( new EditorFactory( CadetContext2D, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
@@ -70,7 +70,7 @@ package
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.IMPORT_TEMPLATE, "Import Template", "", "File/template" ) );
 			
 			// CadetEditorView Actions
-			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ZOOM_EXTENTS, "Zoom extents", "view", "", FloxEditorIcons.Zoom ) );
+			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ZOOM_EXTENTS, "Zoom extents", "view", "", CoreEditorIcons.Zoom ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.BUILD_AND_RUN, "Test Scene", "build", "", CadetEditorIcons.Run ) );
 			
@@ -125,9 +125,9 @@ package
 			resourceManager.addResource( new KeyBinding( CadetEditorCommands.TOGGLE_SNAP, 83 ) );		// S
 			
 			// Settings
-			var settingsManager:SettingsManager = FloxEditor.settingsManager;
+			var settingsManager:SettingsManager = CoreEditor.settingsManager;
 			settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
-			settingsManager.setBoolean( "flox.editor.contexts.PropertiesPanelContext.visible", true, true );
+			settingsManager.setBoolean( "core.editor.contexts.PropertiesPanelContext.visible", true, true );
 		}
 	}
 }

@@ -10,20 +10,20 @@ package cadetEditor.commandHandlers
 	
 	import flash.events.Event;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.entities.URI;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.operations.OpenFileOperation;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.entities.URI;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.editor.operations.OpenFileOperation;
 	
 	public class CompileAndRunCommandHandler implements ICommandHandler
 	{
 		static public function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.BUILD_AND_RUN, CompileAndRunCommandHandler );
-			factory.validators.push( new ContextValidator( FloxEditor.contextManager, ICadetEditorContext ) );
+			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext ) );
 			return factory;
 		}
 		
@@ -39,11 +39,11 @@ package cadetEditor.commandHandlers
 		
 		public function execute( parameters:Object ):void
 		{
-			editorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			editorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
 			
 			var compileOperation:CompileOperation = new CompileOperation( editorContext.scene );
 			compileOperation.addEventListener( Event.COMPLETE, compileCompleteHandler );
-			FloxEditor.operationManager.addOperation( compileOperation );
+			CoreEditor.operationManager.addOperation( compileOperation );
 		}
 		
 		private function compileCompleteHandler( event:Event ):void
@@ -51,15 +51,15 @@ package cadetEditor.commandHandlers
 			var compileOperation:CompileOperation = CompileOperation( event.target );
 			
 			tempURI = new URI( "memory/" + editorContext.uri.getFilename(true) + cadetFileExtension );
-			var serializeAndWriteFileOperation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( compileOperation.getResult(), tempURI, FloxApp.fileSystemProvider, FloxApp.resourceManager );
+			var serializeAndWriteFileOperation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( compileOperation.getResult(), tempURI, CoreApp.fileSystemProvider, CoreApp.resourceManager );
 			serializeAndWriteFileOperation.addEventListener( Event.COMPLETE, completeHandler );
-			FloxEditor.operationManager.addOperation( serializeAndWriteFileOperation );
+			CoreEditor.operationManager.addOperation( serializeAndWriteFileOperation );
 		}
 		
 		private function completeHandler( event:Event ):void
 		{
-			var openFileOperation:OpenFileOperation = new OpenFileOperation( tempURI, FloxApp.fileSystemProvider, FloxEditor.settingsManager );
-			FloxEditor.operationManager.addOperation( openFileOperation );
+			var openFileOperation:OpenFileOperation = new OpenFileOperation( tempURI, CoreApp.fileSystemProvider, CoreEditor.settingsManager );
+			CoreEditor.operationManager.addOperation( openFileOperation );
 		}
 	}
 }

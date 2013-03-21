@@ -15,23 +15,23 @@ package cadetEditor.commandHandlers
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import flox.app.FloxApp;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.entities.URI;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.util.StringUtil;
-	import flox.app.validators.ContextSelectionValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
+	import core.app.CoreApp;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.entities.URI;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.util.StringUtil;
+	import core.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.utils.CoreEditorUtil;
 
 	public class EditComponentPropertiesCommandHandler implements ICommandHandler
 	{
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.EDIT_COMPONENT_PROPERTIES, EditComponentPropertiesCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, ICadetEditorContext, true, IComponent, 1, 1 ) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, ICadetEditorContext, true, IComponent, 1, 1 ) );
 			return factory;
 		}
 		
@@ -43,8 +43,8 @@ package cadetEditor.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			context = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			component = FloxEditorUtil.getCurrentSelection(null, IComponent)[0];
+			context = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			component = CoreEditorUtil.getCurrentSelection(null, IComponent)[0];
 			
 			openPanel();
 			updatePanelFromComponent();
@@ -87,7 +87,7 @@ package cadetEditor.commandHandlers
 				if ( component.templateID != panel.templateIDField.text )
 				{
 					operation.addOperation( new ChangePropertyOperation( component, "templateID", panel.templateIDField.text ) );
-					operation.addOperation( new GetTemplateAndMergeOperation( panel.templateIDField.text, component, FloxApp.fileSystemProvider, {local:context.scene} ) );
+					operation.addOperation( new GetTemplateAndMergeOperation( panel.templateIDField.text, component, CoreApp.fileSystemProvider, {local:context.scene} ) );
 				}
 			}
 			else
@@ -219,7 +219,7 @@ package cadetEditor.commandHandlers
 				uri = new URI( templatePath.split("#")[0] );
 			}
 			
-			var operation:SelectTemplateOperation = new SelectTemplateOperation(FloxApp.resourceManager, uri);
+			var operation:SelectTemplateOperation = new SelectTemplateOperation(CoreApp.resourceManager, uri);
 			operation.addEventListener(Event.COMPLETE, selectTemplateCompleteHandler);
 			operation.execute();
 		}
@@ -236,7 +236,7 @@ package cadetEditor.commandHandlers
 		{
 			if ( panel ) return;
 			panel = new ComponentPropertiesPanel();
-			FloxEditor.viewManager.addPopUp(panel);
+			CoreEditor.viewManager.addPopUp(panel);
 			
 			panel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.addEventListener(MouseEvent.CLICK, clickCancelHandler);
@@ -250,7 +250,7 @@ package cadetEditor.commandHandlers
 		{
 			if ( !panel ) return;
 			
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 			
 			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);

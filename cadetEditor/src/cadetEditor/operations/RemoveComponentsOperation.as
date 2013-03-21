@@ -5,8 +5,8 @@ package cadetEditor.operations
 {
 	import cadet.core.IComponent;
 	
-	import flox.app.managers.DependencyManager;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.managers.DependencyManager;
+	import core.app.operations.UndoableCompoundOperation;
 
 	public class RemoveComponentsOperation extends UndoableCompoundOperation
 	{

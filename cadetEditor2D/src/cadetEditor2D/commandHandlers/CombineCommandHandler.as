@@ -19,17 +19,17 @@ package cadetEditor2D.commandHandlers
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.core.serialization.Serializer;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.RemoveItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextSelectionValidator;
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
-	import flox.ui.components.Alert;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.core.serialization.Serializer;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.RemoveItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.utils.CoreEditorUtil;
+	import core.ui.components.Alert;
 
 	/**
 	 * Given a selection of ComponentContainer, this CommandHandler finds all the geometry associated with them and combines them into a single
@@ -43,7 +43,7 @@ package cadetEditor2D.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.COMBINE, CombineCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, ICadetEditorContext, true, IComponentContainer, 2) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, ICadetEditorContext, true, IComponentContainer, 2) );
 			return factory;
 		}
 		
@@ -51,8 +51,8 @@ package cadetEditor2D.commandHandlers
 
 		public function execute(parameters:Object):void
 		{
-			var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType( ICadetEditorContext );
-			var selection:Array = FloxEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
+			var context:ICadetEditorContext = CoreEditor.contextManager.getLatestContextOfType( ICadetEditorContext );
+			var selection:Array = CoreEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			operation.label = "Combine";

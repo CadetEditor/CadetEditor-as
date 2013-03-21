@@ -16,10 +16,10 @@ package cadetEditor2D.tools
 	import flash.geom.Point;
 	import flash.ui.Keyboard;
 	
-	import flox.ui.managers.CursorManager;
+	import core.ui.managers.CursorManager;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.contexts.IContext;
+	import core.editor.CoreEditor;
+	import core.app.core.contexts.IContext;
 	
 	public class PanTool implements ITool
 	{
@@ -62,17 +62,17 @@ package cadetEditor2D.tools
 		{
 			CursorManager.setCursor( CadetEditorCursors.Hand );
 			
-			mouseDownPos = new Point( FloxEditor.stage.mouseX, FloxEditor.stage.mouseY );
+			mouseDownPos = new Point( CoreEditor.stage.mouseX, CoreEditor.stage.mouseY );
 			storedPanX = context.view2D.panX;
 			storedPanY = context.view2D.panY;	
 			
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 		}
 		
 		public function endDrag():void
 		{
-			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 			mouseDownPos = null;
 			CursorManager.setCursor( null );
 		}

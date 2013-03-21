@@ -23,9 +23,9 @@ package cadetEditor2DS.tools
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.operations.UndoableCompoundOperation;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.operations.UndoableCompoundOperation;
 	
 	public class GeometryPrimitiveTool extends CadetEditorTool2D implements ITool
 	{

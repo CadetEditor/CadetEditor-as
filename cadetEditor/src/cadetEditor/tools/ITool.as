@@ -3,7 +3,7 @@
 
 package cadetEditor.tools
 {
-	import flox.app.core.contexts.IContext;
+	import core.app.core.contexts.IContext;
 	
 	public interface ITool
 	{

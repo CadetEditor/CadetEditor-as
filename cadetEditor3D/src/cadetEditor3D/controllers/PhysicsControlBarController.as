@@ -15,10 +15,10 @@ package cadetEditor3D.controllers
 	
 	import flash.events.Event;
 	
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.RemoveItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.editor.core.IViewContainer;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.RemoveItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.editor.core.IViewContainer;
 	
 	public class PhysicsControlBarController implements ICadetContextController
 	{

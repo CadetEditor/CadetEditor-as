@@ -20,12 +20,12 @@ package cadetEditor2D.operations
 	import flash.geom.Point;
 	import flash.ui.Keyboard;
 	
-	import flox.core.data.ArrayCollection;
-	import flox.ui.events.ListEvent;
-	import flox.ui.managers.CursorManager;
+	import core.data.ArrayCollection;
+	import core.ui.events.ListEvent;
+	import core.ui.managers.CursorManager;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.operations.IAsynchronousOperation;
+	import core.editor.CoreEditor;
+	import core.app.core.operations.IAsynchronousOperation;
 
 	public class PickComponentsOperation extends EventDispatcher implements IAsynchronousOperation
 	{
@@ -54,7 +54,7 @@ package cadetEditor2D.operations
 			context.pickingManager.addEventListener(PickingManagerEvent.CLICK_SKINS, clickSkinsHandler);
 			context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OVER_SKIN, rollOverSkinHandler);
 			context.pickingManager.addEventListener(PickingManagerEvent.ROLL_OUT_SKIN, rollOutSkinHandler);
-			FloxEditor.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			CoreEditor.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 		}
 		
 		public function cancel():void
@@ -69,7 +69,7 @@ package cadetEditor2D.operations
 			context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_SKINS, clickSkinsHandler);
 			context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OVER_SKIN, rollOverSkinHandler);
 			context.pickingManager.removeEventListener(PickingManagerEvent.ROLL_OUT_SKIN, rollOutSkinHandler);
-			FloxEditor.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			CoreEditor.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 		}
 		
 		private function dispose():void
@@ -168,19 +168,19 @@ package cadetEditor2D.operations
 		{
 			if ( panel ) return;
 			panel = new PickComponentPanel();
-			FloxEditor.viewManager.addPopUp( panel );
+			CoreEditor.viewManager.addPopUp( panel );
 			
-			panel.x = FloxEditor.stage.mouseX + 30;
-			panel.y = FloxEditor.stage.mouseY - 60;
+			panel.x = CoreEditor.stage.mouseX + 30;
+			panel.y = CoreEditor.stage.mouseY - 60;
 			
 			var padding:uint = 10;
-			if ( panel.x + panel.width >= FloxEditor.stage.stageWidth ) 
+			if ( panel.x + panel.width >= CoreEditor.stage.stageWidth ) 
 			{
-				panel.x = FloxEditor.stage.stageWidth - panel.width - padding;
+				panel.x = CoreEditor.stage.stageWidth - panel.width - padding;
 			}
-			if ( panel.y + panel.height >= FloxEditor.stage.stageHeight ) 
+			if ( panel.y + panel.height >= CoreEditor.stage.stageHeight ) 
 			{
-				panel.y = FloxEditor.stage.stageHeight - panel.height - padding;
+				panel.y = CoreEditor.stage.stageHeight - panel.height - padding;
 			}	
 			
 			panel.okBtn.addEventListener(MouseEvent.CLICK, clickOkHandler);
@@ -208,7 +208,7 @@ package cadetEditor2D.operations
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
 			panel.list.removeEventListener( ListEvent.ITEM_ROLL_OVER, rollOverItemHandler );
 			
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 			
 			context.highlightManager.unhighlightAllComponents();
 			

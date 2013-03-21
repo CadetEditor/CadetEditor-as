@@ -12,15 +12,15 @@ package cadetEditor.commandHandlers
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.ui.panels.AddComponentPanel;
 	
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.RemoveItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.util.StringUtil;
-	import flox.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.utils.CoreEditorUtil;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.RemoveItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.util.StringUtil;
+	import core.app.validators.ContextSelectionValidator;
 
 
 	/**
@@ -34,7 +34,7 @@ package cadetEditor.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.ADD_TO_NEW_COMPONENT, AddToNewComponentCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, ICadetEditorContext, true, IComponent ) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, ICadetEditorContext, true, IComponent ) );
 			return factory;
 		}
 		
@@ -47,8 +47,8 @@ package cadetEditor.commandHandlers
 		
 		public function execute(parameters:Object):void
 		{
-			context = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			components = FloxEditorUtil.getCurrentSelection(ICadetEditorContext, IComponent);
+			context = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			components = CoreEditorUtil.getCurrentSelection(ICadetEditorContext, IComponent);
 			
 			openPanel();
 		}
@@ -80,7 +80,7 @@ package cadetEditor.commandHandlers
 		private function openPanel():void
 		{
 			panel = new AddComponentPanel();
-			FloxEditor.viewManager.addPopUp(panel);
+			CoreEditor.viewManager.addPopUp(panel);
 			
 			panel.label = "Add To New Component";
 			
@@ -92,7 +92,7 @@ package cadetEditor.commandHandlers
 		{
 			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
-			FloxEditor.viewManager.removePopUp(panel);
+			CoreEditor.viewManager.removePopUp(panel);
 		}
 	}
 }

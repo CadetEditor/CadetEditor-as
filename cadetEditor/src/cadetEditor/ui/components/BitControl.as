@@ -4,7 +4,7 @@
 package cadetEditor.ui.components
 {
 	import flash.events.Event;
-	import flox.ui.components.UIComponent;
+	import core.ui.components.UIComponent;
 
 	public class BitControl extends UIComponent
 	{

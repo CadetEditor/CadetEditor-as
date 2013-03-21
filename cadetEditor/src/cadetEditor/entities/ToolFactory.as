@@ -3,8 +3,8 @@
 
 package cadetEditor.entities
 {
-	import flox.app.resources.FactoryResource;
-	import flox.app.resources.ITargetedResource;
+	import core.app.resources.FactoryResource;
+	import core.app.resources.ITargetedResource;
 	
 	public class ToolFactory extends FactoryResource implements ITargetedResource
 	{

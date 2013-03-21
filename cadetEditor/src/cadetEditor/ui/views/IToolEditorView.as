@@ -6,7 +6,7 @@ package cadetEditor.ui.views
 	import flash.display.DisplayObjectContainer;
 	import flash.events.IEventDispatcher;
 	
-	import flox.ui.components.RadioButtonGroup;
+	import core.ui.components.RadioButtonGroup;
 	
 	public interface IToolEditorView extends IEventDispatcher
 	{

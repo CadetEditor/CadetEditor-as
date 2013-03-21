@@ -10,10 +10,10 @@ package cadetEditor3D.ui.views
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	
-	import flox.editor.core.IViewContainer;
-	import flox.ui.components.Button;
-	import flox.ui.components.RadioButtonGroup;
-	import flox.ui.components.UIComponent;
+	import core.editor.core.IViewContainer;
+	import core.ui.components.Button;
+	import core.ui.components.RadioButtonGroup;
+	import core.ui.components.UIComponent;
 	
 	public class CadetView3D extends UIComponent
 	{

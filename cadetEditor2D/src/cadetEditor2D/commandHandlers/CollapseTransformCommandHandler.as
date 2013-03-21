@@ -9,11 +9,11 @@ package cadetEditor2D.commandHandlers
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor2D.operations.CollapseTransformsOperation;
 	
-	import flox.editor.FloxEditor;
-	import flox.editor.utils.FloxEditorUtil;
-	import flox.app.core.commandHandlers.ICommandHandler;
-	import flox.app.resources.CommandHandlerFactory;
-	import flox.app.validators.ContextSelectionValidator;
+	import core.editor.CoreEditor;
+	import core.editor.utils.CoreEditorUtil;
+	import core.app.core.commandHandlers.ICommandHandler;
+	import core.app.resources.CommandHandlerFactory;
+	import core.app.validators.ContextSelectionValidator;
 
 	/**
 	 * Given a selection of ComponentContainers, this CommandHandler delegates out the task of collapse any geometry found on these to an operation. 
@@ -25,7 +25,7 @@ package cadetEditor2D.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands.COLLAPSE_TRANSFORM, CollapseTransformCommandHandler );
-			factory.validators.push( new ContextSelectionValidator( FloxEditor.contextManager, ICadetEditorContext, true, IComponentContainer ) );
+			factory.validators.push( new ContextSelectionValidator( CoreEditor.contextManager, ICadetEditorContext, true, IComponentContainer ) );
 			return factory;
 		}
 		
@@ -33,8 +33,8 @@ package cadetEditor2D.commandHandlers
 
 		public function execute(parameters:Object):void
 		{
-			var context:ICadetEditorContext = FloxEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
-			var components:Array = FloxEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
+			var context:ICadetEditorContext = CoreEditor.contextManager.getLatestContextOfType(ICadetEditorContext);
+			var components:Array = CoreEditorUtil.getCurrentSelection( ICadetEditorContext, IComponentContainer );
 			
 			var operation:CollapseTransformsOperation = new CollapseTransformsOperation( components );
 			context.operationManager.addOperation(operation);

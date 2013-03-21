@@ -3,9 +3,9 @@
 
 package cadetEditor2D.ui.controlBars
 {	
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.HBox;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.CheckBox;
+	import core.ui.components.HBox;
+	import core.ui.util.FloxDeserializer;
 	
 	public class PinToolControlBar extends HBox
 	{

@@ -11,7 +11,7 @@ package cadetEditor2DS.operations
 	
 	import flash.geom.Rectangle;
 	
-	import flox.app.core.operations.IUndoableOperation;
+	import core.app.core.operations.IUndoableOperation;
 	
 	import starling.display.DisplayObject;
 

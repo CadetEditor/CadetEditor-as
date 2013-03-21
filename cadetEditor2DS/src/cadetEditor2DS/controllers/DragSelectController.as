@@ -22,11 +22,11 @@ package cadetEditor2DS.controllers
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.app.core.contexts.ISelectionContext;
-	import flox.app.operations.ChangePropertyOperation;
-	import flox.app.util.ArrayUtil;
-	import flox.app.util.VectorUtil;
-	import flox.core.data.ArrayCollection;
+	import core.app.core.contexts.ISelectionContext;
+	import core.app.operations.ChangePropertyOperation;
+	import core.app.util.ArrayUtil;
+	import core.app.util.VectorUtil;
+	import core.data.ArrayCollection;
 	
 	import starling.display.DisplayObject;
 	import starling.events.Touch;
@@ -83,8 +83,8 @@ package cadetEditor2DS.controllers
 				_renderer.viewport.stage.addEventListener( TouchEvent.TOUCH, touchEventHandler );
 			}
 			
-//			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-//			FloxEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+//			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+//			CoreEditor.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		public function endDrag(appendToSelection:Boolean):void
@@ -139,8 +139,8 @@ package cadetEditor2DS.controllers
 			overlay.graphics.clear();
 			
 			_renderer.viewport.stage.removeEventListener( TouchEvent.TOUCH, touchEventHandler );
-//			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-//			FloxEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+//			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+//			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			
 		}
 		

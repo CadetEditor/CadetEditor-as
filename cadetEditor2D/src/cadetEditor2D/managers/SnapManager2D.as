@@ -21,7 +21,7 @@ package cadetEditor2D.managers
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import flox.core.events.PropertyChangeEvent;
+	import core.events.PropertyChangeEvent;
 
 	/**
 	 * The SnapManager class implements a variety of snapping methods, allowing tools to use it to perform

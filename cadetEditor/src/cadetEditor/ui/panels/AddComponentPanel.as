@@ -5,11 +5,11 @@ package cadetEditor.ui.panels
 {
 	import cadetEditor.ui.components.OutlineTree;
 	
-	import flox.ui.components.Button;
-	import flox.ui.components.List;
-	import flox.ui.components.Panel;
-	import flox.ui.components.RadioButtonGroup;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.ui.components.List;
+	import core.ui.components.Panel;
+	import core.ui.components.RadioButtonGroup;
+	import core.ui.util.FloxDeserializer;
 	
 	public class AddComponentPanel extends Panel
 	{

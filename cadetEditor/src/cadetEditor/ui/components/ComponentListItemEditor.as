@@ -8,11 +8,11 @@ package cadetEditor.ui.components
 	
 	import flash.utils.*;
 	
-	import flox.core.data.ArrayCollection;
-	import flox.ui.data.DefaultDataDescriptor;
+	import core.data.ArrayCollection;
+	import core.ui.data.DefaultDataDescriptor;
 	
-	import flox.app.util.VectorUtil;
-	import flox.ui.components.DropDownMenu;
+	import core.app.util.VectorUtil;
+	import core.ui.components.DropDownMenu;
 
 	public class ComponentListItemEditor extends DropDownMenu
 	{

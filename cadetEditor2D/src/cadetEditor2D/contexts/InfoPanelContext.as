@@ -3,11 +3,11 @@
 
 package cadetEditor2D.contexts
 {
-	import flox.app.core.contexts.IVisualContext;
-	import flox.app.events.ContextValidatorEvent;
-	import flox.app.validators.ContextValidator;
+	import core.app.core.contexts.IVisualContext;
+	import core.app.events.ContextValidatorEvent;
+	import core.app.validators.ContextValidator;
 	
-	import flox.editor.FloxEditor;
+	import core.editor.CoreEditor;
 	
 	import cadetEditor2D.ui.views.InfoPanelView;
 	
@@ -26,7 +26,7 @@ package cadetEditor2D.contexts
 		public function InfoPanelContext()
 		{
 			_view = new InfoPanelView();
-			contextValidator = new ContextValidator(FloxEditor.contextManager, ICadetEditorContext2D);
+			contextValidator = new ContextValidator(CoreEditor.contextManager, ICadetEditorContext2D);
 			contextValidator.addEventListener(ContextValidatorEvent.CONTEXT_CHANGED, contextChangedHandler);
 			context = contextValidator.getContext() as ICadetEditorContext2D;
 		}

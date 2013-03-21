@@ -11,20 +11,20 @@ package cadetEditor.contexts
 	import flash.events.Event;
 	
 	import cadetEditor.ui.components.OutlineTree;
-	import flox.core.data.ArrayCollection;
-	import flox.core.events.ArrayCollectionEvent;
-	import flox.ui.events.DragAndDropEvent;
+	import core.data.ArrayCollection;
+	import core.events.ArrayCollectionEvent;
+	import core.ui.events.DragAndDropEvent;
 	
-	import flox.editor.FloxEditor;
-	import flox.app.core.contexts.IInspectableContext;
-	import flox.app.core.contexts.IOperationManagerContext;
-	import flox.app.core.contexts.IVisualContext;
-	import flox.app.events.ContextValidatorEvent;
-	import flox.app.managers.OperationManager;
-	import flox.app.operations.AddItemOperation;
-	import flox.app.operations.RemoveItemOperation;
-	import flox.app.operations.UndoableCompoundOperation;
-	import flox.app.validators.ContextValidator;
+	import core.editor.CoreEditor;
+	import core.app.core.contexts.IInspectableContext;
+	import core.app.core.contexts.IOperationManagerContext;
+	import core.app.core.contexts.IVisualContext;
+	import core.app.events.ContextValidatorEvent;
+	import core.app.managers.OperationManager;
+	import core.app.operations.AddItemOperation;
+	import core.app.operations.RemoveItemOperation;
+	import core.app.operations.UndoableCompoundOperation;
+	import core.app.validators.ContextValidator;
 
 	public class OutlinePanelContext implements IVisualContext, IInspectableContext, IOperationManagerContext
 	{
@@ -41,7 +41,7 @@ package cadetEditor.contexts
 			_view.padding = 0;
 			_view.showBorder = false;
 			
-			contextValidator = new ContextValidator( FloxEditor.contextManager, ICadetContext, false );
+			contextValidator = new ContextValidator( CoreEditor.contextManager, ICadetContext, false );
 			contextValidator.addEventListener( ContextValidatorEvent.CONTEXT_CHANGED, changeHandler );
 			
 			_view.addEventListener( Event.CHANGE, changeTreeHandler );

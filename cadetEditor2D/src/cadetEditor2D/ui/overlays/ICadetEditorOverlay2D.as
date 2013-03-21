@@ -5,7 +5,7 @@ package cadetEditor2D.ui.overlays
 {
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flox.ui.components.IUIComponent;
+	import core.ui.components.IUIComponent;
 	
 	public interface ICadetEditorOverlay2D extends IUIComponent
 	{

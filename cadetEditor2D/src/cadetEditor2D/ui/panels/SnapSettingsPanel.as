@@ -3,11 +3,11 @@
 
 package cadetEditor2D.ui.panels
 {	
-	import flox.ui.components.Button;
-	import flox.ui.components.CheckBox;
-	import flox.ui.components.NumericStepper;
-	import flox.ui.components.Panel;
-	import flox.ui.util.FloxDeserializer;
+	import core.ui.components.Button;
+	import core.ui.components.CheckBox;
+	import core.ui.components.NumericStepper;
+	import core.ui.components.Panel;
+	import core.ui.util.FloxDeserializer;
 	
 	public class SnapSettingsPanel extends Panel
 	{
