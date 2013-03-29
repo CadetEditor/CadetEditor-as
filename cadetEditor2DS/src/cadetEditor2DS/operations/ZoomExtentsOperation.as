@@ -5,8 +5,6 @@ package cadetEditor2DS.operations
 {
 	import cadet2D.components.renderers.Renderer2D;
 	
-	import cadetEditor.controllers.ICadetEditorContextController;
-	
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import flash.geom.Rectangle;

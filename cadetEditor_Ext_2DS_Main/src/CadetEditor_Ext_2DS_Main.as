@@ -21,8 +21,10 @@ package
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.contexts.InfoPanelContext;
 	import cadetEditor2D.controllers.DefaultControlBar2DController;
+	import cadetEditor2D.entities.CadetEditorCommands2D;
 	import cadetEditor2D.tools.PanTool;
 	
+	import cadetEditor2DS.commandHandlers.PreviewAnimationCommandHandler;
 	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
 	import cadetEditor2DS.contexts.CadetContext2D;
 	import cadetEditor2DS.contexts.CadetEditorContext2D;
@@ -60,6 +62,7 @@ package
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.IMPORT_TEMPLATE, "Import Template", "", "File/template" ) );
 			
 			// CadetEditorView Actions
+			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands2D.PREVIEW_ANIMATION, "Preview Animation", "view", "", CadetEditorIcons.Animation ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ZOOM_EXTENTS, "Zoom extents", "view", "", CoreEditorIcons.Zoom ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.BUILD_AND_RUN, "Test Scene", "build", "", CadetEditorIcons.Run ) );
@@ -91,6 +94,7 @@ package
 			resourceManager.addResource( CenterOriginCentroidCommandHandler.getFactory() );
 			resourceManager.addResource( MakeConvexCommandHandler.getFactory() );
 			resourceManager.addResource( ZoomExtentsCommandHandler.getFactory() );
+			resourceManager.addResource( PreviewAnimationCommandHandler.getFactory() );
 			resourceManager.addResource( CombineCommandHandler.getFactory() );
 			resourceManager.addResource( EditSnapSettingsCommandHandler.getFactory() );
 			resourceManager.addResource( NudgeCommandHandler.getFactory() );

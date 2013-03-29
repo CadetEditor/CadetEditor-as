@@ -9,7 +9,7 @@ package cadetEditor2DS.tools
 	
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
-	import cadet2D.util.SkinsUtil;
+	import cadet2D.util.RenderablesUtil;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -44,7 +44,7 @@ package cadetEditor2DS.tools
 		protected var allowDragSelect				:Boolean = true;
 		
 		private var shiftKeyDown					:Boolean = false;
-		private var pressedSkin						:IRenderable;
+		private var pressedRenderable				:IRenderable;
 		
 		// Controllers
 		private var dragItemsController				:DragItemsController;
@@ -73,7 +73,7 @@ package cadetEditor2DS.tools
 			dragItemsController = null
 			dragSelectController.dispose()
 			dragSelectController = null
-			pressedSkin = null
+			pressedRenderable = null
 			
 			super.dispose()
 		}
@@ -132,12 +132,12 @@ package cadetEditor2DS.tools
 			shiftKeyDown = event.shiftKey;
 			
 			// Depth sort skins
-			event.skinsUnderMouse.sort(SkinsUtil.sortSkinsById);
+			event.skinsUnderMouse.sort(RenderablesUtil.sortSkinsById);
 			event.skinsUnderMouse.reverse();
 			
 			var skin:IRenderable = event.skinsUnderMouse[0];
 			var dragDetector:DragDetector = new DragDetector( view.container );
-			pressedSkin = skin;
+			pressedRenderable = skin;
 			dragDetector.addEventListener( DragDetector.BEGIN_DRAG, dragDetectedHandler );
 		}
 		
@@ -155,12 +155,17 @@ package cadetEditor2DS.tools
 		protected function dragDetectedHandler(event:Event):void
 		{
 			// Automatically select the dragged item
-			var pressedComponent:IComponent = pressedSkin.parentComponent;
+			var pressedComponent:IComponent = pressedRenderable.parentComponent;
 			// If the skin doesn't have a transform2D sibling, don't think of it in terms of a nested skin & transform
 			// inside a parent component. Instead, move the skin on it's own using its x and y properties.
-			if (!pressedSkin.transform2D) {
-				pressedComponent = pressedSkin;
-			}
+			if ( pressedRenderable is AbstractSkin2D )
+			
+			if ( pressedRenderable is AbstractSkin2D ) {
+				var skin:AbstractSkin2D = AbstractSkin2D(pressedRenderable);
+				if ( !skin.transform2D ) {
+					pressedComponent = pressedRenderable;
+				}
+			}	
 			
 			if ( !pressedComponent ) return;
 			if ( context.selection.contains( pressedComponent ) == false ) 
@@ -204,7 +209,7 @@ package cadetEditor2DS.tools
 			}
 			
 			// Depth sort skins
-			event.skinsUnderMouse.sort(SkinsUtil.sortSkinsById);
+			event.skinsUnderMouse.sort(RenderablesUtil.sortSkinsById);
 			event.skinsUnderMouse.reverse();
 			
 		//	var components:Vector.<IComponentContainer> = ComponentUtil.getComponentContainers( event.skinsUnderMouse );

@@ -12,7 +12,6 @@ package cadetEditor2DS.commandHandlers
 	import cadetEditor.entities.CadetEditorCommands;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
-	import cadetEditor.controllers.ICadetEditorContextController;
 	
 	import cadetEditor2DS.operations.ZoomExtentsOperation;
 

@@ -9,6 +9,7 @@ package cadetEditor2D.controllers
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -65,18 +66,23 @@ package cadetEditor2D.controllers
 			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:IRenderable = skins[i];
+				var renderable:IRenderable = skins[i];
 				//TODO: Assumption that every skin has an associated transform
 				//at the correct index in storedTransforms. Perhaps a table would be better?
-				if (skin.transform2D) {
-					if (!matricesTable[skin.transform2D]) {
-						storedMatrices[skin] = skin.transform2D.matrix.clone();
-						matricesTable[skin.transform2D] = storedMatrices[skin];
+				if ( renderable is AbstractSkin2D ) {
+					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
+					if (skin.transform2D) {
+						if (!matricesTable[skin.transform2D]) {
+							storedMatrices[skin] = skin.transform2D.matrix.clone();
+							matricesTable[skin.transform2D] = storedMatrices[skin];
+						} else {
+							storedMatrices[skin] = matricesTable[skin.transform2D];
+						}
 					} else {
-						storedMatrices[skin] = matricesTable[skin.transform2D];
-					}
+						storedMatrices[skin] = skin.matrix.clone();
+					}					
 				} else {
-					storedMatrices[skin] = skin.matrix.clone();
+					storedMatrices[renderable] = renderable.matrix.clone();
 				}
 			}
 			
@@ -100,28 +106,42 @@ package cadetEditor2D.controllers
 			var newMatrices:Vector.<Matrix> = new Vector.<Matrix>();
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
-				var skin:IRenderable = skins[i];
+				var renderable:IRenderable = skins[i];
 				var newMatrix:Matrix;
-				if (skin.transform2D) {
-					newMatrix = skin.transform2D.matrix.clone();
+				if ( renderable is AbstractSkin2D ) {
+					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
+					
+					if (skin.transform2D) {
+						newMatrix = skin.transform2D.matrix.clone();
+					} else {
+						newMatrix = skin.matrix.clone();
+					}					
 				} else {
-					newMatrix = skin.matrix.clone();
+					newMatrix = renderable.matrix.clone();
 				}
+
 				newMatrices.push(newMatrix);
 			}
 			
 			for ( i = 0; i < skins.length; i++ )
 			{
-				skin = skins[i];
+				renderable = skins[i];
 				var storedMatrix:Matrix = storedMatrices[skin];
-				if (skin.transform2D) {
-					newMatrix = newMatrices[i];
-					skin.transform2D.matrix = storedMatrix.clone();
-					compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), newMatrix.clone() ) );
+				if ( renderable is AbstractSkin2D ) {
+					skin = AbstractSkin2D(renderable);
+					if (skin.transform2D) {
+						newMatrix = newMatrices[i];
+						skin.transform2D.matrix = storedMatrix.clone();
+						compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), newMatrix.clone() ) );
+					} else {
+						newMatrix = skin.matrix.clone();
+						skin.matrix = storedMatrix.clone();
+						compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newMatrix.clone(), newMatrix.clone() ) );
+					}
 				} else {
-					newMatrix = skin.matrix.clone();
-					skin.matrix = storedMatrix.clone();
-					compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newMatrix.clone(), newMatrix.clone() ) );
+					newMatrix = renderable.matrix.clone();
+					renderable.matrix = storedMatrix.clone();
+					compoundOperation.addOperation( new ChangePropertyOperation( renderable, "matrix", newMatrix.clone(), newMatrix.clone() ) );					
 				}
 			}
 			context.operationManager.addOperation( compoundOperation );
@@ -133,7 +153,7 @@ package cadetEditor2D.controllers
 		
 		protected function updateDragPositions():void
 		{
-			var skin:IRenderable;
+			var renderable:IRenderable;
 			
 			var snappedPos:Point = tool.getSnappedWorldMouse();
 			var dx:Number = snappedPos.x - mouseX;
@@ -143,18 +163,26 @@ package cadetEditor2D.controllers
 			var globalBounds:Rectangle = new Rectangle();
 			for ( i = 0; i < skins.length; i++ )
 			{
-				skin = skins[i];
-				var storedMatrix:Matrix = storedMatrices[skin]; 
-				if (storedMatrix) {
-					if (skin.transform2D) {
-						var newMatrix:Matrix = storedMatrix.clone();
-						newMatrix.translate(dx,dy);
-						skin.transform2D.matrix = newMatrix;						
-					} else {
-						newMatrix = storedMatrix.clone();
-						newMatrix.translate(dx,dy);
-						skin.matrix = newMatrix;						
+				renderable = skins[i];
+				var storedMatrix:Matrix = storedMatrices[renderable];
+				
+				if ( renderable is AbstractSkin2D ) {
+					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
+					if (storedMatrix) {
+						if (skin.transform2D) {
+							var newMatrix:Matrix = storedMatrix.clone();
+							newMatrix.translate(dx,dy);
+							skin.transform2D.matrix = newMatrix;						
+						} else {
+							newMatrix = storedMatrix.clone();
+							newMatrix.translate(dx,dy);
+							skin.matrix = newMatrix;						
+						}
 					}
+				} else {
+					newMatrix = storedMatrix.clone();
+					newMatrix.translate(dx,dy);
+					renderable.matrix = newMatrix;		
 				}
 			}
 		}

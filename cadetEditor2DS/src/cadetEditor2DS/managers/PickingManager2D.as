@@ -3,23 +3,22 @@
 
 package cadetEditor2DS.managers
 {
+	import flash.events.EventDispatcher;
+	import flash.geom.Point;
+	
 	import cadet.core.ICadetScene;
 	import cadet.core.IComponent;
 	import cadet.core.IRenderer;
 	import cadet.events.ComponentEvent;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.renderers.Renderer2D;
-	import cadet2D.components.skins.AbstractSkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.managers.IPickingManager2D;
 	import cadetEditor2D.managers.SnapInfo;
 	import cadetEditor2D.managers.SnapManager2D;
-	
-	import flash.events.EventDispatcher;
-	import flash.geom.Point;
 	
 	import starling.display.DisplayObject;
 	import starling.display.DisplayObjectContainer;
@@ -151,15 +150,15 @@ package cadetEditor2DS.managers
 			
 			var skinsUnderLoc:Array = [];
 			var L:int = 0;
-			for each ( var skin:AbstractSkin2D in allSkins)
+			for each ( var renderable:IRenderable in allSkins)
 			{
 				
 				var pt:Point = new Point(x, y);
 				//pt = renderer.viewport.localToGlobal( pt );
 				pt = renderer.viewportToWorld(pt);
-				if (!skin.displayObject.bounds.containsPoint(pt)) continue;
+				if (!renderable.displayObject.bounds.containsPoint(pt)) continue;
 				
-				skinsUnderLoc[L++] = skin;
+				skinsUnderLoc[L++] = renderable;
 			}
 			return skinsUnderLoc;
 		}

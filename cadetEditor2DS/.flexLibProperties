@@ -3,6 +3,7 @@
   <includeClasses>
     <classEntry path="cadetEditor2DS.contexts.CadetContext2D"/>
     <classEntry path="cadetEditor2DS.ui.views.CadetView2D"/>
+    <classEntry path="cadetEditor2DS.operations.PreviewAnimationsOperation"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

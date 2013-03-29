@@ -5,6 +5,7 @@ package cadetEditor.assets
 {
 	public class CadetEditorIcons
 	{
+		[Embed( source = 'Animation.png' )]			static public var Animation:Class;
 //		[Embed( source = 'Behaviour.png' )] 		static public var Behaviour:Class;
 		[Embed( source = 'BlankTemplateIcon.png' )] static public var BlankTemplateIcon:Class;
 		[Embed( source = 'Build.png' )] 			static public var Build:Class;

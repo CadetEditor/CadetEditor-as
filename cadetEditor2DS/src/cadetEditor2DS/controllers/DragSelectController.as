@@ -6,21 +6,20 @@
 package cadetEditor2DS.controllers
 {
 	
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
+	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.overlays.Overlay;
-	import cadet2D.components.renderers.Renderer2D;
-	import cadet2D.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import core.app.core.contexts.ISelectionContext;
 	import core.app.operations.ChangePropertyOperation;
@@ -105,7 +104,7 @@ package cadetEditor2DS.controllers
 			const L:int = skins.length;
 			for ( var i:int = 0; i < L; i++ )
 			{
-				var skin:AbstractSkin2D = AbstractSkin2D(skins[i]);
+				var skin:IRenderable = IRenderable(skins[i]);
 				
 				var hitTestRect:Boolean = false;
 				

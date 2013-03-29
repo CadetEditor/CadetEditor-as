@@ -4,18 +4,17 @@
 // The curved selection box corners and the little X that sits in the top left of your drag box
 package cadetEditor2DS.ui.overlays
 {
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.events.InvalidationEvent;
 	import cadet.events.RendererEvent;
 	
+	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.overlays.Overlay;
-	import cadet2D.components.renderers.Renderer2D;
-	import cadet2D.components.skins.AbstractSkin2D;
 	
 	import cadetEditor2D.util.SelectionUtil;
-	
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import core.data.ArrayCollection;
 	import core.events.ArrayCollectionEvent;
@@ -28,7 +27,7 @@ package cadetEditor2DS.ui.overlays
 	
 	public class SelectionOverlay extends Overlay
 	{
-		private var selectedSkins			:Array
+		private var selectedSkins			:Array;
 		private var _selection				:ArrayCollection;
 		
 		private static var pt				:Point = new Point();
@@ -93,9 +92,9 @@ package cadetEditor2DS.ui.overlays
 				}
 			}
 			
-			for each ( var skin:AbstractSkin2D in selectedSkins )
+			for each ( var renderable:IRenderable in selectedSkins )
 			{
-				var displayObject:DisplayObject = skin.displayObject;
+				var displayObject:DisplayObject = renderable.displayObject;
 	
 				if ( isVisible( displayObject ) == false ) continue;
 					
@@ -105,7 +104,7 @@ package cadetEditor2DS.ui.overlays
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);
 				
-				skin.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+				renderable.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
 				
 				graphics.moveTo( bounds.x, bounds.y+BRACKET_SIZE );
 				graphics.curveTo( bounds.x, bounds.y, bounds.x+BRACKET_SIZE, bounds.y );
