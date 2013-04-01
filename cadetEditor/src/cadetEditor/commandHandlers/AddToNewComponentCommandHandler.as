@@ -19,7 +19,6 @@ package cadetEditor.commandHandlers
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.RemoveItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.util.StringUtil;
 	import core.app.validators.ContextSelectionValidator;
 
 

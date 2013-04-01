@@ -12,7 +12,6 @@ package cadetEditor2D.commandHandlers
 	import cadetEditor.entities.CadetEditorCommands;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
-	import cadetEditor.controllers.ICadetEditorContextController;
 	
 	public class ZoomInCommandHandler implements ICommandHandler
 	{

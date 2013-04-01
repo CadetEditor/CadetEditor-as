@@ -5,7 +5,10 @@ package cadetEditor2DS.commandHandlers
 {
 	import cadet.core.IComponent;
 	
+	import cadet2D.components.skins.IAnimatable;
+	
 	import cadetEditor.contexts.ICadetEditorContext;
+	import cadetEditor.validators.ContextComponentSelectionValidator;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.entities.CadetEditorCommands2D;
@@ -14,7 +17,6 @@ package cadetEditor2DS.commandHandlers
 	
 	import core.app.core.commandHandlers.ICommandHandler;
 	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextValidator;
 	import core.editor.CoreEditor;
 	import core.editor.utils.CoreEditorUtil;
 
@@ -23,7 +25,7 @@ package cadetEditor2DS.commandHandlers
 		public static function getFactory():CommandHandlerFactory
 		{
 			var factory:CommandHandlerFactory = new CommandHandlerFactory( CadetEditorCommands2D.PREVIEW_ANIMATION, PreviewAnimationCommandHandler );
-			factory.validators.push( new ContextValidator( CoreEditor.contextManager, ICadetEditorContext2D ) );
+			factory.validators.push( new ContextComponentSelectionValidator( CoreEditor.contextManager, ICadetEditorContext2D, true, IAnimatable ) );
 			return factory;
 		}
 		
