@@ -3,15 +3,16 @@
 
 package cadetEditor.contexts
 {
+	import flash.display.DisplayObject;
+	import flash.events.ErrorEvent;
+	import flash.events.Event;
+	
 	import cadet.core.CadetScene;
 	import cadet.core.ICadetScene;
 	import cadet.operations.ReadCadetFileAndDeserializeOperation;
 	
 	import cadetEditor.operations.SerializeAndWriteCadetFileOperation;
-	
-	import flash.display.DisplayObject;
-	import flash.events.ErrorEvent;
-	import flash.events.Event;
+	import cadetEditor.util.UserDataUtil;
 	
 	import core.app.CoreApp;
 	import core.app.controllers.ExternalResourceController;
@@ -20,17 +21,21 @@ package cadetEditor.contexts
 	import core.app.events.OperationManagerEvent;
 	import core.app.managers.OperationManager;
 	import core.data.ArrayCollection;
-	import core.events.ArrayCollectionEvent;
 	import core.editor.CoreEditor;
 	import core.editor.contexts.AbstractEditorContext;
 	import core.editor.utils.FileSystemProviderUtil;
+	import core.events.ArrayCollectionEvent;
+	import core.ui.components.Alert;
 	
 	public class AbstractCadetEditorContext extends AbstractEditorContext implements IContext
 	{
+		private var _storedUserData		:Object;
 		protected var _scene			:ICadetScene;
 		protected var _selection		:ArrayCollection;
 		protected var _operationManager	:OperationManager;
 		protected var _enabled			:Boolean = false;
+		
+		private var _publishURI			:URI;
 		
 		public function AbstractCadetEditorContext()
 		{
@@ -115,6 +120,24 @@ package cadetEditor.contexts
 			CoreEditor.operationManager.addOperation(operation);
 		}
 		
+		public function publish():void
+		{
+			// Clear User Data
+			_storedUserData = UserDataUtil.copyUserData(_scene.userData);
+			_scene.userData = null;
+			
+			_publishURI = new URI();
+			_publishURI.copyURI(uri);
+			var publishURL:String = uri.path;
+			//var extIndex:int = publishURL.indexOf(".");
+			publishURL = publishURL.replace(".cdt2d", ".cdt");
+			_publishURI = new URI(publishURL);
+			
+			var operation:SerializeAndWriteCadetFileOperation = new SerializeAndWriteCadetFileOperation( _scene, _publishURI, CoreApp.fileSystemProvider, CoreApp.resourceManager );
+			operation.addEventListener(Event.COMPLETE, publishCompleteHandler);
+			CoreEditor.operationManager.addOperation(operation);
+		}
+		
 		private function initResourceController():void
 		{
 			//var assetsURI:URI = CoreEditor.getAssetsDirectoryURI();
@@ -172,9 +195,23 @@ package cadetEditor.contexts
 			
 		}
 		
+		private function publishCompleteHandler( event:Event ):void
+		{
+			_scene.userData = _storedUserData;
+			Alert.show(	"Publish Success", "The file '" + _publishURI.path + "' was successfully published.", 
+				["Ok"], "Ok",
+				null, true,
+				closeAlertHandler );			
+		}
+		
 		private function saveCompleteHandler( event:Event ):void
 		{
 			changed = false;
+		}
+		
+		private function closeAlertHandler( event:Event ):void
+		{
+			
 		}
 	}
 }

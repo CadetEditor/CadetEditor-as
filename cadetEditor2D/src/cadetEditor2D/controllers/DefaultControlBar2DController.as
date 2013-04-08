@@ -73,12 +73,20 @@ package cadetEditor2D.controllers
 		// From CadetEditorContext2D
 		public function initScene():void
 		{
-			// used to use private instead of public properties... (_showGrid not showGrid)
-			_view.showGrid = _context.scene.userData.showGrid == "0" ? false : true;
-			_view.zoom = _context.scene.userData.zoom == null ? 1 : Number(_context.scene.userData.zoom);
-			_view.panX = _context.scene.userData.panX == null ? _view.viewportWidth/2 : Number(_context.scene.userData.panX);
-			_view.panY = _context.scene.userData.panY == null ? _view.viewportHeight/2 : Number(_context.scene.userData.panY);
-			_view.gridSize = _context.scene.userData.gridSize == null ? 10 : Number(_context.scene.userData.gridSize);
+			if ( _context.scene.userData ) {
+				// used to use private instead of public properties... (_showGrid not showGrid)
+				_view.showGrid = _context.scene.userData.showGrid == "0" ? false : true;
+				_view.zoom = _context.scene.userData.zoom == null ? 1 : Number(_context.scene.userData.zoom);
+				_view.panX = _context.scene.userData.panX == null ? _view.viewportWidth/2 : Number(_context.scene.userData.panX);
+				_view.panY = _context.scene.userData.panY == null ? _view.viewportHeight/2 : Number(_context.scene.userData.panY);
+				_view.gridSize = _context.scene.userData.gridSize == null ? 10 : Number(_context.scene.userData.gridSize);
+			} else {
+				_view.showGrid = true;
+				_view.zoom = 1;
+				_view.panX = _view.viewportWidth/2;
+				_view.panY =  _view.viewportHeight/2;
+				_view.gridSize = 10;
+			}
 			
 			BindingUtil.bindTwoWay( _context.snapManager, "snapEnabled", CadetEditorControlBar(_controlBar).snapToggle, "selected" );	
 		}

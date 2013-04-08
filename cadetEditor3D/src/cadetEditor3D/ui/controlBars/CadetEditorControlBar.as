@@ -4,7 +4,7 @@
 package cadetEditor3D.ui.controlBars
 {
 	import core.ui.components.HBox;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class CadetEditorControlBar extends HBox
 	{
@@ -28,7 +28,7 @@ package cadetEditor3D.ui.controlBars
 					<VRule height="100%"/>
 				</HBox>
 			
-			FloxDeserializer.deserialize(xml, this);
+			CoreDeserializer.deserialize(xml, this);
 			
 //			gridToggle.icon = CadetEditorIcons.Grid;
 //			snapToggle.icon = CadetEditorIcons.Snap;

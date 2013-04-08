@@ -2,6 +2,7 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="cadetEditor.validators.ContextComponentSelectionValidator"/>
+    <classEntry path="cadetEditor.util.UserDataUtil"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

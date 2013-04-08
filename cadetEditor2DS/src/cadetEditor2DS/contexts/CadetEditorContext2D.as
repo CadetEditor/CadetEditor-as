@@ -227,9 +227,10 @@ package cadetEditor2DS.contexts
 			_scene.addEventListener(ComponentEvent.REMOVED_FROM_SCENE, componentRemovedHandler);
 			
 			// Parse user data
-			_snapManager.snapEnabled = _scene.userData.snapEnabled == "0" ? false : true; 
-			_snapManager.gridSizeX = _snapManager.gridSizeY = _scene.userData.gridSize == null ? 10 : Number(_scene.userData.gridSize);
-			
+			if ( _scene.userData ) {
+				_snapManager.snapEnabled = _scene.userData.snapEnabled == "0" ? false : true; 
+				_snapManager.gridSizeX = _snapManager.gridSizeY = _scene.userData.gridSize == null ? 10 : Number(_scene.userData.gridSize);
+			}
 			
 			// Init controllers
 			for ( var i:uint = 0; i < _controllers.length; i ++ )
@@ -261,6 +262,7 @@ package cadetEditor2DS.contexts
 		override public function save():void
 		{
 			// Save user data
+			_scene.userData = {};
 			_scene.userData.snapEnabled = _snapManager.snapEnabled;
 			
 			_scene.userData.showGrid =_view.showGrid;

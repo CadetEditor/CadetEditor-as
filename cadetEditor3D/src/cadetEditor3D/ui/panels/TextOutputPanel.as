@@ -6,7 +6,7 @@ package cadetEditor3D.ui.panels
 	import core.ui.components.Button;
 	import core.ui.components.Panel;
 	import core.ui.components.TextArea;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 
 	public class TextOutputPanel extends Panel
 	{
@@ -39,7 +39,7 @@ package cadetEditor3D.ui.panels
 					</controlBar>
 				</Panel>
 			
-			FloxDeserializer.deserialize( xml, this );
+			CoreDeserializer.deserialize( xml, this );
 			defaultButton = copyBtn;
 		}					
 	}

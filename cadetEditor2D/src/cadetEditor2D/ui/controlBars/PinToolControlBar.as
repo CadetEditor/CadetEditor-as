@@ -5,7 +5,7 @@ package cadetEditor2D.ui.controlBars
 {	
 	import core.ui.components.CheckBox;
 	import core.ui.components.HBox;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class PinToolControlBar extends HBox
 	{
@@ -27,7 +27,7 @@ package cadetEditor2D.ui.controlBars
 								
 			</HBox>
 				
-			FloxDeserializer.deserialize(xml,this);
+			CoreDeserializer.deserialize(xml,this);
 		}
 	}
 }

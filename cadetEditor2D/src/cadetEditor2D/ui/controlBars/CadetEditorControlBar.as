@@ -10,7 +10,7 @@ package cadetEditor2D.ui.controlBars
 	import core.ui.components.HSlider;
 	import core.ui.components.Label;
 	import core.ui.components.NumericStepper;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class CadetEditorControlBar extends HBox
 	{
@@ -42,7 +42,7 @@ package cadetEditor2D.ui.controlBars
 				<Button id="snapToggle" toggle="true" width="28" height="28" />
 			</HBox>
 				
-			FloxDeserializer.deserialize(xml, this);
+			CoreDeserializer.deserialize(xml, this);
 			
 			gridToggle.icon = CadetEditorIcons.Grid;
 			snapToggle.icon = CadetEditorIcons.Snap;

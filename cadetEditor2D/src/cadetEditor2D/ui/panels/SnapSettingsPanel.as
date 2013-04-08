@@ -7,7 +7,7 @@ package cadetEditor2D.ui.panels
 	import core.ui.components.CheckBox;
 	import core.ui.components.NumericStepper;
 	import core.ui.components.Panel;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class SnapSettingsPanel extends Panel
 	{
@@ -49,7 +49,7 @@ package cadetEditor2D.ui.panels
 						
 				</Panel>
 			
-			FloxDeserializer.deserialize( xml, this );
+			CoreDeserializer.deserialize( xml, this );
 			defaultButton = okBtn;
 		}
 	}

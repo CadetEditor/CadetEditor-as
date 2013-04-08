@@ -15,7 +15,6 @@ package
 	import cadetEditor.commandHandlers.EditComponentPropertiesCommandHandler;
 	import cadetEditor.commandHandlers.ImportTemplateCommandHandler;
 	import cadetEditor.commandHandlers.PasteComponentsCommandHandler;
-	import cadetEditor.contexts.CadetContext;
 	import cadetEditor.contexts.OutlinePanelContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	import cadetEditor.entities.ToggleCadetEditorPropertyCommandHandlerFactory;

@@ -9,7 +9,7 @@ package cadetEditor2D.ui.controlBars
 	import core.ui.components.DropDownMenu;
 	import core.ui.components.HBox;
 	import core.data.ArrayCollection;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class ConnectionToolControlBar extends HBox
 	{
@@ -34,7 +34,7 @@ package cadetEditor2D.ui.controlBars
 				
 			</HBox>
 				
-			FloxDeserializer.deserialize(xml,this);
+			CoreDeserializer.deserialize(xml,this);
 			
 			jointTypeList.dataProvider = new ArrayCollection( ["Distance", "Spring", "Prismatic"] );
 			createJointCheckBox.addEventListener(Event.CHANGE, changeCheckBoxHandler);

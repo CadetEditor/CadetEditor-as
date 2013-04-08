@@ -5,7 +5,7 @@ package cadetEditor2D.ui.views
 {
 	import core.ui.components.Container;
 	import core.ui.components.Label;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class InfoPanelView extends Container
 	{
@@ -35,7 +35,7 @@ package cadetEditor2D.ui.views
 					<Label x="182" y="36" text="76" id="worldYLabel"/>
 				</Container>
 				
-			FloxDeserializer.deserialize(xml,this);
+			CoreDeserializer.deserialize(xml,this);
 		}
 	}
 }

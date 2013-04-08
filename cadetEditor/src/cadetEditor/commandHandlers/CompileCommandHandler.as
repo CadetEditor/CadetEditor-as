@@ -13,7 +13,6 @@ package cadetEditor.commandHandlers
 	import core.app.CoreApp;
 	import core.app.core.commandHandlers.ICommandHandler;
 	import core.app.entities.URI;
-	import core.app.operations.SerializeAndWriteFileOperation;
 	import core.app.resources.CommandHandlerFactory;
 	import core.app.validators.ContextValidator;
 	import core.editor.CoreEditor;

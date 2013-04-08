@@ -9,7 +9,7 @@ package cadetEditor3D.ui.panels
 	import core.ui.components.RadioButton;
 	import core.ui.components.RadioButtonGroup;
 	import core.ui.components.TextArea;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 
 	public class ExportToAS3Panel extends Panel
 	{
@@ -54,7 +54,7 @@ package cadetEditor3D.ui.panels
 				
 				</Panel>
 				
-			FloxDeserializer.deserialize( xml, this );
+			CoreDeserializer.deserialize( xml, this );
 			defaultButton = okBtn;
 		}				
 	}

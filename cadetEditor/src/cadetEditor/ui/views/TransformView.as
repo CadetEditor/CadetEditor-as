@@ -6,7 +6,7 @@ package cadetEditor.ui.views
 	import core.ui.components.Button;
 	import core.ui.components.Container;
 	import core.ui.components.NumberInput;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class TransformView extends Container
 	{
@@ -49,7 +49,7 @@ package cadetEditor.ui.views
 				
 			</Container>
 				
-			FloxDeserializer.deserialize( xml, this );
+			CoreDeserializer.deserialize( xml, this );
 		}
 	}
 }

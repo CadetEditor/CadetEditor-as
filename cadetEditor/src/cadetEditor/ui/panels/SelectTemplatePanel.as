@@ -14,7 +14,7 @@ package cadetEditor.ui.panels
 	import core.ui.data.DefaultDataDescriptor;
 	import core.ui.layouts.HorizontalLayout;
 	import core.ui.layouts.LayoutAlign;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class SelectTemplatePanel extends Panel
 	{
@@ -50,7 +50,7 @@ package cadetEditor.ui.panels
 				
 				</Panel>
 			
-			FloxDeserializer.deserialize( xml, this, ["bones.ui.components"] );
+			CoreDeserializer.deserialize( xml, this, ["bones.ui.components"] );
 			
 			list.addEventListener(Event.CHANGE, changeListHandler);
 			DefaultDataDescriptor(list.dataDescriptor).labelField = "exportTemplateID";

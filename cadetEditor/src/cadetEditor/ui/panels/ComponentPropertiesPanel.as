@@ -14,7 +14,7 @@ package cadetEditor.ui.panels
 	import core.ui.components.RadioButtonGroup;
 	import core.ui.components.TextArea;
 	import core.ui.components.TextInput;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	import core.editor.CoreEditor;
 	import core.app.util.StringUtil;
@@ -67,7 +67,7 @@ package cadetEditor.ui.panels
 				
 				</Panel>
 			
-			FloxDeserializer.deserialize( xml, this );
+			CoreDeserializer.deserialize( xml, this );
 			defaultButton = okBtn;
 		}
 	}

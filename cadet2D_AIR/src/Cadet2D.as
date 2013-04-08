@@ -16,7 +16,7 @@ package
 	
 	import core.app.CoreApp;
 	import core.app.util.AsynchronousUtil;
-	import core.editor.operations.InitializeFloxOperationAIR;
+	import core.editor.operations.InitializeCoreOperationAIR;
 	import core.editor.ui.components.SplashScreen;
 	
 	[SWF(backgroundColor="#15181A", frameRate="60")]
@@ -46,7 +46,7 @@ package
 			splashWindow.activate();
 			
 			// Don't init straight away, so the invokeHandler has chance to be called.
-			AsynchronousUtil.callLater(initFlox);
+			AsynchronousUtil.callLater(initCore);
 		}
 		
 		/**
@@ -58,11 +58,11 @@ package
 			configURL = event.arguments[0];
 		}
 		
-		private function initFlox():void
+		private function initCore():void
 		{
 			CoreApp.init();
 			
-			var initOperation:InitializeFloxOperationAIR = new InitializeFloxOperationAIR( stage, configURL );
+			var initOperation:InitializeCoreOperationAIR = new InitializeCoreOperationAIR( stage, configURL );
 			initOperation.addEventListener(Event.COMPLETE, initCompleteHandler);
 			initOperation.execute();
 			

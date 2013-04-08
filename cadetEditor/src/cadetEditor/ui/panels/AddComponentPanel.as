@@ -9,7 +9,7 @@ package cadetEditor.ui.panels
 	import core.ui.components.List;
 	import core.ui.components.Panel;
 	import core.ui.components.RadioButtonGroup;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class AddComponentPanel extends Panel
 	{
@@ -53,7 +53,7 @@ package cadetEditor.ui.panels
 						
 				</Panel>
 			
-			FloxDeserializer.deserialize( xml, this, ["cadetEditor.ui.components"] );
+			CoreDeserializer.deserialize( xml, this, ["cadetEditor.ui.components"] );
 			defaultButton = okBtn;
 		}
 	}

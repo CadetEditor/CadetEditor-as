@@ -6,7 +6,7 @@ package cadetEditor2DBox2D.ui.controlBars
 	import core.ui.components.DropDownMenu;
 	import core.ui.components.HBox;
 	import core.data.ArrayCollection;
-	import core.ui.util.FloxDeserializer;
+	import core.ui.util.CoreDeserializer;
 	
 	public class PhysicsToolControlBar extends HBox
 	{
@@ -59,7 +59,7 @@ package cadetEditor2DBox2D.ui.controlBars
 					-->
 				</HBox>
 			
-			FloxDeserializer.deserialize(xml,this);
+			CoreDeserializer.deserialize(xml,this);
 			
 			rigidBodyCheckbox.addEventListener(Event.CHANGE, changeCheckBoxHandler);
 			
