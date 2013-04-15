@@ -3,13 +3,13 @@
 
 package cadetEditor.ui.views
 {
-	import cadet.core.IRenderer;
-	import cadet.events.InvalidationEvent;
-	
-	import cadetEditor.assets.CadetEditorIcons;
-	
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
+	
+	import cadet.core.IRenderer;
+	import cadet.events.ValidationEvent;
+	
+	import cadetEditor.assets.CadetEditorIcons;
 	
 	import core.editor.core.IViewContainer;
 	import core.ui.components.Button;
@@ -76,13 +76,13 @@ package cadetEditor.ui.views
 			{
 				if ( _renderer )
 				{
-					_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+					_renderer.removeEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 					_renderer.disable(container);
 				}
 				_renderer = value;
 				if ( _renderer )
 				{
-					_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+					_renderer.addEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 					_renderer.enable(container);
 				}
 			}
@@ -91,7 +91,7 @@ package cadetEditor.ui.views
 		}
 		public function get renderer():IRenderer { return _renderer; }
 		
-		private function invalidateRendererHandler( event:InvalidationEvent ):void
+		private function invalidateRendererHandler( event:ValidationEvent ):void
 		{
 			invalidate();
 		}

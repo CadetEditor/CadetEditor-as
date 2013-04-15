@@ -3,14 +3,19 @@
 
 package cadetEditor2DS.tools
 {
+	import flash.events.MouseEvent;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.core.IComponent;
-	import cadet.events.InvalidationEvent;
+	import cadet.events.ValidationEvent;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.geom.PolygonGeometry;
-	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
+	import cadet2D.components.skins.IRenderable;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -21,11 +26,6 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.ui.overlays.SelectionOverlay;
 	import cadetEditor2DS.ui.overlays.TransformOverlay;
-	
-	import flash.events.MouseEvent;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import core.app.events.OperationManagerEvent;
 	import core.app.operations.ChangePropertyOperation;
@@ -152,7 +152,7 @@ package cadetEditor2DS.tools
 			
 			for each ( var skin:IRenderable in skins )
 			{
-				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+				skin.removeEventListener(ValidationEvent.INVALIDATE, invalidateSkinHandler);
 			}
 			skins = [];
 			currentTransform = null;
@@ -204,7 +204,7 @@ package cadetEditor2DS.tools
 			var skin:IRenderable;
 			for each ( skin in skins )
 			{
-				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+				skin.removeEventListener(ValidationEvent.INVALIDATE, invalidateSkinHandler);
 			}
 			
 			skins = SelectionUtil.getSkinsFromComponents( context.selection.source );
@@ -227,7 +227,7 @@ package cadetEditor2DS.tools
 				var selectedVertices:Array = [];
 				for each ( skin in skins )
 				{
-					skin.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+					skin.addEventListener(ValidationEvent.INVALIDATE, invalidateSkinHandler);
 					
 					var polygonGeometries:Vector.<IComponent> = ComponentUtil.getChildrenOfType(skin.parentComponent, PolygonGeometry, true);
 					for each ( var polygonGeometry:PolygonGeometry in polygonGeometries )
@@ -243,7 +243,7 @@ package cadetEditor2DS.tools
 		}
 		
 		private var suppressInvalidateSkinHandler:Boolean = false;
-		private function invalidateSkinHandler( event:InvalidationEvent ):void
+		private function invalidateSkinHandler( event:ValidationEvent ):void
 		{
 			if ( suppressInvalidateSkinHandler ) return;
 			updateFromSelection();

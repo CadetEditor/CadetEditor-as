@@ -3,22 +3,18 @@
 
 package cadetEditor2DS.ui.overlays
 {
-	import cadet.events.InvalidationEvent;
+	import flash.geom.Point;
+	
+	import cadet.events.ValidationEvent;
 	
 	import cadet2D.components.geom.BezierCurve;
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.QuadraticBezier;
 	import cadet2D.overlays.Overlay;
 	
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
-	import flash.geom.Point;
-	
 	import starling.core.RenderSupport;
-	import starling.display.Shape;
 
 	public class BezierCurveToolOverlay extends Overlay
 	{
@@ -44,12 +40,12 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( _curve )
 			{
-				_curve.removeEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
+				_curve.removeEventListener(ValidationEvent.INVALIDATE, invalidatePathHandler);
 			}
 			_curve = value;
 			if ( _curve )
 			{
-				_curve.addEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
+				_curve.addEventListener(ValidationEvent.INVALIDATE, invalidatePathHandler);
 			}
 			invalidate("*");
 		}
@@ -59,23 +55,23 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( _transform2D )
 			{
-				_transform2D.removeEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+				_transform2D.removeEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
 			_transform2D = value;
 			if ( _transform2D )
 			{
-				_transform2D.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+				_transform2D.addEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
 			invalidate("*");
 		}
 		public function get transform2D():Transform2D { return _transform2D; }
 		
-		private function invalidatePathHandler( event:InvalidationEvent ):void
+		private function invalidatePathHandler( event:ValidationEvent ):void
 		{
 			invalidate("*");
 		}
 		
-		private function invalidateTransformHandler( event:InvalidationEvent ):void
+		private function invalidateTransformHandler( event:ValidationEvent ):void
 		{
 			invalidate("*");
 		}

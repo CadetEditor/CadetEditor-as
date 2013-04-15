@@ -7,8 +7,8 @@ package cadetEditor2DS.ui.overlays
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import cadet.events.InvalidationEvent;
 	import cadet.events.RendererEvent;
+	import cadet.events.ValidationEvent;
 	
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.IRenderable;
@@ -70,7 +70,7 @@ package cadetEditor2DS.ui.overlays
 		{
 			for each ( var skin:IRenderable in selectedSkins )
 			{
-				skin.removeEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+				skin.removeEventListener(ValidationEvent.INVALIDATE, invalidateSkinHandler);
 			}
 			selectedSkins = [];
 		}
@@ -106,7 +106,7 @@ package cadetEditor2DS.ui.overlays
 				bounds.inflate( 8,8 );
 				graphics.lineStyle(2, 0xFFFFFF, 1);
 				
-				renderable.addEventListener(InvalidationEvent.INVALIDATE, invalidateSkinHandler);
+				renderable.addEventListener(ValidationEvent.INVALIDATE, invalidateSkinHandler);
 				
 				graphics.moveTo( bounds.x, bounds.y+BRACKET_SIZE );
 				graphics.curveTo( bounds.x, bounds.y, bounds.x+BRACKET_SIZE, bounds.y );
@@ -160,7 +160,7 @@ package cadetEditor2DS.ui.overlays
 			return false;
 		}
 		
-		private function invalidateSkinHandler( event:InvalidationEvent ):void
+		private function invalidateSkinHandler( event:ValidationEvent ):void
 		{
 			invalidate("*");
 		}

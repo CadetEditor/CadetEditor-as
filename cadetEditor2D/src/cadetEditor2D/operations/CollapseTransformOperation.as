@@ -110,7 +110,8 @@ package cadetEditor2D.operations
 			m.tx = 0;
 			m.ty = 0;
 			
-			var newSegments:Vector.<QuadraticBezier> = QuadraticBezierUtil.clone(bezierCurve.segments);
+			//var newSegments:Vector.<QuadraticBezier> = QuadraticBezierUtil.clone(bezierCurve.segments);
+			var newSegments:Array = QuadraticBezierUtil.clone(bezierCurve.segments);
 			QuadraticBezierUtil.transform( newSegments, m );
 			
 			addOperation( new ChangePropertyOperation( bezierCurve, "segments", newSegments ) );

@@ -4,7 +4,7 @@ package cadetEditor2DS.ui.views
 	import flash.events.Event;
 	
 	import cadet.core.IRenderer;
-	import cadet.events.InvalidationEvent;
+	import cadet.events.ValidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	
@@ -75,13 +75,13 @@ package cadetEditor2DS.ui.views
 			{
 				if ( _renderer )
 				{
-					_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+					_renderer.removeEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 					_renderer.disable();
 				}
 				_renderer = value;
 				if ( _renderer )
 				{
-					_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+					_renderer.addEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 					_renderer.enable(container);
 				}
 			}
@@ -90,7 +90,7 @@ package cadetEditor2DS.ui.views
 		}
 		public function get renderer():IRenderer2D { return _renderer; }
 		
-		private function invalidateRendererHandler( event:InvalidationEvent ):void
+		private function invalidateRendererHandler( event:ValidationEvent ):void
 		{
 			invalidate();
 		}

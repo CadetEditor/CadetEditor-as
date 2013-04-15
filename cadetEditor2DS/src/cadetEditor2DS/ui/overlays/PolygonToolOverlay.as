@@ -5,7 +5,9 @@
 // TODO: circle drawing currently looks like triangles.
 package cadetEditor2DS.ui.overlays
 {
-	import cadet.events.InvalidationEvent;
+	import flash.geom.Point;
+	
+	import cadet.events.ValidationEvent;
 	
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
@@ -13,13 +15,8 @@ package cadetEditor2DS.ui.overlays
 	import cadet2D.overlays.Overlay;
 	
 	import cadetEditor2D.tools.ICadetEditorTool2D;
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
-	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	
-	import flash.geom.Point;
 	
 	import starling.core.RenderSupport;
-	import starling.display.Shape;
 
 	public class PolygonToolOverlay extends Overlay
 	{
@@ -38,12 +35,12 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( _polygon )
 			{
-				_polygon.removeEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
+				_polygon.removeEventListener(ValidationEvent.INVALIDATE, invalidatePathHandler);
 			}
 			_polygon = value;
 			if ( _polygon )
 			{
-				_polygon.addEventListener(InvalidationEvent.INVALIDATE, invalidatePathHandler);
+				_polygon.addEventListener(ValidationEvent.INVALIDATE, invalidatePathHandler);
 			}
 			invalidate("*");
 		}
@@ -53,23 +50,23 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( _transform )
 			{
-				_transform.removeEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+				_transform.removeEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
 			_transform = value;
 			if ( _transform )
 			{
-				_transform.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+				_transform.addEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
 			invalidate("*");
 		}
 		public function get transform2D():Transform2D { return _transform; }
 		
-		private function invalidateTransformHandler( event:InvalidationEvent ):void
+		private function invalidateTransformHandler( event:ValidationEvent ):void
 		{
 			invalidate("*");
 		}
 		
-		private function invalidatePathHandler( event:InvalidationEvent ):void
+		private function invalidatePathHandler( event:ValidationEvent ):void
 		{
 			invalidate("*");
 		}

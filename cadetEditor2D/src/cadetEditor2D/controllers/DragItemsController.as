@@ -11,6 +11,7 @@ package cadetEditor2D.controllers
 	
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
+	import cadet2D.components.skins.TransformableSkin;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	
@@ -78,8 +79,9 @@ package cadetEditor2D.controllers
 						} else {
 							storedMatrices[skin] = matricesTable[skin.transform2D];
 						}
-					} else {
-						storedMatrices[skin] = skin.matrix.clone();
+					} else if (skin is TransformableSkin ) {
+						var tSkin:TransformableSkin = TransformableSkin(skin);
+						storedMatrices[skin] = tSkin.matrix.clone();
 					}					
 				} else {
 					storedMatrices[renderable] = renderable.matrix.clone();
@@ -113,8 +115,9 @@ package cadetEditor2D.controllers
 					
 					if (skin.transform2D) {
 						newMatrix = skin.transform2D.matrix.clone();
-					} else {
-						newMatrix = skin.matrix.clone();
+					} else if (skin is TransformableSkin ) {
+						var tSkin:TransformableSkin = TransformableSkin(skin);
+						newMatrix = tSkin.matrix.clone();
 					}					
 				} else {
 					newMatrix = renderable.matrix.clone();
@@ -132,16 +135,17 @@ package cadetEditor2D.controllers
 					if (skin.transform2D) {
 						newMatrix = newMatrices[i];
 						skin.transform2D.matrix = storedMatrix.clone();
-						compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), newMatrix.clone() ) );
-					} else {
-						newMatrix = skin.matrix.clone();
-						skin.matrix = storedMatrix.clone();
-						compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newMatrix.clone(), newMatrix.clone() ) );
+						compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), storedMatrix.clone() ) );
+					} else if (skin is TransformableSkin) {
+						tSkin = TransformableSkin(skin);
+						newMatrix = tSkin.matrix.clone();
+						tSkin.matrix = storedMatrix.clone();
+						compoundOperation.addOperation( new ChangePropertyOperation( skin, "matrix", newMatrix.clone(), storedMatrix.clone() ) );
 					}
 				} else {
 					newMatrix = renderable.matrix.clone();
 					renderable.matrix = storedMatrix.clone();
-					compoundOperation.addOperation( new ChangePropertyOperation( renderable, "matrix", newMatrix.clone(), newMatrix.clone() ) );					
+					compoundOperation.addOperation( new ChangePropertyOperation( renderable, "matrix", newMatrix.clone(), storedMatrix.clone() ) );					
 				}
 			}
 			context.operationManager.addOperation( compoundOperation );
@@ -173,10 +177,11 @@ package cadetEditor2D.controllers
 							var newMatrix:Matrix = storedMatrix.clone();
 							newMatrix.translate(dx,dy);
 							skin.transform2D.matrix = newMatrix;						
-						} else {
+						} else if (skin is TransformableSkin) {
+							var tSkin:TransformableSkin = TransformableSkin(skin);
 							newMatrix = storedMatrix.clone();
 							newMatrix.translate(dx,dy);
-							skin.matrix = newMatrix;						
+							tSkin.matrix = newMatrix;						
 						}
 					}
 				} else {

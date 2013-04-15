@@ -116,7 +116,8 @@ package cadetEditor2D.operations
 			var centerX:Number = bounds.x + bounds.width*0.5;
 			var centerY:Number = bounds.y + bounds.height*0.5;
 			
-			var newSegments:Vector.<QuadraticBezier> = QuadraticBezierUtil.clone(bezierCurve.segments);
+			//var newSegments:Vector.<QuadraticBezier> = QuadraticBezierUtil.clone(bezierCurve.segments);
+			var newSegments:Array = QuadraticBezierUtil.clone(bezierCurve.segments);
 			var m:Matrix = new Matrix( 1, 0, 0, 1, -centerX, -centerY );
 			QuadraticBezierUtil.transform( newSegments, m );
 			transformConnections( m );

@@ -3,11 +3,15 @@
 
 package cadetEditor2D.managers
 {
+	import flash.events.EventDispatcher;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.components.geom.IGeometry;
 	import cadet.core.ICadetScene;
 	import cadet.core.IComponent;
 	import cadet.events.ComponentEvent;
-	import cadet.events.InvalidationEvent;
+	import cadet.events.ValidationEvent;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.geom.CircleGeometry;
@@ -15,11 +19,6 @@ package cadetEditor2D.managers
 	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.geom.Vertex;
 	import cadet2D.util.VertexUtil;
-	
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import core.events.PropertyChangeEvent;
 
@@ -119,8 +118,8 @@ package cadetEditor2D.managers
 					geometries.push(geometry);
 					transforms.push(transform);
 					
-					geometry.addEventListener(InvalidationEvent.INVALIDATE, invalidateGeometryHandler);
-					transform.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+					geometry.addEventListener(ValidationEvent.INVALIDATE, invalidateGeometryHandler);
+					transform.addEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 					
 					recalculateBoundingBox(geometries.length-1);
 				}
@@ -343,8 +342,8 @@ package cadetEditor2D.managers
 			}
 			
 			// Register listeners for change events on both the geometry and Transform.
-			transform.addEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
-			geometry.addEventListener(InvalidationEvent.INVALIDATE, invalidateGeometryHandler);
+			transform.addEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
+			geometry.addEventListener(ValidationEvent.INVALIDATE, invalidateGeometryHandler);
 			recalculateBoundingBox(geometries.length-1);
 		}
 		
@@ -365,26 +364,26 @@ package cadetEditor2D.managers
 			}
 		}
 		
-		private function invalidateTransformHandler( event:InvalidationEvent ):void
+		private function invalidateTransformHandler( event:ValidationEvent ):void
 		{
 			var transform:Transform2D = Transform2D(event.target);
 			var index:int = transforms.indexOf(transform);
 			if ( index == -1 )
 			{
 				throw( new Error( "Snap manager is still listening to events on a Transform2D it no longer has in its internal list" ) );
-				transform.removeEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+				transform.removeEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			}
 			recalculateBoundingBox(index);
 		}
 		
-		private function invalidateGeometryHandler( event:InvalidationEvent ):void
+		private function invalidateGeometryHandler( event:ValidationEvent ):void
 		{
 			var geometry:IGeometry = IGeometry(event.target);
 			var index:int = geometries.indexOf(geometry);
 			if ( index == -1 )
 			{
 				throw( new Error( "Snap manager is still listening to events on a IGeometry it no longer has in its internal list" ) );
-				geometry.removeEventListener(InvalidationEvent.INVALIDATE, invalidateGeometryHandler);
+				geometry.removeEventListener(ValidationEvent.INVALIDATE, invalidateGeometryHandler);
 			}
 			recalculateBoundingBox(index);
 		}
@@ -392,10 +391,10 @@ package cadetEditor2D.managers
 		private function removeChild(index:int):void
 		{
 			var transform:Transform2D = transforms[index];
-			transform.removeEventListener(InvalidationEvent.INVALIDATE, invalidateTransformHandler);
+			transform.removeEventListener(ValidationEvent.INVALIDATE, invalidateTransformHandler);
 			
 			var geometry:IGeometry = geometries[index];
-			geometry.removeEventListener(InvalidationEvent.INVALIDATE, invalidateGeometryHandler);
+			geometry.removeEventListener(ValidationEvent.INVALIDATE, invalidateGeometryHandler);
 			
 			transforms.splice(index,1);
 			geometries.splice(index,1);

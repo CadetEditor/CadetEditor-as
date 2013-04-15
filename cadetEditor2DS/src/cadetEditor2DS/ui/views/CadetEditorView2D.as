@@ -10,7 +10,7 @@ package cadetEditor2DS.ui.views
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import cadet.events.InvalidationEvent;
+	import cadet.events.ValidationEvent;
 	
 	import cadet2D.components.renderers.IRenderer2D;
 	import cadet2D.components.renderers.Renderer2D;
@@ -190,13 +190,13 @@ package cadetEditor2DS.ui.views
 		{
 			if ( _renderer )
 			{
-				_renderer.removeEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+				_renderer.removeEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 				_renderer.disable();
 			}
 			_renderer = Renderer2D(value);
 			if ( _renderer )
 			{
-				_renderer.addEventListener(InvalidationEvent.INVALIDATE, invalidateRendererHandler);
+				_renderer.addEventListener(ValidationEvent.INVALIDATE, invalidateRendererHandler);
 				_renderer.enable(container);//, 2);
 			}
 			
