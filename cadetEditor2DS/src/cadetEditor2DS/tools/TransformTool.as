@@ -16,6 +16,7 @@ package cadetEditor2DS.tools
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
+	import cadet2D.util.DisplayUtil;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -273,8 +274,9 @@ package cadetEditor2DS.tools
 				displayObject = AbstractSkin2D(skin).displayObject;
 				
 				if ( !skin.transform2D ) return;
+				if (!DisplayUtil.haveCommonParent(skin.displayObject, view.renderer.worldContainer)) return;
 				
-				bounds = displayObject.getBounds(Renderer2D(view.renderer).worldContainer);
+				bounds = displayObject.getBounds(view.renderer.worldContainer);
 				//bounds = displayObject.getRect( displayObject );
 				
 				startTransform = skin.transform2D.matrix.clone();

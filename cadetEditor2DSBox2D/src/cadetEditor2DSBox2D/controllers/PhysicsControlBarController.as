@@ -49,7 +49,7 @@ package cadetEditor2DSBox2D.controllers
 			_view		= _context.view2D;
 			
 			_controlBar = new PhysicsToolControlBar();
-			_controlBar.paddingLeft = -70;
+			_controlBar.paddingLeft = -60;
 			_controlBar.paddingRight = 0;
 			
 			IViewContainer(_view.parent.parent).actionBar.addChild(_controlBar);

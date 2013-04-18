@@ -16,6 +16,7 @@ package cadetEditor2DS.controllers
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.overlays.Overlay;
+	import cadet2D.util.DisplayUtil;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.controllers.IDragSelectionController;
@@ -28,6 +29,7 @@ package cadetEditor2DS.controllers
 	import core.data.ArrayCollection;
 	
 	import starling.display.DisplayObject;
+	import starling.display.DisplayObjectContainer;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -108,8 +110,10 @@ package cadetEditor2DS.controllers
 				
 				var hitTestRect:Boolean = false;
 				
+				var viewport:DisplayObjectContainer = Renderer2D(view.renderer).viewport;
+				if (!DisplayUtil.haveCommonParent(skin.displayObject, viewport)) continue;
 				//TODO: Find Starling equivalent for hitTestRect()
-				var bounds:Rectangle = skin.displayObject.getBounds(Renderer2D(view.renderer).viewport);
+				var bounds:Rectangle = skin.displayObject.getBounds(viewport);
 				//var bounds:Rectangle = skin.displayObjectContainer.bounds;
 				hitTestRect = dragRect.containsRect(bounds);			
 				

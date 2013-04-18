@@ -13,6 +13,7 @@ package cadetEditor2DS.ui.overlays
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.overlays.Overlay;
+	import cadet2D.util.DisplayUtil;
 	
 	import cadetEditor2D.util.SelectionUtil;
 	
@@ -98,7 +99,7 @@ package cadetEditor2DS.ui.overlays
 	
 				if ( isVisible( displayObject ) == false ) continue;
 				// Added to avoid intermittent Starling RTE when closing run time editor window 	
-				if (!commonParentCheck(displayObject, this)) continue;
+				if (!DisplayUtil.haveCommonParent(displayObject, this)) continue;
 				
 				//var bounds:Rectangle = displayObject.bounds;				
 				var bounds:Rectangle = displayObject.getBounds(this);
@@ -132,32 +133,6 @@ package cadetEditor2DS.ui.overlays
 				graphics.moveTo( pt.x+CROSS_SIZE, pt.y-CROSS_SIZE );
 				graphics.lineTo( pt.x-CROSS_SIZE, pt.y+CROSS_SIZE );
 			}
-		}
-		
-		private function commonParentCheck(currentObject:DisplayObject, targetSpace:DisplayObject):Boolean
-		{
-			// 1. find a common parent of this and the target space
-			var commonParent:DisplayObject = null;
-			var sAncestors:Vector.<DisplayObject> = new Vector.<DisplayObject>();
-
-			while (currentObject)
-			{
-				sAncestors.push(currentObject);
-				currentObject = currentObject.parent;
-			}
-			
-			currentObject = targetSpace;
-			while (currentObject && sAncestors.indexOf(currentObject) == -1)
-				currentObject = currentObject.parent;
-			
-			sAncestors.length = 0;
-			
-			if (currentObject) {
-				commonParent = currentObject;
-				return true;
-			}
-			
-			return false;
 		}
 		
 		private function invalidateSkinHandler( event:ValidationEvent ):void
