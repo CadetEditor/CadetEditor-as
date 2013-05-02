@@ -28,7 +28,7 @@ package cadetEditor2DS.tools
 	import cadetEditor2DS.ui.overlays.SelectionOverlay;
 	import cadetEditor2DS.ui.overlays.TransformOverlay;
 	
-	import core.app.events.OperationManagerEvent;
+	import core.appEx.events.OperationManagerEvent;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
 	import core.app.util.IntrospectionUtil;

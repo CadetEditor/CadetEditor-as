@@ -22,10 +22,10 @@ package cadetEditor2DS.controllers
 	import cadetEditor2D.controllers.IDragSelectionController;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import core.app.core.contexts.ISelectionContext;
+	import core.appEx.core.contexts.ISelectionContext;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.util.ArrayUtil;
-	import core.app.util.VectorUtil;
+	import core.appEx.util.VectorUtil;
 	import core.data.ArrayCollection;
 	
 	import starling.display.DisplayObject;

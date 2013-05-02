@@ -11,10 +11,10 @@ package cadetEditor.commandHandlers
 	import flash.events.Event;
 	
 	import core.app.CoreApp;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.entities.URI;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextValidator;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextValidator;
 	import core.editor.CoreEditor;
 	
 	public class CompileCommandHandler implements ICommandHandler

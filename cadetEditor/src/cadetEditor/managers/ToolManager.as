@@ -15,7 +15,7 @@ package cadetEditor.managers
 	import core.ui.components.Button;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.app.util.IntrospectionUtil;
 
 	public class ToolManager

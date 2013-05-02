@@ -7,7 +7,7 @@ package cadetEditor.operations
 	import cadet.core.IComponentContainer;
 	
 	import core.app.managers.DependencyManager;
-	import core.app.operations.RemoveDependencyOperation;
+	import core.appEx.operations.RemoveDependencyOperation;
 	import core.app.operations.RemoveItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
 	import core.app.util.ArrayUtil;

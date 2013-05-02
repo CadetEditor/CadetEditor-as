@@ -6,7 +6,7 @@ package cadetEditor.commandHandlers
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToggleCadetEditorPropertyCommandHandlerFactory;
 	import core.editor.CoreEditor;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	
 	public class ToggleCadetEditorPropertyCommandHandler implements ICommandHandler
 	{

@@ -10,14 +10,14 @@ package cadetEditor.commandHandlers
 	import flash.events.Event;
 	
 	import core.app.CoreApp;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.core.serialization.ISerializationPlugin;
 	import core.app.core.serialization.ResourceSerializerPlugin;
 	import core.app.core.serialization.Serializer;
 	import core.app.operations.CloneOperation;
 	import core.app.operations.CompoundOperation;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextSelectionValidator;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextSelectionValidator;
 	import core.editor.CoreEditor;
 	import core.editor.entities.Commands;
 	import core.editor.utils.CoreEditorUtil;

@@ -15,12 +15,12 @@ package cadetEditor.commandHandlers
 	import cadetEditor.ui.panels.AddComponentPanel;
 	
 	import core.app.CoreApp;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.resources.CommandHandlerFactory;
+	import core.appEx.resources.CommandHandlerFactory;
 	import core.app.resources.IResource;
-	import core.app.validators.ContextValidator;
+	import core.appEx.validators.ContextValidator;
 	import core.data.ArrayCollection;
 	import core.editor.CoreEditor;
 	import core.ui.components.Button;

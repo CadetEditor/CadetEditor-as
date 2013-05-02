@@ -3,9 +3,9 @@
 
 package cadetEditor2D.commandHandlers
 {
-	import core.app.core.commandHandlers.ICommandHandler;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextValidator;
+	import core.appEx.core.commandHandlers.ICommandHandler;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextValidator;
 	
 	import core.editor.CoreEditor;
 	

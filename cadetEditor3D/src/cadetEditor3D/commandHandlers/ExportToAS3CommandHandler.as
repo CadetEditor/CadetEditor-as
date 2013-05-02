@@ -24,11 +24,11 @@ package cadetEditor3D.commandHandlers
 	import flash.system.System;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.operations.ChangePropertyOperation;
-	import core.app.resources.CommandHandlerFactory;
+	import core.appEx.resources.CommandHandlerFactory;
 	import core.app.util.StringUtil;
-	import core.app.validators.ContextValidator;
+	import core.appEx.validators.ContextValidator;
 	
 	public class ExportToAS3CommandHandler implements ICommandHandler
 	{

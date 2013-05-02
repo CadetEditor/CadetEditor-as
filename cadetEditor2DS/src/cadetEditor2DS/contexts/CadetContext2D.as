@@ -12,7 +12,7 @@ package cadetEditor2DS.contexts
 	
 	import cadetEditor2DS.ui.views.CadetView2D;
 	
-	import core.app.events.OperationManagerEvent;
+	import core.appEx.events.OperationManagerEvent;
 	
 	public class CadetContext2D extends AbstractCadetEditorContext implements ICadetEditorContext
 	{

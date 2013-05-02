@@ -2,14 +2,14 @@ package cadetEditor.validators
 {
 	import cadet.validators.ComponentChildrenValidator;
 	
-	import core.app.core.contexts.IContext;
-	import core.app.core.contexts.ISelectionContext;
+	import core.appEx.core.contexts.IContext;
+	import core.appEx.core.contexts.ISelectionContext;
 	import core.app.events.CollectionValidatorEvent;
-	import core.app.events.ContextSelectionValidatorEvent;
-	import core.app.events.ContextValidatorEvent;
+	import core.appEx.events.ContextSelectionValidatorEvent;
+	import core.appEx.events.ContextValidatorEvent;
 	import core.app.events.ValidatorEvent;
-	import core.app.managers.ContextManager;
-	import core.app.validators.ContextValidator;
+	import core.appEx.managers.ContextManager;
+	import core.appEx.validators.ContextValidator;
 	
 	public class ContextComponentSelectionValidator extends ContextValidator
 	{

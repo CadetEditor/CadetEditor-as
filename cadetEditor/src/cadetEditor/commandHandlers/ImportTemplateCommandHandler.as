@@ -12,10 +12,10 @@ package cadetEditor.commandHandlers
 	import cadetEditor.operations.SelectTemplateOperation;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.commandHandlers.ICommandHandler;
-	import core.app.resources.CommandHandlerFactory;
+	import core.appEx.core.commandHandlers.ICommandHandler;
+	import core.appEx.resources.CommandHandlerFactory;
 	import core.app.operations.AddItemOperation;
-	import core.app.validators.ContextValidator;
+	import core.appEx.validators.ContextValidator;
 
 	public class ImportTemplateCommandHandler implements ICommandHandler
 	{

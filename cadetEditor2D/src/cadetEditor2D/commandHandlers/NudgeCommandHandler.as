@@ -13,12 +13,12 @@ package cadetEditor2D.commandHandlers
 	
 	import flash.ui.Keyboard;
 	
-	import core.app.core.commandHandlers.ICommandHandler;
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.contexts.IContext;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextSelectionValidator;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextSelectionValidator;
 	import core.editor.CoreEditor;
 	import core.editor.utils.CoreEditorUtil;
 	

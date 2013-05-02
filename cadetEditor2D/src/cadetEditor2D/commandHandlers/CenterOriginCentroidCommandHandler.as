@@ -11,9 +11,9 @@ package cadetEditor2D.commandHandlers
 	
 	import core.editor.CoreEditor;
 	import core.editor.utils.CoreEditorUtil;
-	import core.app.core.commandHandlers.ICommandHandler;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextSelectionValidator;
+	import core.appEx.core.commandHandlers.ICommandHandler;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextSelectionValidator;
 
 	/**
 	 * Given a selection of IComponentContainers, this CommandHandler delegates the task of finding any geometry on these, and transforming

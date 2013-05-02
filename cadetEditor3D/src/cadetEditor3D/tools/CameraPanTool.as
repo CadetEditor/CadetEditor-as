@@ -21,7 +21,7 @@ package cadetEditor3D.tools
 	import cadetEditor3D.icons.CadetEditor3DIcons;
 	import cadetEditor3D.ui.views.CadetEditorView3D;
 	
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.editor.CoreEditor;
 	
 	public class CameraPanTool implements ITool

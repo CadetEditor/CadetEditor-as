@@ -4,8 +4,8 @@
 package cadetEditor.contexts
 {
 	import core.editor.contexts.IEditorContext;
-	import core.app.core.contexts.IInspectableContext;
-	import core.app.core.contexts.IOperationManagerContext;
+	import core.appEx.core.contexts.IInspectableContext;
+	import core.appEx.core.contexts.IOperationManagerContext;
 	
 	public interface ICadetEditorContext extends IEditorContext,
 											IInspectableContext, 

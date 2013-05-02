@@ -18,7 +18,7 @@ package cadetEditor.ui.panels
 	
 	import core.editor.CoreEditor;
 	import core.app.util.StringUtil;
-	import core.app.util.Validation;
+	import core.appEx.util.Validation;
 	
 	public class ComponentPropertiesPanel extends Panel
 	{

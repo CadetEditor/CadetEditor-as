@@ -23,7 +23,7 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.controllers.DragSelectController;
 	
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.util.ArrayUtil;
 	import core.app.util.IntrospectionUtil;

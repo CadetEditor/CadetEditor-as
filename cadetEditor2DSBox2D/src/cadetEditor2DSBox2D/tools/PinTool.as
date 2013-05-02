@@ -26,7 +26,7 @@ package cadetEditor2DSBox2D.tools
 	import flash.events.Event;
 	import flash.geom.Point;
 	
-	import core.app.operations.AddDependencyOperation;
+	import core.appEx.operations.AddDependencyOperation;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;

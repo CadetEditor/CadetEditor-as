@@ -25,9 +25,9 @@ package cadetEditor2DS.tools
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.app.operations.AddItemOperation;
-	import core.app.operations.AddToArrayOperation;
+	import core.appEx.operations.AddToArrayOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
 	import core.events.ArrayCollectionEvent;

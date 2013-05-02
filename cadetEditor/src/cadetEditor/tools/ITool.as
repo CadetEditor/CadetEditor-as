@@ -3,7 +3,7 @@
 
 package cadetEditor.tools
 {
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	
 	public interface ITool
 	{

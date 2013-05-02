@@ -3,9 +3,9 @@
 
 package cadetEditor2D.contexts
 {
-	import core.app.core.contexts.IVisualContext;
-	import core.app.events.ContextValidatorEvent;
-	import core.app.validators.ContextValidator;
+	import core.appEx.core.contexts.IVisualContext;
+	import core.appEx.events.ContextValidatorEvent;
+	import core.appEx.validators.ContextValidator;
 	
 	import core.editor.CoreEditor;
 	

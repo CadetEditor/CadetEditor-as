@@ -22,7 +22,7 @@ package cadetEditor.operations
 	import core.app.events.OperationProgressEvent;
 	import core.app.managers.ResourceManager;
 	import core.app.operations.CloneOperation;
-	import core.app.operations.SerializeAndWriteFileOperation;
+	import core.appEx.operations.SerializeAndWriteFileOperation;
 	import core.app.operations.SerializeOperation;
 	import core.app.util.IntrospectionUtil;
 	import core.editor.CoreEditor;

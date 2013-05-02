@@ -26,8 +26,8 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.ui.overlays.BezierCurveToolOverlay;
 	
-	import core.app.core.contexts.IContext;
-	import core.app.events.OperationManagerEvent;
+	import core.appEx.core.contexts.IContext;
+	import core.appEx.events.OperationManagerEvent;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.AddToVectorOperation;
 	import core.app.operations.ChangePropertyOperation;

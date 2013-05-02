@@ -38,7 +38,7 @@ package
 	import core.app.managers.ResourceManager;
 	import core.app.resources.ExternalResourceParserFactory;
 	import core.app.resources.FactoryResource;
-	import core.app.resources.FileType;
+	import core.appEx.resources.FileType;
 	import core.editor.CoreEditor;
 	import core.editor.core.IGlobalViewContainer;
 	import core.editor.resources.ActionFactory;

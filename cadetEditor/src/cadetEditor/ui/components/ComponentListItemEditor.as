@@ -11,7 +11,7 @@ package cadetEditor.ui.components
 	import core.data.ArrayCollection;
 	import core.ui.data.DefaultDataDescriptor;
 	
-	import core.app.util.VectorUtil;
+	import core.appEx.util.VectorUtil;
 	import core.ui.components.DropDownMenu;
 
 	public class ComponentListItemEditor extends DropDownMenu

@@ -19,14 +19,14 @@ package cadetEditor2D.commandHandlers
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.core.serialization.Serializer;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.RemoveItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.resources.CommandHandlerFactory;
-	import core.app.validators.ContextSelectionValidator;
+	import core.appEx.resources.CommandHandlerFactory;
+	import core.appEx.validators.ContextSelectionValidator;
 	import core.editor.CoreEditor;
 	import core.editor.utils.CoreEditorUtil;
 	import core.ui.components.Alert;

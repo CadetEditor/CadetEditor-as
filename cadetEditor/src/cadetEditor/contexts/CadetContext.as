@@ -12,7 +12,7 @@ package cadetEditor.contexts
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
-	import core.app.events.OperationManagerEvent;
+	import core.appEx.events.OperationManagerEvent;
 	
 	public class CadetContext extends AbstractCadetEditorContext implements ICadetEditorContext//ICadetContext
 	{

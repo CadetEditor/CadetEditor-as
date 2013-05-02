@@ -20,7 +20,7 @@ package cadetEditor3D.tools
 	import flash.ui.Keyboard;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	
 	public class CameraZoomTool implements ITool
 	{

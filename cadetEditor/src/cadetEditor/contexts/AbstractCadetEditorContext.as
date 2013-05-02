@@ -16,10 +16,10 @@ package cadetEditor.contexts
 	
 	import core.app.CoreApp;
 	import core.app.controllers.ExternalResourceController;
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.app.entities.URI;
-	import core.app.events.OperationManagerEvent;
-	import core.app.managers.OperationManager;
+	import core.appEx.events.OperationManagerEvent;
+	import core.appEx.managers.OperationManager;
 	import core.data.ArrayCollection;
 	import core.editor.CoreEditor;
 	import core.editor.contexts.AbstractEditorContext;

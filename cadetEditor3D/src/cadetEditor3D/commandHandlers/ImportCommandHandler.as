@@ -26,14 +26,14 @@ package cadetEditor3D.commandHandlers
 	import flash.utils.Dictionary;
 	
 	import core.app.CoreApp;
-	import core.app.core.commandHandlers.ICommandHandler;
+	import core.appEx.core.commandHandlers.ICommandHandler;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.resources.CommandHandlerFactory;
+	import core.appEx.resources.CommandHandlerFactory;
 	import core.app.resources.IFactoryResource;
 	import core.app.resources.IResource;
 	import core.app.util.IntrospectionUtil;
-	import core.app.validators.ContextValidator;
+	import core.appEx.validators.ContextValidator;
 	import core.editor.CoreEditor;
 	import core.editor.operations.SelectResourceOperation;
 	import core.editor.ui.panels.SelectResourcePanel;

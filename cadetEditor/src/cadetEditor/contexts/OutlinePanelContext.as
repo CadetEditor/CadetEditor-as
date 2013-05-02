@@ -16,15 +16,15 @@ package cadetEditor.contexts
 	import core.ui.events.DragAndDropEvent;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.contexts.IInspectableContext;
-	import core.app.core.contexts.IOperationManagerContext;
-	import core.app.core.contexts.IVisualContext;
-	import core.app.events.ContextValidatorEvent;
-	import core.app.managers.OperationManager;
+	import core.appEx.core.contexts.IInspectableContext;
+	import core.appEx.core.contexts.IOperationManagerContext;
+	import core.appEx.core.contexts.IVisualContext;
+	import core.appEx.events.ContextValidatorEvent;
+	import core.appEx.managers.OperationManager;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.RemoveItemOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import core.app.validators.ContextValidator;
+	import core.appEx.validators.ContextValidator;
 
 	public class OutlinePanelContext implements IVisualContext, IInspectableContext, IOperationManagerContext
 	{

@@ -31,12 +31,12 @@ package
 	import cadetEditor2DS.tools.SelectionTool;
 	
 	import core.app.CoreApp;
-	import core.app.entities.KeyModifier;
+	import core.appEx.entities.KeyModifier;
 	import core.app.managers.ResourceManager;
-	import core.app.managers.SettingsManager;
+	import core.appEx.managers.SettingsManager;
 	import core.app.resources.FactoryResource;
-	import core.app.resources.FileType;
-	import core.app.resources.KeyBinding;
+	import core.appEx.resources.FileType;
+	import core.appEx.resources.KeyBinding;
 	import core.editor.CoreEditor;
 	import core.editor.core.IGlobalViewContainer;
 	import core.editor.icons.CoreEditorIcons;

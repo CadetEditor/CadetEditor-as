@@ -10,7 +10,7 @@ package cadetEditor2DS.tools
 	
 	import flash.geom.Point;
 	
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	
 	public class CadetEditorTool2D implements ICadetEditorTool2D
 	{

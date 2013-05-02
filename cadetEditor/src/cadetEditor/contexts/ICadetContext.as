@@ -6,7 +6,7 @@ package cadetEditor.contexts
 	import cadet.core.ICadetScene;
 	
 	import core.editor.contexts.IEditorContext;
-	import core.app.core.contexts.ISelectionContext;
+	import core.appEx.core.contexts.ISelectionContext;
 
 	public interface ICadetContext extends ISelectionContext, IEditorContext
 	{

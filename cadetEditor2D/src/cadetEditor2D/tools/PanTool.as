@@ -19,7 +19,7 @@ package cadetEditor2D.tools
 	import core.ui.managers.CursorManager;
 	
 	import core.editor.CoreEditor;
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	
 	public class PanTool implements ITool
 	{

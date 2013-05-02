@@ -22,7 +22,7 @@ package cadetEditor.operations
 	import core.app.entities.URI;
 	import core.app.managers.ResourceManager;
 	import core.app.operations.ReadFileAndDeserializeOperation;
-	import core.app.util.VectorUtil;
+	import core.appEx.util.VectorUtil;
 	import core.data.ArrayCollection;
 	import core.editor.CoreEditor;
 

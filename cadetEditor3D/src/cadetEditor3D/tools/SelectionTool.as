@@ -20,7 +20,7 @@ package cadetEditor3D.tools
 	import flash.events.Event;
 	import flash.ui.Keyboard;
 	
-	import core.app.core.contexts.IContext;
+	import core.appEx.core.contexts.IContext;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.util.ArrayUtil;
 	

@@ -27,7 +27,7 @@ package cadetEditor3D.tools
 	import flash.geom.Vector3D;
 	import flash.ui.Keyboard;
 	
-	import core.app.events.OperationManagerEvent;
+	import core.appEx.events.OperationManagerEvent;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
 	import core.events.ArrayCollectionEvent;
