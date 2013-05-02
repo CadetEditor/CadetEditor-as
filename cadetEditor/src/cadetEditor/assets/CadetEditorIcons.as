@@ -14,6 +14,7 @@ package cadetEditor.assets
 		[Embed( source = 'CircleTool.png' )] 		static public var CircleTool:Class;
 //		[Embed( source = 'Component.png' )] 		static public var Component:Class;
 //		[Embed( source = 'Geometry.png' )] 			static public var Geometry:Class;
+		[Embed(source="DeleteComponent.png")]		static public var DeleteComponent:Class;
 		[Embed( source = 'Grid.png' )] 				static public var Grid:Class;
 		[Embed( source = 'Info.png' )] 				static public var Info:Class;
 		[Embed( source = 'Joint.png' )] 			static public var Joint:Class;
