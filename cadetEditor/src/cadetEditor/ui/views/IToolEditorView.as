@@ -3,14 +3,13 @@
 
 package cadetEditor.ui.views
 {
-	import flash.display.DisplayObjectContainer;
 	import flash.events.IEventDispatcher;
 	
 	import core.ui.components.RadioButtonGroup;
 	
 	public interface IToolEditorView extends IEventDispatcher
 	{
-		function addToolButton( icon:Class, toolTip:String = null ):void
-		function get toolBar():RadioButtonGroup
+		function addToolButton( icon:Class, toolTip:String = null ):void;
+		function get toolBar():RadioButtonGroup;
 	}
 }

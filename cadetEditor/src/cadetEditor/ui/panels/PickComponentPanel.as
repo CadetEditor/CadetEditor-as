@@ -7,7 +7,6 @@ package cadetEditor.ui.panels
 	
 	import core.ui.components.Button;
 	import core.ui.components.List;
-	import cadetEditor.ui.components.OutlineTree;
 	import core.ui.components.Panel;
 	import cadetEditor.ui.data.OutlineTreeDataDescriptor;
 	import core.ui.layouts.HorizontalLayout;
@@ -69,7 +68,7 @@ package cadetEditor.ui.panels
 		override protected function validate():void
 		{
 			super.validate();
-			label = "Pick " + _numComponents + " components."
+			label = "Pick " + _numComponents + " components.";
 		}
 		
 		private function changeListHandler( event:Event ):void

@@ -5,9 +5,9 @@ package cadetEditor.controllers
 	
 	public interface ICadetEditorContextController extends ICadetContextController
 	{
-		function initScene():void
-		function disposeScene():void
+		function initScene():void;
+		function disposeScene():void;
 
-		function get controlBar():HBox
+		function get controlBar():HBox;
 	}
 }

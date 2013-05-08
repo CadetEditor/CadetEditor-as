@@ -4,7 +4,7 @@ package cadetEditor.controllers
 
 	public interface ICadetContextController
 	{
-		function init(context:ICadetEditorContext):void
-		function dispose():void
+		function init(context:ICadetEditorContext):void;
+		function dispose():void;
 	}
 }

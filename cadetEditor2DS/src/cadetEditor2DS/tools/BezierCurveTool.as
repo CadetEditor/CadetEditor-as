@@ -164,13 +164,13 @@ package cadetEditor2DS.tools
 			if ( mode == -1 ) return;
 			mode = -1;
 			currentSegment = null;
-			nextSegment = null
+			nextSegment = null;
 			previousSegment = null;
 		}
 		
 		override protected function onMouseDownContainer(event:PickingManagerEvent):void
 		{	
-			var localPos:Point
+			var localPos:Point;
 			
 			// First segment
 			if ( !curve )

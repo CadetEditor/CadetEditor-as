@@ -47,7 +47,7 @@ package cadetEditor.ui.views
 				<Button x="266" y="39" width="24" height="24" id="rotateCWBtn" toolTip="Rotate 90 degrees" icon="cadetEditor.ui.icons.CadetBuilderIcons_RotateCW"/>
 				<Button x="266" y="69" width="24" height="24" id="rotateCCWBtn" toolTip="Rotate -90 degrees" icon="cadetEditor.ui.icons.CadetBuilderIcons_RotateCCW"/>
 				
-			</Container>
+			</Container>;
 				
 			CoreDeserializer.deserialize( xml, this );
 		}

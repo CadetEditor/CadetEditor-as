@@ -27,7 +27,7 @@ package cadetEditor2DS.tools
 		override protected function updateShape( rect:Rectangle, normalizedRect:Rectangle, event:MouseEvent ):void
 		{
 			transform.x = rect.x;
-			transform.y = rect.y
+			transform.y = rect.y;
 			
 			CircleGeometry( geometry ).radius = Math.sqrt(normalizedRect.width*normalizedRect.width + normalizedRect.height*normalizedRect.height);
 		}

@@ -57,7 +57,7 @@ package cadetEditor2DBox2D.ui.controlBars
 					<Label text="Restitution:"/>
 					<NumericStepper id="restitutionInput" stepSize="0.01" min="0.01" max="100" value="0.5" width="60"/>
 					-->
-				</HBox>
+				</HBox>;
 			
 			CoreDeserializer.deserialize(xml,this);
 			

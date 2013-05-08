@@ -161,7 +161,7 @@ package cadetEditor2DS.tools
 			if ( !draggedVertex ) return;
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();
-			operation.label = "Move vertex"
+			operation.label = "Move vertex";
 			var x:Number = draggedVertex.x;
 			var y:Number = draggedVertex.y;
 			draggedVertex.x = storedX;

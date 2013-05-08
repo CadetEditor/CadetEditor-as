@@ -20,7 +20,7 @@ package cadetEditor2D.operations
 		public function CenterOriginsOperation( components:Array, useCentroid:Boolean = false )
 		{
 			this.components = components;
-			this.useCentroid = useCentroid
+			this.useCentroid = useCentroid;
 			label = "Center Origin(s)";
 			
 			for ( var i:int = 0; i < components.length; i++ )

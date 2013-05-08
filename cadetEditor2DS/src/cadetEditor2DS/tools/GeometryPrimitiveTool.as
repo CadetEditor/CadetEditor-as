@@ -4,8 +4,6 @@
 package cadetEditor2DS.tools
 {
 	import cadet.components.geom.IGeometry;
-	import cadet.core.ComponentContainer;
-	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.core.Entity;
@@ -77,7 +75,7 @@ package cadetEditor2DS.tools
 			
 			var rect:Rectangle = new Rectangle( mouseDownPoint.x, mouseDownPoint.y, 0, 0 );
 			var normalizedRect:Rectangle = rect.clone();
-			updateShape( rect, normalizedRect, event )
+			updateShape( rect, normalizedRect, event );
 			
 			if ( geometry is PolygonGeometry ) {
 				context.snapManager.setVerticesToIgnore(PolygonGeometry(geometry).vertices);
@@ -122,7 +120,7 @@ package cadetEditor2DS.tools
 			
 			var rect:Rectangle = new Rectangle( mouseDownPoint.x, mouseDownPoint.y, dx, dy );
 			var normalizedRect:Rectangle = new Rectangle( Math.min( mouseDownPoint.x, snappedMousePos.x ), Math.min( mouseDownPoint.y, snappedMousePos.y ), Math.abs( dx ), Math.abs( dy ) );
-			updateShape( rect, normalizedRect, event )
+			updateShape( rect, normalizedRect, event );
 		}
 		
 		// Abstract functions

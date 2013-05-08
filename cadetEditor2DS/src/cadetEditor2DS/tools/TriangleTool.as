@@ -27,7 +27,7 @@ package cadetEditor2DS.tools
 		override protected function updateShape( rect:Rectangle, normalizedRect:Rectangle, event:MouseEvent ):void
 		{
 			transform.x = normalizedRect.x;
-			transform.y = normalizedRect.y
+			transform.y = normalizedRect.y;
 			TriangleGeometry( geometry ).width = normalizedRect.width;
 			TriangleGeometry( geometry ).height = normalizedRect.height;
 		}

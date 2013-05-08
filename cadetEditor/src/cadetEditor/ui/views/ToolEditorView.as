@@ -8,7 +8,6 @@ package cadetEditor.ui.views
 	import core.ui.components.Button;
 	import core.ui.components.Container;
 	import core.ui.components.RadioButtonGroup;
-	import core.ui.components.VBox;
 	import core.ui.layouts.VerticalLayout;
 
 	public class ToolEditorView extends Container implements IToolEditorView
@@ -29,7 +28,7 @@ package cadetEditor.ui.views
 			_toolBar.layout = new VerticalLayout(-1);
 			_toolBar.width = 28;
 			addRawChild( _toolBar );
-			super.getChildrenLayoutArea()
+			super.getChildrenLayoutArea();
 		}
 		
 		override protected function validate():void

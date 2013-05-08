@@ -3,8 +3,6 @@
 
 package cadetEditor.ui.panels
 {
-	import cadetEditor.ui.components.OutlineTree;
-	
 	import flash.events.Event;
 	
 	import core.ui.components.Button;
@@ -12,8 +10,6 @@ package cadetEditor.ui.panels
 	import core.ui.components.List;
 	import core.ui.components.Panel;
 	import core.ui.data.DefaultDataDescriptor;
-	import core.ui.layouts.HorizontalLayout;
-	import core.ui.layouts.LayoutAlign;
 	import core.ui.util.CoreDeserializer;
 	
 	public class SelectTemplatePanel extends Panel
@@ -48,7 +44,7 @@ package cadetEditor.ui.panels
 						<Button label="Cancel" id="cancelBtn"/>
 					</controlBar>
 				
-				</Panel>
+				</Panel>;
 			
 			CoreDeserializer.deserialize( xml, this, ["bones.ui.components"] );
 			

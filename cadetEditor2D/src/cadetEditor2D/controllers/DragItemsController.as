@@ -25,7 +25,7 @@ package cadetEditor2D.controllers
 	{
 		protected var context				:ICadetEditorContext;
 		protected var tool					:ICadetEditorTool2D;
-		protected var skins					:Array
+		protected var skins					:Array;
 		protected var storedMatrices		:Dictionary;
 		protected var matricesTable			:Dictionary;
 		protected var mouseX				:Number;
@@ -163,7 +163,7 @@ package cadetEditor2D.controllers
 			var dx:Number = snappedPos.x - mouseX;
 			var dy:Number = snappedPos.y - mouseY;
 			
-			var i:int
+			var i:int;
 			var globalBounds:Rectangle = new Rectangle();
 			for ( i = 0; i < skins.length; i++ )
 			{

@@ -37,7 +37,7 @@ package cadetEditor2DS.tools
 		
 		public function dispose():void
 		{
-			disable()
+			disable();
 			_context = null;
 		}
 		

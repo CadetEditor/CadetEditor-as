@@ -90,7 +90,7 @@ package cadetEditor2DS.controllers
 		
 		public function endDrag(appendToSelection:Boolean):void
 		{
-			_dragging = false
+			_dragging = false;
 			
 			var mouseX:Number = view.viewportMouse.x;
 			var mouseY:Number = view.viewportMouse.y;

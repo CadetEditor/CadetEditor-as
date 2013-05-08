@@ -400,7 +400,7 @@ package cadetEditor2DS.tools
 			interactMode = SCALE_MODE;
 			var snappedMousePos:Point = getSnappedWorldMouse();
 			mouseDownX = snappedMousePos.x;
-			mouseDownY = snappedMousePos.y
+			mouseDownY = snappedMousePos.y;
 			ignoreNextMouseUp = true;
 			ignoreDragDetect = true;
 			
@@ -419,19 +419,19 @@ package cadetEditor2DS.tools
 					break;
 				case overlay.bottomBox :
 					scaleMode = BOTTOM;
-					break
+					break;
 				case overlay.topLeftBox :
 					scaleMode = TOP | LEFT;
-					break
+					break;
 				case overlay.topRightBox :
 					scaleMode = TOP | RIGHT;
-					break
+					break;
 				case overlay.bottomLeftBox :
 					scaleMode = BOTTOM | LEFT;
-					break
+					break;
 				case overlay.bottomRightBox :
 					scaleMode = BOTTOM | RIGHT;
-					break
+					break;
 			}
 		}
 		
@@ -439,7 +439,7 @@ package cadetEditor2DS.tools
 		{
 			interactMode = ROTATE_MODE;
 			mouseDownX = view.worldMouse.x;
-			mouseDownY = view.worldMouse.y
+			mouseDownY = view.worldMouse.y;
 			ignoreNextMouseUp = true;
 			ignoreDragDetect = true;
 		}
@@ -529,7 +529,7 @@ package cadetEditor2DS.tools
 			
 			if ( constrain )
 			{
-				var value:Number = dx*0.5 + dy*0.5
+				var value:Number = dx*0.5 + dy*0.5;
 				dx = dy = value;
 			}
 			

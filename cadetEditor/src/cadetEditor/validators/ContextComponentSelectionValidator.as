@@ -18,7 +18,7 @@ package cadetEditor.validators
 		
 		public function ContextComponentSelectionValidator(contextManager:ContextManager, contextType:Class=null, isCurrent:Boolean=false, selectionType:Class=null )//, minSelected:uint=1, maxSelected:uint=4294967295)
 		{
-			super(contextManager, contextType, isCurrent)//, selectionType, minSelected, maxSelected);
+			super(contextManager, contextType, isCurrent);//, selectionType, minSelected, maxSelected);
 			
 			if ( contextType == null ) _contextType = ISelectionContext;
 			if ( selectionType == null ) selectionType = Object;

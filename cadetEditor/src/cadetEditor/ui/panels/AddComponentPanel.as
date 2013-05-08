@@ -51,7 +51,7 @@ package cadetEditor.ui.panels
 						<Button label="Cancel" id="cancelBtn"/>
 					</controlBar>
 						
-				</Panel>
+				</Panel>;
 			
 			CoreDeserializer.deserialize( xml, this, ["cadetEditor.ui.components"] );
 			defaultButton = okBtn;

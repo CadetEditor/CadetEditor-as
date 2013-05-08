@@ -305,7 +305,7 @@ package cadetEditor2DS.contexts
 				//_view.addOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(selectionOverlay);
 				oldRenderer.removeOverlay(snapOverlay);
-				oldRenderer.removeOverlay(gridOverlay)
+				oldRenderer.removeOverlay(gridOverlay);
 				
 				selectionOverlay.renderer = null;
 				snapOverlay.renderer = null;

@@ -40,7 +40,7 @@ package cadetEditor2D.ui.controlBars
 				<NumericStepper id="gridSizeControl" stepSize="1" min="1" max="100"/>
 				<Button id="gridToggle" toggle="true" width="28" height="28" />
 				<Button id="snapToggle" toggle="true" width="28" height="28" />
-			</HBox>
+			</HBox>;
 				
 			CoreDeserializer.deserialize(xml, this);
 			

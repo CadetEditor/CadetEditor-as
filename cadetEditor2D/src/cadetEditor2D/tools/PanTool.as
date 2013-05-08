@@ -5,12 +5,10 @@ package cadetEditor2D.tools
 {
 	import cadetEditor.assets.CadetEditorCursors;
 	import cadetEditor.assets.CadetEditorIcons;
-	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.ToolFactory;
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
-	import cadetEditor.controllers.ICadetEditorContextController;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.Point;

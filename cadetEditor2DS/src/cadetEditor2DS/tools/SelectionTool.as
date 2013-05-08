@@ -69,13 +69,13 @@ package cadetEditor2DS.tools
 			
 		override public function dispose():void
 		{
-			dragItemsController.dispose()
-			dragItemsController = null
-			dragSelectController.dispose()
-			dragSelectController = null
-			pressedRenderable = null
+			dragItemsController.dispose();
+			dragItemsController = null;
+			dragSelectController.dispose();
+			dragSelectController = null;
+			pressedRenderable = null;
 			
-			super.dispose()
+			super.dispose();
 		}
 		
 		
@@ -86,16 +86,16 @@ package cadetEditor2DS.tools
 		override protected function onMouseDownBackground(event:PickingManagerEvent):void
 		{
 			if ( allowDragSelect == false ) return;
-			var dragDetector:DragDetector = new DragDetector(CoreEditor.stage)
-			dragDetector.addEventListener(DragDetector.BEGIN_DRAG, dragSelectDetectedHandler)
-			shiftKeyDown = event.shiftKey
+			var dragDetector:DragDetector = new DragDetector(CoreEditor.stage);
+			dragDetector.addEventListener(DragDetector.BEGIN_DRAG, dragSelectDetectedHandler);
+			shiftKeyDown = event.shiftKey;
 		}
 		
 		protected function dragSelectDetectedHandler(event:Event):void
 		{
 			if ( ignoreDragDetect )
 			{
-				ignoreDragDetect = false
+				ignoreDragDetect = false;
 				return;
 			}
 			dragSelectController.beginDrag();
@@ -175,7 +175,7 @@ package cadetEditor2DS.tools
 			// When the drag ends, the user will likely release the mouse over the same item, resulting in a
 			// 'click' event. Clicking an item is usually interpreted as selecting it, which is not what we want
 			// after a drag select. This flag causes the click event to be ignored.
-			ignoreNextMouseUp = true
+			ignoreNextMouseUp = true;
 			
 			var skins:Array = SelectionUtil.getSkinsFromComponents( context.selection.source );
 			
@@ -217,7 +217,7 @@ package cadetEditor2DS.tools
 			
 			if ( previouslyClickedComponent == null || components.indexOf(previouslyClickedComponent) == -1 || components.length == 1)
 			{
-				handleSelection(components[0], event.shiftKey)
+				handleSelection(components[0], event.shiftKey);
 				previouslyClickedComponent = components[0];
 				return
 			}
@@ -226,7 +226,7 @@ package cadetEditor2DS.tools
 			index = index == components.length-1 ? 0 : index+1;
 			
 			var component:IComponent = components[index];
-			handleSelection(component, event.shiftKey)
+			handleSelection(component, event.shiftKey);
 			
 			var alreadySelected:Boolean = context.selection.contains( previouslyClickedComponent );
 			if ( alreadySelected )

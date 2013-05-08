@@ -9,12 +9,12 @@ package cadetEditor2D.tools
 
 	public interface ICadetEditorTool2D extends ITool
 	{
-		function get context():ICadetEditorContext2D
-		function set context(value:ICadetEditorContext2D):void
+		function get context():ICadetEditorContext2D;
+		function set context(value:ICadetEditorContext2D):void;
 		
-		function get view():ICadetEditorView2D
-		function set view(value:ICadetEditorView2D):void
+		function get view():ICadetEditorView2D;
+		function set view(value:ICadetEditorView2D):void;
 			
-		function getSnappedWorldMouse():Point
+		function getSnappedWorldMouse():Point;
 	}
 }

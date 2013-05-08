@@ -316,7 +316,7 @@ package cadetEditor2D.managers
 				geometry = IGeometry(event.component);
 				if ( geometries.indexOf(geometry) != -1 ) return;
 				
-				transform = ComponentUtil.getChildOfType(event.component.parentComponent, Transform2D) as Transform2D
+				transform = ComponentUtil.getChildOfType(event.component.parentComponent, Transform2D) as Transform2D;
 				
 				if ( !transform ) return;
 				

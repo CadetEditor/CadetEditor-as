@@ -34,10 +34,10 @@ package cadetEditor.operations
 		{
 			if ( !removedItems )
 			{
-				removedItems = []
+				removedItems = [];
 			}
 			
-			if ( removedItems.indexOf( component ) != -1 ) return
+			if ( removedItems.indexOf( component ) != -1 ) return;
 			removedItems.push( component );
 			
 			

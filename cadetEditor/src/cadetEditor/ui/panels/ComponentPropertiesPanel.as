@@ -3,22 +3,13 @@
 
 package cadetEditor.ui.panels
 {
-	import flash.events.Event;
-	
 	import core.ui.components.Button;
 	import core.ui.components.CheckBox;
 	import core.ui.components.Label;
-	import core.ui.components.List;
-	import cadetEditor.ui.components.OutlineTree;
 	import core.ui.components.Panel;
-	import core.ui.components.RadioButtonGroup;
 	import core.ui.components.TextArea;
 	import core.ui.components.TextInput;
 	import core.ui.util.CoreDeserializer;
-	
-	import core.editor.CoreEditor;
-	import core.app.util.StringUtil;
-	import core.appEx.util.Validation;
 	
 	public class ComponentPropertiesPanel extends Panel
 	{
@@ -65,7 +56,7 @@ package cadetEditor.ui.panels
 						<Button label="Cancel" id="cancelBtn"/>
 					</controlBar>
 				
-				</Panel>
+				</Panel>;
 			
 			CoreDeserializer.deserialize( xml, this );
 			defaultButton = okBtn;

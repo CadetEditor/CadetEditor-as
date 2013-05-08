@@ -4,10 +4,10 @@ package cadetEditor2D.managers
 
 	public interface IComponentHighlightManager
 	{
-		function highlightComponent( component:IComponentContainer ):void
-		function unhighlightComponent( component:IComponentContainer ):void
-		function unhighlightAllComponents():void
+		function highlightComponent( component:IComponentContainer ):void;
+		function unhighlightComponent( component:IComponentContainer ):void;
+		function unhighlightAllComponents():void;
 			
-		function dispose():void
+		function dispose():void;
 	}
 }

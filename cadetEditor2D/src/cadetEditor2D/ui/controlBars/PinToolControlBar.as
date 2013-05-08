@@ -25,7 +25,7 @@ package cadetEditor2D.ui.controlBars
 				
 				<CheckBox id="createJointCheckBox" label="Create Revolute Joint:"  />
 								
-			</HBox>
+			</HBox>;
 				
 			CoreDeserializer.deserialize(xml,this);
 		}

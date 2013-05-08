@@ -26,12 +26,12 @@ package cadetEditor2DS.managers
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownBackground" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickBackground" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownSkins" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickSkins" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseMoveContainer" )]
-	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownContainer" )]
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownBackground" )];
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickBackground" )];
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownSkins" )];
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="clickSkins" )];
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseMoveContainer" )];
+	[Event( type="cadetEditor2D.events.PickingManagerEvent", name="mouseDownContainer" )];
 	
 	public class PickingManager2D extends EventDispatcher implements IPickingManager2D
 	{
@@ -132,8 +132,8 @@ package cadetEditor2DS.managers
 					
 				}
 				
-				_mouseX = location.x //- _viewportX;
-				_mouseY = location.y //- _viewportY;
+				_mouseX = location.x; //- _viewportX;
+				_mouseY = location.y; //- _viewportY;
 				
 				var local:Point = _view.globalToLocal(location);
 				

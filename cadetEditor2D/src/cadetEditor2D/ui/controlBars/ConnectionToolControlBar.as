@@ -32,7 +32,7 @@ package cadetEditor2D.ui.controlBars
 				<Label text="Type:"/>
 				<DropDownMenu id="jointTypeList"/>
 				
-			</HBox>
+			</HBox>;
 				
 			CoreDeserializer.deserialize(xml,this);
 			

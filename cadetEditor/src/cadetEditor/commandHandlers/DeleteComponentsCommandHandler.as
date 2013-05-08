@@ -35,7 +35,7 @@ package cadetEditor.commandHandlers
 			var selection:Array = CoreEditorUtil.getCurrentSelection(ICadetContext, IComponent );
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();
-			operation.label = "Delete item(s)"
+			operation.label = "Delete item(s)";
 			
 			operation.addOperation( new ChangePropertyOperation( context.selection, "source", [] ) );
 			operation.addOperation( new RemoveComponentsOperation( selection, context.scene.dependencyManager ) );

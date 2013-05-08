@@ -9,7 +9,7 @@ package cadetEditor2D.ui.overlays
 	
 	public interface ICadetEditorOverlay2D extends IUIComponent
 	{
-		function set view( value:ICadetEditorView2D ):void
-		function get view():ICadetEditorView2D
+		function set view( value:ICadetEditorView2D ):void;
+		function get view():ICadetEditorView2D;
 	}
 }

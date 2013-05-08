@@ -7,9 +7,9 @@ package cadetEditor.tools
 	
 	public interface ITool
 	{
-		function init(context:IContext):void
-		function dispose():void
-		function enable():void
-		function disable():void
+		function init(context:IContext):void;
+		function dispose():void;
+		function enable():void;
+		function disable():void;
 	}
 }

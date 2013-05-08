@@ -4,7 +4,6 @@
 package cadetEditor.util
 {
 	import flash.display.DisplayObject;
-	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
@@ -12,7 +11,7 @@ package cadetEditor.util
 	
 	import core.editor.CoreEditor;
 	
-	[Event(type="cadetEditor.util.DragDetector", name="beginDrag")]
+	[Event(type="cadetEditor.util.DragDetector", name="beginDrag")];
 	public class DragDetector extends EventDispatcher
 	{
 		static public const BEGIN_DRAG		:String = "beginDrag";
@@ -33,24 +32,24 @@ package cadetEditor.util
 		
 		public function destroy():void
 		{
-			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler)
-			displayObject.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler)
-			displayObject = null
-			pressPoint = null
+			CoreEditor.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpStageHandler);
+			displayObject.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			displayObject = null;
+			pressPoint = null;
 		}
 		
 		protected function mouseMoveHandler(event:MouseEvent):void
 		{
-			var dx:Number = displayObject.mouseX-pressPoint.x
-			var dy:Number = displayObject.mouseY-pressPoint.y
-			if (dx*dx + dy*dy < tolerance*tolerance) return
-			dispatchEvent(new Event(BEGIN_DRAG))
-			destroy()
+			var dx:Number = displayObject.mouseX-pressPoint.x;
+			var dy:Number = displayObject.mouseY-pressPoint.y;
+			if (dx*dx + dy*dy < tolerance*tolerance) return;
+			dispatchEvent(new Event(BEGIN_DRAG));
+			destroy();
 		}
 		
 		protected function mouseUpStageHandler(event:Event):void
 		{
-			destroy()
+			destroy();
 		}
 
 	}

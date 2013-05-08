@@ -11,11 +11,11 @@ package cadetEditor2D.contexts
 
 	public interface ICadetEditorContext2D extends ICadetEditorContext
 	{
-		function get view2D():ICadetEditorView2D
-		function get toolManager():ToolManager
-		function get snapManager():SnapManager2D
-		function get pickingManager():IPickingManager2D
-		function get highlightManager():IComponentHighlightManager
-		function getControllerOfType( type:Class ):ICadetContextController
+		function get view2D():ICadetEditorView2D;
+		function get toolManager():ToolManager;
+		function get snapManager():SnapManager2D;
+		function get pickingManager():IPickingManager2D;
+		function get highlightManager():IComponentHighlightManager;
+		function getControllerOfType( type:Class ):ICadetContextController;
 	}
 }

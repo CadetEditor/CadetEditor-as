@@ -149,7 +149,8 @@ package cadetEditor2DSBox2D.tools
 				pickComponentOperation.filter = function notComponentA(element:*, index:int, arr:Array):Boolean
 				{
 					return (element != pickedComponent);
-				}
+				};
+				
 				pickComponentOperation.execute();
 				statusBarText = "Click the second geometry to connect to."; 
 				return;

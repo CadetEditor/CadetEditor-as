@@ -33,7 +33,7 @@ package cadetEditor2D.ui.views
 					<Label x="182" y="10" text="45" id="worldXLabel"/>
 					<Label x="76" y="36" text="76" id="screenYLabel"/>
 					<Label x="182" y="36" text="76" id="worldYLabel"/>
-				</Container>
+				</Container>;
 				
 			CoreDeserializer.deserialize(xml,this);
 		}
