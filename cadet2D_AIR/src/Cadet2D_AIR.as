@@ -20,13 +20,13 @@ package
 	import core.editor.ui.components.SplashScreen;
 	
 	[SWF(backgroundColor="#15181A", frameRate="60")]
-	public class Cadet2D extends Sprite
+	public class Cadet2D_AIR extends Sprite
 	{
 		private var splashWindow		:NativeWindow;
 		private var splashScreen		:SplashScreen;
 		private var configURL			:String = "config.xml";
 		
-		public function Cadet2D()
+		public function Cadet2D_AIR()
 		{
 			NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, invokeHandler);
 			
