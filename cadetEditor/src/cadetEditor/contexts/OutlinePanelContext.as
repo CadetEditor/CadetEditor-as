@@ -148,6 +148,7 @@ package cadetEditor.contexts
 			}
 			
 			_view.selectedItems = context.selection.source;
+			_view.openToItem(context.selection[0]);
 			_view.scrollToItem(context.selection[0]);
 		}
 		
