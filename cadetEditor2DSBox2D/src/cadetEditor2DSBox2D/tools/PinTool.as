@@ -3,17 +3,20 @@
 
 package cadetEditor2DSBox2D.tools
 {
+	import flash.events.Event;
+	import flash.geom.Point;
+	
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.connections.Pin;
 	import cadet2D.components.core.Entity;
-	import cadet2D.components.skins.IRenderable;
-	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.geom.Vertex;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
+	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.skins.PinSkin;
+	import cadet2D.components.transforms.Transform2D;
+	import cadet2D.geom.Vertex;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -23,13 +26,10 @@ package cadetEditor2DSBox2D.tools
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
-	import flash.events.Event;
-	import flash.geom.Point;
-	
-	import core.appEx.operations.AddDependencyOperation;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
+	import core.appEx.operations.AddDependencyOperation;
 	import core.ui.managers.CursorManager;
 	
 	public class PinTool extends CadetEditorTool2D
@@ -41,7 +41,9 @@ package cadetEditor2DSBox2D.tools
 		
 		private var transformA		:Transform2D;
 		private var transformB		:Transform2D;
+		private var clickLoc		:Point;
 		private var offset			:Point;
+		private var pinOffset		:Point;
 		
 		protected var SkinType		:Class = PinSkin;
 		
@@ -85,21 +87,35 @@ package cadetEditor2DSBox2D.tools
 		{
 			var pickedComponents:Array = pickComponentOperation.getResult();
 			
+			if (!pickedComponents) return;
+			
 			var componentA:IComponentContainer = pickedComponents[0];
 			var componentB:IComponentContainer = pickedComponents[1];
 			
 			var skinA:IRenderable = ComponentUtil.getChildOfType(componentA, IRenderable);
 			var skinB:IRenderable = ComponentUtil.getChildOfType(componentB, IRenderable);
 			
-			transformA = skinA.transform2D;
-			transformB = skinB.transform2D;
+			if ( skinA is AbstractSkin2D ) {
+				transformA = AbstractSkin2D(skinA).transform2D;	
+			}
+			if ( skinB is AbstractSkin2D ) {
+				transformB = AbstractSkin2D(skinB).transform2D;	
+			}
 			
-			offset = context.view2D.renderer.worldToViewport( pickComponentOperation.getClickLoc() );
+			// Get the position of the top left corner of the clicked component
+			clickLoc = pickComponentOperation.getClickLoc();
+			
+			offset = clickLoc;
+			// Get the viewport location of the click within world space
+			offset = context.view2D.renderer.worldToViewport(clickLoc);
 		
-			//offset = context.view2D.viewport.localToGlobal(offset);
+			// Change the point from viewport space to screen space
 			offset = Renderer2D(context.view2D.renderer).viewport.localToGlobal(offset);
 			
+			// Convert the point from global (screen) space to local skin space
 			offset = AbstractSkin2D(skinA).displayObject.globalToLocal(offset);
+			
+			pinOffset = offset;
 			
 			createPin();
 		}
@@ -112,15 +128,18 @@ package cadetEditor2DSBox2D.tools
 			var pin:Pin = new Pin();
 			pin.transformA = transformA;
 			pin.transformB = transformB;
-			pin.localPos = new Vertex(offset.x, offset.y);
+			pin.localPos = new Vertex(pinOffset.x, pinOffset.y);
 			entity.children.addItem(pin);
 			
 			var transform:Transform2D = new Transform2D();
+			transform.x = clickLoc.x;
+			transform.y = clickLoc.y;
 			entity.children.addItem(transform);
 			
 			var skin:IRenderable = new PinSkin();
 			entity.children.addItem(skin);
 			
+			//pin.localPos = new Vertex(pinOffset.x, pinOffset.y);
 			
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.addOperation( new AddItemOperation( entity, context.scene.children ) );
