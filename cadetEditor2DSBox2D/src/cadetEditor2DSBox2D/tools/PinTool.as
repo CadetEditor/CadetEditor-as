@@ -39,6 +39,7 @@ package cadetEditor2DSBox2D.tools
 			return new ToolFactory( ICadetEditorContext, PinTool, "Pin Tool", CadetEditorIcons.Pin );
 		}
 		
+		private var skinA			:IRenderable;
 		private var transformA		:Transform2D;
 		private var transformB		:Transform2D;
 		private var clickLoc		:Point;
@@ -92,7 +93,7 @@ package cadetEditor2DSBox2D.tools
 			var componentA:IComponentContainer = pickedComponents[0];
 			var componentB:IComponentContainer = pickedComponents[1];
 			
-			var skinA:IRenderable = ComponentUtil.getChildOfType(componentA, IRenderable);
+			skinA = ComponentUtil.getChildOfType(componentA, IRenderable);
 			var skinB:IRenderable = ComponentUtil.getChildOfType(componentB, IRenderable);
 			
 			if ( skinA is AbstractSkin2D ) {
@@ -107,7 +108,7 @@ package cadetEditor2DSBox2D.tools
 			
 			offset = clickLoc;
 			// Get the viewport location of the click within world space
-			offset = context.view2D.renderer.worldToViewport(clickLoc);
+			offset = context.view2D.renderer.worldToViewport(offset);
 		
 			// Change the point from viewport space to screen space
 			offset = Renderer2D(context.view2D.renderer).viewport.localToGlobal(offset);
@@ -126,6 +127,7 @@ package cadetEditor2DSBox2D.tools
 			entity.name = ComponentUtil.getUniqueName( getName(), context.scene );
 			
 			var pin:Pin = new Pin();
+			pin.skinA = skinA;
 			pin.transformA = transformA;
 			pin.transformB = transformB;
 			pin.localPos = new Vertex(pinOffset.x, pinOffset.y);
