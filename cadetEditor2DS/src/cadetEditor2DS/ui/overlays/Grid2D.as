@@ -5,13 +5,9 @@ package cadetEditor2DS.ui.overlays
 {
 	import cadet2D.overlays.Overlay;
 	
-	import cadetEditor.events.CadetEditorViewEvent;
-	
-	import cadetEditor2D.ui.overlays.ICadetEditorOverlay2D;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
 	import starling.core.RenderSupport;
-	import starling.display.Shape;
 
 	public class Grid2D extends Overlay
 	{	

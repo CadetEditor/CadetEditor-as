@@ -50,7 +50,7 @@ package cadetEditor2DS.tools
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DOWN_SKINS, onMouseDownSkins);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
 			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_DRAG_CONTAINER, onMouseDragContainer);
-			_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
+			//_context.pickingManager.addEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
 		}
 		
 		public function disable():void
@@ -60,23 +60,28 @@ package cadetEditor2DS.tools
 			_context.snapManager.setVerticesToIgnore(null);
 			
 			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_BACKGROUND, onClickBackground);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_SKINS, onClickSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_BACKGROUND, onMouseDownBackground);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_CONTAINER, onMouseDownContainer);
+			
+			_context.pickingManager.removeEventListener(PickingManagerEvent.CLICK_SKINS, onClickSkins);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_SKINS, onMouseDownSkins);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
+			
+			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DOWN_CONTAINER, onMouseDownContainer);
 			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_DRAG_CONTAINER, onMouseDragContainer);
-			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
+			_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_MOVE_CONTAINER, onMouseMoveContainer);
+			//_context.pickingManager.removeEventListener(PickingManagerEvent.MOUSE_UP_STAGE, onMouseUpStage);
 		}
 		
 		protected function onClickBackground( event:PickingManagerEvent ):void {}
-		protected function onClickSkins( event:PickingManagerEvent ):void {}
 		protected function onMouseDownBackground( event:PickingManagerEvent ):void {}
-		protected function onMouseDownContainer( event:PickingManagerEvent ):void {}
+			
+		protected function onClickSkins( event:PickingManagerEvent ):void {}
 		protected function onMouseDownSkins( event:PickingManagerEvent ):void {}
-		protected function onMouseMoveContainer( event:PickingManagerEvent ):void {}
+		
+		protected function onMouseDownContainer( event:PickingManagerEvent ):void {}
 		protected function onMouseDragContainer( event:PickingManagerEvent ):void {}
-		protected function onMouseUpStage( event:PickingManagerEvent ):void {}
+		protected function onMouseMoveContainer( event:PickingManagerEvent ):void {}
+		
+		//protected function onMouseUpStage( event:PickingManagerEvent ):void {}
 		
 		public function getSnappedWorldMouse():Point 
 		{ 

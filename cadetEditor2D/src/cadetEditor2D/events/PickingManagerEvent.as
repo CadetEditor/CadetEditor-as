@@ -11,22 +11,22 @@ package cadetEditor2D.events
 	public class PickingManagerEvent extends MouseEvent
 	{
 		static public const MOUSE_DOWN_BACKGROUND		:String = "mouseDownBackground";
-		static public const MOUSE_UP_BACKGROUND			:String = "mouseUpBackground";
+//		static public const MOUSE_UP_BACKGROUND			:String = "mouseUpBackground";
 		static public const CLICK_BACKGROUND			:String = "clickBackground";
-		static public const DOUBLE_CLICK_BACKGROUND		:String = "doubleClickBackground";
+//		static public const DOUBLE_CLICK_BACKGROUND		:String = "doubleClickBackground";
 		static public const MOUSE_DOWN_SKINS			:String = "mouseDownSkins";
-		static public const MOUSE_UP_SKINS				:String = "mouseUpSkins";
+//		static public const MOUSE_UP_SKINS				:String = "mouseUpSkins";
 		static public const CLICK_SKINS					:String = "clickSkins";
-		static public const DOUBLE_CLICK_SKINS			:String = "doubleClickSkins";
+//		static public const DOUBLE_CLICK_SKINS			:String = "doubleClickSkins";
 		static public const ROLL_OVER_SKIN				:String = "rollOverSkin";
 		static public const ROLL_OUT_SKIN				:String = "rollOutSkin";
-		static public const MOUSE_UP_STAGE				:String = "mouseUpStage";
+		//static public const MOUSE_UP_STAGE				:String = "mouseUpStage";
 		static public const MOUSE_MOVE_CONTAINER		:String = "mouseMoveContainer";
 		static public const MOUSE_DRAG_CONTAINER		:String = "mouseDragContainer";
 		static public const MOUSE_DOWN_CONTAINER		:String = "mouseDownContainer";
-		static public const MOUSE_UP_CONTAINER			:String = "mouseUpContainer";
-		static public const CLICK_CONTAINER				:String = "clickContainer";
-		static public const DOUBLE_CLICK_CONTAINER		:String = "doubleClickContainer";
+//		static public const MOUSE_UP_CONTAINER			:String = "mouseUpContainer";
+//		static public const CLICK_CONTAINER				:String = "clickContainer";
+//		static public const DOUBLE_CLICK_CONTAINER		:String = "doubleClickContainer";
 		//static public const ROLL_OVER_CONTAINER			:String = "rollOverContainer";
 		//static public const ROLL_OUT_CONTAINER			:String = "rollOutContainer";
 		

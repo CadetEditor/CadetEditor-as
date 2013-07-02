@@ -3,16 +3,19 @@
 
 package cadetEditor2DS.tools
 {
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.PolygonGeometry;
-	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.geom.Vertex;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.GeometrySkin;
+	import cadet2D.components.transforms.Transform2D;
+	import cadet2D.geom.Vertex;
 	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.contexts.ICadetEditorContext;
@@ -22,14 +25,11 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.ui.overlays.PolygonToolOverlay;
 	
-	import flash.geom.Matrix;
-	import flash.geom.Point;
-	
-	import core.appEx.core.contexts.IContext;
 	import core.app.operations.AddItemOperation;
-	import core.appEx.operations.AddToArrayOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
+	import core.appEx.core.contexts.IContext;
+	import core.appEx.operations.AddToArrayOperation;
 	import core.events.ArrayCollectionEvent;
 	
 	public class PolygonTool extends CadetEditorTool2D
@@ -145,7 +145,8 @@ package cadetEditor2DS.tools
 			}
 		}
 		
-		override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		//override protected function onMouseMoveContainer(event:PickingManagerEvent):void
+		override protected function onMouseDragContainer(event:PickingManagerEvent):void
 		{
 			if ( !draggedVertex ) return;
 			
@@ -155,8 +156,9 @@ package cadetEditor2DS.tools
 			draggedVertex.y = localPos.y;
 			polygon.vertices = polygon.vertices;
 		}
-		
-		override protected function onMouseUpStage(event:PickingManagerEvent):void
+	
+		//override protected function onMouseUpStage(event:PickingManagerEvent):void
+		override protected function onClickBackground(event:PickingManagerEvent):void
 		{
 			if ( !draggedVertex ) return;
 			
@@ -176,11 +178,15 @@ package cadetEditor2DS.tools
 		
 		private function createPolygon():void
 		{
+			var mouseDownPoint:Point = context.snapManager.snapPoint(view.worldMouse).snapPoint;
+			
 			var component:IComponentContainer = new Entity();
 			component.name = ComponentUtil.getUniqueName("Polygon", context.scene);
 			
 			polygon = new PolygonGeometry();
 			transform = new Transform2D();
+			transform.x = mouseDownPoint.x;
+			transform.y = mouseDownPoint.y;
 			
 			component.children.addItem(polygon);
 			component.children.addItem(new GeometrySkin());
@@ -241,6 +247,8 @@ package cadetEditor2DS.tools
 		
 		private function worldToLocal( pt:Point ):Point
 		{
+			if (!transform) return null;
+			
 			var m:Matrix = transform.matrix.clone();
 			m.invert();
 			return m.transformPoint(pt);

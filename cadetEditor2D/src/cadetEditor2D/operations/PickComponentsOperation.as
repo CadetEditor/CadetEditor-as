@@ -3,6 +3,13 @@
 
 package cadetEditor2D.operations
 {
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.geom.Point;
+	import flash.ui.Keyboard;
+	
 	import cadet.core.IComponentContainer;
 	
 	import cadet2D.components.skins.IRenderable;
@@ -13,19 +20,11 @@ package cadetEditor2D.operations
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.events.PickingManagerEvent;
 	
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.ui.Keyboard;
-	
+	import core.app.core.operations.IAsynchronousOperation;
 	import core.data.ArrayCollection;
+	import core.editor.CoreEditor;
 	import core.ui.events.ListEvent;
 	import core.ui.managers.CursorManager;
-	
-	import core.editor.CoreEditor;
-	import core.app.core.operations.IAsynchronousOperation;
 
 	public class PickComponentsOperation extends EventDispatcher implements IAsynchronousOperation
 	{
@@ -35,6 +34,7 @@ package cadetEditor2D.operations
 		private var panel			:PickComponentPanel;
 		
 		private var executing	:Boolean = false;
+		private var _panelOpen 	:Boolean = false;
 		
 		private var result		:Array;
 		private var clickLoc	:Point;		// Stores the location of the click in world container co-ordinates.
@@ -167,6 +167,9 @@ package cadetEditor2D.operations
 		private function openPanel(components:Array):void
 		{
 			if ( panel ) return;
+			
+			_panelOpen = true;
+			
 			panel = new PickComponentPanel();
 			CoreEditor.viewManager.addPopUp( panel );
 			
@@ -204,6 +207,8 @@ package cadetEditor2D.operations
 		{
 			if ( !panel ) return;
 			
+			_panelOpen = false;
+			
 			panel.okBtn.removeEventListener(MouseEvent.CLICK, clickOkHandler);
 			panel.cancelBtn.removeEventListener(MouseEvent.CLICK, clickCancelHandler);
 			panel.list.removeEventListener( ListEvent.ITEM_ROLL_OVER, rollOverItemHandler );
@@ -235,6 +240,10 @@ package cadetEditor2D.operations
 		}
 		public function getClickLoc():Point { return clickLoc.clone(); }
 		
+		public function get panelOpen():Boolean
+		{
+			return _panelOpen;
+		}
 		
 		public function get label():String
 		{

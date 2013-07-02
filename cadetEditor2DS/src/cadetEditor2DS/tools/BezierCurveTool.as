@@ -436,7 +436,8 @@ package cadetEditor2DS.tools
 			curve.segments = curve.segments;
 		}
 		
-		override protected function onMouseUpStage(event:PickingManagerEvent):void
+		//override protected function onMouseUpStage(event:PickingManagerEvent):void
+		override protected function onClickBackground(event:PickingManagerEvent):void
 		{
 			endInteraction();
 		}

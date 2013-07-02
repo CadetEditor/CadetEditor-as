@@ -474,7 +474,8 @@ package cadetEditor2DS.tools
 		
 		
 		
-		override protected function onMouseUpStage(event:PickingManagerEvent):void
+		//override protected function onMouseUpStage(event:PickingManagerEvent):void
+		override protected function onClickBackground(event:PickingManagerEvent):void
 		{
 			if ( interactMode == 0 ) return;
 			interactMode = 0;

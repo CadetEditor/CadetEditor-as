@@ -156,6 +156,7 @@ package cadetEditor2DS.managers
 				var pt:Point = new Point(x, y);
 				//pt = renderer.viewport.localToGlobal( pt );
 				pt = renderer.viewportToWorld(pt);
+				
 				if (!renderable.displayObject.bounds.containsPoint(pt)) continue;
 				
 				skinsUnderLoc[L++] = renderable;
@@ -173,7 +174,7 @@ package cadetEditor2DS.managers
 				//trace("PM2D getSkinsUnderMouse rX "+pt.x+" rY "+pt.y);
 				
 				//TODO: maybe shouldn't cop out here due to Starling...
-				if (!pt) return [];
+				//if (!pt) return [];
 				
 				var snapInfo:SnapInfo = _snapManager.snapPoint( pt );
 				//pt = renderer.worldToViewport( snapInfo.snapPoint );

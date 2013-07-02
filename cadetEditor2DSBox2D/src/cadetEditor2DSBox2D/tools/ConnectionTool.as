@@ -3,6 +3,9 @@
 
 package cadetEditor2DSBox2D.tools
 {
+	import flash.events.Event;
+	import flash.geom.Point;
+	
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
@@ -25,13 +28,10 @@ package cadetEditor2DSBox2D.tools
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
 	
-	import flash.events.Event;
-	import flash.geom.Point;
-	
-	import core.appEx.operations.AddDependencyOperation;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
+	import core.appEx.operations.AddDependencyOperation;
 	
 	public class ConnectionTool extends CadetEditorTool2D
 	{
@@ -94,6 +94,11 @@ package cadetEditor2DSBox2D.tools
 //				context.view2D.controlBar.removeChild(controlBar);
 //			}
 			
+			// ToolManager tries to disable "selectedTool" when a modal PopUp is opened.
+			// ConnectionTool relies on remaining enabled as it needs its pickComponentOperation and graphics overlay
+			// to not be cleared, hence "if panelOpen, return".
+			if ( pickComponentOperation && pickComponentOperation.panelOpen ) return;
+			
 			if ( pickComponentOperation )
 			{
 				pickComponentOperation.cancel();
@@ -119,6 +124,7 @@ package cadetEditor2DSBox2D.tools
 		private function pickCompleteHandler( event:Event ):void
 		{
 			var renderer:Renderer2D = Renderer2D(context.view2D.renderer);
+		//	pickComponentOperation = PickComponentsOperation(event.target); // not sure why this is null otherwise?
 			var result:Array = pickComponentOperation.getResult();
 			if (result) {
 				var pickedComponent:IComponentContainer = result[0];
@@ -203,8 +209,8 @@ package cadetEditor2DSBox2D.tools
 			connection.localPosB = offsetB;
 			entity.children.addItem(connection);
 			
-			var transform:Transform2D = new Transform2D();
-			entity.children.addItem(transform);
+//			var transform:Transform2D = new Transform2D();
+//			entity.children.addItem(transform);
 			
 			entity.children.addItem( new ConnectionSkin() );
 			

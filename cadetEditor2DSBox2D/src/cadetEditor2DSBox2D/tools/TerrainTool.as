@@ -120,7 +120,8 @@ package cadetEditor2DSBox2D.tools
 			beginPaint();
 		}
 		
-		override protected function onMouseUpStage(event:PickingManagerEvent):void
+		//override protected function onMouseUpStage(event:PickingManagerEvent):void
+		override protected function onClickBackground(event:PickingManagerEvent):void
 		{
 			endPaint();
 		}
