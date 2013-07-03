@@ -11,7 +11,16 @@ package cadetEditor2DS.ui.overlays
 
 	public class Grid2D extends Overlay
 	{	
-		private var _view	:ICadetEditorView2D;
+		private var _view			:ICadetEditorView2D;
+		/*
+		*	_minGridSize is calculated as view.gridSize * view.zoom.
+		*	E.g. If minGridSize == 4, lines will not render at below 40 gridSize at 10%, below 10 gridsize at 40%,
+		*	or below 4 gridSize at 100% zoom.
+		*	0.1 * 40 = 4
+		*	0.4 * 10 = 4
+		*	1 * 4 = 4
+		*/
+		private var _minGridSize	:uint = 4;
 		
 		public function Grid2D()
 		{
@@ -33,15 +42,34 @@ package cadetEditor2DS.ui.overlays
 		{
 			if ( !_view ) return;
 			
-			visible = view.showGrid;
+			visible = _view.showGrid;
 			
 			var _width:Number = view.viewportWidth;
 			var _height:Number = view.viewportHeight;
 			
+			var axisAlpha:Number = 0.3;
+			var lineAlpha:Number = 0.1;
+			
 			graphics.clear();
 			
-			if ( visible )
-			{
+			// drawing too many lines in Starling causes slow down
+			if ( view.gridSize * view.zoom < _minGridSize ) {
+				
+				// Draw X axis
+				var worldX:int = -(view.panX*view.zoom) + _width*0.5;
+				graphics.lineStyle(1, 0xFFFFFF, axisAlpha);
+				graphics.moveTo(worldX,0);
+				graphics.lineTo(worldX,_height);
+				// Draw Y axis
+				var worldY:int = -(view.panY*view.zoom) + _height*0.5;
+				graphics.lineStyle(1, 0xFFFFFF, axisAlpha);
+				graphics.moveTo(0,worldY);
+				graphics.lineTo(_width,worldY);
+				
+				return;
+			}
+			
+			if ( visible ) {
 				var size:Number = view.gridSize * view.zoom;
 				size = size <= 0 ? 1 : size;
 				var left:Number = view.panX*view.zoom - _width*0.5;
@@ -49,19 +77,17 @@ package cadetEditor2DS.ui.overlays
 				var x:Number = (size-(left % size)) - size;
 				var y:Number = (size-(top % size)) - size;
 				
-				while ( x < _width )
-				{
-					var worldX:int = - x - (view.panX*view.zoom) + _width*0.5;
-					graphics.lineStyle(1, 0xFFFFFF, worldX == 0 ? 0.3 : 0.1);
+				while ( x < _width ) {
+					worldX = - x - (view.panX*view.zoom) + _width*0.5;
+					graphics.lineStyle(1, 0xFFFFFF, worldX == 0 ? axisAlpha : lineAlpha);
 					graphics.moveTo(x,0);
 					graphics.lineTo(x,_height);
 					
 					x += size;
 				}
-				while ( y < _height )
-				{
-					var worldY:int = - y - (view.panY*view.zoom) + _height*0.5;
-					graphics.lineStyle(1, 0xFFFFFF, worldY == 0 ? 0.3 : 0.1);
+				while ( y < _height ) {
+					worldY = - y - (view.panY*view.zoom) + _height*0.5;
+					graphics.lineStyle(1, 0xFFFFFF, worldY == 0 ? axisAlpha : lineAlpha);
 					graphics.moveTo(0,y);
 					graphics.lineTo(_width,y);
 					

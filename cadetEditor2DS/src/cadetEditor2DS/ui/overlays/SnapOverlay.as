@@ -50,26 +50,28 @@ package cadetEditor2DS.ui.overlays
 			if ( !snapManager ) return;
 			if ( !_renderer ) return;
 			
-			var viewportMouse:Point = new Point(_renderer.mouseX, _renderer.mouseY);
-			//var worldMouse:Point = _renderer.viewportToWorld( new Point(  _renderer.mouseX, _renderer.mouseY ) );
+			//var viewportMouse:Point = new Point(_renderer.mouseX, _renderer.mouseY);
+			var worldMouse:Point = _renderer.viewportToWorld( new Point(  _renderer.mouseX, _renderer.mouseY ) );
 			
 			//trace("SnapOverlay renderer x "+_renderer.mouseX+" y "+_renderer.mouseY);
 			//trace("SnapOverlay viewportMouse x "+viewportMouse.x+" y "+viewportMouse.y);
 			
 			//TODO: Possibly shouldn't cop out here due to Starling...
-			if (!viewportMouse) return;
+			//if (!viewportMouse) return;
 			
-			var snapInfo:SnapInfo = snapManager.snapPoint(viewportMouse);
+			//var snapInfo:SnapInfo = snapManager.snapPoint(viewportMouse);
+			var snapInfo:SnapInfo = snapManager.snapPoint(worldMouse);
 			var pt:Point = snapInfo.snapPoint;
 			
 			//trace("SnapOverlay snapPoint x "+pt.x+" y "+pt.y+" OVERLAY x "+x+" y "+y);
 			
-			if ( pt.x == viewportMouse.x && pt.y == viewportMouse.y ) return;
+			//if ( pt.x == viewportMouse.x && pt.y == viewportMouse.y ) return;
+			if ( pt.x == worldMouse.x && pt.y == worldMouse.y ) return;
 			
-			//pt = _renderer.worldToViewport(pt);
+			pt = _renderer.worldToViewport(pt);
 			
-			//pt = _renderer.viewport.localToGlobal(pt);
-			pt = globalToLocal(pt);
+			pt = _renderer.viewport.localToGlobal(pt);
+			//pt = globalToLocal(pt);
 			
 			graphics.lineStyle(1, 0xFFFFFF);
 			

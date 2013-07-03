@@ -184,12 +184,18 @@ package cadetEditor2DS.tools
 			component.name = ComponentUtil.getUniqueName("Polygon", context.scene);
 			
 			polygon = new PolygonGeometry();
+			polygon.name = component.name+"_"+polygon.name;
+			
 			transform = new Transform2D();
+			transform.name = component.name+"_"+transform.name;
 			transform.x = mouseDownPoint.x;
 			transform.y = mouseDownPoint.y;
 			
+			var geomSkin:GeometrySkin = new GeometrySkin();
+			geomSkin.name = component.name+"_"+geomSkin.name;
+			
 			component.children.addItem(polygon);
-			component.children.addItem(new GeometrySkin());
+			component.children.addItem(geomSkin);
 			component.children.addItem(transform);
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();

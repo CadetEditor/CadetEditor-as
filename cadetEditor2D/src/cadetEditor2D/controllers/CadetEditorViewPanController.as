@@ -3,8 +3,6 @@
 
 package cadetEditor2D.controllers
 {
-	import cadetEditor.assets.CadetEditorCursors;
-	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
@@ -12,12 +10,8 @@ package cadetEditor2D.controllers
 	import cadetEditor2D.tools.PanTool;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
 	import flash.system.Capabilities;
-	import flash.ui.Keyboard;
 	
 	import core.ui.managers.CursorManager;
 	

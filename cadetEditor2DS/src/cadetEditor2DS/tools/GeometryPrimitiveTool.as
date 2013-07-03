@@ -66,11 +66,13 @@ package cadetEditor2DS.tools
 			entity.name = ComponentUtil.getUniqueName(getName(),context.scene);
 			
 			transform = new Transform2D();
+			transform.name = entity.name+"_"+transform.name;
 			transform.x = mouseDownPoint.x;
 			transform.y = mouseDownPoint.y;
 			entity.children.addItem( transform );
 			
 			geometry = new GeometryType();
+			geometry.name = entity.name+"_"+geometry.name;
 			entity.children.addItem(geometry);
 			
 			var rect:Rectangle = new Rectangle( mouseDownPoint.x, mouseDownPoint.y, 0, 0 );
@@ -84,6 +86,7 @@ package cadetEditor2DS.tools
 			}
 			
 			skin = new SkinType();
+			skin.name = entity.name+"_"+skin.name;
 			entity.children.addItem( skin );
 			
 			initializeComponent();

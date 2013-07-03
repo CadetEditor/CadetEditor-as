@@ -3,6 +3,9 @@
 
 package cadetEditor2DS.contexts
 {
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	
 	import cadet.core.IComponent;
 	import cadet.core.IRenderer;
 	import cadet.events.ComponentEvent;
@@ -33,15 +36,13 @@ package cadetEditor2DS.contexts
 	import cadetEditor2DS.ui.overlays.SnapOverlay;
 	import cadetEditor2DS.ui.views.CadetEditorView2D;
 	
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	
 	import core.app.CoreApp;
 	import core.app.resources.FactoryResource;
 	import core.app.resources.IFactoryResource;
-	import core.events.PropertyChangeEvent;
 	import core.editor.CoreEditor;
+	import core.events.PropertyChangeEvent;
 	import core.ui.managers.PopUpManager;
+	import core.ui.util.BindingUtil;
 	
 	[Event( type="flash.events.Event", name="change" )]
 	public class CadetEditorContext2D extends AbstractTooledCadetEditorContext implements ICadetEditorContext2D
@@ -80,7 +81,7 @@ package cadetEditor2DS.contexts
 			selectionOverlay.selection = _selection;
 			//_view.addOverlay(selectionOverlay);
 			
-			// Init Snap Overlap
+			// Init Snap Overlay
 			snapOverlay = new SnapOverlay(_snapManager);
 			//_view.addOverlay( snapOverlay, CadetEditorView2D.TOP );
 			
@@ -248,7 +249,9 @@ package cadetEditor2DS.contexts
 //			_view.panY = _scene.userData.panY == null ? _view.viewportHeight/2 : Number(_scene.userData.panY);
 //			_view.gridSize = _scene.userData.gridSize == null ? 10 : Number(_scene.userData.gridSize);
 //			
-//			BindingUtil.bindTwoWay( _snapManager, "snapEnabled", CadetEditorControlBar(_view.controlBar).snapToggle, "selected" );
+			//BindingUtil.bindTwoWay( _snapManager, "snapEnabled", CadetEditorControlBar(_view.controlBar).snapToggle, "selected" );
+			BindingUtil.bindTwoWay( _snapManager, "gridSizeX", _view, "gridSize"); 
+			BindingUtil.bindTwoWay( _snapManager, "gridSizeY", _view, "gridSize");
 			
 			// TODO: Hardcoded reference to selectedTool.
 			if ( _toolManager.tools.length > 0 )

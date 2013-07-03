@@ -127,18 +127,21 @@ package cadetEditor2DSBox2D.tools
 			entity.name = ComponentUtil.getUniqueName( getName(), context.scene );
 			
 			var pin:Pin = new Pin();
-			pin.skinA = skinA;
+			//pin.skinA = skinA;
+			pin.name = entity.name+"_"+pin.name;
 			pin.transformA = transformA;
 			pin.transformB = transformB;
 			pin.localPos = new Vertex(pinOffset.x, pinOffset.y);
 			entity.children.addItem(pin);
 			
 			var transform:Transform2D = new Transform2D();
+			transform.name = entity.name+"_"+transform.name;
 			transform.x = clickLoc.x;
 			transform.y = clickLoc.y;
 			entity.children.addItem(transform);
 			
 			var skin:IRenderable = new PinSkin();
+			skin.name = entity.name+"_"+skin.name;
 			entity.children.addItem(skin);
 			
 			//pin.localPos = new Vertex(pinOffset.x, pinOffset.y);

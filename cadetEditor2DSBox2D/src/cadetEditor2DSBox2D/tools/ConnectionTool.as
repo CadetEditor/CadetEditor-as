@@ -203,6 +203,7 @@ package cadetEditor2DSBox2D.tools
 			entity.name = ComponentUtil.getUniqueName( getName(), context.scene );
 			
 			var connection:Connection = new Connection();
+			connection.name = entity.name+"_"+connection.name;
 			connection.transformA = transformA;
 			connection.transformB = transformB;
 			connection.localPosA = offsetA;
@@ -212,7 +213,9 @@ package cadetEditor2DSBox2D.tools
 //			var transform:Transform2D = new Transform2D();
 //			entity.children.addItem(transform);
 			
-			entity.children.addItem( new ConnectionSkin() );
+			var skin:ConnectionSkin = new ConnectionSkin();
+			skin.name = entity.name+"_"+skin.name;
+			entity.children.addItem( skin );
 			
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.addOperation( new AddItemOperation( entity, context.scene.children ) );
