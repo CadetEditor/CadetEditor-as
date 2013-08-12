@@ -14,13 +14,13 @@ package cadetEditor2DS.ui.overlays
 		private var _view			:ICadetEditorView2D;
 		/*
 		*	_minGridSize is calculated as view.gridSize * view.zoom.
-		*	E.g. If minGridSize == 4, lines will not render at below 40 gridSize at 10%, below 10 gridsize at 40%,
-		*	or below 4 gridSize at 100% zoom.
-		*	0.1 * 40 = 4
-		*	0.4 * 10 = 4
-		*	1 * 4 = 4
+		*	E.g. If minGridSize == 5, lines will not render at below 50 gridSize at 10%, below 10 gridsize at 40%,
+		*	or below 5 gridSize at 100% zoom.
+		*	0.1 * 50 = 5
+		*	0.5 * 10 = 5
+		*	1 * 5 = 5
 		*/
-		private var _minGridSize	:uint = 4;
+		private var _minGridSize	:uint = 5;
 		
 		public function Grid2D()
 		{

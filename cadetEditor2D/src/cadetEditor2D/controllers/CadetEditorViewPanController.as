@@ -3,20 +3,18 @@
 
 package cadetEditor2D.controllers
 {
+	import flash.events.MouseEvent;
+	import flash.system.Capabilities;
+	
 	import cadetEditor.tools.ITool;
 	
-	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.contexts.ICadetEditorContext2D;
 	import cadetEditor2D.tools.PanTool;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
 	
-	import flash.events.MouseEvent;
-	import flash.system.Capabilities;
-	
-	import core.ui.managers.CursorManager;
-	
 	import core.editor.CoreEditor;
 	import core.editor.core.CoreEditorEnvironment;
+	import core.ui.managers.CursorManager;
 	
 	/**
 	 * This controller is created within the CadetEditorContext. It's purpose is to augment the context with panning behaviour without

@@ -46,7 +46,7 @@ package
 			splashWindow.activate();
 			
 			// Don't init straight away, so the invokeHandler has chance to be called.
-			AsynchronousUtil.callLater(initFlox);
+			AsynchronousUtil.callLater(initCore);
 		}
 		
 		/**
@@ -58,7 +58,7 @@ package
 			configURL = event.arguments[0];
 		}
 		
-		private function initFlox():void
+		private function initCore():void
 		{
 			CoreApp.init();
 			
