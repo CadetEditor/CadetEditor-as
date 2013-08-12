@@ -3,23 +3,23 @@
 
 package cadetEditor2DS.tools
 {
+	import flash.events.MouseEvent;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import cadet.components.geom.IGeometry;
+	import cadet.core.ComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.PolygonGeometry;
+	import cadet2D.components.skins.GeometrySkin;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.transforms.Transform2D;
-	import cadet2D.components.skins.GeometrySkin;
 	
 	import cadetEditor.tools.ITool;
 	
 	import cadetEditor2D.events.PickingManagerEvent;
 	import cadetEditor2D.ui.views.ICadetEditorView2D;
-	
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
@@ -30,7 +30,7 @@ package cadetEditor2DS.tools
 		protected var dragging				:Boolean = false;
 		protected var mouseDownPoint		:Point;
 		
-		protected var entity				:Entity;
+		protected var entity				:ComponentContainer;
 		protected var geometry				:IGeometry;
 		protected var skin					:IRenderable;
 		protected var transform				:Transform2D;
@@ -62,7 +62,7 @@ package cadetEditor2DS.tools
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.label = getOperationDescription();
 			
-			entity = new Entity();
+			entity = new ComponentContainer();
 			entity.name = ComponentUtil.getUniqueName(getName(),context.scene);
 			
 			transform = new Transform2D();

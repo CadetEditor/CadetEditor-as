@@ -6,11 +6,11 @@ package cadetEditor2DSBox2D.tools
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import cadet.core.ComponentContainer;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
 	import cadet2D.components.connections.Connection;
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.ConnectionSkin;
@@ -199,7 +199,7 @@ package cadetEditor2DSBox2D.tools
 		
 		protected function createConnection():void
 		{
-			var entity:Entity = new Entity();
+			var entity:ComponentContainer = new ComponentContainer();
 			entity.name = ComponentUtil.getUniqueName( getName(), context.scene );
 			
 			var connection:Connection = new Connection();

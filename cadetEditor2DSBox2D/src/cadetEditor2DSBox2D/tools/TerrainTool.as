@@ -3,14 +3,17 @@
 
 package cadetEditor2DSBox2D.tools
 {
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	
+	import cadet.core.ComponentContainer;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.TerrainGeometry;
-	import cadet2D.components.transforms.Transform2D;
 	import cadet2D.components.skins.TerrainSkin;
+	import cadet2D.components.transforms.Transform2D;
 	
 	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
 	
@@ -21,9 +24,6 @@ package cadetEditor2DSBox2D.tools
 	import cadetEditor2D.events.PickingManagerEvent;
 	
 	import cadetEditor2DS.tools.CadetEditorTool2D;
-	
-	import flash.geom.Matrix;
-	import flash.geom.Point;
 	
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
@@ -92,7 +92,7 @@ package cadetEditor2DSBox2D.tools
 		
 		private function createComponent():void
 		{
-			var entity:Entity = new Entity();
+			var entity:ComponentContainer = new ComponentContainer();
 			entity.name = "Terrain";
 			
 			var bottomRightWorld:Point = new Point( context.view2D.viewportWidth, context.view2D.viewportHeight );

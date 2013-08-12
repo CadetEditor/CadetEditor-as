@@ -3,20 +3,19 @@
 
 package cadetEditor2DSBox2D.tools
 {
+	import cadet.core.ComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.transforms.Transform2D;
 	
-	import cadet2DBox2D.components.behaviours.RigidBodyBehaviour;
-	
 	import cadetEditor2D.events.PickingManagerEvent;
+	
+	import cadetEditor2DS.tools.GeometryPrimitiveTool;
 	
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
-	import cadetEditor2DS.tools.GeometryPrimitiveTool;
 
 	public class GeometryPrimitiveToolBox2D extends GeometryPrimitiveTool
 	{
@@ -33,7 +32,7 @@ package cadetEditor2DSBox2D.tools
 			var compoundOperation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			compoundOperation.label = getOperationDescription();
 			
-			entity = new Entity();
+			entity = new ComponentContainer();
 			entity.name = ComponentUtil.getUniqueName(getName(),context.scene);
 			
 			transform = new Transform2D();

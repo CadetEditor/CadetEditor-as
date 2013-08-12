@@ -6,11 +6,11 @@ package cadetEditor2DS.tools
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
+	import cadet.core.ComponentContainer;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.BezierCurve;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.GeometrySkin;
@@ -26,12 +26,12 @@ package cadetEditor2DS.tools
 	
 	import cadetEditor2DS.ui.overlays.BezierCurveToolOverlay;
 	
-	import core.appEx.core.contexts.IContext;
-	import core.appEx.events.OperationManagerEvent;
 	import core.app.operations.AddItemOperation;
 	import core.app.operations.AddToVectorOperation;
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
+	import core.appEx.core.contexts.IContext;
+	import core.appEx.events.OperationManagerEvent;
 	import core.events.ArrayCollectionEvent;
 	
 	public class BezierCurveTool extends CadetEditorTool2D
@@ -211,7 +211,7 @@ package cadetEditor2DS.tools
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();
 			operation.label = "New curve";
 			
-			var entity:Entity = new Entity();
+			var entity:ComponentContainer = new ComponentContainer();
 			entity.name = ComponentUtil.getUniqueName("Curve", context.scene);
 			
 			curve = new BezierCurve();

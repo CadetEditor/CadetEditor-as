@@ -6,11 +6,11 @@ package cadetEditor2DS.tools
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	
+	import cadet.core.ComponentContainer;
 	import cadet.core.IComponent;
 	import cadet.core.IComponentContainer;
 	import cadet.util.ComponentUtil;
 	
-	import cadet2D.components.core.Entity;
 	import cadet2D.components.geom.PolygonGeometry;
 	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.GeometrySkin;
@@ -180,7 +180,7 @@ package cadetEditor2DS.tools
 		{
 			var mouseDownPoint:Point = context.snapManager.snapPoint(view.worldMouse).snapPoint;
 			
-			var component:IComponentContainer = new Entity();
+			var component:IComponentContainer = new ComponentContainer();
 			component.name = ComponentUtil.getUniqueName("Polygon", context.scene);
 			
 			polygon = new PolygonGeometry();
