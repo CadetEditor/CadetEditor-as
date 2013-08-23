@@ -134,6 +134,8 @@ package cadetEditor2D.controllers
 					skin = AbstractSkin2D(renderable);
 					if (skin.transform2D) {
 						newMatrix = newMatrices[i];
+						// TO DO: Assumption that storedMatrix exists, which may not be the case for new nested
+						// components where a transform may have been deleted.
 						skin.transform2D.matrix = storedMatrix.clone();
 						compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), storedMatrix.clone() ) );
 					} else if (skin is TransformableSkin) {

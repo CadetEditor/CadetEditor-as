@@ -7,7 +7,7 @@ package cadetEditor2D.commandHandlers
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	import cadetEditor.entities.CadetEditorCommands;
-	import cadetEditor2D.operations.CenterOriginsOperation;
+	import cadet2D.operations.CenterOriginsOperation;
 	
 	import core.editor.CoreEditor;
 	import core.editor.utils.CoreEditorUtil;
