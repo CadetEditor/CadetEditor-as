@@ -3,14 +3,10 @@
 
 package cadetEditor3D.tools
 {
-	import away3d.materials.ColorMaterial;
-	
 	import cadet3D.components.core.MeshComponent;
-	import cadet3D.components.geom.GeometryComponent;
 	import cadet3D.components.materials.ColorMaterialComponent;
 	
 	import flash.events.MouseEvent;
-	import flash.geom.Vector3D;
 	
 	import core.editor.CoreEditor;
 	import core.app.operations.AddItemOperation;
@@ -58,7 +54,7 @@ package cadetEditor3D.tools
 		private function mouseDownHandler( event:MouseEvent ):void
 		{
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation()
-			operation.label = "Create primtive";
+			operation.label = "Create primitive";
 			
 			if ( defaultMaterialComponent.parentComponent == null )
 			{

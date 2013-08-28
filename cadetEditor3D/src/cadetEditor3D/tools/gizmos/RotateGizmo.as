@@ -3,11 +3,13 @@
 
 package cadetEditor3D.tools.gizmos
 {
+	import flash.display.BitmapData;
+	import flash.display3D.Context3DCompareMode;
+	
 	import away3d.core.pick.PickingColliderType;
 	import away3d.entities.Entity;
 	import away3d.entities.Mesh;
 	import away3d.materials.ColorMaterial;
-	import away3d.materials.DefaultMaterialBase;
 	import away3d.materials.MaterialBase;
 	import away3d.materials.TextureMaterial;
 	import away3d.materials.methods.EffectMethodBase;
@@ -16,9 +18,6 @@ package cadetEditor3D.tools.gizmos
 	import away3d.primitives.SphereGeometry;
 	import away3d.textures.BitmapCubeTexture;
 	import away3d.textures.BitmapTexture;
-	
-	import flash.display.BitmapData;
-	import flash.display3D.Context3DCompareMode;
 	
 	public class RotateGizmo extends GizmoBase
 	{
@@ -57,7 +56,7 @@ package cadetEditor3D.tools.gizmos
 			yellowMaterial.alphaBlending = true;
 			
 			
-			var globeMaterial:DefaultMaterialBase = new ColorMaterial(0xFFFFFF,0);
+			var globeMaterial:ColorMaterial = new ColorMaterial(0xFFFFFF,0);
 			var whiteBMP:BitmapData = new BitmapData(8,8,false,0xFFFFFF);
 			var whiteCubeMap:BitmapCubeTexture = new BitmapCubeTexture( whiteBMP, whiteBMP, whiteBMP, whiteBMP, whiteBMP, whiteBMP );
 			var envMapMethod:FresnelEnvMapMethod = new FresnelEnvMapMethod( whiteCubeMap );

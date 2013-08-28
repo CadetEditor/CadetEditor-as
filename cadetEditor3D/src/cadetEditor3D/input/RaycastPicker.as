@@ -186,5 +186,9 @@ package cadetEditor3D.input
 		{
 			return _entities;
 		}
+		
+		public function dispose():void
+		{
+		}
 	}
 }

@@ -9,14 +9,21 @@ package cadetEditor3D.utils
 		static public function getMousePositionOnPlane( planePos:Vector3D, planeNormal:Vector3D, view3D:View3D ):Vector3D
 		{
 			var rayPosition:Vector3D = view3D.camera.position;
-			var rayDirection:Vector3D = view3D.unproject( view3D.mouseX, view3D.mouseY );
+			trace("rayPosition "+rayPosition);
+			var rayDirection:Vector3D = view3D.unproject( view3D.mouseX, view3D.mouseY, 0 );
 			rayDirection = rayDirection.subtract(rayPosition);
 			rayDirection.normalize();
+			trace("rayDirection "+rayDirection);
 			
 			var delta:Vector3D = planePos.subtract(rayPosition);
-			var d:Number = delta.dotProduct(planeNormal) / rayDirection.dotProduct(planeNormal);
+			trace("delta "+delta);
+			var deltaPlaneNorm:Number = delta.dotProduct(planeNormal);
+			// divide by zero error
+			var rayPlaneNorm:Number = Math.max(rayDirection.dotProduct(planeNormal), 0.1);
+			var d:Number = deltaPlaneNorm / rayPlaneNorm;
+			trace("deltaPlaneNorm "+deltaPlaneNorm+" rayPlaneNorm "+rayPlaneNorm+" d "+d);
 			rayDirection.scaleBy(d);
-			
+			trace("rayDirection2 "+rayDirection);
 			return rayPosition.add( rayDirection );
 		}
 	}

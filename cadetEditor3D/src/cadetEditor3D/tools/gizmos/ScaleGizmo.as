@@ -98,7 +98,8 @@ package cadetEditor3D.tools.gizmos
 			armHeadMesh.y = armLineGeom.height;
 			
 			var merge:Merge = new Merge(false,true);
-			var armMesh:Mesh = merge.applyToMeshes( new Mesh(new Geometry()), Vector.<Mesh>( [armLineMesh, armHeadMesh] ) );
+			var armMesh:Mesh = new Mesh(new Geometry());
+			merge.applyToMeshes( armMesh, Vector.<Mesh>( [armLineMesh, armHeadMesh] ) );
 			var armGeom:Geometry = armMesh.geometry;
 			
 			armX = new Mesh( armGeom, redMaterial );

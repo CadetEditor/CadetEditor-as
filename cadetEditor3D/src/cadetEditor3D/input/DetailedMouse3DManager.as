@@ -137,7 +137,7 @@ package cadetEditor3D.input
 			if( collector.numMouseEnableds > 0 && mouseInView() ) 
 			{
 				var rayPosition:Vector3D = _view.camera.position;
-				var rayDirection:Vector3D = _view.unproject( _view.mouseX, _view.mouseY );
+				var rayDirection:Vector3D = _view.unproject( _view.mouseX, _view.mouseY, 0 );
 				_opaqueCollider.updateRay( rayPosition, rayDirection );
 				_blendedCollider.updateRay( rayPosition, rayDirection );
 				_opaqueCollider.updateTarget(collector.opaqueRenderableHead)
