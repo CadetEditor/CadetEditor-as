@@ -9,9 +9,14 @@ package cadetEditor2D.controllers
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import cadet.util.ComponentUtil;
+	
+	import cadet2D.components.renderers.Renderer2D;
 	import cadet2D.components.skins.AbstractSkin2D;
 	import cadet2D.components.skins.IRenderable;
 	import cadet2D.components.skins.TransformableSkin;
+	import cadet2D.components.transforms.ITransform2D;
+	import cadet2D.components.transforms.Transform2D;
 	
 	import cadetEditor.contexts.ICadetEditorContext;
 	
@@ -20,6 +25,8 @@ package cadetEditor2D.controllers
 	import core.app.operations.ChangePropertyOperation;
 	import core.app.operations.UndoableCompoundOperation;
 	import core.editor.CoreEditor;
+	
+	import starling.utils.MatrixUtil;
 	
 	public class DragItemsController
 	{
@@ -31,6 +38,8 @@ package cadetEditor2D.controllers
 		protected var mouseX				:Number;
 		protected var mouseY				:Number;
 		protected var _dragging				:Boolean = false;
+		
+		protected var topLevelTransform		:Transform2D;
 		
 		public function DragItemsController( context:ICadetEditorContext, tool:ICadetEditorTool2D )
 		{
@@ -62,29 +71,62 @@ package cadetEditor2D.controllers
 			this.skins = skins;
 			if ( skins.length == 0 ) return;
 			
+			var renderer2D:Renderer2D = ComponentUtil.getChildOfType(context.scene, Renderer2D, true);
+			var matrix:Matrix = renderer2D.viewport.transformationMatrix;
+			topLevelTransform = new Transform2D(20, 20);
+			//topLevelTransform.matrix = matrix;
+			
 			storedMatrices = new Dictionary();
 			matricesTable = new Dictionary();
+			var skinsWithParentTransforms:Array = [];
 			
 			for ( var i:int = 0; i < skins.length; i++ )
 			{
 				var renderable:IRenderable = skins[i];
-				//TODO: Assumption that every skin has an associated transform
-				//at the correct index in storedTransforms. Perhaps a table would be better?
 				if ( renderable is AbstractSkin2D ) {
 					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
+					// If a skin has a transform2D set, this overrides its own transform2D (if it has one)
 					if (skin.transform2D) {
-						if (!matricesTable[skin.transform2D]) {
+						// WHEN ADDING a transform to the tables:
+						// If the transform2D has a parentTransform and that parentTransform is added, remove references
+						// to its child transforms from the tables: We're only interested in dragging the topmost transform
+						
+						//if (!matricesTable[skin.transform2D]) {
 							storedMatrices[skin] = skin.transform2D.matrix.clone();
 							matricesTable[skin.transform2D] = storedMatrices[skin];
-						} else {
-							storedMatrices[skin] = matricesTable[skin.transform2D];
-						}
-					} else if (skin is TransformableSkin ) {
+							
+							if ( skin.transform2D.parentTransform ) {
+								skinsWithParentTransforms.push(skin);
+							}
+							
+						// What's the point of this clause? Dictionaries are cleared at start of the function...
+//						} else {
+//							storedMatrices[skin] = matricesTable[skin.transform2D];
+//						}
+					} 
+					// Else, if the skin is transformable, fall back on its own transform2D.
+					else if (skin is TransformableSkin ) {
 						var tSkin:TransformableSkin = TransformableSkin(skin);
 						storedMatrices[skin] = tSkin.matrix.clone();
 					}					
-				} else {
+				} 
+				// ParticleSystems or non-skin related renderables
+				else {
 					storedMatrices[renderable] = renderable.matrix.clone();
+				}
+			}
+			
+			trace("skinsWithParentTransforms "+skinsWithParentTransforms);
+			
+			for ( i = 0; i < skinsWithParentTransforms.length; i ++ ) {
+				skin = skinsWithParentTransforms[i];
+				var childTransform:ITransform2D = skin.transform2D;
+				// If the transform's parent is being transformed, remove the reference to
+				// the child transform
+				if ( matricesTable[childTransform.parentTransform] ) {
+					trace("parent in table");
+					storedMatrices[skin] = null;
+					matricesTable[skin.transform2D] = null;
 				}
 			}
 			
@@ -130,12 +172,13 @@ package cadetEditor2D.controllers
 			{
 				renderable = skins[i];
 				var storedMatrix:Matrix = storedMatrices[skin];
+				// Not all skins will have storedMatrices (child transform's skins are removed)
+				if (!storedMatrix) 	continue;
+				
 				if ( renderable is AbstractSkin2D ) {
 					skin = AbstractSkin2D(renderable);
 					if (skin.transform2D) {
 						newMatrix = newMatrices[i];
-						// TO DO: Assumption that storedMatrix exists, which may not be the case for new nested
-						// components where a transform may have been deleted.
 						skin.transform2D.matrix = storedMatrix.clone();
 						compoundOperation.addOperation( new ChangePropertyOperation( skin.transform2D, "matrix", newMatrix.clone(), storedMatrix.clone() ) );
 					} else if (skin is TransformableSkin) {
@@ -161,9 +204,15 @@ package cadetEditor2D.controllers
 		{
 			var renderable:IRenderable;
 			
+			// mouseX & mouseY are fixed from beginDrag
+			//
 			var snappedPos:Point = tool.getSnappedWorldMouse();
-			var dx:Number = snappedPos.x - mouseX;
-			var dy:Number = snappedPos.y - mouseY;
+			//TODO: need to translate into common parentTransform coord space
+//			var dx:Number = snappedPos.x - mouseX;
+//			var dy:Number = snappedPos.y - mouseY;
+			
+			trace("mouseX "+mouseX+" mouseY "+mouseY);
+			trace("snappedPos.x "+snappedPos.x+" .y "+snappedPos.y);
 			
 			var i:int;
 			var globalBounds:Rectangle = new Rectangle();
@@ -176,6 +225,16 @@ package cadetEditor2D.controllers
 					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
 					if (storedMatrix) {
 						if (skin.transform2D) {
+							var m:Matrix = skin.transform2D.globalMatrix.clone(); // clone local-to-global matrix before inverting
+							m.invert(); // invert and get global-to-local
+							
+							// this is from Starling, but you can copy this method code as well - it's just 2 lines
+							var localPoint:Point = MatrixUtil.transformCoords(m, snappedPos.x, snappedPos.y);
+							var mousePoint:Point = MatrixUtil.transformCoords(m, mouseX, mouseY);
+							
+							var dx:Number = localPoint.x - mousePoint.x;
+							var dy:Number = localPoint.y - mousePoint.y;
+							
 							var newMatrix:Matrix = storedMatrix.clone();
 							newMatrix.translate(dx,dy);
 							skin.transform2D.matrix = newMatrix;						
