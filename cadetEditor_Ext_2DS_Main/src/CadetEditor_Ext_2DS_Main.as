@@ -28,13 +28,14 @@ package
 	import cadetEditor2DS.commandHandlers.ZoomExtentsCommandHandler;
 	import cadetEditor2DS.contexts.CadetContext2D;
 	import cadetEditor2DS.contexts.CadetEditorContext2D;
+	import cadetEditor2DS.contexts.OutlinePanelContext2D;
 	import cadetEditor2DS.tools.SelectionTool;
 	
 	import core.app.CoreApp;
-	import core.appEx.entities.KeyModifier;
 	import core.app.managers.ResourceManager;
-	import core.appEx.managers.SettingsManager;
 	import core.app.resources.FactoryResource;
+	import core.appEx.entities.KeyModifier;
+	import core.appEx.managers.SettingsManager;
 	import core.appEx.resources.FileType;
 	import core.appEx.resources.KeyBinding;
 	import core.editor.CoreEditor;
@@ -68,8 +69,9 @@ package
 			resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.BUILD_AND_RUN, "Test Scene", "build", "", CadetEditorIcons.Run ) );
 			
 			// Visual contexts
+			resourceManager.addResource( new FactoryResource( OutlinePanelContext2D, "Outline", CadetEditorIcons.Outline ) );
 			resourceManager.addResource( new FactoryResource( InfoPanelContext, "Info", CadetEditorIcons.Info ) );
-			
+
 			// File Types
 			resourceManager.addResource( new FileType( "Cadet2D Editor Scene", "cdt2d", CadetEditorIcons.CadetEditor ) );
 			resourceManager.addResource( new FileType( "Cadet2D Scene", "c2d", CadetEditorIcons.Cadet ) );
@@ -112,7 +114,8 @@ package
 			
 			// Settings
 			var settingsManager:SettingsManager = CoreEditor.settingsManager;
-			settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
+			//settingsManager.setBoolean( "cadetEditor.contexts.OutlinePanelContext.visible", true, true );
+			settingsManager.setBoolean( "cadetEditor2DS.contexts.OutlinePanelContext2D.visible", true, true );
 			settingsManager.setBoolean( "core.editor.contexts.PropertiesPanelContext.visible", true, true );
 		}
 	}

@@ -15,6 +15,7 @@ package
 	import cadet3D.resources.ExternalAway3DResourceParser;
 	
 	import cadetEditor.assets.CadetEditorIcons;
+	import cadetEditor.contexts.OutlinePanelContext;
 	import cadetEditor.entities.CadetEditorCommands;
 	
 	import cadetEditor3D.commandHandlers.ExportToAS3CommandHandler;
@@ -68,6 +69,9 @@ package
 			{
 				new ExternalResourceController( resourceManager, new URI(baseUrl+".url/assets/"), CoreApp.fileSystemProvider );
 			}*/
+			
+			// Visual Contexts
+			resourceManager.addResource( new FactoryResource( OutlinePanelContext, "Outline", CadetEditorIcons.Outline ) );
 			
 			// CadetEditorView Actions
 			//resourceManager.addResource( new ActionFactory( ICadetEditorContext2D, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );

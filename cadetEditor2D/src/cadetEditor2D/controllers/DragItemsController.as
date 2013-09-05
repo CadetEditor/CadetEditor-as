@@ -225,12 +225,20 @@ package cadetEditor2D.controllers
 					var skin:AbstractSkin2D = AbstractSkin2D(renderable);
 					if (storedMatrix) {
 						if (skin.transform2D) {
-							var m:Matrix = skin.transform2D.globalMatrix.clone(); // clone local-to-global matrix before inverting
-							m.invert(); // invert and get global-to-local
 							
-							// this is from Starling, but you can copy this method code as well - it's just 2 lines
-							var localPoint:Point = MatrixUtil.transformCoords(m, snappedPos.x, snappedPos.y);
-							var mousePoint:Point = MatrixUtil.transformCoords(m, mouseX, mouseY);
+							if(skin.transform2D.parentTransform != null) {
+								var m:Matrix = skin.transform2D.parentTransform.globalMatrix.clone(); // clone local-to-global matrix before inverting
+								m.invert(); // invert and get global-to-local
+								
+								// this is from Starling, but you can copy this method code as well - it's just 2 lines
+								var localPoint:Point = MatrixUtil.transformCoords(m, snappedPos.x, snappedPos.y); 
+								var mousePoint:Point = MatrixUtil.transformCoords(m, mouseX, mouseY);
+							}
+							else {
+								// no parent, so this is a top-level transform, it uses global space
+								localPoint = snappedPos; 
+								mousePoint = new Point(mouseX, mouseY);
+							}
 							
 							var dx:Number = localPoint.x - mousePoint.x;
 							var dy:Number = localPoint.y - mousePoint.y;
@@ -239,7 +247,26 @@ package cadetEditor2D.controllers
 							newMatrix.translate(dx,dy);
 							skin.transform2D.matrix = newMatrix;						
 						} else if (skin is TransformableSkin) {
+							
 							var tSkin:TransformableSkin = TransformableSkin(skin);
+								
+							if(tSkin.internalTransform.parentTransform != null) {
+								m = tSkin.internalTransform.parentTransform.globalMatrix.clone(); // clone local-to-global matrix before inverting
+								m.invert(); // invert and get global-to-local
+								
+								// this is from Starling, but you can copy this method code as well - it's just 2 lines
+								localPoint = MatrixUtil.transformCoords(m, snappedPos.x, snappedPos.y); 
+								mousePoint = MatrixUtil.transformCoords(m, mouseX, mouseY);
+							}
+							else {
+								// no parent, so this is a top-level transform, it uses global space
+								localPoint = snappedPos; 
+								mousePoint = new Point(mouseX, mouseY);
+							}
+							
+							dx = localPoint.x - mousePoint.x;
+							dy = localPoint.y - mousePoint.y;							
+							
 							newMatrix = storedMatrix.clone();
 							newMatrix.translate(dx,dy);
 							tSkin.matrix = newMatrix;						
