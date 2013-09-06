@@ -28,12 +28,12 @@ package cadetEditor.contexts
 
 	public class OutlinePanelContext implements IVisualContext, IInspectableContext, IOperationManagerContext
 	{
-		private var context					:ICadetContext;
-		private var contextValidator		:ContextValidator;
+		protected var context				:ICadetContext;
+		protected var contextValidator		:ContextValidator;
 		
-		private var _view					:OutlineTree;
+		protected var _view					:OutlineTree;
 		
-		private var dataProvider			:ICadetScene;
+		protected var dataProvider			:ICadetScene;
 		
 		public function OutlinePanelContext()
 		{
@@ -166,12 +166,12 @@ package cadetEditor.contexts
 		}
 				
 		
-		private function dragOverHandler( event:DragAndDropEvent ):void
+		protected function dragOverHandler( event:DragAndDropEvent ):void
 		{
 			
 		}
 		
-		private function dragDropHandler( event:DragAndDropEvent ):void
+		protected function dragDropHandler( event:DragAndDropEvent ):void
 		{
 			if ( context is IOperationManagerContext == false )
 			{

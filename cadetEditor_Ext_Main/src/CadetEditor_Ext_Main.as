@@ -48,8 +48,8 @@ package
 		//	resourceManager.addResource( new EditorFactory( CadetContext, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
 			
 			
-			// Visual Contexts
-			resourceManager.addResource( new FactoryResource( OutlinePanelContext, "Outline", CadetEditorIcons.Outline ) );
+//			// Visual Contexts
+//			resourceManager.addResource( new FactoryResource( OutlinePanelContext, "Outline", CadetEditorIcons.Outline ) );
 			
 			// Register some additional Property inspector item editors
 			resourceManager.addResource( new PropertyInspectorItemEditorFactory( "ComponentList", ComponentListItemEditor, "selectedItem", "components", "propertyName" ) );
