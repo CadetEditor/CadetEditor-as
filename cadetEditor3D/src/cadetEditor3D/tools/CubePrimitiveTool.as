@@ -42,7 +42,7 @@ package cadetEditor3D.tools
 			meshComponent.children.addItem(geometryComponent);
 			
 			//mousePressPoint = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
-			mousePressPoint = Vector3DUtil.getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS, renderer.view3D );
+			mousePressPoint = Vector3DUtil.getMousePositionOnPlane( new Vector3D(0,0,1), Vector3D.Y_AXIS, renderer.view3D );
 			meshComponent.x = mousePressPoint.x;
 			meshComponent.y = mousePressPoint.y;
 			meshComponent.z = mousePressPoint.z;
@@ -54,12 +54,12 @@ package cadetEditor3D.tools
 		{
 			//var mouseWorldPos:Vector3D = getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS );
 			var mouseWorldPos:Vector3D = Vector3DUtil.getMousePositionOnPlane( new Vector3D(), Vector3D.Y_AXIS, renderer.view3D );
-			trace("mouseWorldPos "+mouseWorldPos);
+			//trace("mouseWorldPos "+mouseWorldPos);
 			var delta:Vector3D = mouseWorldPos.subtract(mousePressPoint);
 			geometryComponent.width = geometryComponent.height = geometryComponent.depth = delta.length * 0.5;
 			meshComponent.y = geometryComponent.height * 0.5;
 			
-			trace("delta2 "+delta.length);
+			//trace("delta2 "+delta.length);
 		}
 	}
 }
