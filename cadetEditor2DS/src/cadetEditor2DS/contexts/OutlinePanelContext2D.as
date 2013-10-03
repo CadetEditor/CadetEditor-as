@@ -58,7 +58,9 @@ package cadetEditor2DS.contexts
 			// it retains a sense of screen space, rather than just working off it's x & y coords
 			if ( component is ComponentContainer ) {
 				var childTransform:Transform2D = ComponentUtil.getChildOfType( ComponentContainer( component ), Transform2D );
-				var m2:Matrix = childTransform.globalMatrix.clone();
+				if ( childTransform ) {
+					var m2:Matrix = childTransform.globalMatrix.clone();
+				}
 			}
 			
 			var operation:UndoableCompoundOperation = new UndoableCompoundOperation();
