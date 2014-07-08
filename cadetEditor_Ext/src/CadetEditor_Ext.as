@@ -6,6 +6,16 @@ package
 	import flash.display.Sprite;
 	import flash.ui.Keyboard;
 	
+	import cadet.assets.CadetEngineIcons;
+	import cadet.components.processes.InputProcess;
+	import cadet.components.processes.KeyboardInputMapping;
+	import cadet.components.processes.SoundProcess;
+	import cadet.components.processes.TouchInputMapping;
+	import cadet.components.sounds.SoundComponent;
+	import cadet.core.CadetScene;
+	import cadet.core.ComponentContainer;
+	import cadet.entities.ComponentFactory;
+	
 	import cadetEditor.assets.CadetEditorIcons;
 	import cadetEditor.commandHandlers.AddComponentCommandHandler;
 	import cadetEditor.commandHandlers.CompileAndRunCommandHandler;
@@ -21,21 +31,30 @@ package
 	import cadetEditor.ui.components.ComponentListItemEditor;
 	
 	import core.app.CoreApp;
-	import core.appEx.entities.KeyModifier;
 	import core.app.managers.ResourceManager;
-	import core.app.resources.FactoryResource;
+	import core.appEx.entities.KeyModifier;
 	import core.appEx.resources.KeyBinding;
 	import core.appEx.resources.PropertyInspectorItemEditorFactory;
 	import core.editor.core.IGlobalViewContainer;
 	import core.editor.entities.Commands;
-	import core.editor.icons.CoreEditorIcons;
 	import core.editor.resources.ActionFactory;
 	
-	public class CadetEditor_Ext_Main extends Sprite
+	public class CadetEditor_Ext extends Sprite
 	{
-		public function CadetEditor_Ext_Main()
+		public function CadetEditor_Ext()
 		{
 			var resourceManager:ResourceManager = CoreApp.resourceManager;
+			
+			resourceManager.addResource( new ComponentFactory( ComponentContainer, "Component Container" ) );
+			
+			// Processes
+			resourceManager.addResource( new ComponentFactory( KeyboardInputMapping, "Keyboard Input Mapping", "Processes", CadetEngineIcons.Process, InputProcess ) );
+			resourceManager.addResource( new ComponentFactory( TouchInputMapping, "Touch Input Mapping", "Processes", CadetEngineIcons.Process, InputProcess ) );
+			resourceManager.addResource( new ComponentFactory( SoundProcess, "Sound Process", "Processes", CadetEngineIcons.Process, CadetScene, 1 ) );
+			// Sounds
+			resourceManager.addResource( new ComponentFactory( SoundComponent, "Sound", null, CadetEngineIcons.Sound ) );			
+			
+			////
 			
 			// Global actions
 			resourceManager.addResource( new ActionFactory( IGlobalViewContainer, 	CadetEditorCommands.BUILD, "Build", "", "Project/build" ) );
@@ -44,9 +63,6 @@ package
 			// Outline Context Actions
 			resourceManager.addResource( new ActionFactory( OutlinePanelContext, CadetEditorCommands.ADD_COMPONENT, "Add Component...", "modify", "", CadetEditorIcons.NewComponent ) );
 			resourceManager.addResource( new ActionFactory( OutlinePanelContext, Commands.DELETE, "Delete Component...", "modify", "", CadetEditorIcons.DeleteComponent ) );
-			
-		//	resourceManager.addResource( new EditorFactory( CadetContext, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
-			
 			
 //			// Visual Contexts
 //			resourceManager.addResource( new FactoryResource( OutlinePanelContext, "Outline", CadetEditorIcons.Outline ) );

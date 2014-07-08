@@ -51,6 +51,44 @@ package
 		{	
 			var resourceManager:ResourceManager = CoreApp.resourceManager;
 			
+			
+			// Entities =======================================	
+			// Cameras
+			resourceManager.addResource( new ComponentFactory( CameraComponent, "Camera", "Display", CadetEngine3DIcons.Camera ) );
+			// Debug
+			resourceManager.addResource( new ComponentFactory( TridentComponent, "Trident", "Display", CadetEngine3DIcons.Mesh ) );
+			// Entities
+			resourceManager.addResource( new ComponentFactory( MeshComponent, "Mesh", "Display", CadetEngine3DIcons.Mesh ) );
+			resourceManager.addResource( new ComponentFactory( ObjectContainer3DComponent, "ObjectContainer3D", "Display", CadetEngine3DIcons.Mesh ) );
+			resourceManager.addResource( new ComponentFactory( SkyBoxComponent, "SkyBox", "Display", CadetEngine3DIcons.Mesh ) );
+			resourceManager.addResource( new ComponentFactory( Sprite3DComponent, "Sprite3D", "Display", CadetEngine3DIcons.Mesh ) );
+			
+			// Geometries =====================================
+//			resourceManager.addResource( new ComponentFactory( HeightmapGeometryComponent, "HeightmapGeometry", "Geometry", CadetEngine3DIcons.Geometry ) );
+			resourceManager.addResource( new ComponentFactory( PlaneGeometryComponent, "PlaneGeometry", "Geometry", CadetEngine3DIcons.Geometry ) );
+			resourceManager.addResource( new ComponentFactory( SphereGeometryComponent, "SphereGeometry", "Geometry", CadetEngine3DIcons.Geometry ) );
+			resourceManager.addResource( new ComponentFactory( CubeGeometryComponent, "CubeGeometry", "Geometry", CadetEngine3DIcons.Geometry ) );			
+			
+			// Lights =========================================
+			resourceManager.addResource( new ComponentFactory( DirectionalLightComponent, "Directional Light", "Display", CadetEngine3DIcons.DirectionalLight ) );
+			resourceManager.addResource( new ComponentFactory( PointLightComponent, "Point Light", "Display", CadetEngine3DIcons.PointLight ) );
+			
+			// Materials ======================================
+			resourceManager.addResource( new ComponentFactory( ColorMaterialComponent, "Color Material", "Display", CadetEngine3DIcons.Material ) );
+			resourceManager.addResource( new ComponentFactory( SkyBoxMaterialComponent, "SkyBox Material", "Display", CadetEngine3DIcons.Material ) );
+			resourceManager.addResource( new ComponentFactory( TextureMaterialComponent, "Texture Material", "Display", CadetEngine3DIcons.Material ) );
+			
+			// Processes ======================================
+			resourceManager.addResource( new ComponentFactory( InputProcess3D, "Input Process", "Processes", CadetEngineIcons.Process, ICadetScene, 1 ) );
+			resourceManager.addResource( new ComponentFactory( HoverCamProcess, "HoverCamProcess", "Processes", CadetEngineIcons.Process, ICadetScene, 1 ) );
+			resourceManager.addResource( new ComponentFactory( Renderer3D, "Away3D Renderer", "Processes", CadetEngine3DIcons.Renderer, ICadetScene, 1 ) );	
+			
+			// Textures =======================================
+			resourceManager.addResource( new ComponentFactory( BitmapTextureComponent, "Bitmap Texture", "Display", CadetEngineIcons.Texture ) );
+			resourceManager.addResource( new ComponentFactory( BitmapCubeTextureComponent, "Bitmap Cube Texture", "Display", CadetEngineIcons.Texture ) );
+			
+			////			
+			
 			// Cadet Viewer
 			resourceManager.addResource( new EditorFactory( CadetContext3D, "Cadet Viewer", "cdt", CadetEditorIcons.Cadet ) );
 			
@@ -58,18 +96,7 @@ package
 			resourceManager.addResource( new ExternalResourceParserFactory( ExternalAway3DResourceParser, "External Away3D Resource Parser", ["obj", "3ds"] ) );
 			
 			var baseUrl:String = "cadet";
-			
-			// Bit of a hack, as we're hard-coding the path to the assets folder.
-			// This should be handled as part of loading a project
-/*			if ( CoreEditor.environment == CoreEditorEnvironment.AIR )
-			{
-				new ExternalResourceController( resourceManager, new URI(baseUrl+".local/assets/"), CoreApp.fileSystemProvider );
-			}
-			else if ( CoreEditor.environment == CoreEditorEnvironment.BROWSER )
-			{
-				new ExternalResourceController( resourceManager, new URI(baseUrl+".url/assets/"), CoreApp.fileSystemProvider );
-			}*/
-			
+
 			// Visual Contexts
 			resourceManager.addResource( new FactoryResource( OutlinePanelContext, "Outline", CadetEditorIcons.Outline ) );
 			

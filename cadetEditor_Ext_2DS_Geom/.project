@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>CadetEditor_Ext_Main</name>
+	<name>CadetEditor_Ext_2DS_Geom</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -18,7 +18,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/CoreEditor/deploy/extensions</locationURI>
+			<locationURI>DOCUMENTS/CoreEditor-as/deploy/extensions</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
