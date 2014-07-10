@@ -1,4 +1,4 @@
-[Cadet Banner](http://cadeteditor.github.io/img/carousel/4_2.gif)
+![Cadet Banner](http://cadeteditor.github.io/img/carousel/4_2.gif)
 
 CadetEditor
 ===========
